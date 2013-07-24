@@ -26,7 +26,7 @@
 	//App GUI Principal
 	$txtApp['appPrincipal']['tituloPrincipalApp'] = "M&oacute;dulo Inventarios";
 	$txtApp['appPrincipal']['cerrarSesion'] = "Cerrar Sesi&oacute;n";
-	$txtApp['appPrincipal']['msgModulo'] = "Almac&eacute;n";
+	$txtApp['appPrincipal']['msgModulo'] = "Control de Almac&eacute;n";
 	$txtApp['appPrincipal']['msgActualizaciones'] = "Actualizaciones";
 	$txtApp['appPrincipal']['msgReportarError'] = "Reportar Problema";
 	$txtApp['appPrincipal']['msgBarraCarga'] = "Listo";
