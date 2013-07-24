@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>&copy; IQe. Sistemas M&eacute;xico.</title>
+<script language="javascript">
+	function centrar() {
+		iz=(screen.width-document.body.clientWidth) / 2;
+		de=(screen.height-document.body.clientHeight) / 2;
+		moveTo(iz,de);
+	}
+	
+	function cerrar(elEvento) {
+		var evento = elEvento || window.event;
+		var codigo = evento.charCode || evento.keyCode;
+		var caracter = String.fromCharCode(codigo);
+		//alert("Evento: "+evento+" Codigo: "+codigo+" Caracter: "+caracter);
+		if (codigo==27||codigo==13)
+ 			self.close();
+	}
+	document.onkeypress = cerrar;
+</script>
+<style type="text/css">
+	body,document{ margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+</style>
+</head>
+<body topmargin="0" leftmargin="0" bottommargin="0" rightmargin="0" onload="centrar()">
+<img src="sisco_cr2009.png">
+</body>
+</html>
