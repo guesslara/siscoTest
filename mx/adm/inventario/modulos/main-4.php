@@ -6,17 +6,17 @@
 	exit;
     }
     
-    include("../../../../../clases/permisosUsuario.php");
-    include("../../../../../clases/cargaInicial.php");
-    include("../../../../../clases/cargaActualizaciones.php");
-    include("../../../../../clases/funcionesGUI.php");
-    include("../../../../../includes/txtAppAlmacen.php");
+    include("../../../../clases/almacen/permisosUsuario.php");
+    include("../../../../clases/almacen/cargaInicial.php");
+    include("../../../../clases/almacen/cargaActualizaciones.php");
+    include("../../../../clases/almacen/funcionesGUI.php");
+    include("../../../../includes/txtAppAlmacen.php");
     
     if(!isset($_SESSION[$txtApp['session']['idUsuario']])){	
 	echo "<script type='text/javascript'> window.location.href='cerrar_sesion.php'; </script>";
 	exit;
     }
-    exit;
+    
     $objFuncionesGUI=new funcionesInterfazPrincipal();
     $objActualizaciones= new verificaActualizaciones();
     $objCargaInicial=new verificaCargaInicial();
@@ -30,10 +30,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" href="../css/main.css" rel="stylesheet" />
-    <link type="text/css" href="../clases/menu/estilosMenu.css" rel="stylesheet" />
+    <link type="text/css" href="../../../../css/guiPrincipal.css" rel="stylesheet" />
+    <link type="text/css" href="../../../../css/menu/estilosMenu.css" rel="stylesheet" />
     <title><?=$txtApp['login']['tituloAppPrincipal'];?></title>
-    <script type="text/javascript" src="../clases/jquery-1.3.2.min.js"></script>    
+    <script type="text/javascript" src="../../../../clases/jquery.js"></script>    
     <script type="text/javascript" src="js/funcionesMain.js"></script>
     <script type="text/javascript">	
 	$(document).ready(function (){	    
@@ -126,7 +126,7 @@
     <div id="contenedorAppMain">
         <div id="barraHerramientasUsuario">
             <div class="estiloMensajeModulo"><? echo $txtApp['appPrincipal']['msgModulo'];?> <span style="color: orange;font-weight: bold;">BETA</span></div>            
-            <div class="iconoUsuarioAppCerrar"><a href="cerrar_sesion.php?<?=$SID;?>" id="" title="<?=$txtApp['appPrincipal']['cerrarSesion'];?>" ><img src="../img/shutdown1.png" border="0" width="35" height="36" /></a></div>
+            <div class="iconoUsuarioAppCerrar"><a href="cerrar_sesion.php?<?=$SID;?>" id="" title="<?=$txtApp['appPrincipal']['cerrarSesion'];?>" ><img src="../../../../img/shutdown1.png" border="0" width="35" height="36" /></a></div>
             <div class="iconoUsuarioApp">&nbsp;</div>
             <div class="datosUsuarioAppPrincipal" onclick="mostrarPerfilUsuario()" title="Ver Perfil del Usuario"><?=$_SESSION[$txtApp['session']['nombreUsuario']]." ".$_SESSION[$txtApp['session']['apellidoUsuario']];?></div>
         </div>

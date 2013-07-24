@@ -18,6 +18,7 @@
 			$this->Servidor=$host;
 			$this->Usuario=$user;
 			$this->Clave=$pass;
+			$this->conectar($this->BaseDatos,$this->Servidor,$this->Usuario,$this->Clave);
 		}		
 		/*Conexion a la base de datos*/
 		function conectar($bd,$host,$user,$pass){
@@ -55,7 +56,7 @@
 			}
 			
 			//ejecutamos la consulta
-			$this->Consulta_ID=@mysql_query($sql,$this->Conexion_ID);
+			$this->Consulta_ID=@mysql_query($sql,$this->Conexion_ID) or die(mysql_error());
 			
 			if(!$this->Consulta_ID){
 				$this->Errno=mysql_errno();
