@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	//print_r($_SESSION);exit;
 	include("../../conf/validar_usuarios.php");
 	validar_usuarios(0,1,2,3,11);
 
@@ -11,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>IQe Sisco - M&oacute;dulo de Almac&eacute;n ver. 1.0.0</title>
 
-<script src="../../js/jdmenu/jquery-1.1.2.js" type="text/javascript"></script>
+<script src="../../../../clases/jquery.js" type="text/javascript"></script>
 <script language="javascript">
 $(document).ready(start);
 

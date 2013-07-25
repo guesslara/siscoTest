@@ -40,7 +40,7 @@
 	    contenedorPrincipal();
 	});
 	ClosingVar =true
-	window.onbeforeunload = ExitCheck;
+	//window.onbeforeunload = ExitCheck;
 	function ExitCheck(){  
 		///control de cerrar la ventana///
 	 	if(ClosingVar == true){
@@ -144,7 +144,7 @@
 		<input type="text" name="txtBusquedaImeiPrincipal" id="txtBusquedaImeiPrincipal" onkeypress="verificaTeclaImeiBusquedaPrincipal(event)">
 		<input type="radio" id="filtroImei" name="filtroBusqueda" value="imei" checked="checked" ><label for="filtroImei">Imei</label>
 		<input type="radio" id="filtroSerie" name="filtroBusqueda" value="serial"><label for="filtroSerie">Serial</label>
-		<div id="estiloBtnCerrarDiv"><a href="#" onclick="cerrarBusquedaPrincipal()"><img src="../img/close-icon.png"></a></div>
+		<div id="estiloBtnCerrarDiv"><a href="#" onclick="cerrarBusquedaPrincipal()"><img src="../../../../img/close-icon.png"></a></div>
 	    </div>	    
 	    <div id="divResultadosBusquedaPrincipal"></div>
 	</div>	
@@ -154,7 +154,7 @@
             <iframe id="contenedorVentana" name="contenedorVentana" class="contenedorVentanaMDIApp"></iframe>
         </div>
         <div id="barraestado2">
-	    <div onclick="cambiarModo()" class="estiloPantallaCompleta"><div class="estiloDivIzqPCompleta"><img src="../img/ampliar.jpg" border="0" width="32" height="25"></div><div class="estiloDivDerPCompleta">Pantalla Completa</div></div>
+	    <div onclick="cambiarModo()" class="estiloPantallaCompleta"><div class="estiloDivIzqPCompleta"><img src="../../../../img/ampliar.jpg" border="0" width="32" height="25"></div><div class="estiloDivDerPCompleta">Pantalla Completa</div></div>
             <div id="contenedorBug">
 		<div id="id" class="estiloDivContenedor">
 			<a href="#" onclick="abrirFormBug()" title="<?=$txtApp['appPrincipal']['msgReportarError'];?>" style="color:blue;text-decoration: none;"><?=$txtApp['appPrincipal']['msgReportarError'];?></a>

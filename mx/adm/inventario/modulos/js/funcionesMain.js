@@ -31,7 +31,7 @@ function vActNuevas(){
 	url:"funcionesMain.php",
 	data:"action=verificaActNuevas",
 	beforeSend:function(){ 
-		$("#cargadorApp").show().html('<img src="../img/cargador (2).gif">'); 
+		$("#cargadorApp").show().html('<img src="../../../../img/cargador (2).gif">'); 
 	},
 	success:function(datos){
 		$("#cargadorApp").html("Listo");
