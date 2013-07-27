@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>IQe Sisco - M&oacute;dulo de Almac&eacute;n ver. 1.0.0</title>
 
-<script src="../../../../clases/jquery.js" type="text/javascript"></script>
+<script src="../../../../../clases/jquery.js" type="text/javascript"></script>
 <script language="javascript">
 $(document).ready(start);
 
@@ -130,7 +130,7 @@ function start()
 }
 function inicio1()
 {
-  	$("#contenido").show().html('<img src="../img/barra6.gif"><br>Cargando p&aacute;gina, espere un momento.');
+  	$("#contenido").show().html('<img src="../../../../../img/barra6.gif"><br>Cargando p&aacute;gina, espere un momento.');
 }
 function resultado1(datos)
 {
@@ -216,7 +216,7 @@ function ver_producto(id)
 }
 function inicio2()
 {
-	$("#v2_c").html('<img src="../img/barra6.gif"><br>Cargando p&aacute;gina, espere un momento.');
+	$("#v2_c").html('<img src="../../../../../img/barra6.gif"><br>Cargando p&aacute;gina, espere un momento.');
 }
 function resultado2(datos)
 {
@@ -276,7 +276,7 @@ function ver_kardex(id)
 }
 function inicio4()
 {
-	$("#v4_c").html('<img src="../../img/barra6.gif"><br>Cargando p&aacute;gina, espere un momento.');
+	$("#v4_c").html('<img src="../../../../../img/barra6.gif"><br>Cargando p&aacute;gina, espere un momento.');
 }
 function resultado4(datos)
 {
@@ -403,7 +403,7 @@ a:visited{ text-decoration:none;}
  .pagact:visited{ border:#CCCCCC 1px solid; background-color:#efefef; color:#333333; font-weight:bold; text-align:center; 
  width:20px; height:30px; padding:2px; font-size:15px; margin:1px; margin-right:4px;}
 /*==========================================================================================*/
-#transparente{ background-image:url(../../img/transparente.png); width:100%; height:900px; position:absolute; margin:0px; padding:0px; z-index:2; display:none;}
+#transparente{ background-image:url(../../../../../img/transparente.png); width:100%; height:900px; position:absolute; margin:0px; padding:0px; z-index:2; display:none;}
 #ventana1{ display:none; position:absolute; z-index:3; width:300px; height:200px; top:50%; left:50%; margin-top:-150px; margin-left:-100px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v1_t{ text-align:right; padding:1px; background-color:#333333; color:#FFFFFF;}
@@ -416,7 +416,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 #ventana3{ display:none; position:absolute; z-index:3; width:500px; height:220px; top:50%; left:50%; margin-top:-110px; margin-left:-250px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v3_t{ height:17px; text-align:right; padding:1px; padding-bottom:2px; background-color:#333333; color:#FFFFFF;}
-#v3_c{ height:195px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center; background-image:url(../img/buscar3.png); background-position:right; background-repeat:no-repeat;}
+#v3_c{ height:195px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center; background-image:url(../../../../../img/buscar3.png); background-position:right; background-repeat:no-repeat;}
 
 #ventana4{ display:none; position:absolute; z-index:3; width:800px; height:400px; top:50%; left:50%; margin-top:-200px; margin-left:-400px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
@@ -434,7 +434,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 <div id="ventana5">
 	<div id="v5_t">
 	<div style="float:left; padding-left:5px; font-weight:bold;">B&uacute;squeda NEXTEL</div>
-	<a href="javascript:cancelar();"><img src="../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
+	<a href="javascript:cancelar();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
 	<div id="v5_c">
 	
 	<div id="busqueda_nextel" style="">
@@ -473,9 +473,9 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 <div id="ventana1">
 	<div id="v1_t">
 	<div style="float:left; padding-left:5px; font-weight:bold;">Exportar informaci&oacute;n</div>
-	<a href="javascript:cancelar();"><img src="../../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
+	<a href="javascript:cancelar();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
 	<div id="v1_c">
-		<img src="../../img/xls1.png" border="0" title="Exportar datos a Excel." style="cursor:pointer; margin:10px; margin-top:50px;" />
+		<img src="../../../../../img/xls1.png" border="0" title="Exportar datos a Excel." style="cursor:pointer; margin:10px; margin-top:50px;" />
 		<a href="javascript:exportar_xls();" style="position:absolute; top:89px; left:87px; " title="Esta operacion puede tardar un tiempo considerable en relacion al numero de productos.">
 		Exportar resultados a Excel.</a> <br /></div>	
 </div>
@@ -483,9 +483,9 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 <div id="ventana2">
 	<div id="v2_t">
 	<div style="float:left; padding-left:5px; font-weight:bold;">Descripci&oacute;n del Producto</div>
-	<a href="javascript:cancelar();"><img src="../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
+	<a href="javascript:cancelar();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
 	<div id="v2_c">
-		<img src="../img/xls1.png" border="0" title="Exportar datos a Excel." style="cursor:pointer; margin:10px; margin-top:50px;" />
+		<img src="../../../../../img/xls1.png" border="0" title="Exportar datos a Excel." style="cursor:pointer; margin:10px; margin-top:50px;" />
 		<a href="javascript:exportar_xls();" style="position:absolute; top:89px; left:87px; " title="Esta operacion puede tardar un tiempo considerable en relacion al numero de productos.">
 		Exportar resultados a Excel.</a>	</div>	
 </div>
@@ -493,7 +493,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 <div id="ventana3">
 	<div id="v3_t">
 		<div style="float:left; padding-left:5px; font-weight:bold;">B&uacute;squeda avanzada</div>
-		<a href="javascript:cancelar();"><img src="../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
+		<a href="javascript:cancelar();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
 	<div id="v3_c">
 
 
@@ -584,7 +584,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 <div id="ventana4">
 	<div id="v4_t">
 	<div style="float:left; padding-left:5px; font-weight:bold;">Kardex</div>
-	<a href="javascript:cerrar_kardex();"><img src="../../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
+	<a href="javascript:cerrar_kardex();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
 	<div id="v4_c">
 		...
 	</div>	
