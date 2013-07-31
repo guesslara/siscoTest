@@ -9,11 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Movimientos</title>
-  <script language="javascript" src="../../js/jquery.js"></script>
-  <link rel="stylesheet" type="text/css" media="all" href="../../js/Calendario/calendar-green.css" title="win2k-cold-1" /> 
-  <script type="text/javascript" src="../../js/Calendario/calendar.js"></script>
-  <script type="text/javascript" src="../../js/Calendario/calendar-es.js"></script>
-  <script type="text/javascript" src="../../js/Calendario/calendar-setup.js"></script>  
+  <script language="javascript" src="../../../../../clases/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="../../../../../recursos/Calendario/calendar-green.css" title="win2k-cold-1" /> 
+  <script type="text/javascript" src="../../../../../recursos/Calendario/calendar.js"></script>
+  <script type="text/javascript" src="../../../../../recursos/Calendario/calendar-es.js"></script>
+  <script type="text/javascript" src="../../../../../recursos/Calendario/calendar-setup.js"></script>  
 
 <script language="javascript">
 	function seleccionar(a)
