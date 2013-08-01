@@ -209,7 +209,7 @@
 				<tr>
 					<td>Activo</td>
 					<td>
-						<select name="cboStatusSubmenu" id="cboStatusSubmenuAct" style="width: 150px;">
+						<select name="cboStatusSubmenu" id="cboStatusSubmenuAct" style="width: 150px;" >
 							<option value="<?=$row["activo"];?>" selected="selected"><?=$valor;?></option>
 							<option value="1">Activo</option>
 							<option value="0">Inactivo</option>
@@ -227,7 +227,7 @@
 		}
 		
 		public function guardarSubmenu($idElemento,$txtNombreSubMenu,$txtRuta,$cboStatusSubmenu){
-			$sql="INSERT INTO submenu (id_menu,nombreSubMenu,rutaSubMenu,activo) VALUES ('".$idElemento."','".$txtNombreSubMenu."','".$txtRuta."','".$cboStatusSubmenu."')";
+			$sql="INSERT INTO submenu (id_menu,nombreSubMenu,rutaSubMenu,activo) VALUES ('".$idElemento."','".$txtNombreSubMenu."','".$txtRuta."','".$cboStatusSubmenu."')";			
 			$res=mysql_query($sql,$this->conexion);
 			if($res){
 				echo "<script type='text/javascript'> alert('Elemento Guardado'); mostrarOpcionesMenu(); </script>";
@@ -671,7 +671,7 @@
 		
 		//agrega grupo
 		function addGrupo(){		
-			include("../../includes/conectarbase.php");
+			include("../../../../../includes/conectarbase.php");
 			//$sql_modulos="SELECT * FROM gruposmods WHERE activo='1'";
 			//$sql_modulos="SELECT * FROM submenu WHERE activo='1'";
 			$sql_modulos="SELECT * FROM gruposmods WHERE activo = '1' ORDER BY numeroMenu";
@@ -760,8 +760,8 @@
 		}
 		//reset pass
 		public function resetPass($id_usr){
-			include("../../../includes/config.inc.php");
-			include("../../../includes/conectarbase.php");
+			include("../../../../../includes/config.inc.php");
+			include("../../../../../includes/conectarbase.php");
 			$pass=$strP;
 			$sql_reset="UPDATE $tabla_usuarios set pass='".$strP."',cambiarPass='0' WHERE ID='".$id_usr."'";
 			$result_reset=mysql_query($sql_reset,$this->conexion);
@@ -993,8 +993,8 @@
 		
 		//borrar usuario
 		public function borrarUsuario($id_usr){
-			include("../../../includes/config.inc.php");
-			include("../../../includes/conectarbase.php");
+			include("../../../../../ncludes/config.inc.php");
+			include("../../../../../includes/conectarbase.php");
 			$sql_elimina="UPDATE userdbnextel SET activo=0,fecha_eliminacion='".date('Y-m-d')."',hora_eliminacion='".date('H:i:s')."' WHERE ID='".$id_usr."'";
 			$result_del1=mysql_query($sql_elimina,$this->conexion);
 			if($result_del1==true){	
@@ -1014,8 +1014,8 @@
 		
 		//listar los usuarios
 		public function listarUsuarios($param,$orden,$txtBuscaInicio,$filtro){			
-			include("../../includes/config.inc.php");
-			include("../../includes/conectarbase.php");
+			include("../../../../../includes/config.inc.php");
+			include("../../../../../includes/conectarbase.php");
 			
 			$resultBuscador=mysql_query($sqlParam,$this->conexion);
 			//$Buscador=mysql_fetch_array($resultBuscador);
@@ -1138,8 +1138,8 @@
 		
 		
 		public function nuevaFuncionForm(){
-			include("../../includes/config.inc.php");
-			include("../../includes/conectarbase.php");
+			include("../../../../../includes/config.inc.php");
+			include("../../../../../includes/conectarbase.php");
 
 			$conn=new Conexion();
 			$var=$conn->getConexion($host,$usuario,$pass,$db);
@@ -1181,7 +1181,7 @@
 		}//fin funcion nuevaFuncionForm
 
 		public function guardarFuncion($txtModulo,$txtPer,$txtMenu){
-			include("../../includes/config.inc.php");
+			include("../../../../../includes/config.inc.php");
 			$conn=new Conexion();
 			$var=$conn->getConexion($host,$usuario,$pass,$db);
 			//echo "<br>".

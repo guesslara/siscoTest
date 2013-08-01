@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Reportes del Sistema de Inventarios IQ.</title>
-    <script language="javascript" type="text/javascript" src="../../js/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../../../clases/jquery.js"></script>
 	<script language="javascript">
 		function descripcion(t)
 		{
@@ -39,7 +39,7 @@
 		<div id="div1">
 			<div id="div_tit1">Reportes del Sistema de Inventarios IQ.</div>
 			<div id="div_con1">
-				<div id="div_adm"><img src="../../img/document.png" id="img1"/></div>
+				<div id="div_adm"><img src="../../../../../img/document.png" id="img1"/></div>
 				<div id="div_ope">
 					<br />
 					<ul class="ulli">

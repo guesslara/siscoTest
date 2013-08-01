@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Operaciones entre movimientos</title>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$(document).ready(start1);	
 	function start1()
@@ -154,7 +154,7 @@ function popUp(URL) {
     		contentType: "application/x-www-form-urlencoded",
     		url:"mover_productos_movimientos2.php",
     		data:"action=agregar_productos_movimiento&mov_destino="+idm1+"&ids="+claves,
-    		beforeSend:function(){ $("#status").show().html('&nbsp;<center><img src="../img/barra6.gif"></center>'); },
+    		beforeSend:function(){ $("#status").show().html('&nbsp;<center><img src="../../../../../../img/barra6.gif"></center>'); },
     		success:function(datos){ $("#status").show().html("&nbsp;"+datos); },
     		timeout:100000000,
     		error:function(){ $("#status").html('Error: El servidor no responde.'); return; }
@@ -328,8 +328,8 @@ background-color:#FFFFFF; border:#CCCCCC 1px solid; padding:1px 1px 1px 1px; cur
         <td style="font-weight:bold; font-size:24px; text-align:center;" valign="top">
 			<div id="flechas">
 				<br />	
-				<a href="javascript:pasar_productos_0_1();" title="Pasar productos seleccionados del Movimiento Origen al Movimiento Destino"><img src="../../img/agt_forward-256.png" border="0" /></a>
-				<a href="javascript:pasar_productos_1_0();" title="Pasar productos seleccionados del Movimiento Destino al Movimiento Origen"><img src="../../img/agt_back-256.png" border="0" /></a>
+				<a href="javascript:pasar_productos_0_1();" title="Pasar productos seleccionados del Movimiento Origen al Movimiento Destino"><img src="../../../../../img/agt_forward-256.png" border="0" /></a>
+				<a href="javascript:pasar_productos_1_0();" title="Pasar productos seleccionados del Movimiento Destino al Movimiento Origen"><img src="../../../../../img/agt_back-256.png" border="0" /></a>
 			</div>
 		</td>
         <td valign="top"><div id="mover_productos_1">&nbsp;</div></td>

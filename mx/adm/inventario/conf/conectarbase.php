@@ -1,5 +1,5 @@
 <?php
-	$link=@mysql_connect("localhost","root","xampp") or die("No se pudo conectar al servidor.<br>");
+	$link=@mysql_connect("localhost","root","xampp") or die("No se pudo conectar al servidor.<br>");	
 //	$sql_inv="iqe_lex_inv_2010";	// DB INVENTARIO.
 	$sql_inv="iqe_lex_inv_2010";	// DB INVENTARIO.
 //	$sql_ing="iqe_lex_ing_2010";	// DB INGENIERIA.
@@ -14,4 +14,11 @@
 	
 	$id_almacen_ingenieria=2;
 	$nombre_almacen_ingenieria="a_2_ingenieria";
+	
+	if(!$link){
+		echo "Error al conectar con la Base de Datos";
+		exit;
+	}else{
+		mysql_select_db($sql_inv);
+	}
 ?>

@@ -148,7 +148,7 @@ if ($ndr_existe==0)
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title></title>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$(document).ready(listar_movimientos);
 	// -----------------------------------------------------------------------------

@@ -30,11 +30,11 @@
 	.subtitulo1{ font-weight:bold; margin-bottom:5px;}
 	#div_mensaje1{ display:none; position:relative; width:600px; left:50%; margin-left:-300px; border:#000000 2px solid; background-color:#FFFFCC; margin-bottom:5px; padding:3px;}
 </style>
-<script src="../../js/jquery.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" media="all" href="../../js/Calendario/calendar-green.css" title="win2k-cold-1" /> 
-  <script type="text/javascript" src="../../js/Calendario/calendar.js"></script>
-  <script type="text/javascript" src="../../js/Calendario/calendar-es.js"></script>
-  <script type="text/javascript" src="../../js/Calendario/calendar-setup.js"></script>  
+<script src="../../../../../clases/jquery.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="../../../../../recursos/Calendario/calendar-green.css" title="win2k-cold-1" /> 
+  <script type="text/javascript" src="../../../../../recursos/Calendario/calendar.js"></script>
+  <script type="text/javascript" src="../../../../../recursos/Calendario/calendar-es.js"></script>
+  <script type="text/javascript" src="../../../../../recursos/Calendario/calendar-setup.js"></script>  
 <script language="javascript">
 	$(document).ready(start);
 	function start()
@@ -54,7 +54,7 @@
 			data:"accion=mostrar_conceptos&tes="+tes,
 			beforeSend:function(){ 
 				//$("#detalle").hide();
-				$("#div_conceptos").show().html('<center><br><img src="../img/barra6.gif"><br>Procesando informacion, espere un momento.</center>');
+				$("#div_conceptos").show().html('<center><br><img src="../../../../../img/barra6.gif"><br>Procesando informacion, espere un momento.</center>');
 			},
 			success:function(datos){ 
 				$("#div_conceptos").show().html(datos);
@@ -182,7 +182,7 @@
 				data:"accion=ejecutar&v1="+v1+"&v2="+v2+"&v3="+v3+"&v4="+v4+"&v5="+v5+"&v6="+v6+"&v7="+v7+"&v8="+v8+"&v9="+v9+"&v10="+v10,
 				beforeSend:function(){ 
 					//$("#div_principal").hide();
-					$("#div_resultados").show().html('<center><br><img src="../img/barra6.gif"><br>Procesando informacion, espere un momento.</center>');
+					$("#div_resultados").show().html('<center><br><img src="../../../../../img/barra6.gif"><br>Procesando informacion, espere un momento.</center>');
 				},
 				success:function(datos){ 
 					$("#div_resultados").show().html(datos);

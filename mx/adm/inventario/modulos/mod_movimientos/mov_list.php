@@ -17,7 +17,7 @@ if ($_POST)
 		$idmov=$_POST['id'];
 		/*consulta*/
 		$sqlMOV="SELECT * FROM prodxmov WHERE nummov='$idmov' ORDER BY id";
-		$resultado=mysql_db_query($sql_inv,$sqlMOV);
+		$resultado=mysql_query($sqlMOV,$link);
 		$trows=mysql_num_rows($resultado);
 		if($trows==0){
 			echo "<center><span class='Estilo51'>No hay productos asociados a este movimiento.</span></center>";
@@ -26,7 +26,7 @@ if ($_POST)
 			$sql_detalle_movimiento="SELECT mov_almacen.seriesGen,mov_almacen.id_mov,mov_almacen.fecha,mov_almacen.tipo_mov,mov_almacen.almacen,mov_almacen.referencia,mov_almacen.asociado,mov_almacen.observ, tipoalmacen.almacen,tipoalmacen.id_almacen, concepmov.id_concep,concepmov.concepto,concepmov.asociado AS dasociado,concepmov.tipo 
 				FROM mov_almacen,tipoalmacen,concepmov 
 				WHERE mov_almacen.tipo_mov=concepmov.id_concep AND mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.id_mov=$id_movimiento_recibido";
-			if ($result_detalle_movimiento=mysql_db_query($sql_inv,$sql_detalle_movimiento))
+			if ($result_detalle_movimiento=mysql_query($sql_detalle_movimiento,$link))
 			{
 				while ($row_detalle_movimiento=mysql_fetch_array($result_detalle_movimiento))
 				{
@@ -109,7 +109,7 @@ if ($_POST)
 			$color="#D9FFB3";
 			while($row=mysql_fetch_array($resultado)){
 				$sqlInfoProd="select $lista_campos from catprod where id='".$row['id_prod']."' ORDER BY id";
-				$resultado1=mysql_db_query($sql_inv,$sqlInfoProd);
+				$resultado1=mysql_query($sqlInfoProd,$link);
 				$des_prod=mysql_fetch_array($resultado1);
 			?>
             <tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'">
@@ -171,7 +171,7 @@ WHERE
 mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id_concep AND mov_almacen.referencia like '%" . $cri . "%' " ; 
 
 	//$sql_criterio="SELECT count(id_mov) as total_registros FROM mov_almacen,concepmov where concepmov.concepto like '%" . $cri . "%' ";
-	$result0=mysql_db_query($sql_inv,$sql_criterio);
+	$result0=mysql_query($sql_criterio,$link);
 	//$row0=mysql_fetch_array($result0);
 	$numeroRegistros=mysql_num_rows($result0);
 
@@ -215,7 +215,7 @@ mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title></title>
-<link href="../../css/style.css" rel="stylesheet" type="text/css">
+<link href="../../../../../css/auxLexmark.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 .td1{ border-right:#CCCCCC 1px solid; padding:1px; }
 .tablax{ border:#333333 1px solid; }
@@ -243,7 +243,11 @@ width:800px; height:500px; left:50%; top:50%; margin-left:-400px; margin-top:-25
 .campos{ background-color:#CCCCCC; font-weight:bold; text-align:center;}
 
 </style>
-<script language="javascript" src="jdmenu/jquery-1.1.2.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
+<!--Se incluyen las librerias para el Grid-->
+<script type="text/javascript" src="../../../../../recursos/grid/grid.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../../recursos/grid/grid.css" />
+<!--Fin de l ainclusion de las librerias-->
 <script language="javascript">
 <!-- 
 function popUp(URL) {
@@ -302,7 +306,7 @@ $("#d_tit").html('&nbsp;&nbsp;&nbsp;Detalles del Movimiento.');
 
 function inicio0()
 {
-  	$("#d_con").show().html('&nbsp;<center><img src="../img/barra6.gif"></center>');
+  	$("#d_con").show().html('&nbsp;<center><img src="../../../../../img/barra6.gif"></center>');
 }
 function resultado0(datos)
 {
@@ -318,6 +322,20 @@ function cerrarv()
 	$("#detalle").hide();	
 	$("#all").show();
 }
+
+/*Modificacion 1 Agosto Gerardo Lara - Funcion paa poder capturar los numeros de serie al hacer el movimiento*/
+function capturarSeries(numMov){
+	/*Implementacion del Grid*/
+	//se define el array para el nombre de las columnas
+	nombresColumnas=new Array("Serial","Mensaje")
+	cargaInicial(5,"gridCapturaInformacion","controladorEnsamble.php","","errores",nombresColumnas);
+	inicio();
+	$("#txt_0").focus();
+        $("#txt_0").removeClass("datoListado");
+        $("#txt_0").addClass("elementoFocus");
+	/*Fin de la implementacion*/
+}
+/*Fin de la Modificacion*/
 // ======================================================================	
 function cerrar(elEvento) {
 var evento = elEvento || window.event;
@@ -378,13 +396,13 @@ document.onkeypress = cerrar;
 		echo "<a  class='paginador1' alt='Siguiente' href='".$_SERVER["PHP_SELF"]."?pagina=".($pagina+1)."&orden=".$orden."&cri=".$cri."'>";   
 		echo "<strong> >> </strong></a>"; 
 	}	
-	$result=mysql_db_query($sql_inv,$sql);
+	$result=mysql_query($sql,$link);
 ?>	
     </div>
 	<?php } ?>
 </div>
 <div align="center" style=" width:803px; padding:0px; clear:both;">
-<table width="803" border="0" align="center" cellspacing="0" class="tablax">
+<table width="1000" border="0" align="center" cellspacing="0" class="tablax">
   <tr>
  
     <td colspan="8" height="23" style="background-color:#333333; text-align:center; color:#FFFFFF; font-weight:bold;"><?=$numeroRegistros;?> Movimientos al Almac&eacute;n</td>
@@ -402,10 +420,10 @@ document.onkeypress = cerrar;
 // sentencia SQL ...
 $sql7="SELECT mov_almacen.*,concepmov.*,tipoalmacen.* FROM mov_almacen,concepmov,tipoalmacen 
 WHERE 
-mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id_concep AND mov_almacen.referencia like '%" . $cri . "%'  ORDER BY mov_almacen.id_mov ASC, tipo_mov ASC LIMIT ".$limitInf.",".$tamPag; 
+mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id_concep AND mov_almacen.referencia like '%" . $cri . "%'  ORDER BY mov_almacen.id_mov DESC, tipo_mov ASC LIMIT ".$limitInf.",".$tamPag; 
 
 		//echo "<hr>SQL [$sql7]";
-		$result=mysql_db_query($sql_inv,$sql7);  	
+		$result=mysql_query($sql7,$link);  	
 		$color=="#D9FFB3";
 		
 		while($row=mysql_fetch_array($result)){	
@@ -416,7 +434,7 @@ $asoc=$row["asociado"];
 $aso2='';
 	
 	$sql_aso="SELECT asociado FROM mov_almacen WHERE id_mov='$id_mov'";
-	$result_aso=mysql_db_query($sql_inv,$sql_aso);	
+	$result_aso=mysql_query($sql_aso,$link);	
 	while($row_aso=mysql_fetch_array($result_aso)){	
 		$id_aso=$row_aso["asociado"];
 	}
@@ -460,8 +478,10 @@ $aso2='';
 		<a href="javascript:ver_movimiento('<?=$row[0];?>');" style="font-size:10px;">Ver</a>
 		<?php  } if ($_SESSION['usuario_nivel']<=2) {?>
 		 | <a href="javascript:printMov('<?=$row[0];?>')" style="font-size:10px;">Imprimir</a>
-		 | <a href="../reportes/xls_movimiento.php?idmov=<?=$row[0];?>" style="font-size:10px;">Excel</a>
-		<?php } ?>	</td>
+		 | <a href="../mod_reportes/xls_movimiento.php?idmov=<?=$row[0];?>" style="font-size:10px;">Excel</a>
+		<?php } ?>
+		 | <a href="#" onclick="capturarSeries('<?=$row[0];?>')" style="font-size: 10px;">Capturar Series</a>
+	</td>
   </tr>
   <?
   	($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";
@@ -499,7 +519,7 @@ $aso2='';
 		echo "<a  class='paginador1' alt='Siguiente' href='".$_SERVER["PHP_SELF"]."?pagina=".($pagina+1)."&orden=".$orden."&cri=".$cri."'>";   
 		echo "<strong> >> </strong></a>"; 
 	}	
-	$result=mysql_db_query($sql_inv,$sql);
+	$result=mysql_query($sql,$link);
 ?>	
     </div>
 	<div class="paginas" style="margin-top:3px;">P&aacute;ginas (<?=$pagina."/".$numPags;?>)</div>
@@ -511,9 +531,17 @@ $aso2='';
 <div id="detalle">
 	<div style="background-color:#333333;">
 		<div id="d_tit">Movimiento X</div>
-		<div id="d_cer"><a href="javascript:cerrarv();"><img src="../../img/cerrar_2.png" border="0" alt="Cerrar" title="Cerrar esta ventana" /></a></div>
+		<div id="d_cer"><a href="javascript:cerrarv();"><img src="../../../../../img/cerrar_2.png" border="0" alt="Cerrar" title="Cerrar esta ventana" /></a></div>
 	</div>
 	<div id="d_con">...</div>
 </div>
+<!--Div para los numeros de serie-->
+<div style="top: 0;height: 100%;position: absolute;width: 100%;overflow:hidden;z-index: 9999;border: 1px solid #ff0000;">
+	<div style="position: absolute;width: 400px;height: 400px;border: 1px solid #000;top: 50%;left: 50%;margin-top: -200px;margin-left: -200px;z-index: 999999;background: #FFF;">
+		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;">Capturar # de Serie</div>
+		<div id="divCapturaSeries" style="width: 99.5%;height: 373px;border: 1px solid #FF0000;overflow: auto;"></div>
+	</div>
+</div>
+<!--Fin de los numeros de serie-->
 </body>
 </html>
