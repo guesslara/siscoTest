@@ -89,61 +89,93 @@ if ($_POST)
 }			
 			?>
 			<br />
-			<table width="95%" align="center" cellpadding="0" cellspacing="0" class="tablax">
-            <tr>
-                <td colspan="6" bgcolor="#333333" height="20" class="style9"><?=$trows?> Productos registrados en el Movimiento 
+			<table width="95%" align="center" cellpadding="0" cellspacing="0" class="tablax" style="font-size: 10px;">
+				<tr>
+					<td colspan="8" bgcolor="#333333" height="20" class="style9"><?=$trows?> Productos registrados en el Movimiento 
 					<?php if ($concepto_tipo=="Ent"&&$series_gen=="No Generado") {?>
 					[<span>&nbsp;&nbsp;<a href="../almacen/generarSeries.php?numMov=<?=$id_movimiento_recibido?>" style="color:#FFFF00; font-weight:bold;">Generar Numeros de Serie.</a></span>]
 					<?php } ?>
-				</td>
-            </tr>
-            <tr style="text-align:center; font-weight:bold;">
-                <td width="33" height="20" bgcolor="#CCCCCC" class="style17">ID</td>
-                <td width="77" bgcolor="#CCCCCC" class="style17">Clave Producto</td>
-                <td width="62" bgcolor="#CCCCCC" class="style17">Cantidad</td>
-                <td width="41" bgcolor="#CCCCCC" class="style17">C.U. </td>
-                <td width="360" bgcolor="#CCCCCC" class="style17">Descripci&oacute;n</td>
-                <td width="228" bgcolor="#CCCCCC" class="style17">Especificaci&oacute;n</td>
-            </tr>
+					</td>
+				</tr>
+				<tr style="text-align:center; font-weight:bold;">
+				    <td width="33" height="20" bgcolor="#CCCCCC" class="style17">ID</td>
+				    <td width="77" bgcolor="#CCCCCC" class="style17">Clave Producto</td>
+				    <td width="62" bgcolor="#CCCCCC" class="style17">Cantidad</td>
+				    <td width="41" bgcolor="#CCCCCC" class="style17">C.U. </td>
+				    <td width="360" bgcolor="#CCCCCC" class="style17">Descripci&oacute;n</td>
+				    <td colspan="2" width="228" bgcolor="#CCCCCC" class="style17">Especificaci&oacute;n</td>
+				    <td width="228" bgcolor="#CCCCCC" class="style17">Acciones</td>
+				</tr>
             <?
 			$color="#D9FFB3";
 			while($row=mysql_fetch_array($resultado)){
 				$sqlInfoProd="select $lista_campos from catprod where id='".$row['id_prod']."' ORDER BY id";
 				$resultado1=mysql_query($sqlInfoProd,$link);
 				$des_prod=mysql_fetch_array($resultado1);
-			?>
-            <tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'">
-                <td align="center" class="td1" height="20"><?=$row['id_prod'];?></td>
-                <td class="td1">
-				<?php 
-				//echo "<br>Tipo de Concepto=$concepto_tipo";
-				if ($concepto_tipo=="Sal"||$series_gen=="No Generado") {
-					echo "&nbsp;".$row['clave'];
-				} else { ?>
-					<a href="../reportes/no_series_xls.php?idm=<?=$id_movimiento_recibido?>&clavep=<?=$row['clave']?>" title="Exportar numeros de serie a Excel"><?=$row['clave'];?></a></td>
-				<?php } ?>
-                <td width="62"  align="right" class="td1" >
-                    <?=$row['cantidad'];?>&nbsp;</td>
-                <td class="td1" align="right"><?php if($row['cu']!==''||$row['cu']!==' ') echo '$'.$row['cu']; ?>&nbsp;</td>
-                <td class="td1"><?=$des_prod['descripgral'];?></td>
-                <td colspan="2" ><?=$des_prod['especificacion'];?></td>
-            </tr>
+				//se consultan los numeros de serie
+				$sqlS="SELECT * FROM num_series WHERE mov='".$id_movimiento_recibido."' AND clave_prod='".$row["clave"]."'";
+				$resS=mysql_query($sqlS,$link);
+?>
+				<tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'">
+					<td align="center" class="td1" height="20"><?=$row['id_prod'];?></td>
+					<td class="td1">
+<?php 
+							//echo "<br>Tipo de Concepto=$concepto_tipo";
+						if ($concepto_tipo=="Sal"||$series_gen=="No Generado") {
+							echo "&nbsp;".$row['clave'];
+						} else {
+?>
+							<a href="../reportes/no_series_xls.php?idm=<?=$id_movimiento_recibido?>&clavep=<?=$row['clave']?>" title="Exportar numeros de serie a Excel"><?=$row['clave'];?></a></td>
+<?php
+						}
+?>
+					<td width="62"  align="right" class="td1" ><?=$row['cantidad'];?>&nbsp;</td>
+					<td class="td1" align="right"><?php if($row['cu']!==''||$row['cu']!==' ') echo '$'.$row['cu']; ?>&nbsp;</td>
+					<td class="td1"><?=$des_prod['descripgral'];?></td>
+					<td colspan="2" ><?=$des_prod['especificacion'];?></td>
+					<td style="text-align: center;"><a href="#" onclick="capturarSeries('<?=$id_movimiento_recibido;?>','<?=$row['clave'];?>','<?=$row['cantidad'];?>')">Capturar Series</a></td>
+				</tr>
+<?
+				if(mysql_num_rows($resS)!=0){
+?>				
+				<tr>
+					<td colspan="8">
+						<table border="1" cellpadding="0" cellspacing="0" width="200" style="margin: 10px;">
+							<tr>
+								<td colspan="2" style="height: 15px;padding: 5px;background: #CCC;font-weight: bold;color: #000;">Series Capturadas</td>
+							</tr>
+<?
+						$i=0;
+						while($rowS=mysql_fetch_array($resS)){
+							$i+=1;
+?>
+							<tr>
+								<td style="text-align: center;"><?=$i;?></td>
+								<td style="text-align: right;height: 15px;padding: 5px;"><?=$rowS["serie"];?></td>
+							</tr>
+<?
+						}
+?>							
+						</table>
+					</td>
+				</tr>
 			<?
+				}
 				($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";
 				$totArticulos=$totArticulos+$row['cantidad'];	
 			}
 			?>
-			<tr>
-				<td colspan="6"><hr color="#000000" /></td>
-			</tr>
-			<tr>
-				<td colspan="2" bgcolor="#CCCCCC" class=""><div class="style10">Total de Articulos </div></td>
-				<td style="text-align:right; padding-right:px;">
-				<b><?=$totArticulos;?></b>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
+				<tr>
+					<td colspan="6"><hr color="#000000" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" bgcolor="#CCCCCC" class=""><div class="style10">Total de Articulos </div></td>
+					<td style="text-align:right; padding-right:px;">
+					<b><?=$totArticulos;?></b>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
 			</table>
 		<?	
 		}		
@@ -220,10 +252,10 @@ mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id
 .td1{ border-right:#CCCCCC 1px solid; padding:1px; }
 .tablax{ border:#333333 1px solid; }
 #detalle{ position:absolute; display:none; border:#333333 3px solid; background-color:#ffffff; 
-width:800px; height:500px; left:50%; top:50%; margin-left:-400px; margin-top:-250px; z-index:3;}
-#d_tit{width:710px; height:20px; float:left; background-color:#333333; color:#FFFFFF;}
+width:800px; height:550px; left:50%; top:50%; margin-left:-400px; margin-top:-275px; z-index:3;}
+#d_tit{width:710px; height:20px; float:left; background-color:#333333; color:#FFFFFF;font-size: 12px;}
 #d_cer{width:90px; height:20px; float:right; text-align:right; background-color:#333333;}
-#d_con{ clear:both; margin:2px; margin-top:3px; padding:2px; height:470px; /*border:#333333 1px solid;*/ overflow:auto;}
+#d_con{ clear:both; margin:2px; margin-top:3px; padding:2px; height:525px; /*border:#333333 1px solid;*/ overflow:auto;font-size: 10px;}
 
 .tdx{ background-color:#CCCCCC; font-weight:bold; text-align:left; padding-left:2px;}
 
@@ -324,16 +356,21 @@ function cerrarv()
 }
 
 /*Modificacion 1 Agosto Gerardo Lara - Funcion paa poder capturar los numeros de serie al hacer el movimiento*/
-function capturarSeries(numMov){
+function capturarSeries(numMov,claveProd,cantidad){	
+	$("#divCapturaSeries").html("");
+	$("#divModalSeries").show();
 	/*Implementacion del Grid*/
 	//se define el array para el nombre de las columnas
 	nombresColumnas=new Array("Serial","Mensaje")
-	cargaInicial(5,"gridCapturaInformacion","controladorEnsamble.php","","errores",nombresColumnas);
+	cargaInicial(2,"divCapturaSeries","guardarSeries.php","action=guardaSerie&numMov="+numMov+"&claveProd="+claveProd+"&cantidad="+cantidad,"errores",nombresColumnas);
 	inicio();
 	$("#txt_0").focus();
         $("#txt_0").removeClass("datoListado");
         $("#txt_0").addClass("elementoFocus");
 	/*Fin de la implementacion*/
+}
+function cerrarSeries(){
+	$("#divModalSeries").hide();	
 }
 /*Fin de la Modificacion*/
 // ======================================================================	
@@ -342,7 +379,7 @@ var evento = elEvento || window.event;
 var codigo = evento.charCode || evento.keyCode;
 var caracter = String.fromCharCode(codigo);
 //alert("Evento: "+evento+" Codigo: "+codigo+" Caracter: "+caracter);
-if (codigo==27||codigo==13)
+if (codigo==27)
  	cerrarv();
 }
 document.onkeypress = cerrar;
@@ -351,8 +388,8 @@ document.onkeypress = cerrar;
 
 </head>
 <body topmargin="0">
-<div id="all">
-<?php include("../menu/menu.php"); ?>
+<div id="all" style="">
+
 
 <center>
 <br /><br />
@@ -401,7 +438,7 @@ document.onkeypress = cerrar;
     </div>
 	<?php } ?>
 </div>
-<div align="center" style=" width:803px; padding:0px; clear:both;">
+<div align="center" style=" width:1000px; padding:0px; clear:both;">
 <table width="1000" border="0" align="center" cellspacing="0" class="tablax">
   <tr>
  
@@ -479,8 +516,7 @@ $aso2='';
 		<?php  } if ($_SESSION['usuario_nivel']<=2) {?>
 		 | <a href="javascript:printMov('<?=$row[0];?>')" style="font-size:10px;">Imprimir</a>
 		 | <a href="../mod_reportes/xls_movimiento.php?idmov=<?=$row[0];?>" style="font-size:10px;">Excel</a>
-		<?php } ?>
-		 | <a href="#" onclick="capturarSeries('<?=$row[0];?>')" style="font-size: 10px;">Capturar Series</a>
+		<?php } ?>		  
 	</td>
   </tr>
   <?
@@ -526,7 +562,6 @@ $aso2='';
 	<?php }?>
 </div>
 </center>
-<?	include("../../f.php");	?>
 </div>
 <div id="detalle">
 	<div style="background-color:#333333;">
@@ -536,10 +571,11 @@ $aso2='';
 	<div id="d_con">...</div>
 </div>
 <!--Div para los numeros de serie-->
-<div style="top: 0;height: 100%;position: absolute;width: 100%;overflow:hidden;z-index: 9999;border: 1px solid #ff0000;">
+<div id="divModalSeries" style="display: none;top: 0;height: 100%;position: absolute;width: 100%;overflow:hidden;z-index: 9999;border: 0px solid #ff0000;background: url(../../../../../img/desv.png)">
 	<div style="position: absolute;width: 400px;height: 400px;border: 1px solid #000;top: 50%;left: 50%;margin-top: -200px;margin-left: -200px;z-index: 999999;background: #FFF;">
-		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;">Capturar # de Serie</div>
-		<div id="divCapturaSeries" style="width: 99.5%;height: 373px;border: 1px solid #FF0000;overflow: auto;"></div>
+		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;"><div style="float: left;">Capturar # de Serie</div><div style="float: right;color: #FFF;" onclick="cerrarSeries()">Cerrar</div></div>
+		<div id="divCapturaSeries" style="width: 99.5%;height: 341px;border: 0px solid #FF0000;overflow: auto;"></div>
+		<div id="errores" style="height: 30px;border: 1px solid #CCC;font-size: 10px;color: #FF0000;overflow: auto;"></div>
 	</div>
 </div>
 <!--Fin de los numeros de serie-->
