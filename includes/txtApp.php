@@ -34,5 +34,6 @@
 	$txtApp['mensajeError']['salirApp'] = "Si decide continuar, se pueden perder los cambios que no alla Guardado.";
 	//Pagina Profile
 	$txtApp['appProfile']['tituloPagina'] = "Informaci&oacute;n del Perfil";
-	$txtApp['appProfile']['tituloModulo'] = "Perfil de Usuario";	
+	$txtApp['appProfile']['tituloModulo'] = "Perfil de Usuario";
+	//variables para el modulo de inicio
 ?>
