@@ -14,7 +14,7 @@
 	$proceso="";	
 	
 	/* Realizamos la consulta SQL */
-	$sql="select * from proyectos";
+	$sql="select * from cat_clientes";
 	$result=mysql_query($sql,conectarBd());
 	$nuevo=mysql_num_rows($result);	
 	function conectarBd(){
@@ -79,8 +79,8 @@
 				while($row=mysql_fetch_array($result)){					
 ?>
 					<tr>
-						<td align="center" style="height: 15px;padding: 5px;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;"><input type="radio" name="radio" id="radio" value="<?=$row['id_proy'];?>"></td>
-						<td align="center" style="text-align: left;height: 15px;padding: 5px;border-bottom: 1px solid #CCC;">&nbsp;<?=$row['nomb']?></td>
+						<td align="center" style="height: 15px;padding: 5px;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;"><input type="radio" name="radio" id="radio" value="<?=$row['id_cliente'];?>"></td>
+						<td align="center" style="text-align: left;height: 15px;padding: 5px;border-bottom: 1px solid #CCC;">&nbsp;<?=$row['r_social']?></td>
 					</tr>
 <?
 				}

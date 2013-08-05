@@ -276,12 +276,26 @@
 		
 		public function mostrarOpcionesMenu(){
 			$sql="Select * FROM gruposmods WHERE pertenece_a='Menu' Order By numeroMenu";
-			$res=mysql_query($sql,$this->conexion);			
+			$res=mysql_query($sql,$this->conexion);
+			echo "<br>".$sqlC="SELECT * FROM cat_clientes";
+			$resC=mysql_query($sql,$this->conexion);
 ?>
-			<div style="height: 20px;padding: 5px;background: #f0f0f0;border:1px solid #CCC;"><a href="#" onclick="nuevaFuncionalidad()" style="text-decoration: none;color: blue;">Agregar Men&uacute;</a></div>
+			<div style="height: 20px;padding: 5px;background: #f0f0f0;border:1px solid #CCC;">
+				<select name="" id="">
+					<option value="">Selecciona...</option>
+<?
+				while($rowC=mysql_fetch_array($resC)){
+?>
+					<option value="<?=$rowC["id_cliente"];?>"><?=$rowC["r_social"];?></option>
+<?
+				}
+?>
+				</select>
+				<a href="#" onclick="nuevaFuncionalidad()" style="text-decoration: none;color: blue;">Agregar Men&uacute;</a>
+			</div>
 			<div style="border: 1px solid #000;height: 94%;width: 99%;margin: 3px;">
 				<div style="float: left;width: 47%;height: 99%;border: 1px solid #CCC;margin: 2px;overflow: auto;">
-				<table border="0" cellpadding="1" cellspacing="1" width="400" style="margin: 10px;font-size: 12px;">
+				<table border="0" cellpadding="1" cellspacing="1" width="99%" style="margin: 10px;font-size: 12px;">
 					<tr>
 						<td colspan="2" style="background: #000;color: #fff;height: 23px;padding: 5px;">Agregar Men&uacute; - Submen&uacute;</td>
 					</tr>

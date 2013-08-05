@@ -678,7 +678,8 @@ function quitarSeleccionMenuCompleto(nRegMenu,idMenu){
 }
 function mostrarOpcionesMenu(){
 	//ajaxApp("detalleUsuarios","controladorUsuarios.php","action=mostrarOpcionesMenu","POST");
-	ajaxApp("detalleUsuarios","controlador2.php","action=mostrarOpcionesMenu","POST");
+	//ajaxApp("detalleUsuarios","controlador2.php","action=mostrarOpcionesMenu","POST");
+	ajaxApp("detalleUsuarios","menus.php","action=panelMenus","POST");
 }
 function modificarMenuTitulo(idMenuTitulo){
 	ajaxApp("divSubMenu","controladorUsuarios.php","action=modificarMenuTitulo&idMenuTitulo="+idMenuTitulo,"POST")
