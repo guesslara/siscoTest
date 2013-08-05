@@ -220,7 +220,8 @@ if(!$_POST) { ?>
 (id,id_prod,tipo,kit,descripgral, especificacion,linea,marca,control_alm,ubicacion,uni_entrada,uni_salida,stock_min,stock_max,observa,existencias,unidad,cpromedio $campos_almacenes) 
 VALUES 
 (NULL,'$id_prod','$tipo','$kit_array','$descripgral','$especificacion','$linea','$marca','$control_alm','$ubicacion','$uni_entrada','$uni_salida','$stock_min','$stock_max','$observa','','$unidad','' $valores_almacenes)";	
-		echo "<br>SQL: <br>$ssql ";	//exit();
+		echo "<br>SQL: <br>$ssql ";
+		//exit;
 		if (mysql_db_query($sql_inv,$ssql,$link))
 		{
 			$u_id=mysql_insert_id($link);
@@ -236,7 +237,7 @@ VALUES
 			$update="UPDATE catprod SET id_prod='".$linea2.$especificacion.$consec."' WHERE id='$u_id' AND id_prod='$id_up0' ";
 			if (!mysql_db_query($sql_inv,$update))
 			{	
-				echo "<br><div align='center'>Error SQL: El producto se inserto, peron el consecutivo no se genero.</div>";
+				echo "<br><div align='center'>Error SQL: El producto se inserto, pero el consecutivo no se genero.</div>";
 				exit();
 			}	
 			echo "<script languaje='javascript'> alert('Producto agregado al Almacen (".$linea2.$especificacion.$consec.").'); window.location.href='".$se."';</script>";

@@ -388,8 +388,8 @@ a:visited{ text-decoration:none;}
 #tit{ height:20px; text-align:right; }
 #contenido{ margin-top:10px; background-color:#ffffff; padding:0px; text-align:center; z-index:1; }
 .td1{ border-right:#CCCCCC 1px solid; padding:1px;}
-.buscador{ background-color:#ffffff; text-align:center; font-size:11px; margin-bottom:1px; position:relative; width:800px; left:50%; margin-left:-400px; }
-.form_buscador{ text-align:right; }
+.buscador{ background-color:#ffffff; text-align:center; font-size:11px; margin-bottom:1px; position:relative; width:1000px; left:50%; margin-left:-500px; }
+.form_buscador{ text-align:center; }
 
 /*==========================================================================================*/
  .paginador1:link{ border:#CCCCCC 1px solid; background-color:#efefef; color:#000000; text-align:center; 

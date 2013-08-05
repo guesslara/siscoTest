@@ -113,13 +113,13 @@ $result=mysql_db_query($sql_inv,$sql);
   	</div>
 </div>
 	<?php } ?>	
-	<br><br><table align="center" style="border:#000000 1px solid; font-size:10px" width="85%" cellspacing="0">
-	<tr>
+	<br><br><table align="center" style="border:#000000 1px solid; font-size:10px" width="99%" cellspacing="0">
+	<!--<tr>
 	<td height="20" colspan="20" align="left">| A1.Eq_Nuevo | A2.Eq_Terminado | A3.Eq_Convertido | A4.Eq_por_Revisar | A5.Eq_por_Reparar | A6.Consumible | A7.SCRAP |</td>
 	</tr>
 	<tr>
 	<td height="20" colspan="20" align="left">| A8.Ingenieria | A9.Eq_next_match | A10.Best_buy | A11.Retorno_a_Origen | A12.Resguardo | A13.Cuarentena | A14.Archivo Muerto | </td>	
-      </tr>
+      </tr>-->
 	<tr style="background-color:#333333; color:#FFFFFF; text-align:left; font-weight:bold; text-align:center;">
 		<td height="20" colspan="20"><?=$numeroRegistros;?> Productos en el Almac&eacute;n <?=$almacen?> </td>
       </tr>
@@ -153,7 +153,7 @@ $result=mysql_db_query($sql_inv,$sql);
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_5','<?=$ascdes?>','<?=$pagina?>');">
 		A5</a></td>
-		<td width="4%">
+		<!--<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_6','<?=$ascdes?>','<?=$pagina?>');">
 		A6</a></td>
 		<td width="4%">
@@ -179,7 +179,7 @@ $result=mysql_db_query($sql_inv,$sql);
 		A13</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_14','<?=$ascdes?>','<?=$pagina?>');">
-		A14</a></td>
+		A14</a></td>-->
 
 	  </tr>
 <?php 
@@ -207,7 +207,7 @@ $result=mysql_db_query($sql_inv,$sql);
 		<td class="td1" align="right"><?=$row['exist_3']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_4']?>&nbsp;</td>		
 		<td class="td1" align="right"><?=$row['exist_5']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_6']?>&nbsp;</td>
+		<!--<td class="td1" align="right"><?=$row['exist_6']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_7']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_8']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_9']?>&nbsp;</td>
@@ -215,7 +215,7 @@ $result=mysql_db_query($sql_inv,$sql);
 		<td class="td1" align="right"><?=$row['exist_11']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_12']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_13']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_14']?>&nbsp;</td>
+		<td class="td1" align="right"><?=$row['exist_14']?>&nbsp;</td>-->
 		
 	  </tr>
 <?php 

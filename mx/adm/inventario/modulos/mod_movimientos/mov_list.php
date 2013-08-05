@@ -361,8 +361,8 @@ function capturarSeries(numMov,claveProd,cantidad){
 	$("#divModalSeries").show();
 	/*Implementacion del Grid*/
 	//se define el array para el nombre de las columnas
-	nombresColumnas=new Array("Serial","Mensaje")
-	cargaInicial(2,"divCapturaSeries","guardarSeries.php","action=guardaSerie&numMov="+numMov+"&claveProd="+claveProd+"&cantidad="+cantidad,"errores",nombresColumnas);
+	nombresColumnas=new Array("Serial","# Parte""Mensaje")
+	cargaInicial(3,"divCapturaSeries","guardarSeries.php","action=guardaSerie&numMov="+numMov+"&claveProd="+claveProd+"&cantidad="+cantidad,"errores",nombresColumnas);
 	inicio();
 	$("#txt_0").focus();
         $("#txt_0").removeClass("datoListado");
