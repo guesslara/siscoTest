@@ -30,7 +30,7 @@ body {
 		$id=$_GET['id'];
 		$lista_campos=" `id`,`id_prod`, `descripgral`, `especificacion`, `control_alm`, `ubicacion`, `uni_entrada`, `uni_salida`, `stock_min`, `stock_max`, `cpromedio`, `unidad`, `stock_min`, `linea`, `marca`, `observa`, `status1` ";	
 		$sql="SELECT $lista_campos FROM catprod WHERE id= '$id'";
-		$result=mysql_db_query($sql_inv,$sql);
+		$result=mysql_query($sql,$link);
 		$row=mysql_fetch_array($result);
 		$id_prod=$row["id_prod"];
 				$cpromedio=$row["cpromedio"];	
@@ -148,7 +148,7 @@ body {
 <?php 
 	//echo "<br>".
 	$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen ORDER BY id_almacen";
-	$result0=mysql_db_query($sql_inv,$sql_alm);
+	$result0=mysql_query($sql_alm,$link);
 	while ($row0=mysql_fetch_array($result0))
 	{ 
 		$id_almacen=$row0["id_almacen"];
@@ -162,7 +162,7 @@ body {
 		
 		//echo "<br>".
 		$sql_alm1="SELECT `$campo_existencias`,`$campo_transferencias` FROM catprod WHERE id='$id' AND `$campo_almacen`=1";
-		$res1=mysql_db_query($sql_inv,$sql_alm1);
+		$res1=mysql_query($sql_alm1,$link);
 		while ($row1=mysql_fetch_array($res1))
 		{ 	?>
 			<tr bgcolor="<?=$color;?>">
@@ -200,15 +200,15 @@ body {
 <?php 
 	$sql2="SELECT id_clientes FROM catprod WHERE id='$id' ";
 	//echo $sql;
-	$result2=mysql_db_query($sql_inv,$sql2);
+	$result2=mysql_query($sql2,$link);
 	while ($row2=mysql_fetch_array($result2)) {
 		//print_r($row2);
 		$id_clientes=$row2['id_clientes'];
-		$idc=split(',',$id_clientes);
+		$idc=explode(',',$id_clientes);
 		foreach ($idc as $ic){
 			//echo "<br>$ic";
 			$sql3="SELECT n_comercial FROM cat_clientes WHERE id_cliente=$ic";
-			$res3=mysql_db_query($sql_inv,$sql3);
+			$res3=mysql_query($sql3,$link);
 			$row3=mysql_fetch_array($res3)
 			?>
 			<tr align="center" bgcolor="<?=$color;?>" >

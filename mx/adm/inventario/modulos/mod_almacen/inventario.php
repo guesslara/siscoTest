@@ -442,7 +442,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 			<option value="*">Todos</option>
 			<?php
 				echo $sql_nextel="SELECT especificacion FROM catprod WHERE linea='NX' AND length(control_alm)<3 GROUP BY especificacion ORDER BY especificacion,id";
-				$result_nextel=mysql_db_query($sql_inv,$sql_nextel);
+				$result_nextel=mysql_query($sql_nextel,$link);
 				while($row_nextel=mysql_fetch_array($result_nextel)){
 					echo "<option value='".$row_nextel["especificacion"]."'>".$row_nextel["especificacion"]."</option>";
 				
@@ -456,7 +456,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 </div>	
 	
 <div id="all">
-	<? if ($me==1) include("../menu/menu.php"); ?>
+	<? if ($me==1) //include("../menu/menu.php"); ?>
 	<div id="paginador">
 		<div id="tit">
 			<!--<a href="javascript:inventario_nextel();">Inventario Nextel</a>&nbsp;|&nbsp;//-->
@@ -509,7 +509,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
                   <option value="<?=$idalm?>" selected="selected"><?=$nalm0?></option>
 				  <?php 
 				  	$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE almacen<>'$nalm0' ORDER BY almacen";
-				  	$result0=mysql_db_query($sql_inv,$sql_alm);
+				  	$result0=mysql_query($sql_alm,$link);
 					while ($row0=mysql_fetch_array($result0))
 					{ ?>
 					 	<option value="<?=$row0["id_almacen"];?>"><?=$row0["almacen"];?></option>
