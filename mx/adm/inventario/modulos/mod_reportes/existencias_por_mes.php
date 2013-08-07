@@ -8,7 +8,7 @@
 		$meses=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 			$lista_campos=" `id`,`stock_min`, `stock_max`";	
 			$sql="SELECT $lista_campos FROM catprod WHERE id= '$idp'";
-			$result=mysql_db_query($sql_inv,$sql);
+			$result=mysql_query($sql,$link);
 			$row=mysql_fetch_array($result);
 			$st_min=$row["stock_min"];
 			$st_max=$row["stock_max"];	
@@ -37,14 +37,14 @@
 	
 </style>
     
-    <link href="../../js/flot/examples/layout.css" rel="stylesheet" type="text/css"></link>
-    <script language="javascript" type="text/javascript" src="../../js/flot/jquery.js"></script>
-    <script language="javascript" type="text/javascript" src="../../js/flot/jquery.flot.js"></script>
+    <link href="../../../../../recursos/flot/examples/layout.css" rel="stylesheet" type="text/css"></link>
+    <script language="javascript" type="text/javascript" src="../../../../../recursos/flot/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../../../recursos/flot/jquery.flot.js"></script>
 </head>
 
 <body>
 <?php 
-	if ($_SESSION['sistema']=='bd')		include('../menu/menu.php'); 
+	if ($_SESSION['sistema']=='bd')		//include('../menu/menu.php'); 
 	if (!$_GET["idp"]) { 
 		?>
 		<br /><div align="center">
@@ -95,7 +95,7 @@ AND mov_almacen.fecha
 BETWEEN '".date("Y")."-".$m."-01'
 AND '".date("Y")."-".$m."-31'
 ORDER BY mov_almacen.id_mov";
-				$result1=mysql_db_query($sql_inv,$sql1);	
+				$result1=mysql_query($sql1,$link);	
 				$ndrx=mysql_num_rows($result1);
 				//$suma=0;
 				//$t_entb=0;
@@ -124,7 +124,7 @@ AND mov_almacen.fecha
 BETWEEN '".date("Y")."-".$m."-01'
 AND '".date("Y")."-".$m."-31'
 ORDER BY mov_almacen.id_mov";
-				$result1=mysql_db_query($sql_inv,$sql1);	
+				$result1=mysql_query($sql1,$link);	
 				$ndrx=mysql_num_rows($result1);
 				$suma=0;
 				$t_entb=0;
@@ -395,6 +395,6 @@ ORDER BY mov_almacen.id_mov";
 //if ($.browser.mozilla) { alert('Estas usando el navegador: FireFox'); } 
 if ($.browser.msie && $.browser.version >= 8) { alert('Estas usando el navegador: Internet Explorer. Le recomendamos utilice otro Navegador como: \n Firefox o Google Chrome para navegar sin contratiempos a traves de este sitio. \n(Puede descargarlos directamente de Internet o ponerse en contacto con el departamento de Sistemas IQ.)'); } 
 </script>
-<?php include("../f.php"); ?>
+<?php //include("../f.php"); ?>
 </body>
 </html>

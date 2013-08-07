@@ -20,7 +20,7 @@ $desc=$_GET['desc'];
 $esp=$_GET['esp'];
 	//echo "<br>".
 	$sql_cpy="SELECT $lista_campos FROM catprod WHERE `id`='$id' ";
-	$r_cpy=mysql_db_query($sql_inv,$sql_cpy);
+	$r_cpy=mysql_query($sql_cpy,$link);
 	//echo "<br>NDR: ".mysql_num_rows($r_cpy);
 		while($r1_cpy=mysql_fetch_array($r_cpy))
 		{
@@ -33,7 +33,7 @@ $sql_cardex="SELECT mov_almacen.id_mov, concepmov.id_concep, concepmov.concepto,
 FROM (mov_almacen INNER JOIN concepmov ON mov_almacen.tipo_mov = concepmov.id_concep) INNER JOIN (catprod INNER JOIN prodxmov ON catprod.id_prod = prodxmov.clave) ON mov_almacen.id_mov = prodxmov.nummov
 WHERE (((catprod.id)='$id')) order by id_mov;";
 
-$result2=mysql_db_query($sql_inv,$sql_cardex);
+$result2=mysql_query($sql_cardex,$link);
 $ndrX=mysql_num_rows($result2);
 if ($ndrX<=0){	?>
 	<div style="font-size:18px; text-align:center; color:#FF0000; margin-top:20px;">El producto no presenta Movimientos.</div>

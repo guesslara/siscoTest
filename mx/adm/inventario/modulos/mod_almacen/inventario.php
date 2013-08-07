@@ -465,7 +465,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 	</div>
 	<div id="contenido">...</div>
 
-	<? include("../../f.php"); ?>
+	<? //include("../../f.php"); ?>
 </div>
 
 <div id="transparente"></div>

@@ -20,7 +20,7 @@ if ($_GET)
 	(isset($_GET['op']))? $op=$_GET["op"] : $op='LIKE';
 	
 	$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE id_almacen=".$ialm;
-	$result0=mysql_db_query($sql_inv,$sql_alm);
+	$result0=mysql_query($sql_alm,$link);
 	while ($row0=mysql_fetch_array($result0))
 	{ 
 		//print_r($row0);
@@ -31,7 +31,7 @@ if ($_GET)
 	$campo_existencias="exist_".$ialm;	
 	$campo_transferencias="trans_".$ialm;
 	//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`exist_13`,`exist_14`,`$campo_transferencias` ";
-	$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`$campo_transferencias` ";
+	$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
 	if ($op=='LIKE'){
 		$where=" WHERE $campo LIKE '%" . $cri . "%' AND ".$campo_almacen."=1 "; 
 	} else {
@@ -42,7 +42,7 @@ if ($_GET)
 	
 	//echo "<br>".
 	$sql_criterio="SELECT count(id) as total_registros FROM catprod ".$where;
-	$result0=mysql_db_query($sql_inv,$sql_criterio);
+	$result0=mysql_query($sql_criterio,$link);
 	$row0=mysql_fetch_array($result0);
 	$numeroRegistros=$row0['total_registros'];
 	$tamPag=25; 
@@ -75,7 +75,7 @@ if ($_GET)
 	    }	
 //echo "$sql_inv&nbsp;";
 echo "<br>".$sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
-$result=mysql_db_query($sql_inv,$sql);
+$result=mysql_query($sql,$link);
 ?>
 <div class="buscador">
 	<div class="form_buscador" style=" width:500px;float:right; margin-bottom:2px; font-size:12px;">

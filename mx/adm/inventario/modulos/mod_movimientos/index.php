@@ -362,7 +362,7 @@
 </head>
 
 <body>
-	<?php include("../menu/menu.php"); ?>
+	<?php //include("../menu/menu.php"); ?>
 	<br />
 	<div id="all">
 		<div id="titulo">MOVIMIENTOS </div>
@@ -379,7 +379,7 @@
 				<div class="contenedor_entradas">
 					<?php 
 					$sql_conceptos="SELECT * FROM concepmov ORDER BY id_concep";
-					$result_conceptos=mysql_db_query($sql_inv,$sql_conceptos);
+					$result_conceptos=mysql_query($sql_conceptos,$link);
 					while($row_conceptos=mysql_fetch_array($result_conceptos))
 					{
 						?>
@@ -401,7 +401,7 @@
 				<?php
 				$color="#D9FFB3";
 				$sql="SELECT * FROM tipoalmacen";
-				$result=mysql_db_query($sql_inv,$sql);
+				$result=mysql_query($sql,$link);
 				?>
 				  <table width="100%" border="0" align="center" cellspacing="0">
 					<tr style="background-color:#333333; text-align:center; font-weight:bold; color:#FFFFFF;">
@@ -498,7 +498,7 @@
 		<div id="div_productos_insertados">&nbsp;</div>
 		<div id="div_productos_enel_mov">&nbsp;</div>
 		<div id="div_productos_enel_mov">&nbsp;</div>
-		<? include("../../f.php"); ?>
+		<? //include("../../f.php"); ?>
 	</div>
 </body>
 </html>

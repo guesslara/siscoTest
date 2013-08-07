@@ -27,7 +27,7 @@
 			if($asociadoX=="Cliente"){
 				//echo "<br>BD=[$sql_inv] SQL=".
 				$sql="SELECT id_cliente,n_comercial FROM cat_clientes";
-				$result=mysql_db_query($sql_inv,$sql);
+				$result=mysql_query($sql,$link);
 				?>
 				<br /><table align="center" width="98%" cellspacing="0" style="border:#333333 1px solid;">
 				<tr>

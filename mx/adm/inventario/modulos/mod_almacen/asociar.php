@@ -11,7 +11,7 @@
 			if ($x=="a"){
 				echo "<br>Asociar Almacenes.";
 				$sql1="SELECT * FROM tipoalmacen ORDER BY id_almacen";
-				$res1=mysql_db_query($sql_inv,$sql1);
+				$res1=mysql_query($sql1,$link);
 				?>
 				<form name="form1" method="post" action="">
 				  <table width="500" cellspacing="0" cellpadding="2" align="center">
@@ -51,7 +51,7 @@
 				
 				
 				$sql1="SELECT * FROM cat_clientes ORDER BY id_cliente";
-				$res1=mysql_db_query($sql_inv,$sql1);
+				$res1=mysql_query($sql1,$link);
 				?>
 				<form name="form1" method="post" action="">
 				  <table width="500" cellspacing="0" cellpadding="2" align="center">
@@ -122,7 +122,7 @@
 		$idp=$_POST["idp"];
 		$idc=$_POST["idsc"];
 			$sql2="UPDATE catprod SET id_clientes='$idc' WHERE id=$idp";
-			if (!mysql_db_query($sql_inv,$sql2)){
+			if (!mysql_query($sql2,$link)){
 				echo "<br>Error: No se asocio el producto $idp al Cliente $idc.";
 				exit();
 			}
