@@ -1,7 +1,8 @@
 <?php
     if($_POST["action"]=="guardaSerie"){
         include("../../conf/conectarbase.php");
-        $numMov=$_POST["numMov"];
+	
+	$numMov=$_POST["numMov"];
         $claveProd=$_POST["claveProd"];
 	$cantidad=$_POST["cantidad"];
         $idElemento=$_POST["idElemento"];
@@ -16,7 +17,9 @@
             //se guarda el numero de serie en la tabla
             //echo "Se guarda el numero de serie";
             //print_r($_POST);
-            $sqlSerie="INSERT INTO num_series (serie,clave_prod,mov,status) VALUES ('".$valores."','".$claveProd."','".$numMov."','almacen')";
+	    $valores=explode(",",$valores);
+	    
+            $sqlSerie="INSERT INTO num_series (serie,noParte,clave_prod,mov,status) VALUES ('".$valores[0]."','".$valores[1]."','".$claveProd."','".$numMov."','almacen')";
             $resSerie=mysql_query($sqlSerie,$link);
             if($resSerie){
                 $msgCaja="Informacion Guardada";

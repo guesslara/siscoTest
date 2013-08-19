@@ -91,11 +91,7 @@ if ($_POST)
 			<br />
 			<table width="95%" align="center" cellpadding="0" cellspacing="0" class="tablax" style="font-size: 10px;">
 				<tr>
-					<td colspan="8" bgcolor="#333333" height="20" class="style9"><?=$trows?> Productos registrados en el Movimiento 
-					<?php if ($concepto_tipo=="Ent"&&$series_gen=="No Generado") {?>
-					[<span>&nbsp;&nbsp;<a href="../almacen/generarSeries.php?numMov=<?=$id_movimiento_recibido?>" style="color:#FFFF00; font-weight:bold;">Generar Numeros de Serie.</a></span>]
-					<?php } ?>
-					</td>
+					<td colspan="8" bgcolor="#333333" height="20" class="style9"><?=$trows?> Productos registrados en el Movimiento</td>
 				</tr>
 				<tr style="text-align:center; font-weight:bold;">
 				    <td width="33" height="20" bgcolor="#CCCCCC" class="style17">ID</td>
@@ -140,9 +136,11 @@ if ($_POST)
 ?>				
 				<tr>
 					<td colspan="8">
-						<table border="1" cellpadding="0" cellspacing="0" width="200" style="margin: 10px;">
+						<table border="0" cellpadding="0" cellspacing="0" width="300" style="margin: 10px;border: 1px solid #666;">
 							<tr>
-								<td colspan="2" style="height: 15px;padding: 5px;background: #CCC;font-weight: bold;color: #000;">Series Capturadas</td>
+								<td width="20" style="height: 15px;padding: 5px;background: #CCC;font-weight: bold;color: #000;text-align: center;border-bottom: 1px solid #000;border-right:1px solid #000;">#</td>
+								<td width="140" style="height: 15px;padding: 5px;background: #CCC;font-weight: bold;color: #000;text-align: center;border-bottom: 1px solid #000;border-right:1px solid #000;">Serie</td>
+								<td width="140" style="height: 15px;padding: 5px;background: #CCC;font-weight: bold;color: #000;text-align: center;border-bottom: 1px solid #000;"># Parte</td>
 							</tr>
 <?
 						$i=0;
@@ -150,8 +148,9 @@ if ($_POST)
 							$i+=1;
 ?>
 							<tr>
-								<td style="text-align: center;"><?=$i;?></td>
-								<td style="text-align: right;height: 15px;padding: 5px;"><?=$rowS["serie"];?></td>
+								<td style="text-align: center;border-bottom: 1px solid #000;border-right:1px solid #000;"><?=$i;?></td>
+								<td style="text-align: right;height: 15px;padding: 5px;border-bottom: 1px solid #000;border-right:1px solid #000;"><?=$rowS["serie"];?></td>
+								<td style="text-align: right;height: 15px;padding: 5px;border-bottom: 1px solid #000;"><?=$rowS["noParte"];?></td>
 							</tr>
 <?
 						}
@@ -318,7 +317,8 @@ function printMov(n){
 function ver_movimiento(m)
 {
 //alert(m);
-$("#all").hide();
+//$("#all").hide();
+$("#transparenciaGeneral").show();
 $("#detalle").show();
 $("#d_tit").html('&nbsp;&nbsp;&nbsp;Detalles del Movimiento.');
 
@@ -352,6 +352,7 @@ function problemas0()
 function cerrarv()
 {
 	$("#detalle").hide();	
+	$("#transparenciaGeneral").hide();
 	$("#all").show();
 }
 
@@ -361,7 +362,7 @@ function capturarSeries(numMov,claveProd,cantidad){
 	$("#divModalSeries").show();
 	/*Implementacion del Grid*/
 	//se define el array para el nombre de las columnas
-	nombresColumnas=new Array("Serial","# Parte""Mensaje")
+	nombresColumnas=new Array("Serial","# Parte","Mensaje")
 	cargaInicial(3,"divCapturaSeries","guardarSeries.php","action=guardaSerie&numMov="+numMov+"&claveProd="+claveProd+"&cantidad="+cantidad,"errores",nombresColumnas);
 	inicio();
 	$("#txt_0").focus();
@@ -438,8 +439,8 @@ document.onkeypress = cerrar;
     </div>
 	<?php } ?>
 </div>
-<div align="center" style=" width:1000px; padding:0px; clear:both;">
-<table width="1000" border="0" align="center" cellspacing="0" class="tablax">
+<div align="center" style=" width:100%; padding:0px; clear:both;">
+<table width="98%" border="0" align="center" cellspacing="0" class="tablax">
   <tr>
  
     <td colspan="8" height="23" style="background-color:#333333; text-align:center; color:#FFFFFF; font-weight:bold;"><?=$numeroRegistros;?> Movimientos al Almac&eacute;n</td>
@@ -563,6 +564,7 @@ $aso2='';
 </div>
 </center>
 </div>
+<div id="transparenciaGeneral" style="display: none;position: absolute;top: 0;height: 100%;width: 100%;background: url(../../../../../img/desv.png) repeat;"</div>
 <div id="detalle">
 	<div style="background-color:#333333;">
 		<div id="d_tit">Movimiento X</div>
@@ -572,7 +574,7 @@ $aso2='';
 </div>
 <!--Div para los numeros de serie-->
 <div id="divModalSeries" style="display: none;top: 0;height: 100%;position: absolute;width: 100%;overflow:hidden;z-index: 9999;border: 0px solid #ff0000;background: url(../../../../../img/desv.png)">
-	<div style="position: absolute;width: 400px;height: 400px;border: 1px solid #000;top: 50%;left: 50%;margin-top: -200px;margin-left: -200px;z-index: 999999;background: #FFF;">
+	<div style="position: absolute;width: 500px;height: 400px;border: 1px solid #000;top: 50%;left: 50%;margin-top: -200px;margin-left: -250px;z-index: 999999;background: #FFF;">
 		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;"><div style="float: left;">Capturar # de Serie</div><div style="float: right;color: #FFF;" onclick="cerrarSeries()">Cerrar</div></div>
 		<div id="divCapturaSeries" style="width: 99.5%;height: 341px;border: 0px solid #FF0000;overflow: auto;"></div>
 		<div id="errores" style="height: 30px;border: 1px solid #CCC;font-size: 10px;color: #FF0000;overflow: auto;"></div>
