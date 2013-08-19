@@ -281,7 +281,7 @@
 			$resC=mysql_query($sql,$this->conexion);
 ?>
 			<div style="height: 20px;padding: 5px;background: #f0f0f0;border:1px solid #CCC;">
-				<select name="" id="">
+				<select name="cboClienteMenu" id="cboClienteMenu" onchange="verificaMenuCliente()">
 					<option value="">Selecciona...</option>
 <?
 				while($rowC=mysql_fetch_array($resC)){

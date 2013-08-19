@@ -1,12 +1,12 @@
 <?php
     if($_POST["action"]=="nuevaFuncionForm"){
-        nuevoMenuForm();
+        nuevoMenuForm($_POST["idCliente"]);
     }else{
         echo "Accion incorrecta";
         exit;
     }
     
-    function nuevoMenuForm(){
+    function nuevoMenuForm($idCliente){
         include("../../../clases/clase_mysql.php");
         include("../../../includes/config.inc.php");
         $sql="SELECT * FROM cat_clientes";
@@ -15,6 +15,7 @@
         $mysql->consulta($sql);
         $res=$mysql->registrosConsulta();
 ?>
+	<input type="hidden" name="hdnClienteMenu" id="hdnClienteMenu" value="<?=$idCliente;?>">
 	<div style="padding:10px;">           
             <form method="get">			
 		<div id="datosProceso" style="display:block; margin:5px;">
@@ -25,11 +26,7 @@
 			<tr>
                             <td width="156" class="bordesTitulos" style="height:25px;">Nombre del Men&uacute;</td>
                             <td width="350" class="bordesContenido" style="height:25px;"><input type="text" name="txtModulo" id="txtModulo" style="width:200px; font-size:14px;" /></td>
-			</tr>
-			<!--<tr>
-                            <td width="156" class="bordesTitulos" style="height:25px;">Pertenece a</td>
-                            <td width="350" class="bordesContenido" style="height:25px;"><input type="text" name="txtPer" id="txtPer" style="width:200px; font-size:14px;" readonly="readonly" value="Menu" /></td>
-			</tr>-->
+			</tr>			
 			<tr>
                             <td width="156" class="bordesTitulos" style="height:25px;">No. Men&uacute;</td>
                             <td width="350" class="bordesContenido" style="height:25px;"><input type="text" name="txtMenu" id="txtMenu" style="width:200px; font-size:14px;" /></td>

@@ -82,7 +82,7 @@
 	{
 		$t=$_POST["t"];		$f=$_POST["f"];		$al=$_POST["al"];		$as=$_POST["as"];		$r=$_POST["r"];		$o=$_POST["o"];		$fr=date("Y-m-d H:i:s");
 		$sql_nuevo_mov="INSERT INTO mov_almacen (id_mov,fecha,fecha_real,tipo_mov,almacen,referencia,asociado,observ,seriesGen) VALUES (NULL,'$f','$fr','$t','$al','$r','$as','$o','No Generado')";
-		if (mysql_db_query($sql_inv,$sql_nuevo_mov,$link))
+		if (mysql_query($sql_nuevo_mov,$link))
 		{
 			$u_id=mysql_insert_id($link);
 			echo "<div align='center'>Se ha creado el Movimiento: $u_id.</div>";
@@ -165,7 +165,7 @@
 			//echo "<br>Cat de Clientes ($ias)";
 			//echo "<BR>".
 			$sql0="SELECT `id`,`id_clientes` FROM `catprod` WHERE $ncalm=1 AND id_clientes LIKE '%$ias%' ORDER BY `id`";
-			$r0=mysql_db_query($sql_inv,$sql0);
+			$r0=mysql_query($sql0,$link);
 			?>
 			<br><br><div id="div_proveedores1">
 			<span class="cer_mov"><a href="javascript:cerrar2('div_proveedores1');">CERRAR</a>&nbsp;</span>
@@ -205,9 +205,8 @@
 
 						foreach($m_productos as $idp_matriz)
 						{
-							//echo "<br>&nbsp;".
-							$sql_p_clientes="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `$ceX`, `$ctX`, `cpromedio` FROM catprod WHERE id=$idp_matriz AND $ncalm=1 LIMIT 1";
-							if ($r1=mysql_db_query($sql_inv,$sql_p_clientes))
+							echo "<br>&nbsp;".$sql_p_clientes="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `$ceX`, `$ctX`, `cpromedio` FROM catprod WHERE id=$idp_matriz AND $ncalm=1 LIMIT 1";
+							if ($r1=mysql_query($sql_p_clientes,$link))
 							{
 								while ($ro1=mysql_fetch_array($r1))
 								{

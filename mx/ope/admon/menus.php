@@ -9,7 +9,7 @@
         $res=$mysql->registrosConsulta();
 ?>
         <div style="height: 20px;padding: 5px;background: #f0f0f0;border:1px solid #CCC;">
-            Cliente: <select name="" id="">
+            Cliente: <select name="cboClienteMenu" id="cboClienteMenu" onchange="verificaMenuCliente()">
                 <option value="" selected="selected">Selecciona...</option>
 <?
             while($row=mysql_fetch_array($res)){
@@ -21,13 +21,10 @@
             </select>
         </div>
         <div style="border: 1px solid #FF0000;height: 94%;width: 99.8%;">
-            <div style="float: left;width: 40%;height: 99%;border: 1px solid #CCC;">
-                <div style="height: 20px;padding: 5px;background: #f0f0f0;border: 1px solid #CCC;">
-                    <input type="button" value="Agregar Men&uacute;">
-                </div>
-                <div style="height: 94%;border: 1px solid #FF0000;overflow: auto;"></div>
+            <div style="float: left;width: 40%;height: 99%;border: 1px solid #CCC;">                
+                <div id="detalleMenu" style="height: 99.5%;border: 1px solid #FF0000;overflow: auto;"></div>
             </div>
-            <div style="float: left;width: 53%;height: 99%;border: 1px solid #CCC;margin-left: 10px;overflow: auto;"></div>
+            <div id="detalleOperacionesMenu" style="float: left;width: 53%;height: 99%;border: 1px solid #CCC;margin-left: 10px;overflow: auto;"></div>
         </div>
 <?
     }

@@ -1,6 +1,6 @@
 <?php
     print_r($_POST);    
-    $nombreProyecto=dameNombreProyecto($_POST["radio"]);
+    echo "<br>".$nombreProyecto=dameNombreProyecto($_POST["radio"]);
     switch($nombreProyecto){
         case "Lexmark":
             header("Location: ../lexmark/modulos/mod_login/index.php");
@@ -9,10 +9,10 @@
     }
     
     function dameNombreProyecto($idProyecto){
-        $sql="SELECT * FROM proyectos WHERE id_proy='".$idProyecto."'";
+        $sql="SELECT * FROM cat_clientes WHERE id_cliente='".$idProyecto."'";
         $res=mysql_query($sql,conectarBd());
         $row=mysql_fetch_array($res);
-        $nombreProyecto=$row["nomb"];
+        $nombreProyecto=$row["r_social"];
         return $nombreProyecto;
     }
     

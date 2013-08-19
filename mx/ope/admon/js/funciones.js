@@ -299,11 +299,11 @@ function actualizaGrupo(idGrupo){
 		alert("Verifique la informacion para poder modificar el grupo");
 	}
 }
-function nuevaFuncionalidad(){
+function nuevaFuncionalidad(idCliente){
 	//modificaciones para el nuevo menu
-	div="divSubMenu";
+	div="detalleOperacionesMenu";
 	url="agregarMenu.php";
-	parametros="action=nuevaFuncionForm";
+	parametros="action=nuevaFuncionForm&idCliente";
 	metodo="POST";
 	ajaxApp(div,url,parametros,metodo);	
 }
@@ -312,6 +312,7 @@ function guardaFuncion(){
 		var txtModulo=document.getElementById("txtModulo").value;
 		var txtPer=document.getElementById("txtPer").value;
 		var txtMenu=document.getElementById("txtMenu").value;
+		var idCliente=$("#hdnClienteMenu").val();
 		//var txtRuta=document.getElementById("txtRuta").value;
 		//var txtImagen=document.getElementById("txtImagen").value;
 		if((txtModulo=="")){
@@ -319,7 +320,7 @@ function guardaFuncion(){
 		}else{	
 			div="divSubMenu";
 			url=="controlador2.php";			
-			parametros="action=guardaRegFuncion&txtModulo="+txtModulo+"&txtPer="+txtPer+"&txtMenu="+txtMenu;
+			parametros="action=guardaRegFuncion&txtModulo="+txtModulo+"&txtPer="+txtPer+"&txtMenu="+txtMenu+"&idCliente="+idCliente;
 			metodo="POST";
 			ajaxApp(div,url,parametros,metodo);	
 		}
@@ -716,4 +717,12 @@ function eliminarMenu(id,modulo){
 }
 function listarBugs(){
 	ajaxApp("detalleUsuarios","controladorUsuarios.php","action=listarBugs","POST");
+}
+function verificaMenuCliente(){
+	idCliente=$("#cboClienteMenu").val();
+	if(idCliente=="" || idCliente==null || idCliente==undefined){
+		alert("Verifique la informacion seleccionada");
+	}else{
+		ajaxApp("detalleMenu","controlador2.php","action=mostrarMenu&idCliente="+idCliente,"POST");		
+	}
 }
