@@ -684,18 +684,21 @@ function mostrarOpcionesMenu(){
 	//ajaxApp("detalleUsuarios","controlador2.php","action=mostrarOpcionesMenu","POST");
 	ajaxApp("detalleUsuarios","menus.php","action=panelMenus","POST");
 }
-function modificarMenuTitulo(idMenuTitulo){
-	ajaxApp("divSubMenu","controladorUsuarios.php","action=modificarMenuTitulo&idMenuTitulo="+idMenuTitulo,"POST")
+function modificarMenuTitulo(idMenuTitulo,idCliente){
+	//ajaxApp("divSubMenu","controladorUsuarios.php","action=modificarMenuTitulo&idMenuTitulo="+idMenuTitulo,"POST")
+	mostrarVentanaModal("Modificar Menu");	
+	ajaxApp("divContenidoVentana","controlador2.php","action=modificarMenuTitulo&idMenuTitulo="+idMenuTitulo+"&idCliente="+idCliente,"POST");
 }
 function guardarMenuTituloActualizacion(){
 	txtNombreMenuAct=$("#txtNombreMenuAct").val();
 	numeroMenuAct=$("#txtNumeroMenuAct").val();
 	idElementoAct=$("#txtIdElementoMenuTitulo").val();
+	idCliente=$("#txtIdClienteMod").val();
 	if(txtNombreMenuAct=="" || numeroMenuAct==""){
 		alert("No deje espacios en blanco");
 	}else{
 		if(!isNaN(numeroMenuAct)){
-			ajaxApp("divSubMenu","controladorUsuarios.php","action=guardarModificarMenuTitulo&nombreMenuTitulo="+txtNombreMenuAct+"&numeroMenuAct="+numeroMenuAct+"&idElementoAct="+idElementoAct,"POST");
+			ajaxApp("divContenidoVentana","controlador2.php","action=guardarModificarMenuTitulo&nombreMenuTitulo="+txtNombreMenuAct+"&numeroMenuAct="+numeroMenuAct+"&idElementoAct="+idElementoAct+"&idCliente="+idCliente,"POST");
 		}else{
 			alert("Error el numero de menu debe ser un numero");
 		}
@@ -735,4 +738,8 @@ function verificaMenuCliente(){
 function actualizaPanelMenu(idCliente){
 	cerrarVentanaModal("divTransVentana");
 	ajaxApp("detalleMenu","controlador2.php","action=mostrarMenu&idCliente="+idCliente,"POST");
+}
+function mostrarVentanaModal(tituloVentana){
+	$("#divTransVentana").show();
+	$("#divVentanaTitulo").html(tituloVentana);		
 }

@@ -6,14 +6,7 @@
         exit;
     }
     
-    function nuevoMenuForm($idCliente){
-        include("../../../clases/clase_mysql.php");
-        include("../../../includes/config.inc.php");
-        $sql="SELECT * FROM cat_clientes";
-        $mysql = new DB_mysql();
-        $mysql->conectar($db,$host,$usuario,$pass);
-        $mysql->consulta($sql);
-        $res=$mysql->registrosConsulta();
+    function nuevoMenuForm($idCliente){        
 ?>
 	<input type="hidden" name="hdnClienteMenu" id="hdnClienteMenu" value="<?=$idCliente;?>">
 	<div style="padding:10px;">           
@@ -27,22 +20,7 @@
 			<tr>
                             <td width="156" class="bordesTitulos" style="height:25px;">No. Men&uacute;</td>
                             <td width="350" class="bordesContenido" style="height:25px;"><input type="text" name="txtMenu" id="txtMenu" style="width:200px; font-size:14px;" /></td>
-			</tr>
-                        <!--<tr>
-                            <td width="156" class="bordesTitulos" style="height:25px;">Cliente</td>
-                            <td width="350" class="bordesContenido" style="height:25px;">
-                                <select name="cboCliente" id="cboCliente">
-                                    <option value="">Selecciona...</option>
-<?
-                                while($row=mysql_fetch_array($res)){
-?>
-                                    <option value="<?=$row["id_cliente"];?>"><?=$row["r_social"];?></option>
-<?
-                                }
-?>
-                                </select>
-                            </td>
-                        </tr>-->
+			</tr>                        
 			<tr>
                             <td colspan="2"><div id="listadoimagen" style=" display:none;height:250px; overflow:auto; border:1px solid #CCC;"></div></td>
 			</tr>                     
