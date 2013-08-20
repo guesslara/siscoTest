@@ -301,16 +301,18 @@ function actualizaGrupo(idGrupo){
 }
 function nuevaFuncionalidad(idCliente){
 	//modificaciones para el nuevo menu
-	div="detalleOperacionesMenu";
+	$("#divTransVentana").show();
+	$("#divVentanaTitulo").html("Agregar Menu");
+	
+	div="divContenidoVentana";
 	url="agregarMenu.php";
-	parametros="action=nuevaFuncionForm&idCliente";
+	parametros="action=nuevaFuncionForm&idCliente="+idCliente;
 	metodo="POST";
 	ajaxApp(div,url,parametros,metodo);	
 }
 function guardaFuncion(){
 	try{
-		var txtModulo=document.getElementById("txtModulo").value;
-		var txtPer=document.getElementById("txtPer").value;
+		var txtModulo=document.getElementById("txtModulo").value;		
 		var txtMenu=document.getElementById("txtMenu").value;
 		var idCliente=$("#hdnClienteMenu").val();
 		//var txtRuta=document.getElementById("txtRuta").value;
@@ -318,9 +320,9 @@ function guardaFuncion(){
 		if((txtModulo=="")){
 			alert("Error:\nCampo Obligatorio.");
 		}else{	
-			div="divSubMenu";
-			url=="controlador2.php";			
-			parametros="action=guardaRegFuncion&txtModulo="+txtModulo+"&txtPer="+txtPer+"&txtMenu="+txtMenu+"&idCliente="+idCliente;
+			div="divContenidoVentana";
+			url="controlador2.php";			
+			parametros="action=guardaRegFuncion&txtModulo="+txtModulo+"&txtMenu="+txtMenu+"&idCliente="+idCliente;
 			metodo="POST";
 			ajaxApp(div,url,parametros,metodo);	
 		}
@@ -718,11 +720,19 @@ function eliminarMenu(id,modulo){
 function listarBugs(){
 	ajaxApp("detalleUsuarios","controladorUsuarios.php","action=listarBugs","POST");
 }
+function cerrarVentanaModal(div){
+	$("#"+div).hide();
+}
 function verificaMenuCliente(){
 	idCliente=$("#cboClienteMenu").val();
 	if(idCliente=="" || idCliente==null || idCliente==undefined){
 		alert("Verifique la informacion seleccionada");
 	}else{
+		//alert(idCliente);
 		ajaxApp("detalleMenu","controlador2.php","action=mostrarMenu&idCliente="+idCliente,"POST");		
 	}
+}
+function actualizaPanelMenu(idCliente){
+	cerrarVentanaModal("divTransVentana");
+	ajaxApp("detalleMenu","controlador2.php","action=mostrarMenu&idCliente="+idCliente,"POST");
 }

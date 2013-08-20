@@ -10,12 +10,14 @@
             $objMenu->mostrarOpcionesMenu();
         break;
         case "guardaRegFuncion":            
-	    $txtModulo=$_POST['txtModulo'];
-            $txtPer=$_POST['txtPer'];
+	    $txtModulo=$_POST['txtModulo'];            
             $txtMenu=$_POST['txtMenu'];
-	    $idCliente=$_POST["idCliente"];
-            $objMenu->guardarFuncion($txtModulo,$txtPer,$txtMenu,$idCliente);
-        break;	
+	    $idCliente=$_POST["idCliente"];	    
+            $objMenu->guardarFuncion($txtModulo,$txtMenu,$idCliente);
+        break;
+	case "mostrarMenu":
+	    $objMenu->mostrarOpcionesMenu($_POST["idCliente"]);
+	break;
     }
     
 ?>

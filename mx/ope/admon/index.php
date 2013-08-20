@@ -92,5 +92,14 @@ body{font-family:Verdana, Geneva, sans-serif; font-size:11px;}
         <div id="addGrupo"></div>
 </div>
 <div id="cargando" style=" display:none;position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(../../img/desv.png) repeat;">
-	<div id="msgCargador"><div style="padding:6px;">&nbsp;<img src="../../img/cargador.gif" border="0" /></div></div>
+	<div id="msgCargador"><div style="padding:6px;">&nbsp;<img src="../../../../../img/cargador.gif" border="0" /></div></div>
+</div>
+<div id="divTransVentana" style="display: none;position: absolute;top: 0;width: 100%;height: 100%;background: url(../../../img/desv.png) repeat;">
+	<div style="position: absolute;background: #FFF;width: 450px;height: 350px;left: 50%;top: 50%;margin-left: -225px;margin-top: -175px;border: 2px solid #000;">
+		<div style="height: 15px;padding: 5px;background: #000;color: #FFF;border: 1px solid #000;">
+			<div id="divVentanaTitulo" style="float: left;">Titulo</div>
+			<div style="float: right;margin-top: -4px;margin-right: -3px;"><a href="#" onclick="cerrarVentanaModal('divTransVentana')"><img src="../../../img/close.gif" border="0"></a></div>
+		</div>
+		<div id="divContenidoVentana" style="border: 0px solid #ff0000;width: 448px;height: 321px;overflow: auto;"></div>
+	</div>
 </div>

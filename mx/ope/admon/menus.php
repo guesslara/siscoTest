@@ -14,17 +14,15 @@
 <?
             while($row=mysql_fetch_array($res)){
 ?>
-                <option value="id_cliente"><?=$row["r_social"];?></option>
+                <option value="<?=$row["id_cliente"];?>"><?=$row["r_social"];?></option>
 <?
             }
 ?>
             </select>
         </div>
-        <div style="border: 1px solid #FF0000;height: 94%;width: 99.8%;">
-            <div style="float: left;width: 40%;height: 99%;border: 1px solid #CCC;">                
-                <div id="detalleMenu" style="height: 99.5%;border: 1px solid #FF0000;overflow: auto;"></div>
-            </div>
-            <div id="detalleOperacionesMenu" style="float: left;width: 53%;height: 99%;border: 1px solid #CCC;margin-left: 10px;overflow: auto;"></div>
+        <div style="border: 1px solid #FF0000;height: 94%;width: 99.8%;">            
+            <div id="detalleMenu" style="height: 99.5%;border: 1px solid #FF0000;overflow: auto;"></div>            
+            <!--<div id="detalleOperacionesMenu" style="float: left;width: 40%;height: 99%;border: 1px solid #CCC;margin-left: 10px;overflow: auto;"></div>-->
         </div>
 <?
     }

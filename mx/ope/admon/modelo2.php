@@ -10,19 +10,18 @@
         private $linkConexion;
         private $objConexion;
         
-        public function guardarFuncion($txtModulo,$txtPer,$txtMenu,$idCliente){
+        public function guardarFuncion($txtModulo,$txtMenu,$idCliente){
             include("../../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
-            echo "<br>".$sqlGuarda="INSERT INTO menu (nombreMenu,numeroMenu,activo,id_cliente) values('".$txtModulo."','".$txtPer."','".$txtMenu."')";
-            
-            
-            /*$resultGuarda=mysql_query($sqlGuarda,$var);
+            //echo "<br>".
+	    $sqlGuarda="INSERT INTO menu (nombreMenu,orden,activo,id_cliente) values('".$txtModulo."','".$txtMenu."','1','".$idCliente."')";
+            $resultGuarda=$mysql->consulta($sqlGuarda);//mysql_query($sqlGuarda,$var);
             if($resultGuarda==true){
-            	echo "<script type='text/javascript'> alert('Registro Agregado'); mostrarOpcionesMenu(); </script>";				
+            	echo "<script type='text/javascript'> alert('Registro Agregado'); actualizaPanelMenu('".$idCliente."'); </script>";				
             }else{
             	echo "<script type='text/javascript' > alert('Error al Guardar.'); </script>";
-            }*/
+            }
 	}
 
 	public function mostrarOpcionesMenu($idCliente){
@@ -43,11 +42,8 @@
 <?		
 	    }
 ?>
-	    <!--<div style="height: 20px;padding: 5px;background: #f0f0f0;border:1px solid #CCC;width: 95%;margin: 5px;">
-		<a href="#" onclick="nuevaFuncionalidad('<?=$idCliente;?>')" style="text-decoration: none;color: blue;">Agregar Men&uacute;</a>
-	    </div>-->
-                <div style="border: 1px solid #000;height: 94%;width: 98%;margin: 3px;">
-                    <div style="float: left;width: 99%;height: 99%;border: 1px solid #CCC;margin: 2px;overflow: auto;">
+	        <div style="border: 1px solid #000;height: 94%;width: 98%;margin: 3px;">
+                    <!--<div style="float: left;width: 99%;height: 99%;border: 1px solid #CCC;margin: 2px;overflow: auto;">-->
                         <table border="0" cellpadding="1" cellspacing="1" width="400" style="margin: 10px;font-size: 12px;">                            
 			    <tr>
                                 <td width="350" style="border: 1px solid #CCC;background: #f0f0f0;height: 20px;padding: 5px;">Nombre</td>
@@ -65,10 +61,10 @@
 ?>
 			    <tr>
 				<td style="text-align: left;background: #f0f0f0;border: 1px solid #CCC;height: 20px;padding: 5px;">
-                                    <a href="#" title="Eliminar Menu" onclick="eliminarMenu('<?=$row["id"];?>','<?=$row["modulo"];?>')" style="color: blue;"><img src="../../img/icon_delete.gif" border="0" /></a>
-							=><?=$row["numeroMenu"]." - ";?><a href="#" onclick="modificarMenuTitulo('<?=$row["id"]?>')" title="Modificar Menu" style="color: blue;font-size: 12px;text-decoration: none;"><?=$row["modulo"];?></a>&nbsp;							
+                                    <a href="#" title="Eliminar Menu" onclick="eliminarMenu('<?=$row["id"];?>','<?=$row["modulo"];?>')" style="color: blue;"><img src="../../../img/icon_delete.gif" border="0" /></a>
+				    =><?=$row["orden"]." - ";?><a href="#" onclick="modificarMenuTitulo('<?=$row["id"]?>')" title="Modificar Menu" style="color: blue;font-size: 12px;text-decoration: none;"><?=$row["nombreMenu"];?></a>&nbsp;							
 				</td>
-				<td style="text-align: center;"><a href="#" title="Agregar Submenu" onclick="agregarItemSubMenu('<?=$row["id"];?>')" style="color: blue;"><img src="../../img/add.png" border="0" /></a></td>
+				<td style="text-align: center;"><a href="#" title="Agregar Submenu" onclick="agregarItemSubMenu('<?=$row["id"];?>')" style="color: blue;"><img src="../../../img/add.png" border="0" /></a></td>
                             </tr>
                             <tr>
 				<td colspan="2">
@@ -79,7 +75,7 @@
                     while($rowsub=mysql_fetch_array($resSub)){
 ?>
                         <div style="height: 15px;padding: 5px;">							
-                            ==><a href="#" title="Eliminar Menu" onclick="eliminaSubmenu('<?=$rowsub['id']?>','<?=$rowsub["nombreSubMenu"];?>')" style="color: blue;"><img src="../../img/icon_delete.gif" border="0" /></a>&nbsp;
+                            ==><a href="#" title="Eliminar Menu" onclick="eliminaSubmenu('<?=$rowsub['id']?>','<?=$rowsub["nombreSubMenu"];?>')" style="color: blue;"><img src="../../../img/icon_delete.gif" border="0" /></a>&nbsp;
                             <a href="#" title="Modificar Submen&uacute;" onclick="modificarSubmenu('<?=$rowsub["id"];?>')" style="font-size: 12px;"><?=$rowsub["nombreSubMenu"]?></a>
 			</div>
 <?
@@ -94,7 +90,7 @@
             }
 ?>
                         </table>	
-                    </div>
+                    <!--</div>-->
                     <!--<div id="divSubMenu" style="float: left;width: 47%;height: 99%;border: 1px solid #CCC;margin: 2px;overflow: auto;"></div>-->
 		</div>
 			
