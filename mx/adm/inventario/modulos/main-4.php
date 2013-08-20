@@ -24,7 +24,8 @@
     
     $numeroActualizaciones=$objFuncionesGUI->buscaActualizacionesNuevas();
     $objActualizaciones->verificaActualizacionesSistema();
-    $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);
+    $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);    
+    $idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);    
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -131,7 +132,7 @@
             <div class="datosUsuarioAppPrincipal" onclick="mostrarPerfilUsuario()" title="Ver Perfil del Usuario"><?=$_SESSION[$txtApp['session']['nombreUsuario']]." ".$_SESSION[$txtApp['session']['apellidoUsuario']];?></div>
         </div>
         <div id="menu" class="barraMenu" style="z-index: 50;height: 25px;">
-<?          $objPermisos->construyeMenuNuevo($_SESSION[$txtApp['session']['idUsuario']]);?>
+<?          $objPermisos->construyeMenuNuevo2($_SESSION[$txtApp['session']['idUsuario']],$idCliente);?>
 	    <div class="estiloImgBuscador" title="Mostrar Buscador" onclick="mostrarBuscadorEquipos()">
 		<img src="../img/search-icon.png" border="0">
 	    </div>

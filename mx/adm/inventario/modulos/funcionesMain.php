@@ -67,7 +67,7 @@
 	}
 	
 	function verificaMantto(){
-		include("../includes/conectarbase.php");
+		//include("../includes/conectarbase.php");
 		$sqlSitio="SELECT valor,descripcion FROM configuracionglobal WHERE nombreConf='sitio_desactivado'";
 		$resSitio=mysql_query($sqlSitio,conectarBd());
 		$filaSitio=mysql_fetch_array($resSitio);

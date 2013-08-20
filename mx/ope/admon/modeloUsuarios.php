@@ -489,7 +489,7 @@
 		}
 		
 		//listado de modulos
-		public function listarModulos(){
+		public function listarModulos($idCliente){
 			$path="../../modulos"; $path2="../modulos";
 			$directorio=dir($path);
 ?>

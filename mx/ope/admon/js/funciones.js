@@ -390,8 +390,8 @@ function cambioStatusAct(idReg,status_actual){
 			}		
 		}
 }
-function listarModulos(){
-	ajaxApp("listadomodulos","controladorUsuarios.php","action=listarModulos","GET");
+function listarModulos(idCliente){
+	ajaxApp("listadomodulos","controlador2.php","action=listarModulos&idCliente="+idCliente,"POST");
 }
 function listarImagen(){
 	ajaxApp("listadoimagen","controladorUsuarios.php","action=listarImagen","GET");
@@ -639,32 +639,36 @@ function guardarConfiguracionGlobal(){
 function agregarSubMenu(){
 	ajaxApp("detalleUsuarios","controladorUsuarios.php","action=agregarSubMenu","POST");	
 }
-function agregarItemSubMenu(idElemento){
-	ajaxApp("divSubMenu","controladorUsuarios.php","action=agregarItemSubMenu&idElemento="+idElemento,"POST");	
+function agregarItemSubMenu(idElemento,idCliente){
+	mostrarVentanaModal("Agregar Submenu")
+	ajaxApp("divContenidoVentana","controlador2.php","action=agregarItemSubMenu&idElemento="+idElemento+"&idCliente="+idCliente,"POST");	
 }
 function guardarSubMenu(){
 	txtIdElemento=$("#txtIdElemento").val();
 	txtNombreSubMenu=$("#txtNombreSubMenu").val();
 	txtRuta=$("#txtRuta").val();
 	cboStatusSubmenu=$("#cboStatusSubmenu").val();
+	idCliente=$("#txtIdClienteSub").val();
 	if(txtIdElemento=="" || txtNombreSubMenu=="" || txtRuta=="" || cboStatusSubmenu==""){
 		alert("Error: Verifique que no existan espacios en blanco");
 	}else{
-		ajaxApp("divGuardadoSubMenu","controladorUsuarios.php","action=guardarSubMenu&idElemento="+txtIdElemento+"&txtNombreSubMenu="+txtNombreSubMenu+"&txtRuta="+txtRuta+"&cboStatusSubmenu="+cboStatusSubmenu,"POST");
+		ajaxApp("divContenidoVentana","controlador2.php","action=guardarSubMenu&idElemento="+txtIdElemento+"&txtNombreSubMenu="+txtNombreSubMenu+"&txtRuta="+txtRuta+"&cboStatusSubmenu="+cboStatusSubmenu+"&idCliente="+idCliente,"POST");
 	}
 }
-function modificarSubmenu(id){	
-	ajaxApp("divSubMenu","controladorUsuarios.php","action=modificarSubMenu&id="+id,"POST");
+function modificarSubmenu(id,idCliente){
+	mostrarVentanaModal("Modificar SubMenu");
+	ajaxApp("divContenidoVentana","controlador2.php","action=modificarSubMenu&id="+id+"&idCliente="+idCliente,"POST");
 }
 function guardarSubMenuActualizacion(){
 	txtIdElementoAct=$("#txtIdElementoAct").val();
 	txtNombreSubMenuAct=$("#txtNombreSubMenuAct").val();
 	txtRutaAct=$("#txtRutaAct").val();
 	cboStatusSubmenuAct=$("#cboStatusSubmenuAct").val();
+	idCliente=$("#txtIdElementoActIdCliente").val();
 	if(txtIdElementoAct=="" || txtNombreSubMenuAct=="" || txtRutaAct=="" || cboStatusSubmenuAct==""){
 		alert("Error: Verifique que no existan espacios en blanco");
 	}else{
-		ajaxApp("divGuardadoSubMenu","controladorUsuarios.php","action=guardarSubMenuAct&idElementoAct="+txtIdElementoAct+"&txtNombreSubMenuAct="+txtNombreSubMenuAct+"&txtRutaAct="+txtRutaAct+"&cboStatusSubmenuAct="+cboStatusSubmenuAct,"POST");
+		ajaxApp("divContenidoVentana","controlador2.php","action=guardarSubMenuAct&idElementoAct="+txtIdElementoAct+"&txtNombreSubMenuAct="+txtNombreSubMenuAct+"&txtRutaAct="+txtRutaAct+"&cboStatusSubmenuAct="+cboStatusSubmenuAct+"&idCliente="+idCliente,"POST");
 	}
 }
 function seleccionarMenuCompleto(nRegMenu,idMenu){	
@@ -710,14 +714,14 @@ function verModulos(){
 function leerArchivo(archivo){
 	ajaxApp("contenidoArchivo","controladorUsuarios.php","action=verArchivo&archivo="+archivo,"POST")
 }
-function eliminaSubmenu(idSubMenu,nombreSubMenu){
+function eliminaSubmenu(idSubMenu,nombreSubMenu,idCliente){
 	if(confirm("Esta realmente seguro de borrar el Submenu: "+nombreSubMenu)){
-		ajaxApp("divSubMenu","controladorUsuarios.php","action=eliminaSubMenu&idSubMenu="+idSubMenu,"POST");		
+		ajaxApp("divContenidoVentana","controlador2.php","action=eliminaSubMenu&idSubMenu="+idSubMenu+"&idCliente="+idCliente,"POST");		
 	}
 }
-function eliminarMenu(id,modulo){
+function eliminarMenu(id,modulo,idCliente){
 	if(confirm("Esta realmente seguro de borrar el Menu: "+modulo)){
-		ajaxApp("divSubMenu","controladorUsuarios.php","action=eliminaMenu&idMenu="+id,"POST");		
+		ajaxApp("divOperacionesGlobales","controlador2.php","action=eliminaMenu&idMenu="+id+"&idCliente="+idCliente,"POST");		
 	}
 }
 function listarBugs(){

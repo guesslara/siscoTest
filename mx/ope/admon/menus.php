@@ -2,7 +2,7 @@
     if($_POST["action"]=="panelMenus"){
         include("../../../clases/clase_mysql.php");
         include("../../../includes/config.inc.php");
-        $sql="SELECT * FROM cat_clientes";
+        $sql="SELECT * FROM cat_clientes ORDER BY id_cliente";
         $mysql = new DB_mysql();
         $mysql->conectar($db,$host,$usuario,$pass);
         $mysql->consulta($sql);
@@ -20,8 +20,8 @@
 ?>
             </select>
         </div>
-        <div style="border: 1px solid #FF0000;height: 94%;width: 99.8%;">            
-            <div id="detalleMenu" style="height: 99.5%;border: 1px solid #FF0000;overflow: auto;"></div>            
+        <div style="border: 0px solid #FF0000;height: 94%;width: 99.8%;">            
+            <div id="detalleMenu" style="height: 99.5%;border: 0px solid #FF0000;overflow: auto;"></div>            
             <!--<div id="detalleOperacionesMenu" style="float: left;width: 40%;height: 99%;border: 1px solid #CCC;margin-left: 10px;overflow: auto;"></div>-->
         </div>
 <?

@@ -25,5 +25,36 @@
 	case "guardarModificarMenuTitulo":
 	    $objMenu->guardarModificacionMenuTitulo($_POST["nombreMenuTitulo"],$_POST["numeroMenuAct"],$_POST["idElementoAct"],$_POST["idCliente"]);
 	break;
+	case "eliminaMenu":
+	    $objMenu->eliminaMenu($_POST["idMenu"],$_POST["idCliente"]);
+	break;
+	case "agregarItemSubMenu":
+	    $objMenu->agregarItemSubmenu($_POST["idElemento"],$_POST["idCliente"]);
+	break;
+	case "guardarSubMenu":
+	    $idElemento=$_POST["idElemento"];
+	    $txtNombreSubMenu=$_POST["txtNombreSubMenu"];
+	    $txtRuta=$_POST["txtRuta"];
+	    $cboStatusSubmenu=$_POST["cboStatusSubmenu"];
+	    $idCliente=$_POST["idCliente"];
+	    $objMenu->guardarSubmenu($idElemento,$txtNombreSubMenu,$txtRuta,$cboStatusSubmenu,$idCliente);
+	break;
+	case "listarModulos":
+	    $objMenu->listarModulos($_POST["idCliente"]);
+	break;
+	case "modificarSubMenu":
+	    $objMenu->modificarSubmenu($_POST["id"],$_POST["idCliente"]);
+	break;
+	case "guardarSubMenuAct":
+	    $idElementoAct=$_POST["idElementoAct"];
+	    $txtNombreSubMenuAct=$_POST["txtNombreSubMenuAct"];
+	    $txtRutaAct=$_POST["txtRutaAct"];
+	    $cboStatusSubmenuAct=$_POST["cboStatusSubmenuAct"];
+	    $idCliente=$_POST["idCliente"];
+	    $objMenu->guardarSubmenuAct($idElementoAct,$txtNombreSubMenuAct,$txtRutaAct,$cboStatusSubmenuAct,$idCliente);
+	break;
+	case "eliminaSubMenu":
+	    $objMenu->eliminaSubMenu($_POST["idSubMenu"],$_POST["idCliente"]);
+	break;
     }
 ?>

@@ -136,7 +136,7 @@ if($_GET['action']=="cambioStatusAct"){
 			$objModeloUsuarios->activarStatusAct($idReg,$status);
 	}
 	if($_GET['action']=="listarModulos"){
-		$objModeloUsuarios->listarModulos();
+		$objModeloUsuarios->listarModulos($_POST["idCliente"]);
 	}
 	if($_GET['action']=="listarImagen"){
 		$objModeloUsuarios->listarImagen();

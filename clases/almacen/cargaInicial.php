@@ -16,6 +16,13 @@
             }
 	}//fin funcion
         
+	public function dameIdCliente($nombreCliente){
+	    $sql="select id_cliente from cat_clientes where r_social='".$nombreCliente."'";
+	    $res=mysql_query($sql,$this->conectarBdVerificaCargaInicial());
+	    $row=mysql_fetch_array($res);
+	    return $row["id_cliente"];
+	}
+	
 	public function dameNombreProyecto($idProyecto){	    
 	    $sql="select * from proyecto where id_proyecto='".$idProyecto."'";
 	    $res=mysql_query($sql,$this->conectarBdVerificaCargaInicial());
@@ -51,7 +58,7 @@
 	}
 	
 	private function conectarBdVerificaCargaInicial(){
-	    require("../../includes/config.inc.php");
+	    require("../../../../includes/config.inc.php");
 	    $link=mysql_connect($host,$usuario,$pass);
 	    if($link==false){
 		echo "Error en la conexion a la base de datos";
