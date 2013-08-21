@@ -284,7 +284,7 @@
 		    <input type="button" value="Agregar Men&uacute;" onclick="nuevaFuncionalidad('<?=$idCliente;?>')">
 		</div>
 		<div id="divOperacionesGlobales"></div>
-		<div style="border: 1px solid #000;height: 94%;width: 98%;margin: 3px;">
+		<!--<div style="border: 1px solid #000;height: 94%;width: 98%;margin: 3px;">-->
                     <!--<div style="float: left;width: 99%;height: 99%;border: 1px solid #CCC;margin: 2px;overflow: auto;">-->
                         <table border="0" cellpadding="1" cellspacing="1" width="400" style="margin: 10px;font-size: 12px;">                            
 			    <tr>
@@ -334,7 +334,7 @@
                         </table>	
                     <!--</div>-->
                     <!--<div id="divSubMenu" style="float: left;width: 47%;height: 99%;border: 1px solid #CCC;margin: 2px;overflow: auto;"></div>-->
-		</div>
+		<!--</div>-->
 			
 <?
             $mysql->cerrarConexion();
