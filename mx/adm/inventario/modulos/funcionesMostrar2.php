@@ -1,6 +1,6 @@
 <?php 
 	if($_POST['action']=="buscarNuevas"){
-		buscarNuevas();
+		//buscarNuevas();
 	}
 
 	function buscarNuevas(){

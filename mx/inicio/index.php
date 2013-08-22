@@ -75,6 +75,10 @@
 						<th width="15%" style="border: 1px solid #666;background: #e1e1e1;height: 20px;padding: 3px;text-align: center;"> # </th>
 						<th width="81%" style="border: 1px solid #666;background: #e1e1e1;height: 20px;padding: 3px;text-align: left;"> Nombre del proyecto </th>			     						
 					</tr>
+					<tr>
+						<td align="center" style="height: 15px;padding: 5px;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;"><input type="radio" name="radio" id="radio" value="Almacen"></td>
+						<td align="center" style="text-align: left;height: 15px;padding: 5px;border-bottom: 1px solid #CCC;">&nbsp;Almacen</td>
+					</tr>
 <?
 				while($row=mysql_fetch_array($result)){					
 ?>

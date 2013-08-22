@@ -15,7 +15,7 @@
 		function verificaInfo($usuarioEntrante,$passEntrante){						
 			include("../../../../../includes/conectarbase.php");
 			include("../../../../../includes/txtAppAlmacen.php");
-			echo $sqlVerifica="SELECT * FROM $tabla_usuarios WHERE usuario='".$usuarioEntrante."'";
+			$sqlVerifica="SELECT * FROM $tabla_usuarios WHERE usuario='".$usuarioEntrante."'";
 			$resVerifica=mysql_query($sqlVerifica,$this->conexionBd());
 			$resultados=mysql_num_rows($resVerifica);
 			if($resultados !=0){

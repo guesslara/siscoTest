@@ -11,7 +11,7 @@ function vMantto(){
 	url:"funcionesMain.php",
 	data:"action=verificaMantto",
 	beforeSend:function(){ 
-		$("#cargadorApp").show().html('<img src="../img/cargador (2).gif">'); 
+		$("#cargadorApp").show().html('<img src="../../../../img/cargador (2).gif">'); 
 	},
 	success:function(datos){
 		$("#cargadorApp").html("Listo");
@@ -56,7 +56,7 @@ function vActSistema(){
 	url:"funcionesMostrar2.php",
 	data:"action=buscarNuevas",
 	beforeSend:function(){ 
-		$("#cargadorApp").show().html('<img src="../img/cargador (2).gif">'); 
+		$("#cargadorApp").show().html('<img src="../../../../img/cargador (2).gif">'); 
 	},
 	success:function(datos){
 		$("#cargadorApp").html("Listo");
@@ -68,8 +68,8 @@ function vActSistema(){
 }
 function verificaTeclaImeiBusquedaPrincipal(evento){
 	if(evento.which==13){
-		var imei=$("#txtBusquedaImeiPrincipal").attr("value");
-		$("#txtBusquedaImeiPrincipal").attr("value","");
+		var parametro=$("#txtBusquedaPrincipal").attr("value");
+		$("#txtBusquedaPrincipal").attr("value","");
 		$("#divBusquedaPrincipal").show();
 		var filtro=$("input[name='filtroBusqueda']:checked").val();
 		//alert(imei+" "+filtro);

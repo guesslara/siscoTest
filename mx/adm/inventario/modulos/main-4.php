@@ -23,9 +23,10 @@
     $objPermisos = new permisosUsuario();
     
     $numeroActualizaciones=$objFuncionesGUI->buscaActualizacionesNuevas();
-    $objActualizaciones->verificaActualizacionesSistema();
+    $objActualizaciones->verificaActualizacionesSistema();    
     $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);    
-    $idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);    
+    //$idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);
+    $idCliente=999;    
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -133,18 +134,18 @@
         </div>
         <div id="menu" class="barraMenu" style="z-index: 50;height: 25px;">
 <?          $objPermisos->construyeMenuNuevo2($_SESSION[$txtApp['session']['idUsuario']],$idCliente);?>
-	    <div class="estiloImgBuscador" title="Mostrar Buscador" onclick="mostrarBuscadorEquipos()">
-		<img src="../img/search-icon.png" border="0">
-	    </div>
+	    <!--<div class="estiloImgBuscador" title="Mostrar Buscador" onclick="mostrarBuscadorEquipos()">
+		<img src="../../../../img/search-icon.png" border="0">
+	</div>-->
         </div>
 	
 	<!--Adpatacion de la capa del buscador-->	
 	<div id="buscadorEquiposUI">
 	    <div id="estiloDivBusqueda">
 		<span class="estiloTituloBuscar">Buscar:</span>
-		<input type="text" name="txtBusquedaImeiPrincipal" id="txtBusquedaImeiPrincipal" onkeypress="verificaTeclaImeiBusquedaPrincipal(event)">
-		<input type="radio" id="filtroImei" name="filtroBusqueda" value="imei" checked="checked" ><label for="filtroImei">Imei</label>
-		<input type="radio" id="filtroSerie" name="filtroBusqueda" value="serial"><label for="filtroSerie">Serial</label>
+		<input type="text" name="txtBusquedaPrincipal" id="txtBusquedaPrincipal" onkeypress="verificaTeclaImeiBusquedaPrincipal(event)">
+		<input type="radio" id="filtroImei" name="filtroBusqueda" value="id" checked="checked" ><label for="filtroImei">Id</label>
+		<input type="radio" id="filtroSerie" name="filtroBusqueda" value="noParte"><label for="filtroSerie">No Parte</label>
 		<div id="estiloBtnCerrarDiv"><a href="#" onclick="cerrarBusquedaPrincipal()"><img src="../../../../img/close-icon.png"></a></div>
 	    </div>	    
 	    <div id="divResultadosBusquedaPrincipal"></div>

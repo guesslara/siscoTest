@@ -1,13 +1,19 @@
 <?php
-    print_r($_POST);    
-    echo "<br>".$nombreProyecto=dameNombreProyecto($_POST["radio"]);
+    //print_r($_POST);
+    //exit();
+    if($_POST["radio"]=="Almacen"){
+	$nombreProyecto="Almacen";
+    }else{
+	$nombreProyecto=dameNombreProyecto($_POST["radio"]);
+    }    
+    
     switch($nombreProyecto){
 	case "Almacen":
 	    header("Location: ../adm/inventario");
             exit();
 	break;
         case "Lexmark":
-            header("Location: ../lexmark/modulos/mod_login/index.php");
+            header("Location: ../ope/lexmark/modulos/mod_login/index.php");
             exit();
         break;
     }
