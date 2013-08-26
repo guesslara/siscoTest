@@ -71,7 +71,7 @@ if ($ndrX<=0){	?>
 	  if ($id_concep==1||$id_concep==3) // Compras o Dev / compras... Cat de proveedores ...
 	  {
 		$sql3="SELECT r_social FROM cat_clientes WHERE id_cliente='$asociado' ";
-		$result3=mysql_db_query($sql_inv,$sql3);
+		$result3=mysql_query($sql3,$link);
 		$row3=mysql_fetch_array($result3);
 		$aso2="Cliente ".$asociado." ".$row3["r_social"];		  	
 	  }

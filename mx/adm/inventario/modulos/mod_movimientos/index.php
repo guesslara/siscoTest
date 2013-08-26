@@ -380,11 +380,12 @@
 					<?php 
 					$sql_conceptos="SELECT * FROM concepmov ORDER BY id_concep";
 					$result_conceptos=mysql_query($sql_conceptos,$link);
-					while($row_conceptos=mysql_fetch_array($result_conceptos))
-					{
-						?>
+					while($row_conceptos=mysql_fetch_array($result_conceptos)){
+						if($row_conceptos["concepto"]!= "Inventario Inicial"){
+?>
 						<div class="imagenA"><a href="javascript:coloca_tipo('<?= $row_conceptos["id_concep"] ?>','<?= $row_conceptos["asociado"]; ?>','<?= $row_conceptos["concepto"]; ?>','<?= $row_conceptos["tipo"]; ?>')"><img src="<?= $row_conceptos["imagen"]; ?>" border="0" /><br /><?= $row_conceptos["concepto"]; ?></a></div>
-						<?php
+<?php
+						}
 					}				
 					?>
 				</div>

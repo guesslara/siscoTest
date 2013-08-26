@@ -1,4 +1,8 @@
 <?
+	if($_SERVER["HTTP_REFERER"]==""){
+		header("Location: ../../../../inicio/");
+		exit();
+	}
 	include("../../../../../includes/txtAppAlmacen.php");
 	include("../../../../../clases/about.php");
 ?>

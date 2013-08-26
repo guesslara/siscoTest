@@ -47,14 +47,13 @@ if ($_GET)
 	$numeroRegistros=$row0['total_registros'];
 	$tamPag=25; 
     //pagina actual si no esta definida y limites 
-    	if(!isset($_GET["pagina"])) 
-    	{ 
+    	if(!isset($_GET["pagina"])){ 
        		$pagina=1; 
        		$inicio=1; 
        		$final=$tamPag; 
     	} else { 	
-			(isset($_GET["pagina"]))? $pagina = $_GET["pagina"] : $pagina=1; 
-		} 
+		(isset($_GET["pagina"]))? $pagina = $_GET["pagina"] : $pagina=1; 
+	} 
     $limitInf=($pagina-1)*$tamPag; 
     $numPags=ceil($numeroRegistros/$tamPag); 
     
@@ -74,7 +73,7 @@ if ($_GET)
 			if ($final>$numPags) $final=$numPags; 
 	    }	
 //echo "$sql_inv&nbsp;";
-echo "<br>".$sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
+$sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
 $result=mysql_query($sql,$link);
 ?>
 <div class="buscador">

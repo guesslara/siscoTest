@@ -20,7 +20,7 @@ class movimientos{
 		$this->sistema_costeo="PEPS";
 		//echo "<br>".
 		$sql1="SELECT mov_almacen.*,concepmov.id_concep,concepmov.concepto,concepmov.asociado as asociado0,concepmov.tipo FROM mov_almacen,concepmov WHERE mov_almacen.tipo_mov=concepmov.id_concep AND mov_almacen.id_mov='".$this->idm."'";
-		$r1=mysql_db_query($sql_inv,$sql1);
+		$r1=mysql_query($sql1,$link);
 		while ($ro1=mysql_fetch_array($r1))
 		{
 			//echo "<br>"; 			print_r($ro1); 				echo "<hr><br>";
@@ -83,10 +83,27 @@ class movimientos{
 			$this->m_inserta_producto();
 			return true;
 			
-		}else{
+		}/*else if($this->con_mov=="Inventario Inicial"){
+			
+		}*/else{
 			echo  "<br>Movimiento NO valido***";
 			exit();
-		}	
+		}
+		/*
+		 *case "Inventario Inicial":
+				if ($resultado=$this->m_i_inv()){
+					echo "<li>El movimiento de Inventario Inicial del Producto (".$this->id_p.") se realizo correctamente.</li>";
+					$this->m_validar_stock();
+					$this->m_costeo();
+					$this->m_inserta_producto();
+					return true;
+				} else {
+					$this->error(2);
+					return false;
+				}				
+				break;
+		 */
+		
 	}
 
 	//=====================================================================================================================
@@ -95,7 +112,7 @@ class movimientos{
 		include ("../../conf/conectarbase.php");
 		$c_eX="exist_".$this->id_almacen;
 		$sql_venta="UPDATE catprod SET $c_eX=$c_eX+".$this->cantidad." WHERE id='".$this->id_p."' LIMIT 1";
-		if (mysql_db_query($sql_inv,$sql_venta))
+		if (mysql_query($sql_venta,$link))
 		{
 			echo "<br><li>Se agrego la cantidad (".$this->cantidad.") a las Existencias del Producto (".$this->id_p.").";
 			return true;
@@ -196,7 +213,7 @@ class movimientos{
 		include ("../../conf/conectarbase.php");
 		$c_eX="exist_".$this->id_almacen;
 		$sql_sto="SELECT $c_eX,stock_min,stock_max FROM catprod WHERE id=".$this->id_p." LIMIT 1";
-		$r_sto=mysql_db_query($sql_inv,$sql_sto);
+		$r_sto=mysql_query($sql_sto,$link);
 		while ($ro_sto=mysql_fetch_array($r_sto))
 		{
 			$exi=$ro_sto["$c_eX"];
@@ -215,7 +232,7 @@ class movimientos{
 	protected function m_inserta_producto(){
 		include ("../../conf/conectarbase.php");
 		//echo "<br>***...*** Insertar producto: [".$this->sql_prodxmov."]<br>";
-		if (mysql_db_query($sql_inv,$this->sql_prodxmov)){
+		if (mysql_query($this->sql_prodxmov,$link)){
 			echo "<li>El producto (".$this->id_p.") se agrego al movimiento (".$this->idm.") correctamente.</li>";
 			?>
 			<script language="javascript">

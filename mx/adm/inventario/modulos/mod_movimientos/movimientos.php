@@ -24,7 +24,7 @@
 			<br />			
 			<?php
 			$color="#D9FFB3";
-			if($asociadoX=="Cliente"){
+			if($asociadoX=="Cliente" || $asociadoX=="Ninguno"){
 				//echo "<br>BD=[$sql_inv] SQL=".
 				$sql="SELECT id_cliente,n_comercial FROM cat_clientes";
 				$result=mysql_query($sql,$link);
@@ -152,15 +152,15 @@
 		
 		// OBTENER EL NOMBRE DEL CAMPO ASOCIADO ...
 		$sql2="SELECT `almacen` FROM `tipoalmacen` WHERE id_almacen=$alm ";
-		$r2=mysql_db_query($sql_inv,$sql2);
+		$r2=mysql_query($sql2,$link);
 		while ($ro2=mysql_fetch_array($r2))
 		{
 			$nalm=$ro2["almacen"];
 			$ncalm="a_".$alm."_$nalm";
 			//echo "<br>NCA=($ncalm)<BR>";
 		}	
-
-		if ($aso=="Cliente") {
+//echo $aso;  exit();
+		if ($aso=="Cliente" || $aso=="Ninguno") {
 			$m_productos=array();
 			//echo "<br>Cat de Clientes ($ias)";
 			//echo "<BR>".
@@ -189,7 +189,7 @@
 				$idprooX0=trim($ro0["id_clientes"]);
 				
 				//echo "<br>COINCIDEN 1: [$idx0] [$idprooX0]";
-				$idprooX0_split=split(',',$idprooX0);
+				$idprooX0_split=explode(',',$idprooX0);
 				//print_r($idprooX0_split);
 				foreach ($idprooX0_split as $idprooX0_splitX)
 				{
@@ -205,7 +205,8 @@
 
 						foreach($m_productos as $idp_matriz)
 						{
-							echo "<br>&nbsp;".$sql_p_clientes="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `$ceX`, `$ctX`, `cpromedio` FROM catprod WHERE id=$idp_matriz AND $ncalm=1 LIMIT 1";
+							//echo "<br>&nbsp;".
+							$sql_p_clientes="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `$ceX`, `$ctX`, `cpromedio` FROM catprod WHERE id=$idp_matriz AND $ncalm=1 LIMIT 1";
 							if ($r1=mysql_query($sql_p_clientes,$link))
 							{
 								while ($ro1=mysql_fetch_array($r1))
@@ -377,7 +378,7 @@
 	if ($ac=="insertar_productos")
 	{
 		$m=$_POST["idm"];		$v=$_POST["valores"];
-		$productos=split(',',$v);
+		$productos=explode(',',$v);
 		
 		echo "<br>";
 		echo "<br><div id='acciones_proceso'>
@@ -398,14 +399,14 @@
 			{
 				$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,cu,id) VALUES ('$m',";
 				$valores0=str_replace('?',',',$p);
-				$valores=split(',',$valores0);
+				$valores=explode(',',$valores0);
 				
 				if ($sistema_costeoX=="CP")
 				{
 					// VERIFICAR SI YA EXISTE EL PRODUCTO EN EL MOVIMENTO ...
 					//echo "<br>".
 					$sql_existe="SELECT id FROM prodxmov WHERE id_prod='".$valores[0]."' AND nummov='$m' "; 
-					$r_existe=mysql_db_query($sql_inv,$sql_existe);
+					$r_existe=mysql_query($sql_existe,$link);
 					if (mysql_num_rows($r_existe)>0)
 					{
 						echo "<br><br><div class='mensajeX'><font color='#ff0000'>ERROR:</font> El producto ".$valores[0]." ya esta en el movimiento $m.<br> Evite colocar productos duplicados en un solo Movimiento. El proceso en el sistema se detuvo.";
@@ -441,7 +442,7 @@
 		include ("../../conf/conectarbase.php");
 		//echo "<br>Ver Movimiento ($idm)<br>";
 		$sql_prod_m="SELECT * FROM prodxmov WHERE nummov='$idm' ORDER BY id";
-		$r1=mysql_db_query($sql_inv,$sql_prod_m);
+		$r1=mysql_query($sql_prod_m,$link);
 
 		$ndr_pem=mysql_num_rows($r1);
 		if (!$ndr_pem>0)
