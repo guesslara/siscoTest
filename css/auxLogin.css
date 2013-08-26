@@ -1,0 +1,18 @@
+html,body{height:100%; margin:0px; background:#FFF; overflow:hidden; font-family:Verdana, Geneva, sans-serif;}
+#contenedor{height:100%; width:100%; border:1px solid #CCC; background:#FFF;background:url(../img/default1.jpg); }/**/
+#logIn{border:1px solid #F1F1F1;background-color:#F1F1F1; background:url(../img/desv.png) repeat;height:100px;width:400px;position:absolute;left:50%;top:50%;margin-left:-200px;	margin-top:-50px;	z-index:3;	}
+#msgLogIn{border-top:1px solid #F1F1F1;border-left:1px solid #F1F1F1;border-right:1px solid #F1F1F1;background-color:#F1F1F1;background:url(../img/desv.png) repeat;height:30px;width:400px;position:absolute;left:50%;top:45%;margin-left:-201px;margin-top:-82px;text-align:center;padding-top:5px; font-weight:bold; font-size:14px;}
+#imgLogIn{width:80px; height:80px; float:left;}
+#accesoLogIn{width:76%; height:80px; float:left; margin-left:5px; font-size:10px;}
+#datosLogIn{margin:5px 10px 10px 15px;}
+#boton{width:100px; background:#F1F1F1; background:url(../img/desv.png);}
+#contenedorLogIn{height:100%; overflow:hidden; margin:10px;}
+#divPassword{float:left; width:150px;}
+#divBoton{float:left; width:80px; margin-left:10px;}
+#pieLogIn{position:absolute;border:1px solid #F1F1F1;background-color:#FFF;background:url(../img/desv.png);height:50px;width:100%;position:absolute;left:0%;top:100%;margin-left:auto;margin-top:-50px;z-index:20;font-size:12px; font-weight:bold;}
+#infoPieAbout{color:#000;float:left; margin:20px 5px 5px 5px; font-style:normal;font-weight:bold;}
+#infoPieLogIn{color:#000;float:right; margin:20px 5px 5px 5px; font-style:italic;font-weight:bold;}
+#infoApp{float:left; color:#F00; margin:20px 5px 5px 5px;}
+#aboutApp{position:absolute;bottom:50px;border:1px solid #F1F1F1; background:#CCC; height:20%; width:30%; opacity:.5;}
+#msgCargador{border:1px solid #CCC;background-color:#FFF;height:50px;width:50px;position:absolute;left:50%;top:50%;margin-left:-25px;margin-top:-25px;z-index:4;}
+#mostrarActualizaciones{height:20px; padding:5px;background:url(../img/desv.png);font-size:12px;text-align:right;}
