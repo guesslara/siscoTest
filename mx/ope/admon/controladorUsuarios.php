@@ -1,6 +1,6 @@
 <?
 	//configuracion
-	require_once("../../includes/config.inc.php");
+	//require_once("../../includes/config.inc.php");
 	//se incluye el modelo
 	require_once("modeloUsuarios.php");	
 	//objeto del modelo
