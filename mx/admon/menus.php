@@ -1,7 +1,7 @@
 <?php
     if($_POST["action"]=="panelMenus"){
-        include("../../../clases/clase_mysql.php");
-        include("../../../includes/config.inc.php");
+        include("../../clases/clase_mysql.php");
+        include("../../includes/config.inc.php");
         $sql="SELECT * FROM cat_clientes ORDER BY id_cliente";
         $mysql = new DB_mysql();
         $mysql->conectar($db,$host,$usuario,$pass);
@@ -11,6 +11,7 @@
         <div style="height: 20px;padding: 5px;background: #f0f0f0;border:1px solid #CCC;">
             Cliente: <select name="cboClienteMenu" id="cboClienteMenu" onchange="verificaMenuCliente()">
                 <option value="" selected="selected">Selecciona...</option>
+                <option value="999">Almac&eacute;n</option>
 <?
             while($row=mysql_fetch_array($res)){
 ?>

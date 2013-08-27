@@ -3,7 +3,7 @@
      *Clase para las modificaciones del menus de la aplicacion
      *
     */
-    include("../../../clases/clase_mysql.php");
+    include("../../clases/clase_mysql.php");
     
     class modeloUsuario{       
         
@@ -11,14 +11,14 @@
         private $objConexion;
         
 	private function objConexion(){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    $this->linkConexion=$mysql;	    
 	}
 	
 	private function dameNombreCliente($idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    $sql="SELECT r_social FROM cat_clientes WHERE id_cliente='".$idCliente."'";
@@ -28,7 +28,7 @@
 	}
 	
 	function eliminaSubMenu($idSubMenu,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    $sqlDelSubMenu="DELETE FROM submenu WHERE id = '".$idSubMenu."'";
@@ -41,7 +41,7 @@
 	}
 	
 	public function guardarSubmenuAct($idElementoAct,$txtNombreSubMenuAct,$txtRutaAct,$cboStatusSubmenuAct,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    $sql="UPDATE submenu SET nombreSubMenu='".$txtNombreSubMenuAct."',rutaSubMenu='".$txtRutaAct."',activo='".$cboStatusSubmenuAct."' WHERE id='".$idElementoAct."'";	    
@@ -54,7 +54,7 @@
 	}
 	
 	public function modificarSubmenu($id,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    $sql="SELECT * FROM submenu WHERE id='".$id."'";
@@ -100,7 +100,7 @@
 	}
 	
 	public function guardarSubmenu($idElemento,$txtNombreSubMenu,$txtRuta,$cboStatusSubmenu,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    $sql="INSERT INTO submenu (id_menu,nombreSubMenu,rutaSubMenu,activo) VALUES ('".$idElemento."','".$txtNombreSubMenu."','".$txtRuta."','".$cboStatusSubmenu."')";
@@ -198,7 +198,7 @@
 	}
 	
 	function eliminaMenu($idMenu,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);	    
 	    $sqlDelSubMenu="DELETE FROM menu WHERE id = '".$idMenu."'";
@@ -211,7 +211,7 @@
 	}
 	
 	public function guardarModificacionMenuTitulo($nombreMenuTitulo,$numeroMenuAct,$idElementoAct,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);	    
 	    $sqlActMenu="UPDATE menu set nombreMenu='".$nombreMenuTitulo."',orden='".$numeroMenuAct."' WHERE id='".$idElementoAct."'";	    
@@ -224,7 +224,7 @@
 	}
 	
         public function modificaMenuTitulo($idMenuTitulo,$idCliente){
-	    include("../../../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
 	    
@@ -255,7 +255,7 @@
 	}
 	
 	public function guardarFuncion($txtModulo,$txtMenu,$idCliente){
-            include("../../../includes/config.inc.php");
+            include("../../includes/config.inc.php");
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
             //echo "<br>".
@@ -269,7 +269,7 @@
 	}
 
 	public function mostrarOpcionesMenu($idCliente){
-            include("../../../includes/config.inc.php");
+            include("../../includes/config.inc.php");
             $sql="Select * FROM menu WHERE activo=1 AND id_cliente='".$idCliente."' Order By orden";
             $mysql = new DB_mysql();
             $mysql->conectar($db,$host,$usuario,$pass);
@@ -303,10 +303,10 @@
 ?>
 			    <tr>
 				<td style="text-align: left;background: #f0f0f0;border: 1px solid #CCC;height: 20px;padding: 5px;">
-                                    <a href="#" title="Eliminar Menu" onclick="eliminarMenu('<?=$row["id"];?>','<?=$row["modulo"];?>','<?=$idCliente;?>')" style="color: blue;"><img src="../../../img/icon_delete.gif" border="0" /></a>
+                                    <a href="#" title="Eliminar Menu" onclick="eliminarMenu('<?=$row["id"];?>','<?=$row["modulo"];?>','<?=$idCliente;?>')" style="color: blue;"><img src="../../img/icon_delete.gif" border="0" /></a>
 				    =><?=$row["orden"]." - ";?><a href="#" onclick="modificarMenuTitulo('<?=$row["id"]?>','<?=$idCliente;?>')" title="Modificar Menu" style="color: blue;font-size: 12px;text-decoration: none;"><?=$row["nombreMenu"];?></a>&nbsp;							
 				</td>
-				<td style="text-align: center;"><a href="#" title="Agregar Submenu" onclick="agregarItemSubMenu('<?=$row["id"];?>','<?=$idCliente;?>')" style="color: blue;"><img src="../../../img/add.png" border="0" /></a></td>
+				<td style="text-align: center;"><a href="#" title="Agregar Submenu" onclick="agregarItemSubMenu('<?=$row["id"];?>','<?=$idCliente;?>')" style="color: blue;"><img src="../../img/add.png" border="0" /></a></td>
                             </tr>
                             <tr>
 				<td colspan="2">
@@ -317,7 +317,7 @@
                     while($rowsub=mysql_fetch_array($resSub)){
 ?>
                         <div style="height: 15px;padding: 5px;">							
-                            ==><a href="#" title="Eliminar Menu" onclick="eliminaSubmenu('<?=$rowsub['id']?>','<?=$rowsub["nombreSubMenu"];?>','<?=$idCliente;?>')" style="color: blue;"><img src="../../../img/icon_delete.gif" border="0" /></a>&nbsp;
+                            ==><a href="#" title="Eliminar Menu" onclick="eliminaSubmenu('<?=$rowsub['id']?>','<?=$rowsub["nombreSubMenu"];?>','<?=$idCliente;?>')" style="color: blue;"><img src="../../img/icon_delete.gif" border="0" /></a>&nbsp;
                             <a href="#" title="Modificar Submen&uacute;" onclick="modificarSubmenu('<?=$rowsub["id"];?>','<?=$idCliente;?>')" style="font-size: 12px;"><?=$rowsub["nombreSubMenu"]?></a>
 			</div>
 <?

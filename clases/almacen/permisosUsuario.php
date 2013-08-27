@@ -149,7 +149,7 @@
 				array_push($menuTitulo,$rowNombresMenu["nombreMenu"]);
 			}
 			
-			foreach($menuTitulo as $nombreMenuTitulo){				
+			foreach($menuTitulo as $nombreMenuTitulo){
 				echo "
 				<ul>
 					<li class='nivel1'><a href='#' class='nivel1'>".$nombreMenuTitulo."</a>";
@@ -161,13 +161,10 @@
 				$sqlSubMenu1="SELECT * FROM submenu WHERE id_menu='".$rowIdTitulo["id"]."'";
 				$mysql->consulta($sqlSubMenu1);
 				$resSubMenu1=$mysql->registrosConsulta();
-				//$resSubMenu1=mysql_query($sqlSubMenu1,$this->conexion);
+				
 				echo "<ul class='nivel2'>";
-				while($rowSubMenu1=mysql_fetch_array($resSubMenu1)){					
-					//if(in_array($rowSubMenu1["id"],$elementosMnuP)){
-						echo "<li><a href='".$rowSubMenu1["rutaSubMenu"]."' target='contenedorVentana'>".$rowSubMenu1["nombreSubMenu"]."</a></li>";
-						
-					//}
+				while($rowSubMenu1=mysql_fetch_array($resSubMenu1)){									
+					echo "<li><a href='".$rowSubMenu1["rutaSubMenu"]."' target='contenedorVentana'>".$rowSubMenu1["nombreSubMenu"]."</a></li>";										
 				}
 				echo "</ul>";
 				echo "</li>";

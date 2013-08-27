@@ -2,8 +2,8 @@
 	/*
 	 *Clase para poder enlazar las acciones del usuario con el modulo
 	*/
-	require_once("../../../includes/config.inc.php");
-	require_once("../../../clases/conexion/conexion.php");
+	require_once("../../includes/config.inc.php");
+	require_once("../../clases/conexion/conexion.php");
 	//require_once("../../../clases/almacen/verificaUsuario/verificaUsuario.php");
 	class modeloUsuarios{
 		private $conexion;		
