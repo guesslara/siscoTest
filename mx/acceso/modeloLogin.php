@@ -61,6 +61,10 @@
 						header('Location: ../adm/inventario/modulos/main-4.php');
 						exit();
 					break;
+					case "Lexmark":
+						header('Location: ../ope/lexmark/modulos/main-4.php');
+						exit();
+					break;
 				}
 				//header('Location:../../modulos/main-4.php');
 				//header('Location:../../modulos/mod_inicio/index.php?='.$SID.'');

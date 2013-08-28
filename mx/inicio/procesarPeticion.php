@@ -14,14 +14,20 @@
 	    header("Location: ".$url);	   
             exit();
 	break;
-        case "Lexmark":
+	case "Lexmark":
+	    $token=devuelveNombreProyectoConvertido($nombreProyecto);
+	    $url="../acceso/index.php?ap=".$token;
+	    header("Location: ".$url);	   
+            exit();
+	break;
+        /*case "Lexmark":
             header("Location: ../ope/lexmark/modulos/mod_login/index.php");
             exit();
         break;
 	default:
 	    header("Location: index.php");
 	    exit();
-	break;
+	break;*/
     }
     
     function devuelveNombreProyectoConvertido($nombreProyecto){
