@@ -21,7 +21,7 @@
         }
         
         private function conectarBdGUI(){
-	    require("../includes/config.inc.php");
+	    include("../../includes/config.inc.php");
 	    $link=mysql_connect($host,$usuario,$pass);
 	    if($link==false){
 		echo "Error en la conexion a la base de datos";

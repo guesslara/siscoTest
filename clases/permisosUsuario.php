@@ -13,7 +13,7 @@
 	 *Modifico: Gerardo Lara
 	 *Version 2.0.0
 	*/	
-	include_once("../../../../clases/clase_mysql.php");
+	include_once("../../clases/clase_mysql.php");
 	class permisosUsuario{		
 		function __construct(){
 			
@@ -138,7 +138,7 @@
 		}
 		
 		public function construyeMenuNuevo2($idUsuario,$idCliente){
-			include("../../../../includes/config.inc.php");			
+			include("../../includes/config.inc.php");			
 			$mysql = new DB_mysql($db,$host,$usuario,$pass);
 			$sqlNombresMenu="SELECT * FROM menu where id_cliente='".$idCliente."' ORDER BY orden";
 			$mysql->consulta($sqlNombresMenu);

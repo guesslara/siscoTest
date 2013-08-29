@@ -1,16 +1,18 @@
 <?php
     session_start();
-    //print_r($_SESSION);exit;
+    print_r($_SESSION);
     if($_SERVER['HTTP_REFERER']==""){
 	header("Location: mod_login/index.php");
 	exit;
     }
     
+    $archivoConf="../../includes/txtApp".$_SESSION["nombreApp"].".php";
+    
     include("../../clases/permisosUsuario.php");
     include("../../clases/cargaInicial.php");
-    include("../../clases/almacen/cargaActualizaciones.php");
-    include("../../clases/almacen/funcionesGUI.php");
-    include("../../includes/txtAppAlmacen.php");
+    include("../../clases/cargaActualizaciones.php");
+    include("../../clases/funcionesGUI.php");
+    include($archivoConf);
     
     /*if(!isset($_SESSION[$txtApp['session']['idUsuario']])){	
 	echo "<script type='text/javascript'> window.location.href='cerrar_sesion.php'; </script>";
@@ -24,18 +26,23 @@
     
     $numeroActualizaciones=$objFuncionesGUI->buscaActualizacionesNuevas();
     $objActualizaciones->verificaActualizacionesSistema();    
-    $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);    
-    //$idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);
-    $idCliente=999;    
+    $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);
+    
+    if($_SESSION["nombreApp"]=="Almacen"){
+	$idCliente=999;
+    }else{
+	$idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);
+    }    
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" href="../../../../css/guiPrincipal.css" rel="stylesheet" />
-    <link type="text/css" href="../../../../css/menu/estilosMenu.css" rel="stylesheet" />
+    <link type="text/css" href="../../css/guiPrincipal.css" rel="stylesheet" />
+    <link type="text/css" href="../../css/auxLoginApp.css" rel="stylesheet" />
+    <link type="text/css" href="../../css/menu/estilosMenu.css" rel="stylesheet" />
     <title><?=$txtApp['login']['tituloAppPrincipal'];?></title>
-    <script type="text/javascript" src="../../../../clases/jquery.js"></script>    
+    <script type="text/javascript" src="../../clases/jquery.js"></script>    
     <script type="text/javascript" src="js/funcionesMain.js"></script>
     <script type="text/javascript">	
 	$(document).ready(function (){	    
@@ -89,46 +96,13 @@
 	}
 </script>
 </head>
-<style type="text/css">
-#contenedorAppMain{position: absolute;height: 99%;width: 99.6%;border: 1px solid #000;background: #CCC;margin: 2px;}
-#barraHerramientasUsuario{position: relative;height: 30px;padding: 5px;background: #000;color: #FFF;border: 1px solid #000;}
-.estiloMensajeModulo{float: left;border: 0px solid #ff0000;font-size: 14px;margin-top: 5px;}
-.iconoUsuarioApp{float: right;height: 32.5px; width: 32px;border: 1px solid red;margin-top: -4px;}
-.iconoUsuarioAppCerrar{float: right;height: 32.5px; width: 32px;border: 0px solid red;margin-top: -4px;text-align: center;}
-.datosUsuarioAppPrincipal{float: right;border: 0px solid #ff0000;height: 18px;margin-right: 10px;padding: 8px;font-size: 12px;margin-top: -4px;}
-.datosUsuarioAppPrincipal:hover{border-bottom: 1px solid #f0f0f0;cursor: pointer;}
-#datosUsuarioAppPrincipal{position: relative;border: 0px solid blue; width: 99.8%; height: 50%;}
-.contenedorVentanaMDIApp{background: #FFF; width:99.8%; height: 99.3%; overflow:auto;border: 0px solid #ff0000;z-index: }
-#barraestado2{position: absolute;padding: 4px;bottom: 1px;height: 20px;width: 99.2%;border: 1px solid #000;background: #666;}
-#contenedorBug{position:absolute; height:26px; width:120px; z-index:2000; right:4px; font-weight:bold; border:0px solid #666; padding:4px;bottom:0px;}
-.estiloDivContenedor{padding:4px;width:94%; height:16px;background:#FFF;color:#000;font-weight:bold; margin:4px;border:1px solid #000;text-align:center;}
-#frmContenedorBug{position:absolute;width:400px;height:270px;right:0px;border:1px solid #000;background:#f0f0f0;bottom:34px;display:none;font-size: 10px;}
-#divFormularioBug{background:#FFF;border:1px solid #CCC;margin:2px;width:98%;height:98%;overflow:auto;font-size: 10px;}
-#listadoActualizacionesApp{position: absolute;text-align: left;font-weight: bold;border: 0px solid #000;background: #FFF;height: 15px;padding: 3px;width: 120px;right: 257px;margin-top: 0px;}
-.estiloCargadorApp{position: absolute;text-align: right;font-weight: bold;border: 1px solid #000;background: #CCC;height: 15px;padding: 3px;width: 120px;right: 126px;margin-top: -1px;}
-.estiloTextoActualizaciones{color:#red;font-weight: bold;}
-.estiloPantallaCompleta{position: absolute;width: 150px;margin-top: -2px;}
-.estiloPantallaCompleta:hover{border: 1px solid #CCC;cursor: pointer;}
-.estiloDivIzqPCompleta{float: left;}
-.estiloDivDerPCompleta{margin-top: 5px;margin-left: 4px;font-weight: bold;float: left;}
-.estiloImgBuscador{float: right;border: 0px solid #FF0000;margin: 2px 3px;width: 20px;height: 18px;}
-.estiloImgBuscador:hover{border: 1px solid blue;cursor: pointer;}
-/*Buscador UI*/
-#buscadorEquiposUI{display: none;position: absolute;right: 3px;margin-top: -3px;width: 640px;height: 85%;border: 1px solid blue;z-index: 1000;background: #B0D0FF;}
-#estiloDivBusqueda{border-bottom: 1px solid blue;border-top: 1px solid blue;margin-top: -1px;width: 628px;height: 30px;padding: 6px;z-index: 1000;background: #B0D0FF;}
-.estiloTituloBuscar{color: #333;font-weight: bold;}
-#txtBusquedaImeiPrincipal{width: 200px;font-size: 16px;font-weight: bold;}
-#estiloBtnCerrarDiv{float: right;border: 0px solid #FF0000;width: 19px;height: 19px;}
-#divResultadosBusquedaPrincipal{position: absolute;overflow-x: auto;border: 1px solid #F0F0F0;margin: 1px;background: #FFF;width: 99.3%;height: 91%;}
-/*Fin Buscador UI*/
-</style>
 <body>
     <div id="session"></div>
     <div id="cargaPerfil"></div>
     <div id="contenedorAppMain">
         <div id="barraHerramientasUsuario">
             <div class="estiloMensajeModulo"><? echo $txtApp['appPrincipal']['msgModulo'];?> <span style="color: orange;font-weight: bold;">BETA</span></div>            
-            <div class="iconoUsuarioAppCerrar"><a href="cerrar_sesion.php?<?=$SID;?>" id="" title="<?=$txtApp['appPrincipal']['cerrarSesion'];?>" ><img src="../../../../img/shutdown1.png" border="0" width="35" height="36" /></a></div>
+            <div class="iconoUsuarioAppCerrar"><a href="cerrar_sesion.php?<?=$SID;?>" id="" title="<?=$txtApp['appPrincipal']['cerrarSesion'];?>" ><img src="../../img/shutdown1.png" border="0" width="35" height="36" /></a></div>
             <div class="iconoUsuarioApp">&nbsp;</div>
             <div class="datosUsuarioAppPrincipal" onclick="mostrarPerfilUsuario()" title="Ver Perfil del Usuario"><?=$_SESSION[$txtApp['session']['nombreUsuario']]." ".$_SESSION[$txtApp['session']['apellidoUsuario']];?></div>
         </div>
@@ -156,7 +130,7 @@
             <iframe id="contenedorVentana" name="contenedorVentana" class="contenedorVentanaMDIApp"></iframe>
         </div>
         <div id="barraestado2">
-	    <div onclick="cambiarModo()" class="estiloPantallaCompleta"><div class="estiloDivIzqPCompleta"><img src="../../../../img/ampliar.jpg" border="0" width="32" height="25"></div><div class="estiloDivDerPCompleta">Pantalla Completa</div></div>
+	    <div onclick="cambiarModo()" class="estiloPantallaCompleta"><div class="estiloDivIzqPCompleta"><img src="../../img/ampliar.jpg" border="0" width="32" height="25"></div><div class="estiloDivDerPCompleta">Pantalla Completa</div></div>
             <div id="contenedorBug">
 		<div id="id" class="estiloDivContenedor">
 			<a href="#" onclick="abrirFormBug()" title="<?=$txtApp['appPrincipal']['msgReportarError'];?>" style="color:blue;text-decoration: none;"><?=$txtApp['appPrincipal']['msgReportarError'];?></a>

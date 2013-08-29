@@ -56,20 +56,18 @@
 				$_SESSION[$txtApp['session']['sexoUsuario']]=$sexo;
 				$_SESSION[$txtApp['session']['nominaUsuario']]=$nomina;
 				$_SESSION['sistema']="bd";
+				$_SESSION['nombreApp']=$appNombre;
 				//header('Location:../../inicio.php?='.$SID.'');				
 				switch($appNombre){
 					case "Almacen":
-						header('Location: ../adm/inventario/modulos/main-4.php');
+						header('Location: ../app/main-4.php');
 						exit();
-					break;
-					case "Lexmark":						
-						header('Location: ../ope/lexmark/modulos/main-4.php');
+					case "Lexmark":
+						//header('Location: ../adm/inventario/modulos/main-4.php');
+						header('Location: ../app/main-4.php');
 						exit();
-					break;
-				}
-				//header('Location:../../modulos/main-4.php');
-				//header('Location:../../modulos/mod_inicio/index.php?='.$SID.'');
-				//exit;
+					break;					
+				}				
 			}else{
 				session_start();
 				session_destroy();

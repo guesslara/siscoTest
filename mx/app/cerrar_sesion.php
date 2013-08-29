@@ -15,6 +15,6 @@
 	unset($txtApp['session']['nominaUsuario']);
 	session_destroy();
 	//header("Location:mod_login/index.php");
-	header("Location:../../../inicio/index.php");
+	header("Location: ../inicio/index.php");
 	exit;
 ?>

@@ -14,7 +14,7 @@
 	$txtApp['session']['cambiarPassUsuario'] = "cambiarPassUsuarioAlm2";
 	$txtApp['session']['sexoUsuario'] = "sexoUsuarioAlm2";
 	$txtApp['session']['nominaUsuario'] = "nominaUsuarioAlm2";
-	$txtApp['session']['idProyectoSeleccionado'] = "idProyectoSeleccionado";
+	$txtApp['session']['idProyectoSeleccionado'] = "idProyectoSeleccionado";	
 	//login de usuarios
 	$txtApp['login']['tituloAppTitle'] = "[ App - Desarrollo ]";
 	$txtApp['login']['tituloAppPrincipal'] = "IQe. Sisco - Almac&eacute;n";
