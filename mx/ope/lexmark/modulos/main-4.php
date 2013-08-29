@@ -5,8 +5,8 @@
 	exit;
     }
     //print_r($_SESSION); //exit();
-    include("../../../../clases/almacen/permisosUsuario.php");
-    include("../../../../clases/almacen/cargaInicial.php");
+    include("../../../../clases/permisosUsuario.php");
+    include("../../../../clases/cargaInicial.php");
     include("../../../../clases/lexmark/cargaActualizaciones.php");
     include("../../../../clases/lexmark/funcionesGUI.php");
     include("../../../../includes/txtAppLexmark.php");

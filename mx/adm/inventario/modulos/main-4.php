@@ -6,8 +6,8 @@
 	exit;
     }
     
-    include("../../../../clases/almacen/permisosUsuario.php");
-    include("../../../../clases/almacen/cargaInicial.php");
+    include("../../../../clases/permisosUsuario.php");
+    include("../../../../clases/cargaInicial.php");
     include("../../../../clases/almacen/cargaActualizaciones.php");
     include("../../../../clases/almacen/funcionesGUI.php");
     include("../../../../includes/txtAppAlmacen.php");

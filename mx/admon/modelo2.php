@@ -117,7 +117,7 @@
 	    $nombreCliente=$this->dameNombreCliente($idCliente);
 	    switch($nombreCliente){
 		case "Lexmark":
-		    $path="../lexmark/modulos"; $path2="../modulos";    
+		    $path="../ope/lexmark/modulos"; $path2="../modulos";    
 		break;
 		case "HP _PSG":
 		    $path="../hp/modulos"; $path2="../modulos";    
