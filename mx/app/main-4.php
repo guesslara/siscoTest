@@ -1,34 +1,31 @@
 <?php
     session_start();
-    print_r($_SESSION);
+    //print_r($_SESSION);
     if($_SERVER['HTTP_REFERER']==""){
 	header("Location: mod_login/index.php");
 	exit;
     }
-    
+    //archivocon las varables de configuracion para cada aplicacion
     $archivoConf="../../includes/txtApp".$_SESSION["nombreApp"].".php";
-    
+    //inclusion de clases
     include("../../clases/permisosUsuario.php");
     include("../../clases/cargaInicial.php");
     include("../../clases/cargaActualizaciones.php");
     include("../../clases/funcionesGUI.php");
-    include($archivoConf);
-    
-    /*if(!isset($_SESSION[$txtApp['session']['idUsuario']])){	
+    include($archivoConf);    
+    if(!isset($_SESSION[$txtApp['session']['idUsuario']])){	
 	echo "<script type='text/javascript'> window.location.href='cerrar_sesion.php'; </script>";
 	exit;
-    }*/
-    
+    }
+    //generacion de instancias de las diferentes clases
     $objFuncionesGUI=new funcionesInterfazPrincipal();
     $objActualizaciones= new verificaActualizaciones();
     $objCargaInicial=new verificaCargaInicial();
-    $objPermisos = new permisosUsuario();
-    
+    $objPermisos = new permisosUsuario();    
     $numeroActualizaciones=$objFuncionesGUI->buscaActualizacionesNuevas();
     $objActualizaciones->verificaActualizacionesSistema();    
-    $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);
-    
-    if($_SESSION["nombreApp"]=="Almacen"){
+    $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);    
+    if($_SESSION["nombreApp"]=="Almacen"){//se verifica el cliente seleccionado
 	$idCliente=999;
     }else{
 	$idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);

@@ -1,6 +1,7 @@
 <?php
 	session_start();
-	include("../../../../../includes/txtAppAlmacen.php");	
+	$archivoConf="../../includes/txtApp".$_SESSION["nombreApp"].".php";	
+	include($archivoConf);	
 	unset($txtApp['session']['name']);	
 	unset($txtApp['session']['nivelUsuario']);
 	unset($txtApp['session']['loginUsuario']);
@@ -13,8 +14,9 @@
 	unset($txtApp['session']['cambiarPassUsuario']);
 	unset($txtApp['session']['sexoUsuario']);
 	unset($txtApp['session']['nominaUsuario']);
-	session_destroy();
-	//header("Location:mod_login/index.php");
+	unset($_SESSION["sistema"]);
+	unset($_SESSION["nombreApp"]);	
+	session_destroy();	
 	header("Location: ../inicio/index.php");
 	exit;
 ?>
