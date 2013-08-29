@@ -12,9 +12,11 @@
 	
 	class modeloLogin{
 		
-		function verificaInfo($usuarioEntrante,$passEntrante,$appNombre){						
+		function verificaInfo($usuarioEntrante,$passEntrante,$appNombre){
+			$archivoConf="../../includes/txtApp".$appNombre.".php";
+			//echo $archivoConf; exit();
 			include("../../includes/conectarbase.php");
-			include("../../includes/txtAppAlmacen.php");
+			include($archivoConf);
 			$sqlVerifica="SELECT * FROM $tabla_usuarios WHERE usuario='".$usuarioEntrante."'";
 			$resVerifica=mysql_query($sqlVerifica,$this->conexionBd());
 			$resultados=mysql_num_rows($resVerifica);
@@ -54,14 +56,13 @@
 				$_SESSION[$txtApp['session']['sexoUsuario']]=$sexo;
 				$_SESSION[$txtApp['session']['nominaUsuario']]=$nomina;
 				$_SESSION['sistema']="bd";
-				//header('Location:../../inicio.php?='.$SID.'');
-				
+				//header('Location:../../inicio.php?='.$SID.'');				
 				switch($appNombre){
 					case "Almacen":
 						header('Location: ../adm/inventario/modulos/main-4.php');
 						exit();
 					break;
-					case "Lexmark":
+					case "Lexmark":						
 						header('Location: ../ope/lexmark/modulos/main-4.php');
 						exit();
 					break;

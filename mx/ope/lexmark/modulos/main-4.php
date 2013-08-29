@@ -4,9 +4,9 @@
 	header("Location: mod_login/index.php");
 	exit;
     }
-    
-    include("../../../../clases/lexmark/permisosUsuario.php");
-    include("../../../../clases/lexmark/cargaInicial.php");
+    //print_r($_SESSION); //exit();
+    include("../../../../clases/almacen/permisosUsuario.php");
+    include("../../../../clases/almacen/cargaInicial.php");
     include("../../../../clases/lexmark/cargaActualizaciones.php");
     include("../../../../clases/lexmark/funcionesGUI.php");
     include("../../../../includes/txtAppLexmark.php");
@@ -24,6 +24,7 @@
     $numeroActualizaciones=$objFuncionesGUI->buscaActualizacionesNuevas();
     $objActualizaciones->verificaActualizacionesSistema();
     $objCargaInicial->verificaPassword($_SESSION[$txtApp['session']['cambiarPassUsuario']]);
+    $idCliente=$objCargaInicial->dameIdCliente($txtApp['appSistema']['nombreSistemaActual']);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -118,7 +119,7 @@
             <div class="datosUsuarioAppPrincipal" onclick="mostrarPerfilUsuario()" title="Ver Perfil del Usuario"><?=$_SESSION[$txtApp['session']['nombreUsuario']]." ".$_SESSION[$txtApp['session']['apellidoUsuario']];?></div>
         </div>
         <div id="menu" class="barraMenu" style="z-index: 50;height: 25px;">
-<?          $objPermisos->construyeMenuNuevo($_SESSION[$txtApp['session']['idUsuario']]);?>            
+<?          $objPermisos->construyeMenuNuevo2($_SESSION[$txtApp['session']['idUsuario']],$idCliente);?>            
         </div>
         <div id="contenedorVentanaMDI">
             <iframe id="contenedorVentana" name="contenedorVentana" class="contenedorVentanaMDIApp"></iframe>
