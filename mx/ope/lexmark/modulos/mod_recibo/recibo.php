@@ -12,7 +12,7 @@
 <style type="text/css">
 	#all{ /*background-color:#CCCCCC;*/}
 </style>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	function buscar_ns(){
 		var nds=$("#txt_ot").attr("value");
@@ -88,8 +88,7 @@
 </div>
 //-->
 
-<div id="all">
-	<?php include("../menu/menu2.php"); ?>
+<div id="all">	
 	<br /><br />
 	<div id="catalogo">&nbsp;</div>	
   <div id="div_recibo">
@@ -102,8 +101,7 @@
 		<div align="center" id="div_datos2">&nbsp;</div>
 		<div align="center" id="div_resultado">&nbsp;</div>
         </form>
-    </div>
-	<?php include("../../f.php"); ?>
+    </div>	
 </div>
 </body>
 </html>

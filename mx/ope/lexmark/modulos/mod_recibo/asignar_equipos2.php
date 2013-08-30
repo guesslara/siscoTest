@@ -27,10 +27,10 @@
 	if ($_POST["accion"]=="listar")
 	{
 		$sql_0="SELECT * FROM ot WHERE status_cliente='REC' AND status_proceso='REC'";
-		$result0=mysql_db_query($sql_ing,$sql_0);
+		$result0=mysql_query($sql_0,$link);
 
 		$sql_1="SELECT * FROM usuarios WHERE nivel_usuario=13";
-		$result1=mysql_db_query($sql_inv,$sql_1);		
+		$result1=mysql_query($sql_1,$link);		
 		?>
 			<form id="frm1" name="frm1" method="post" action="<?=$_SERVER['PHP_SELF']?>">
 			<table align="center" cellpadding="2" cellspacing="0" class="tabla1" width="800">

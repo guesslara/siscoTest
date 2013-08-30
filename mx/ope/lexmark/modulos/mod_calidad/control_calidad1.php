@@ -24,7 +24,7 @@
 	.tabla_titulo2{text-align:center; font-size:14px; font-weight:bold; border-bottom:#000000 2px solid; }
 	.tabla_campo2{text-align:left; font-weight:bold; }
 </style>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$("document").ready(start);
 	function start(){
@@ -133,12 +133,12 @@
 
 <body>
 <div id="all">
-	<?php include("../menu/menu2sjq.php"); ?>
+	
     <h2 align="center">Control de Calidad.</h2>
     <div id="catalogo">&nbsp;</div>
     <div id="control_calidad">&nbsp;</div>
     <div id="resultados">&nbsp;</div>
-    <?php include("../../f.php"); ?>
+    
 </div>
 </body>
 </html>

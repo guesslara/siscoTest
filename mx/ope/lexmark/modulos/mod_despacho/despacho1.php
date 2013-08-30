@@ -12,7 +12,7 @@
 <style type="text/css">
 	#catalogo{ z-index:3; position:relative; width:800px; left:50%; margin-left:-400px; /*border:#000000 1px solid;*/ padding:2px;}
 </style>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$("document").ready(start);
 	function start(){
@@ -73,10 +73,8 @@
 
 <body>
 <div id="all">
-	<?php include("../menu/menu2sjq.php"); ?>
 	<div id="catalogo">&nbsp;</div>
     <div id="resultado">&nbsp;</div>
-	<?php include("../../f.php"); ?>
 </div>
 </body>
 </html>

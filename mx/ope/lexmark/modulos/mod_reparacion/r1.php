@@ -27,7 +27,7 @@
 	.tabla_campo2{text-align:left; font-weight:bold; }
 	.txt_ya_registrados{ border:#CCCCCC 1px solid; background-color:#FFFFFF; padding:1px;}
 </style>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$("document").ready(start);
 	function start(){
@@ -179,7 +179,7 @@
 </head>
 
 <body>
-<?php include("../menu/menu2sjq.php"); ?>
+
 <div id="div_productos">&nbsp;</div>
 <div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nuevo Diagn&oacute;stico.</div>

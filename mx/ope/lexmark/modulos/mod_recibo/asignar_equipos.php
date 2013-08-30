@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Asignar equipos</title>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$("document").ready(start);
 	function start(){
@@ -80,11 +80,9 @@
 </head>
 
 <body>
-	<div id="all">
-		<?php include("../menu/menu2.php"); ?>
+	<div id="all">		
 		<div id="resultado" align="center">&nbsp;</div>
-		<div id="resultado2">&nbsp;</div>
-        <?php include("../../f.php"); ?>
+		<div id="resultado2">&nbsp;</div>        
 	</div>
 </body>
 </html>

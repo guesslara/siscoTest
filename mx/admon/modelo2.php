@@ -149,7 +149,7 @@
 	       if(substr($archivo,0,4)=="mod_"){				
 ?>
 		    <tr>
-			    <td><input type="text" value="<?=$path2."/".$archivo;?>/index.php" style="width:350px;" /></td>
+			    <td><input type="text" value="<?=$path."/".$archivo;?>/index.php" style="width:350px;" /></td>
 			    <td>&nbsp;</td>
 		    </tr>
 <?				
