@@ -11,10 +11,10 @@
 		$nds=$_POST["nds"];
 	
 		//echo "<br>BD [$sql_inv] <br>SQL=".
-		$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie 
+		echo "<br>".$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov 
 			FROM catprod,num_series 
 			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie LIKE '%$nds%'";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";		echo "<br>NDR=".
 			$ndr1=mysql_num_rows($resultado1);
 			if ($ndr1>0){
@@ -22,6 +22,10 @@
 					//echo "<br>"; print_r($registro1);
 					?>
 					<br><br><table border="0" cellpadding="2" cellspacing="0" width="500" class="tabla0" style="margin-top:1px; background-color:#FFFFFF;">
+					<tr>
+					  <td width="192" style="border-top:#000000 solid 2px;">&nbsp;NO. MOVIMIENTO </td>
+					  <td width="300" style="border-top:#000000 solid 2px;" colspan="2"><br><input type="text" class="tex0" size="50" name="txt0" id="txt0" value="<?=$registro1['mov'];?>" readonly="1" /></td>
+					</tr>
 					<tr>
 					  <td width="192" style="border-top:#000000 solid 2px;">&nbsp;NO. SERIE </td>
 					  <td width="300" style="border-top:#000000 solid 2px;" colspan="2"><br><input type="text" class="tex0" size="50" name="txt0" id="txt0" value="<?=$nds?>" readonly="1" /></td>
@@ -53,13 +57,13 @@
 					</tr>
 					<tr id="descripcion">
 					  <td class="campos_verticales">&nbsp;DIAGN&Oacute;STICO </td>
-					  <td colspan="2">
+					  <td colspan="2"><? echo $sql2="SELECT * FROM cat_diagnosticos WHERE aplica_productos LIKE '%$idp%' ORDER BY id";?>
 					  <br><select name="txt5" id="txt5" class="tex0">
 					  <option value="">...</option>
 					  <? 
 							//$claveProd=intval($claveProd);
 							$sql2="SELECT * FROM cat_diagnosticos WHERE aplica_productos LIKE '%$idp%' ORDER BY id";
-							if ($resultado2=mysql_db_query($sql_ing,$sql2)){
+							if ($resultado2=mysql_query($sql2,$link)){
 								//echo "<div align=center>OK</div>";	echo "<br>NDR=".
 								$ndr2=mysql_num_rows($resultado2);
 								if ($ndr2>0){

@@ -113,9 +113,16 @@
 	    }
 	}
 	
-	public function listarModulos($idCliente){
-	    $nombreCliente=$this->dameNombreCliente($idCliente);
+	public function listarModulos($idCliente){	    
+	    if($nombreCliente==""){
+		$nombreCliente="Almacen";
+	    }else{
+		$nombreCliente=$this->dameNombreCliente($idCliente);
+	    }
 	    switch($nombreCliente){
+		case "Almacen":
+		    $path="../adm/inventario/modulos"; $path2="../modulos";    
+		break;
 		case "Lexmark":
 		    $path="../ope/lexmark/modulos"; $path2="../modulos";    
 		break;

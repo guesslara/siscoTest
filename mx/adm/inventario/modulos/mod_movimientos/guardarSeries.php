@@ -12,15 +12,22 @@
         $sql="SELECT COUNT(*) AS total FROM num_series WHERE mov='".$numMov."' AND clave_prod='".$claveProd."'";
         $res=mysql_query($sql,$link);
         $row2=mysql_fetch_array($res);        
-        
+        	
 	if($row2["total"] != $cantidad){//se compara la captura paa saber si finaliza
             //se guarda el numero de serie en la tabla
             //echo "Se guarda el numero de serie";
             //print_r($_POST);
 	    $valores=explode(",",$valores);
+	    /*
+	    echo "<pre>";
+	    print_r($valores);
+	    echo "</pre>";
+	    */
+            $sqlSerie="INSERT INTO num_series (serie,noParte,clave_prod,mov,status,nombreCliente) VALUES ('".$valores[0]."','".$valores[1]."','".$claveProd."','".$numMov."','almacen','".$valores[2]."')";
+            
+	    //exit();
 	    
-            $sqlSerie="INSERT INTO num_series (serie,noParte,clave_prod,mov,status) VALUES ('".$valores[0]."','".$valores[1]."','".$claveProd."','".$numMov."','almacen')";
-            $resSerie=mysql_query($sqlSerie,$link);
+	    $resSerie=mysql_query($sqlSerie,$link);
             if($resSerie){
                 $msgCaja="Informacion Guardada";
 		$color="Green";

@@ -51,7 +51,7 @@
 			$conceptoX=$_POST["conceptoX"];
 			$color="#D9FFB3";
 			$sql="SELECT * FROM tipoalmacen";
-			$result=mysql_db_query($sql_inv,$sql);
+			$result=mysql_query($sql,$link);
 			?>
 			  <table width="100%" border="0" align="center" cellspacing="0">
 				<tr style="background-color:#333333; text-align:center; font-weight:bold; color:#FFFFFF;">
@@ -248,7 +248,7 @@
 				
 					// OBTENER EL NOMBRE DEL CAMPO DEL ALMACEN ASOCIADO...
 					$sql9="SELECT `id_almacen`,`almacen` FROM `tipoalmacen` WHERE id_almacen=$ias ";
-					$r9=mysql_db_query($sql_inv,$sql9);
+					$r9=mysql_query($sql9,$link);
 					while ($ro9=mysql_fetch_array($r9))
 					{
 						$ialm3=$ro9["id_almacen"];
@@ -258,7 +258,8 @@
 					}				
 				//echo "<BR>".
 				$sql0="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `cpromedio`, `$ceX`, `$ctX` FROM `catprod` WHERE $ncalm=1 AND $ncalm3=1 AND $ceX>0 ORDER BY `id`";
-				$r0=mysql_db_query($sql_inv,$sql0);
+				//exit();
+				$r0=mysql_query($sql0,$link);
 				$ndrp=mysql_num_rows($r0);
 				if (!$ndrp>0)
 				{

@@ -133,7 +133,7 @@ class movimientos{
 		//echo "<br>".
 		$sql_ii="UPDATE catprod SET $c_eX=$c_eX-".$this->cantidad.",$c_e2=$c_e2+".$this->cantidad." WHERE id=".$this->id_p." LIMIT 1";
 		
-		if (mysql_db_query($sql_inv,$sql_ii))
+		if (mysql_query($sql_ii,$link))
 		{
 			echo "<br><li>Se agrego la cantidad (".$this->cantidad.") a las Existencias del Producto (".$this->id_p.").</li>";
 			return true;
