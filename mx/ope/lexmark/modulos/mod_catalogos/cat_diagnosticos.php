@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Catalogo de Diagnosticos.</title>
 <link href="../../css/estilos.css" rel="stylesheet" type="text/css" />
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 	$("document").ready(start);
 	function start(){
@@ -183,7 +183,7 @@
 </head>
 
 <body>
-<?php include("../menu/menu2.php"); ?>
+
 <div id="div_productos">&nbsp;</div>
 <div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nuevo Diagn&oacute;stico.</div>

@@ -11,7 +11,7 @@
 		$nds=$_POST["nds"];
 	
 		//echo "<br>BD [$sql_inv] <br>SQL=".
-		echo "<br>".$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov 
+		$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov 
 			FROM catprod,num_series 
 			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie LIKE '%$nds%'";
 		if ($resultado1=mysql_query($sql1,$link)){
@@ -57,7 +57,7 @@
 					</tr>
 					<tr id="descripcion">
 					  <td class="campos_verticales">&nbsp;DIAGN&Oacute;STICO </td>
-					  <td colspan="2"><? echo $sql2="SELECT * FROM cat_diagnosticos WHERE aplica_productos LIKE '%$idp%' ORDER BY id";?>
+					  <td colspan="2">
 					  <br><select name="txt5" id="txt5" class="tex0">
 					  <option value="">...</option>
 					  <? 
@@ -132,7 +132,7 @@
 		if ($x==0){
 			//echo "<br><br>".
 			$sql5="SELECT id FROM ot WHERE nserie='$a'";	
-			if ($result5=mysql_db_query($sql_ing,$sql5)){
+			if ($result5=mysql_query($sql5,$link)){
 				if (mysql_num_rows($result5)>0){
 					?>
 					<br>
@@ -146,7 +146,7 @@
 		} elseif($x==1){
 			//echo "<br><br>".
 			$sql5="SELECT id FROM ot WHERE nserie='$a'";	
-			if ($result5=mysql_db_query($sql_ing,$sql5)){
+			if ($result5=mysql_query($sql5,$link)){
 				if (mysql_num_rows($result5)<=0){
 					//Error. Se reporta como garantia pero no existe regsitrado en el sistema.
 					//echo "<br>&nbsp;El numero de serie no se encuentra en el sistema, por lo tanto no puede ser capturado como garantia.";
@@ -164,15 +164,16 @@
 		$sql3="INSERT INTO ot 
 		(id,ot,idp,nserie,u_recibe,f_recibo,cod_refac,cod_diag,cod_rep,obs_rep,garantia,fecha_inicio,fecha_fin,repara,num_no_ok,status_proceso,status_cliente,obs) 
 		VALUES 
-		(NULL,'BD','$b','$a','$id_usuario','$fr','','$f','','','$x','','','','1','REC','REC','$g')";	
-		if (mysql_db_query($sql_ing,$sql3,$link)){
+		(NULL,'BD','$b','$a','$id_usuario','$fr','','$f','','','$x','','','','1','REC','REC','$g')";
+		$res=mysql_query($sql3,$link);
+		if ($res){
 			echo "<div align=center>&nbsp;La OT se guardo correctamente.</div>";
-			$id_insertado=mysql_insert_id($link);
+			$id_insertado=mysql_insert_id($res);
 			$idc=sprintf('%06s',$id_insertado);		
 			$ot="BD".date("y").date("m").$idc;
 			//echo "<br><br>".
 			$sql4="UPDATE ot SET ot='$ot' WHERE id=$id_insertado";
-			mysql_db_query($sql_ing,$sql4);
+			mysql_query($sql4,$link);
 		} else {
 			echo "<div align=center>&nbsp;Error SQL. La OT NO se guardo.</div>";
 		}

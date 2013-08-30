@@ -81,7 +81,7 @@
 		$idd=$_POST["idd"];
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
@@ -134,7 +134,7 @@
 	if ($a=="listar"){	
 		//echo "<br>BD [$sql_ing] SQL=".
 		$sql1="SELECT * FROM cat_fallas_tecnicas ORDER BY id";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {

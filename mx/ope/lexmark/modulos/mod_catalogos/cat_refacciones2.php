@@ -148,7 +148,7 @@
 	if ($a=="listar"){	
 		//echo "<br>BD [$sql_ing] SQL=".
 		$sql1="SELECT * FROM cat_refacciones ORDER BY id_ref";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {

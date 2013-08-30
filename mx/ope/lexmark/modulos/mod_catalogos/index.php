@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php include("../menu/menu2.php"); ?>	
+
 <div id="all" style="position:relative; width:800px; left:50%; margin-left:-400px;">
     <h2>Cat&aacute;logos.</h2>
 	<ul>
