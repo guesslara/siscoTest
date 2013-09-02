@@ -78,7 +78,7 @@ if ($ndrX<=0){	?>
 	  if ($id_concep==2) // Almacenes ...
 	  {
 			$sql_aso2="SELECT almacen FROM `tipoalmacen` WHERE `id_almacen`='$asociado'";
-			$result_aso2=mysql_db_query($sql_inv,$sql_aso2);	
+			$result_aso2=mysql_query($sql_aso2,$link);	
 			while($row_aso2=mysql_fetch_array($result_aso2)){	
 				$aso2="Almacen ".$asociado." ".$row_aso2["almacen"];
 			}	  	

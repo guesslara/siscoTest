@@ -225,7 +225,7 @@ body {
 <br />
 <div style="text-align:center" class="invisible">
 	<a href="javascript:ver_kardex('<?= $row["id"]; ?>');">Kardex</a>&nbsp;
-	<a href="../mod_reportes/existencias_por_mes.php?idp=<?= $row["id"]; ?>">Comportamiento</a>&nbsp;	
+	<a href="../mod_reportes/existencias_por_mes.php?idp=<?= $row["id"]; ?>" target="_blank">Comportamiento</a>&nbsp;	
 	<?php if ($_SESSION["usuario_nivel"]==7) { ?>
 		| <a href="javascript:modificar_producto('<?= $row["id"]; ?>');">Modificar</a>
 	<?php } ?>	

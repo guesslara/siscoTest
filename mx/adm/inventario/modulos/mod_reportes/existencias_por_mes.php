@@ -28,7 +28,7 @@
 		
 	#opciones{ text-align:right; margin:0px 0px 0px 0px; font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif;}
 	#div1{ text-align:center;}
-	.txt1 { border:#CCCCCC 1px solid; background-color:#FFFFFF; text-align:right;} 
+	.txt1 { border:#CCCCCC 1px solid; background-color:#FFFFFF; text-align:right;width: 60px;} 
 	.graficar{border: #666666 1px solid; padding:2px; font-weight:bold; margin:2px; text-decoration:none; background-color:#EFEFEF;}
 	
 	#datos{ position:relative; width:800px; height:350px; left:50%; margin-left:-400px; margin-bottom:5px; border:#EFEFEF 1px solid; }

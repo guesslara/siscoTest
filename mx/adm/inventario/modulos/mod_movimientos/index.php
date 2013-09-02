@@ -4,11 +4,6 @@
 	validar_usuarios(0,1,2);
 	include ("../../conf/conectarbase.php");	
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Movimientos</title>
   <script language="javascript" src="../../../../../clases/jquery.js"></script>
   <link rel="stylesheet" type="text/css" media="all" href="../../../../../recursos/Calendario/calendar-green.css" title="win2k-cold-1" /> 
   <script type="text/javascript" src="../../../../../recursos/Calendario/calendar.js"></script>
@@ -290,7 +285,7 @@
 	}
 </script>
 <style type="text/css">
-	body,document,all { font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0px 0px 0px 0px;}
+	/*body,document,all { font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0px 0px 0px 0px;}*/
 	a:link { text-decoration:none; }
 	a:visited { text-decoration:none; }
 	a:hover { text-decoration:none; }
@@ -435,7 +430,7 @@
 				<div class="n_mov2">
 					<div class="etiqueta">Tipo de Movimiento</div>
 					<div class="campo">
-						<input name="txt_tipo_mov1" type="text" class="txt1" id="txt_tipo_mov1" readonly="1" />
+						<input name="txt_tipo_mov1" type="text" class="txt1" id="txt_tipo_mov1" style="width: 150px;" readonly="1" />
 						<input name="btn_tipo1" type="button" value="..." class="btn1" onclick="muestra_opciones()" />
 						<input name="hdn_concepto1" type="hidden"  id="hdn_concepto1" />
 						<input name="hdn_asociado1" type="hidden" id="hdn_asociado1" />
@@ -445,7 +440,7 @@
 					
 					<div class="etiqueta">Fecha</div>
 					<div class="campo">
-						<input name="txt_fecha1" type="text" class="txt1" id="txt_fecha1" value="<?=date('Y-m-d')?>" readonly="1" />
+						<input name="txt_fecha1" type="text" class="txt1" style="width: 150px;" id="txt_fecha1" value="<?=date('Y-m-d')?>" readonly="1" />
 						<input name="btn_fecha1" type="button" value="..." class="btn1" />
 						<script language="javascript">
 							Calendar.setup({
@@ -458,7 +453,7 @@
 					
 					<div class="etiqueta">Almac&eacute;n</div>
 					<div class="campo">
-						<input name="txt_idalmacen1" type="text" class="txt1" id="txt_idalmacen1" value="" readonly="1" />
+						<input name="txt_idalmacen1" type="text" class="txt1" style="width: 150px;" id="txt_idalmacen1" value="" readonly="1" />
 						<input name="btn_almacen1" type="button" value="..." class="btn1" onclick="ver_almacenes()" />
 						<input name="hdn_almacen1" type="hidden"  id="hdn_almacen1" />
 					</div>
@@ -466,24 +461,25 @@
 					
 					<div class="etiqueta">Asociado</div>
 					<div class="campo">
-						<input name="txt_idasociado1" type="text" class="txt1" id="txt_idasociado1" value="" readonly="1" />
+						<input name="txt_idasociado1" type="text" class="txt1" style="width: 150px;" id="txt_idasociado1" value="" readonly="1" />
 						<input name="btn_asociado1" type="button" value="..." class="btn1" onclick="ver_asociado()" />
 						<input name="hdn_asociado1b" type="hidden"  id="hdn_asociado1b" value="" />
 					</div>
 					
 					<div class="etiqueta">Referencia</div>
 					<div class="campo">
-						<input name="txt_referencia1" type="text" class="txt1" id="txt_referencia1" value="" />
+						<input name="txt_referencia1" type="text" class="txt1" style="width: 150px;" id="txt_referencia1" value="" />
 					</div>	
-					
+					<div style="clear: both;"></div>
 					<div class="etiqueta">Observaciones</div>
 					<div class="campo">
-						<input name="txt_obs1" type="text" class="txt1" id="txt_obs1" value="" />
+						<!--<input  type="text" class="txt1" style="width: 150px;"   />-->
+						<textarea name="txt_obs1" id="txt_obs1" value="" cols="40" rows="3"></textarea>
 					</div>								
 				
 				</div>
-	
-				<div class="botones" id="div_botones1">
+				<div style="clear: both;">&nbsp;</div>
+				<div class="botones" id="div_botones1" style="margin-top: 10px;">
 					<br />
 					<input type="reset" value="Limpiar Datos" />
 					<input type="button" value="Crear Movimiento" onclick="crear_movimiento()" />
@@ -501,5 +497,3 @@
 		<div id="div_productos_enel_mov">&nbsp;</div>
 		<? //include("../../f.php"); ?>
 	</div>
-</body>
-</html>

@@ -253,10 +253,10 @@ mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id
 .td1{ border-right:#CCCCCC 1px solid; padding:1px; }
 .tablax{ border:#333333 1px solid; }
 #detalle{ position:absolute; display:none; border:#333333 3px solid; background-color:#ffffff; 
-width:800px; height:550px; left:50%; top:50%; margin-left:-400px; margin-top:-275px; z-index:3;}
+width:800px; height:450px; left:50%; top:50%; margin-left:-400px; margin-top:-225px; z-index:3;}
 #d_tit{width:710px; height:20px; float:left; background-color:#333333; color:#FFFFFF;font-size: 12px;}
 #d_cer{width:90px; height:20px; float:right; text-align:right; background-color:#333333;}
-#d_con{ clear:both; margin:2px; margin-top:3px; padding:2px; height:525px; /*border:#333333 1px solid;*/ overflow:auto;font-size: 10px;}
+#d_con{ clear:both; margin:2px; margin-top:3px; padding:2px; height:425px; /*border:#333333 1px solid;*/ overflow:auto;font-size: 10px;}
 
 .tdx{ background-color:#CCCCCC; font-weight:bold; text-align:left; padding-left:2px;}
 
@@ -566,7 +566,7 @@ $aso2='';
 </div>
 </center>
 </div>
-<div id="transparenciaGeneral" style="display: none;position: absolute;top: 0;height: 100%;width: 100%;background: url(../../../../../img/desv.png) repeat;"</div>
+<div id="transparenciaGeneral" style="display: none;position: absolute;top: 0;height: 100%;width: 100%;background: url(../../../../../img/desv.png) repeat;"></div>
 <div id="detalle">
 	<div style="background-color:#333333;">
 		<div id="d_tit">Movimiento X</div>

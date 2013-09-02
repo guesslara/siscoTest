@@ -408,10 +408,10 @@ a:visited{ text-decoration:none;}
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v1_t{ text-align:right; padding:1px; background-color:#333333; color:#FFFFFF;}
 
-#ventana2{ display:none; position:absolute; z-index:3; width:600px; height:600px; top:50%; left:50%; margin-top:-300px; margin-left:-300px; 
+#ventana2{ display:none; position:absolute; z-index:3; width:600px; height:450px; top:50%; left:50%; margin-top:-225px; margin-left:-300px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v2_t{ height:17px; text-align:right; padding:1px; background-color:#333333; color:#FFFFFF;}
-#v2_c{ height:579px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
+#v2_c{ height:428px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
 
 #ventana3{ display:none; position:absolute; z-index:3; width:500px; height:220px; top:50%; left:50%; margin-top:-110px; margin-left:-250px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
