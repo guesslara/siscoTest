@@ -14,7 +14,8 @@
 	}
 	
 	if($_POST["action"]=="verPerfil"){
-		echo "<script type='text/javascript'> contenedorVentana.location.href='mod_profile/index.php'; </script>";
+		print_r($_SERVER["PHP_SELF"]);
+		echo "<script type='text/javascript'> contenedorVentana.location.href='../profile/index.php'; </script>";
 	}
 	
 	
