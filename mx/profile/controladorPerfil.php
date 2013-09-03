@@ -1,6 +1,6 @@
 <?php
 	include("modeloPerfil.php");
-	include("../../../../../clases/about.php");
+	include("../../clases/about.php");
 	$objPerfil=new modeloPerfil();
 	
 	switch($_GET['action']){

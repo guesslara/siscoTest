@@ -1,5 +1,5 @@
 <?php
-	include("../../../../../clases/clase_mysql.php");
+	include("../../clases/clase_mysql.php");
 
 	class modeloPerfil{
 		
@@ -32,7 +32,7 @@
 		}
 		
 		public function actualizaPass($idUsuario,$passNuevo,$passNuevo1,$passAnt){
-			include("../../../../../includes/config.inc.php");
+			include("../../includes/config.inc.php");
 			$mysql=new DB_mysql;
 			$mysql->conectar($db,$host,$usuario,$pass);						
 			$sqlUsuario="SELECT * FROM ".$tabla_usuarios." WHERE ID='".$idUsuario."'";
@@ -60,7 +60,7 @@
 		}
 		
 		public function cambiarPass($idUsuario){
-			include("../../../../../includes/config.inc.php");
+			include("../../includes/config.inc.php");
 			$mysql=new DB_mysql;
 			$mysql->conectar($db,$host,$usuario,$pass);						
 			$sqlPerfil="SELECT pass FROM ".$tabla_usuarios." WHERE ID='".$idReg."'";	
@@ -95,7 +95,7 @@
 		}
 		
 		public function verPerfil($idReg){	
-			include("../../../../../includes/config.inc.php");
+			include("../../includes/config.inc.php");
 			$mysql=new DB_mysql;
 			$mysql->conectar($db,$host,$usuario,$pass);						
 			$sqlPerfil="SELECT * FROM ".$tabla_usuarios." WHERE ID='".$idReg."'";	

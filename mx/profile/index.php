@@ -1,13 +1,13 @@
 <?
 	session_start();
-	include("../../../../../includes/txtAppAlmacen.php");
-	include("../../../../../includes/config.inc.php");
+	include("../../includes/txtAppAlmacen.php");
+	include("../../includes/config.inc.php");
 	/*echo "<pre>";
 	print_r($_SESSION);
 	echo "</pre>";
 	exit;*/
 	if(!isset($_SESSION[$txtApp['session']['idUsuario']])){
-		header("Location: ../../acceso.php");
+		header("Location: ../acceso.php");
 		exit;
 	}
 	
@@ -41,7 +41,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="js/funcionesProfile.js"></script>
-<script type="text/javascript" src="../../../../../clases/jquery.js"></script>
+<script type="text/javascript" src="../../clases/jquery.js"></script>
 <title><?=$txtApp['appProfile']['tituloPagina'];?></title>
 <style type="text/css">
 /*interfaz del perfil de usuario*/
