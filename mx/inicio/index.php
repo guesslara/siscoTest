@@ -30,7 +30,7 @@
 ?>
 
 <script type="text/javascript" src="js/funcionesEnsamble.js"></script>
-<script type="text/javascript" src="../../../clases/jquery.js"></script>
+<script type="text/javascript" src="../../clases/jquery.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="css/estilos.css" />  
 
 <script type="text/javascript">

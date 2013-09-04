@@ -44,14 +44,17 @@ if ($_POST)
 						$xasociado=$row_proveedor["nr"];	
 					}
 					// ALMACENES
-					if ($row_detalle_movimiento["dasociado"]=="Almacenes")
+					if ($row_detalle_movimiento["dasociado"]=="Almacen")
 					{
 						$sql_almacen_asociado="SELECT almacen FROM `tipoalmacen` WHERE `id_almacen`=".$row_detalle_movimiento["asociado"];
-						$result_almacen_asociado=mysql_db_query($sql_inv,$sql_almacen_asociado);	
+						$result_almacen_asociado=mysql_query($sql_almacen_asociado,$link);	
 						while($row_almacen_asociado=mysql_fetch_array($result_almacen_asociado)){	
 							$xasociado=$row_almacen_asociado["almacen"];
 						}
-					}		
+					}
+					$tipoMovimiento=$row_detalle_movimiento["concepto"];
+					$asociadoMov=$row_detalle_movimiento["dasociado"];
+					
 ?>
 <table width="95%" align="center" cellspacing="0" style="border:#333333 1px solid;">
   <tr>
@@ -129,7 +132,19 @@ if ($_POST)
 					<td class="td1" align="right"><?php if($row['cu']!==''||$row['cu']!==' ') echo '$'.$row['cu']; ?>&nbsp;</td>
 					<td class="td1"><?=$des_prod['descripgral'];?></td>
 					<td colspan="2" ><?=$des_prod['especificacion'];?></td>
-					<td style="text-align: center;"><a href="#" onclick="capturarSeries('<?=$id_movimiento_recibido;?>','<?=$row['clave'];?>','<?=$row['cantidad'];?>')">Capturar Series</a></td>
+					<td style="text-align: center;">
+<?
+					if($tipoMovimiento=="Traspaso" && $asociadoMov=="Almacen"){
+?>
+						<a href="#" onclick="seriesAAsignar()">Capturar Series a Asignar</a>
+<?
+					}else{
+?>						
+						<a href="#" onclick="capturarSeries('<?=$id_movimiento_recibido;?>','<?=$row['clave'];?>','<?=$row['cantidad'];?>')">Capturar Series</a>
+<?
+					}
+?>
+					</td>
 				</tr>
 <?
 				if(mysql_num_rows($resS)!=0){

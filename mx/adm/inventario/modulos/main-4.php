@@ -152,7 +152,7 @@
 	</div>	
 	<!--fin adaptacion del buscador-->
         
-	<div id="contenedorVentanaMDI">
+	<div id="contenedorVentanaMDI" style="border: 1px solid #ff0000;">
             <iframe id="contenedorVentana" name="contenedorVentana" class="contenedorVentanaMDIApp"></iframe>
         </div>
         <div id="barraestado2">
