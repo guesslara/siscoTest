@@ -190,9 +190,9 @@ function exportar_xls()
 		if (!conf==true)
 			cancelar();
 		else 
-			location.href="reportes/xls_inventario.php?sql="+w;	
+			location.href="../mod_reportes/xls_inventario.php?sql="+w;	
 	} else {
-		location.href="reportes/xls_inventario.php?sql="+w;	
+		location.href="../mod_reportes/xls_inventario.php?sql="+w;	
 	}	
 }
 // ===========================================================================
