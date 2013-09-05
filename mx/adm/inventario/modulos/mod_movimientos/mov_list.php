@@ -6,11 +6,9 @@
 	include ("../../conf/conectarbase.php");
 	$lista_campos=" id,`id_prod`,`descripgral`,`especificacion`";
 
-if ($_POST)
-{
-//print_r($_POST);
-	if ($_POST[action]=="ver_movimiento")
-	{
+if ($_POST){
+	//print_r($_POST);
+	if ($_POST[action]=="ver_movimiento"){
 		header("Cache-Control: no-store, no-cache, must-revalidate");
 		header("Content-Type: text/xml; charset=ISO-8859-1");		
 		$totArticulos=0;
@@ -26,10 +24,8 @@ if ($_POST)
 			$sql_detalle_movimiento="SELECT mov_almacen.seriesGen,mov_almacen.id_mov,mov_almacen.fecha,mov_almacen.tipo_mov,mov_almacen.almacen,mov_almacen.referencia,mov_almacen.asociado,mov_almacen.observ, tipoalmacen.almacen,tipoalmacen.id_almacen, concepmov.id_concep,concepmov.concepto,concepmov.asociado AS dasociado,concepmov.tipo 
 				FROM mov_almacen,tipoalmacen,concepmov 
 				WHERE mov_almacen.tipo_mov=concepmov.id_concep AND mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.id_mov=$id_movimiento_recibido";
-			if ($result_detalle_movimiento=mysql_query($sql_detalle_movimiento,$link))
-			{
-				while ($row_detalle_movimiento=mysql_fetch_array($result_detalle_movimiento))
-				{
+			if ($result_detalle_movimiento=mysql_query($sql_detalle_movimiento,$link)){
+				while ($row_detalle_movimiento=mysql_fetch_array($result_detalle_movimiento)){
 					// ========================================================================================================================
 					//print_r($row_detalle_movimiento);
 					$concepto_tipo=$row_detalle_movimiento["tipo"];
@@ -136,7 +132,7 @@ if ($_POST)
 <?
 					if($tipoMovimiento=="Traspaso" && $asociadoMov=="Almacen"){
 ?>
-						<a href="#" onclick="seriesAAsignar()">Capturar Series a Asignar</a>
+						<a href="#" onclick="seriesAAsignar()">Buscar Series</a>
 <?
 					}else{
 ?>						
@@ -377,6 +373,7 @@ function cerrarv()
 function capturarSeries(numMov,claveProd,cantidad){	
 	$("#divCapturaSeries").html("");
 	$("#divModalSeries").show();
+	$("#tituloVentanaModal").html("Captura de Numeros de Serie");
 	/*Implementacion del Grid*/
 	//se define el array para el nombre de las columnas
 	nombresColumnas=new Array("Serial","# Parte","Nombre Cliente","Mensaje");
@@ -389,6 +386,12 @@ function capturarSeries(numMov,claveProd,cantidad){
 }
 function cerrarSeries(){
 	$("#divModalSeries").hide();	
+}
+function seriesAAsignar(){
+	//se muestra la ventana para buscar el numero de serie
+	$("#divCapturaSeries").html("");
+	$("#divModalSeries").show();
+	$("#tituloVentanaModal").html("Buscar Seriales a Asignar");
 }
 /*Fin de la Modificacion*/
 // ======================================================================	
@@ -592,7 +595,7 @@ $aso2='';
 <!--Div para los numeros de serie-->
 <div id="divModalSeries" style="display: none;top: 0;height: 100%;position: absolute;width: 100%;overflow:hidden;z-index: 9999;border: 0px solid #ff0000;background: url(../../../../../img/desv.png)">
 	<div style="position: absolute;width: 650px;height: 400px;border: 1px solid #000;top: 50%;left: 50%;margin-top: -200px;margin-left: -325px;z-index: 999999;background: #FFF;">
-		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;"><div style="float: left;">Capturar # de Serie</div><div style="float: right;color: #FFF;" onclick="cerrarSeries()">Cerrar</div></div>
+		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;"><div id="tituloVentanaModal" style="float: left;">Capturar # de Serie</div><div style="float: right;color: #FFF;" onclick="cerrarSeries()">Cerrar</div></div>
 		<div id="divCapturaSeries" style="width: 99.5%;height: 341px;border: 0px solid #FF0000;overflow: auto;"></div>
 		<div id="errores" style="height: 30px;border: 1px solid #CCC;font-size: 10px;color: #FF0000;overflow: auto;"></div>
 	</div>
