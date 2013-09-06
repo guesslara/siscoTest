@@ -387,11 +387,37 @@ function capturarSeries(numMov,claveProd,cantidad){
 function cerrarSeries(){
 	$("#divModalSeries").hide();	
 }
+function ajaxApp(divDestino,url,parametros,metodo){	
+	$.ajax({
+	async:true,
+	type: metodo,
+	dataType: "html",
+	contentType: "application/x-www-form-urlencoded",
+	url:url,
+	data:parametros,
+	beforeSend:function(){ 
+		$("#"+divDestino).show().html("Cargando..."); 
+	},
+	success:function(datos){ 
+		$("#"+divDestino).show().html(datos);		
+	},
+	timeout:90000000,
+	error:function() { $("#"+divDestino).show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
+	});
+}
 function seriesAAsignar(){
 	//se muestra la ventana para buscar el numero de serie
 	$("#divCapturaSeries").html("");
 	$("#divModalSeries").show();
 	$("#tituloVentanaModal").html("Buscar Seriales a Asignar");
+	
+	ajaxApp("divCapturaSeries","buscarSeries.php","action=mostrarBusquedaSeries","POST");
+}
+function buscarSerieAAsignar(evento){	
+	if(evento.which==13){
+		var serieAAsignar=$("#txtSerieBusqueda").val();
+		ajaxApp("resultadosSerieBusqueda","buscarSeries.php","action=buscarSerie&serie="+serieAAsignar,"POST");
+	}
 }
 /*Fin de la Modificacion*/
 // ======================================================================	
