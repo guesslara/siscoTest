@@ -5,76 +5,72 @@
 	//print_r($_POST);
 	//echo "<br>IDA=".$ialm;
 	$id_almacen_por_defecto=$ialm;
-$actual=$_SERVER['PHP_SELF'];
-$color="#D9FFB3";
+	$actual=$_SERVER['PHP_SELF'];
+	$color="#F0F0F0";//D9FFB3
 
-if ($_GET)
-{
+	if ($_GET){
 	//print_r($_GET);
-// ==========================================================================
-	(isset($_GET['almacen']))? $ialm=$_GET["almacen"] : $ialm=$id_almacen_por_defecto;
-	(isset($_GET['campo']))? $campo=$_GET["campo"] : $campo='descripgral';
-	(isset($_GET['cri']))? $cri=$_GET['cri'] : $cri='';
-	(isset($_GET['orden']))? $orden=$_GET["orden"] : $orden='id';		
-	(isset($_GET['ascdes']))? $ascdes=$_GET["ascdes"] : $ascdes='ASC';
-	(isset($_GET['op']))? $op=$_GET["op"] : $op='LIKE';
+	// ==========================================================================
+		(isset($_GET['almacen']))? $ialm=$_GET["almacen"] : $ialm=$id_almacen_por_defecto;
+		(isset($_GET['campo']))? $campo=$_GET["campo"] : $campo='descripgral';
+		(isset($_GET['cri']))? $cri=$_GET['cri'] : $cri='';
+		(isset($_GET['orden']))? $orden=$_GET["orden"] : $orden='id';		
+		(isset($_GET['ascdes']))? $ascdes=$_GET["ascdes"] : $ascdes='ASC';
+		(isset($_GET['op']))? $op=$_GET["op"] : $op='LIKE';
+		
+		$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE id_almacen=".$ialm;
+		$result0=mysql_query($sql_alm,$link);
+		while ($row0=mysql_fetch_array($result0)){ 
+			//print_r($row0);
+			$id_almacen=$row0["id_almacen"];
+			$almacen=$row0["almacen"];
+		}	
+		$campo_almacen="a_".$ialm."_".$almacen;
+		$campo_existencias="exist_".$ialm;	
+		$campo_transferencias="trans_".$ialm;
+		//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`exist_13`,`exist_14`,`$campo_transferencias` ";
+		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`$campo_transferencias` ";
+		if ($op=='LIKE'){
+			$where=" WHERE $campo LIKE '%" . $cri . "%' AND ".$campo_almacen."=1 "; 
+		} else {
+			$where=" WHERE $campo $op '" . $cri . "' AND ".$campo_almacen."=1 "; 
+		}
+		// ... Reviso # de resultados con el criterio introducido ............. 
 	
-	$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE id_almacen=".$ialm;
-	$result0=mysql_query($sql_alm,$link);
-	while ($row0=mysql_fetch_array($result0))
-	{ 
-		//print_r($row0);
-		$id_almacen=$row0["id_almacen"];
-		$almacen=$row0["almacen"];
-	}	
-	$campo_almacen="a_".$ialm."_".$almacen;
-	$campo_existencias="exist_".$ialm;	
-	$campo_transferencias="trans_".$ialm;
-	//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`exist_13`,`exist_14`,`$campo_transferencias` ";
-	$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
-	if ($op=='LIKE'){
-		$where=" WHERE $campo LIKE '%" . $cri . "%' AND ".$campo_almacen."=1 "; 
-	} else {
-		$where=" WHERE $campo $op '" . $cri . "' AND ".$campo_almacen."=1 "; 
-	}
-	
-	// ... Reviso # de resultados con el criterio introducido ............. 
-	
-	//echo "<br>".
-	$sql_criterio="SELECT count(id) as total_registros FROM catprod ".$where;
-	$result0=mysql_query($sql_criterio,$link);
-	$row0=mysql_fetch_array($result0);
-	$numeroRegistros=$row0['total_registros'];
-	$tamPag=25; 
-    //pagina actual si no esta definida y limites 
-    	if(!isset($_GET["pagina"])){ 
-       		$pagina=1; 
-       		$inicio=1; 
-       		$final=$tamPag; 
-    	} else { 	
-		(isset($_GET["pagina"]))? $pagina = $_GET["pagina"] : $pagina=1; 
-	} 
-    $limitInf=($pagina-1)*$tamPag; 
-    $numPags=ceil($numeroRegistros/$tamPag); 
+		//echo "<br>".
+		$sql_criterio="SELECT count(id) as total_registros FROM catprod ".$where;
+		$result0=mysql_query($sql_criterio,$link);
+		$row0=mysql_fetch_array($result0);
+		$numeroRegistros=$row0['total_registros'];
+		$tamPag=25; 
+		//pagina actual si no esta definida y limites 
+		if(!isset($_GET["pagina"])){ 
+			$pagina=1; 
+			$inicio=1; 
+			$final=$tamPag; 
+		} else { 	
+			(isset($_GET["pagina"]))? $pagina = $_GET["pagina"] : $pagina=1; 
+		} 
+		$limitInf=($pagina-1)*$tamPag; 
+		$numPags=ceil($numeroRegistros/$tamPag); 
     
-		if(!isset($pagina)) 
-    	{ 
-       		$pagina=1; 
-       		$inicio=1; 
-       		$final=$tamPag; 
-    	}else{ 
-       		$seccionActual=intval(($pagina-1)/$tamPag); 
-       		$inicio=($seccionActual*$tamPag)+1; 
+		if(!isset($pagina)){ 
+			$pagina=1; 
+			$inicio=1; 
+			$final=$tamPag; 
+		}else{ 
+			$seccionActual=intval(($pagina-1)/$tamPag); 
+			$inicio=($seccionActual*$tamPag)+1; 
 			if($pagina<$numPags) 
-       			$final=$inicio+$tamPag-1; 
-       		else 
-          		$final=$numPags; 
+				$final=$inicio+$tamPag-1; 
+			else 
+				$final=$numPags; 
        		
 			if ($final>$numPags) $final=$numPags; 
-	    }	
-//echo "$sql_inv&nbsp;";
-$sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
-$result=mysql_query($sql,$link);
+		}	
+		//echo "$sql_inv&nbsp;";
+		$sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
+		$result=mysql_query($sql,$link);
 ?>
 <div class="buscador">
 	<div class="form_buscador" style=" width:500px;float:right; margin-bottom:2px; font-size:12px;">
@@ -93,22 +89,21 @@ $result=mysql_query($sql,$link);
 	<?php if ($numeroRegistros>$tamPag) {?>
 	<div class="paginas" style="clear:both; margin-bottom:4px; font-weight:normal;">P&aacute;ginas ( <?=$pagina."/".$numPags;?> )</div>
 	<div class="paginador"> 
-	<?php 
+<?php 
 	if($pagina>1) 
 		echo "<a class='paginador1' href=\"#\" onclick=\"javascript:paginar('".$ialm."','".$campo."','".$op."','".$cri."','".$orden."','".$ascdes."','".($pagina-1)."');\"> <<&nbsp;</a> "; 		    	
-    for($i=$inicio;$i<=$final;$i++) 
-    { 
-		if ($i<10) $i2='0'.$i; else $i2=$i;
-		if($i==$pagina) 
-       		echo "<a href='#'  class='pagact'>".$i2."</a>"; 
-       	else 
-        	echo "<a class='paginador1' href=\"#\" onclick=\"javascript:paginar('".$ialm."','".$campo."','".$op."','".$cri."','".$orden."','".$ascdes."','".$i."');\"> ".$i2."&nbsp;</a> "; 
-	} 
-    if($pagina<$numPags) 
-       	echo "<a class='paginador1' href=\"#\" onclick=\"javascript:paginar('".$ialm."','".$campo."','".$op."','".$cri."','".$orden."','".$ascdes."','".($pagina+1)."');\"> >>&nbsp;</a> "; 		
+		for($i=$inicio;$i<=$final;$i++){ 
+			if ($i<10) $i2='0'.$i; else $i2=$i;
+				if($i==$pagina) 
+					echo "<a href='#'  class='pagact'>".$i2."</a>"; 
+			else 
+				echo "<a class='paginador1' href=\"#\" onclick=\"javascript:paginar('".$ialm."','".$campo."','".$op."','".$cri."','".$orden."','".$ascdes."','".$i."');\"> ".$i2."&nbsp;</a> "; 
+		} 
+	if($pagina<$numPags) 
+		echo "<a class='paginador1' href=\"#\" onclick=\"javascript:paginar('".$ialm."','".$campo."','".$op."','".$cri."','".$orden."','".$ascdes."','".($pagina+1)."');\"> >>&nbsp;</a> "; 		
 	
-	($ascdes=='ASC')? $ascdes2='Ascendente' : $ascdes2='Descendente';
-	?>	
+		($ascdes=='ASC')? $ascdes2='Ascendente' : $ascdes2='Descendente';
+?>	
   	</div>
 </div>
 	<?php } ?>	
@@ -125,8 +120,8 @@ $result=mysql_query($sql,$link);
 	<tr style="background-color:#CCCCCC; text-align:center; font-weight:bold;">
 	  <td width="2%">
 	  		<a alt="Ordenar por Id" title="Ordenar por Id (<?=$ascdes2?>)" href="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id','<?=$ascdes?>','<?=$pagina?>');">Id </a>	  </td>
-		<td width="6%" height="20">
-			<a alt="Ordenar por Id" title="Ordenar por Clave del producto (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id_prod','<?=$ascdes?>','<?=$pagina?>');">Clave del Producto </a>		</td>
+		<!--<td width="6%" height="20">
+			<<a alt="Ordenar por Id" title="Ordenar por Clave del producto (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id_prod','<?=$ascdes?>','<?=$pagina?>');">Clave del Producto </a>		</td>-->
 		<td width="16%">
 	  <a alt="Ordenar por Descripci&oacute;n" title="Ordenar por Descripci&oacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','descripgral','<?=$ascdes?>','<?=$pagina?>');">Descripci&oacute;n</a></td>
 		<td width="6%">
@@ -134,46 +129,46 @@ $result=mysql_query($sql,$link);
 		<td width="6%">
 		<a alt="Ordenar por Control de Almac&eacute;n" title="Ordenar por Control de Almac&eacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','control_alm','<?=$ascdes?>','<?=$pagina?>');">
 	  Ctrl Alm</a></td>
-		<td width="6%">
+		<!--<td width="6%">
 		<a alt="Ordenar por Status" title="Ordenar por Status (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','status1','<?=$ascdes?>','<?=$pagina?>');">
-		Status</a></td>
+		Status</a></td>-->
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?=$campo_existencias?>','<?=$ascdes?>','<?=$pagina?>');">
-		A1</a></td>
+		Equipo<br>Recibido</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_2','<?=$ascdes?>','<?=$pagina?>');">
-		A2</a></td>
+		Equipo<br>Nuevo</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_3','<?=$ascdes?>','<?=$pagina?>');">
-		A3</a></td>
+		Equipo<br>Proceso</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_4','<?=$ascdes?>','<?=$pagina?>');">
-		A4</a></td>
+		Ingenieria</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_5','<?=$ascdes?>','<?=$pagina?>');">
-		A5</a></td>
-		<!--<td width="4%">
+		Equipo<br>Terminado</a></td>
+		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_6','<?=$ascdes?>','<?=$pagina?>');">
-		A6</a></td>
+		Equipo<br>Convertido</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_7','<?=$ascdes?>','<?=$pagina?>');">
-		A7</a></td>
+		Equipo<br>Cuarentena</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_8','<?=$ascdes?>','<?=$pagina?>');">
-		A8</a></td>
+		Equipo<br>No SAP</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_9','<?=$ascdes?>','<?=$pagina?>');">
-		A9</a></td>
+		Scrap</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_10','<?=$ascdes?>','<?=$pagina?>');">
-		A10</a></td>
+		Consumibles<br>Nuevos</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_11','<?=$ascdes?>','<?=$pagina?>');">
-		A11</a></td>
+		Consumibles<br>Tintas</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_12','<?=$ascdes?>','<?=$pagina?>');">
-		A12</a></td>
-		<td width="4%">
+		Consumibles<br>Ingenier&iacute;a</a></td>
+		<!--<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_13','<?=$ascdes?>','<?=$pagina?>');">
 		A13</a></td>
 		<td width="4%">
@@ -186,39 +181,39 @@ $result=mysql_query($sql,$link);
 ?>	
 	<tr id="<?=$row["id"]?>" class="m2" bgcolor="<? echo $color; ?>" onmouseover="this.style.background='#cccccc';" onmouseout="this.style.background='<? echo $color; ?>'" onclick="javascript:ver_producto('<?=$row["id"];?>');" style="cursor:pointer;">
 	  <td class="td1" height="20" align="center">&nbsp;<?=$row["id"]?></td>
-		<td class="td1" align="left">&nbsp;<?=$row["id_prod"]?></td>
+		<!--<td class="td1" align="left">&nbsp;<?=$row["id_prod"]?></td>-->
 		<td class="td1" align="left">&nbsp;<?=$row["descripgral"]?></td>
 		<td class="td1" align="left">&nbsp;<?=$row["especificacion"]?></td>
 		<td class="td1" align="left">&nbsp;<?=$row["control_alm"]?></td>
-		<td class="td1" align="left">
-		<?php
-			if ($row["status1"]==2)
-			{
+		<!--<td class="td1" align="left">
+<?php
+			if ($row["status1"]==2){
 				echo "Obsoleto";	
-			} else if($row["status1"]==1) {
+			}else if($row["status1"]==1) {
 				echo "Lento.Movimiento";
-			} else {
+			}else {
 				echo "Uso.Constante";
 			}
-			?></td>
+?>
+		</td>-->
 		<td class="td1" align="right"><?=$row[$campo_existencias]?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_2']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_3']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_4']?>&nbsp;</td>		
 		<td class="td1" align="right"><?=$row['exist_5']?>&nbsp;</td>
-		<!--<td class="td1" align="right"><?=$row['exist_6']?>&nbsp;</td>
+		<td class="td1" align="right"><?=$row['exist_6']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_7']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_8']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_9']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_10']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_11']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_12']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_13']?>&nbsp;</td>
+		<!--<td class="td1" align="right"><?=$row['exist_13']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_14']?>&nbsp;</td>-->
 		
 	  </tr>
 <?php 
-	($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";
+	($color=="#F0F0F0")? $color="#ffffff" : $color="#F0F0F0";  //($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";
 	}
 ?>	
 	</table>

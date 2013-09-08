@@ -149,6 +149,7 @@ body {
 	//echo "<br>".
 	$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen ORDER BY id_almacen";
 	$result0=mysql_query($sql_alm,$link);
+	$color="#F0F0F0";
 	while ($row0=mysql_fetch_array($result0))
 	{ 
 		$id_almacen=$row0["id_almacen"];
@@ -159,7 +160,6 @@ body {
 		$campo_transferencias="trans_".$id_almacen;
 		
 		//echo "<br><br> [$id_almacen] [$almacen] [$campo_almacen] [$campo_existencias] [$campo_transferencias]<br>"; 
-		
 		//echo "<br>".
 		$sql_alm1="SELECT `$campo_existencias`,`$campo_transferencias` FROM catprod WHERE id='$id' AND `$campo_almacen`=1";
 		$res1=mysql_query($sql_alm1,$link);
@@ -174,7 +174,7 @@ body {
 			<?php
 	 		$totale=$totale+$row1[$campo_existencias];
 		 	$totalt=$totalt+$row1[$campo_transferencias];
-			($color=="#D9FFB3")? $color="#FFFFFF" : $color="#D9FFB3";
+			($color=="#F0F0F0")? $color="#FFFFFF" : $color="#F0F0F0";
 		}
 	} ?>
 <tr style="font-weight:bold;">

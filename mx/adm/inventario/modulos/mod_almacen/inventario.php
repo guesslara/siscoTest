@@ -14,10 +14,22 @@
 
 <script src="../../../../../clases/jquery.js" type="text/javascript"></script>
 <script language="javascript">
-$(document).ready(start);
+//$(document).ready(start);
 
+$(document).ready(function(){
+	start();
+	redimensionarVentana();
+})
 
-
+	function redimensionarVentana(){
+		var altoDoc=$(document).height();
+		//alert(altoDoc);
+		$("#ventana2").css("height",90+"%");
+		$("#ventana4").css("height",90+"%");
+	}
+	
+	window.onresize=redimensionarVentana;
+	
 	function ver_opciones(){
 		$("#opciones2").show();
 	}
@@ -408,20 +420,20 @@ a:visited{ text-decoration:none;}
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v1_t{ text-align:right; padding:1px; background-color:#333333; color:#FFFFFF;}
 
-#ventana2{ display:none; position:absolute; z-index:3; width:600px; height:450px; top:50%; left:50%; margin-top:-225px; margin-left:-300px; 
+#ventana2{ display:none; position:absolute; z-index:3; width:600px; /*height:90%;*/ top:250px; left:50%; margin-top:-225px; margin-left:-300px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v2_t{ height:17px; text-align:right; padding:1px; background-color:#333333; color:#FFFFFF;}
-#v2_c{ height:428px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
+#v2_c{ height:95%;border: 0px solid #FF0000; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
 
 #ventana3{ display:none; position:absolute; z-index:3; width:500px; height:220px; top:50%; left:50%; margin-top:-110px; margin-left:-250px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v3_t{ height:17px; text-align:right; padding:1px; padding-bottom:2px; background-color:#333333; color:#FFFFFF;}
 #v3_c{ height:195px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center; background-image:url(../../../../../img/buscar3.png); background-position:right; background-repeat:no-repeat;}
 
-#ventana4{ display:none; position:absolute; z-index:3; width:800px; height:400px; top:50%; left:50%; margin-top:-200px; margin-left:-400px; 
+#ventana4{ display:none; position:absolute; z-index:3; width:800px; /*height:400px;*/ top:250px; left:50%; margin-top:-225px; margin-left:-400px; 
 border:#333333 2px solid; background-color:#FFFFFF;}
 #v4_t{ height:17px; text-align:right; padding:1px; padding-bottom:2px; background-color:#333333; color:#FFFFFF;}
-#v4_c{ height:378px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
+#v4_c{ height:95%; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
 #busqueda_nextel{ text-align:center; margin-top:70px;}
 
 #ventana5{ display:none; position:absolute; z-index:3; width:300px; height:200px; top:50%; left:50%; margin-top:-150px; margin-left:-100px; 
@@ -484,10 +496,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 	<div id="v2_t">
 	<div style="float:left; padding-left:5px; font-weight:bold;">Descripci&oacute;n del Producto</div>
 	<a href="javascript:cancelar();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
-	<div id="v2_c">
-		<img src="../../../../../img/xls1.png" border="0" title="Exportar datos a Excel." style="cursor:pointer; margin:10px; margin-top:50px;" />
-		<a href="javascript:exportar_xls();" style="position:absolute; top:89px; left:87px; " title="Esta operacion puede tardar un tiempo considerable en relacion al numero de productos.">
-		Exportar resultados a Excel.</a>	</div>	
+	<div id="v2_c"></div>	
 </div>
 
 <div id="ventana3">
@@ -585,9 +594,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 	<div id="v4_t">
 	<div style="float:left; padding-left:5px; font-weight:bold;">Kardex</div>
 	<a href="javascript:cerrar_kardex();"><img src="../../../../../img/cerrar_2.png" align="Cerrar" border="0" class="invisible" title="Cerrar esta ventana." style="cursor:pointer;" /></a></div>
-	<div id="v4_c">
-		...
-	</div>	
+	<div id="v4_c"></div>	
 </div>
 
 </body>

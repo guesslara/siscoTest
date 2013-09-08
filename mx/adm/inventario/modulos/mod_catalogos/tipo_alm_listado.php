@@ -5,7 +5,7 @@
 	
 	include ("../../conf/conectarbase.php");
 	$sql="SELECT * FROM tipoalmacen";
-	$result=mysql_db_query($sql_inv,$sql);
+	$result=mysql_query($sql,$link);
 	$ndr=mysql_num_rows($result);
 	$color="#D9FFB3";
 ?>
@@ -41,7 +41,6 @@ body {
 </head>
 
 <body>
-<?php include("../menu/menu.php"); ?>
 <br />
 <table width="652" align="center" cellspacing="0" style="border:#333333 2px solid; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px;">
     <tr style="background-color:#333333; text-align:center; color:#FFFFFF; font-weight:bold;">
@@ -73,6 +72,5 @@ body {
 	?>
   </table>
   <p>&nbsp;</p>
-<?	include("../../f.php");	?>
 </body>
 </html>

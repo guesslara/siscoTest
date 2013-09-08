@@ -9,12 +9,12 @@
 	$sql_iqe_inv="--";	// DB DEL SISTEMA DE INVENTARIOS IQ. 
 	$dbcompras="--";	// DB DEL SISTEMA DE COMPRAS IQ. 
 	$ialm=1;
-	$calm0="a_1_Producto_Recibido";
+	$calm0="a_1_Equipo_Recibido";
 	$cexi0="exist_$ialm";
 	$ctra0="trans_$ialm";
 	
-	$id_almacen_ingenieria=2;
-	$nombre_almacen_ingenieria="a_2_ingenieria";
+	$id_almacen_ingenieria=4;
+	$nombre_almacen_ingenieria="a_4_Ingenieria";
 	
 	if(!$link){
 		echo "Error al conectar con la Base de Datos";

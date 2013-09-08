@@ -112,7 +112,7 @@ if ($ndrX<=0){	?>
       $<?=$row2["cu"];?>&nbsp;</td>
   </tr>
   <?php 
-	  ($color=="#D9FFB3")? $color="#FFFFFF": $color="#D9FFB3";
+	  ($color=="#F0F0F0")? $color="#FFFFFF": $color="#F0F0F0"; //D9FFB3
 	  } ?>
   <tr style="background-color: #333333; color:#FFFFFF; font-weight:bold;">
     <td height="20">&nbsp;</td>
