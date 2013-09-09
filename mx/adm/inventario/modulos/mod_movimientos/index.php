@@ -11,8 +11,7 @@
   <script type="text/javascript" src="../../../../../recursos/Calendario/calendar-setup.js"></script>  
 
 <script language="javascript">
-	function seleccionar(a)
-	{
+	function seleccionar(a){
 		$.ajax({
 		async:true,
 		type: "POST",
@@ -29,27 +28,23 @@
 		});		
 	}
 
-	function cerrar(d)
-	{
+	function cerrar(d){
 		$("#"+d).hide();
 		$("#all").css("background-image","");
 		$("#datos2").show();
 	}
-	function cerrar2(d)
-	{
+	function cerrar2(d){
 		$("#"+d).hide();
 		$("#all").css("background-image","");
 		$("#div_items_movs1").show();
 	}			
 	
-	function muestra_opciones()
-	{
+	function muestra_opciones(){
 		$("#datos2").hide('');
 		$("#opciones2").show('');
 	}
 
-	function coloca_tipo(i,a,c,t)
-	{
+	function coloca_tipo(i,a,c,t){
 		$("#txt_tipo_mov1").attr("value",i);
 		$("#hdn_asociado1").attr("value",a);
 		$("#hdn_concepto1").attr("value",c);
@@ -67,16 +62,14 @@
 		}
 	}
 	
-	function coloca_almacen1(i,a)
-	{
+	function coloca_almacen1(i,a){
 		$("#txt_idalmacen1").attr("value",i);
 		$("#hdn_almacen1").attr("value",a);
 		cerrar('almacenes1');
 		$("#datos2").show();
 	}
 	
-	function ver_asociado()
-	{
+	function ver_asociado(){
 		var asociadoX=$("#hdn_asociado1").attr("value");
 		var conceptoX=$("#hdn_concepto1").attr("value");
 		$.ajax({
@@ -97,25 +90,20 @@
 
 	}
 	
-	function ver_almacenes()
-	{
+	function ver_almacenes(){
 		$("#datos2").hide();
 		$("#almacenes1").show();		
 	}
 	
-	function coloca_proveedor1(i,p)
-	{
+	function coloca_proveedor1(i,p){
 		$("#txt_idasociado1").attr("value",i);
 		$("#hdn_asociado1b").attr("value",p);	
 		//alert(i+'\n'+p);                  div_asociados2
 		$("#datos2").show();
 		cerrar('div_asociados2');
 	}
-	
-	
-	
-	function crear_movimiento()
-	{
+		
+	function crear_movimiento(){
 		var t=$("#txt_tipo_mov1").attr("value");
 		var f=$("#txt_fecha1").attr("value");
 		var al=$("#txt_idalmacen1").attr("value");
@@ -165,8 +153,7 @@
 		}	
 	}	
 	
-	function elegir_producto1(n)
-	{
+	function elegir_producto1(n){
 		//alert("Elegir Producto y colocar en la fila "+n);
 		/*var ndm=$("#hdn_ndm1").attr("value"); 			// Numero de Movimiento*/
 		var tdm=$("#txt_tipo_mov1").attr("value");		// Tipo de Movimiento
@@ -197,8 +184,7 @@
 		});			
 	}	
 	
-	function coloca_producto1(i,c,d,e,cp,n)
-	{
+	function coloca_producto1(i,c,d,e,cp,n){
 		$("#datos2").show();
 		$("#div_items_movs1").show();
 				
@@ -213,8 +199,7 @@
 		$("#chk_"+n).attr('checked','checked');
 	}
 	
-	function guarda_producto()
-	{
+	function guarda_producto(){
 			var claves2="";
 			for (var i=0;i<document.frm1.elements.length;i++)
 			{
@@ -234,26 +219,28 @@
 			//alert("Agregar: "+claves2);	
 			var cs=claves2.split(",");
 			var valoresX="";
-			for (var i=0;i<cs.length;i++)
-			{
-				if (cs[i]!=="undefined")
-				{
-					
-					var can=$("#ca"+cs[i]).attr("value");
-					var idp=$("#idp"+cs[i]).attr("value");
-					var cla=$("#clave"+cs[i]).attr("value");
-					var cun=$("#cu"+cs[i]).attr("value");
+			//alert("Longitud: "+cs.length);
+			for (var i=0;i<cs.length;i++){				
+				if (cs[i]!=="undefined"){					
+					var can=$("#ca"+cs[i]).attr("value");					
+					var idp=$("#idp"+cs[i]).attr("value");					
+					var cla=$("#clave"+cs[i]).attr("value");					
+					//var cun=$("#cu"+cs[i]).attr("value");
+					var ubicacion=$("#po"+cs[i]).attr("value");					
 					var existen=can;
-					//alert("FILA: "+cs[i]+"\tCANTIDAD="+can+"\tID PRODUCTO="+idp+"\tCLAVE PRODUCTO="+cla+"\tCOSTO UNITARIO="+cun);
-					if (can==""||can=="undefined"||idp==""||idp=="undefined"||cla==""||cla=="undefined"||cun==""||cun=="undefined")
-					{
+					
+					//alert("FILA: "+cs[i]+"\tCANTIDAD="+can+"\tID PRODUCTO="+idp+"\tCLAVE PRODUCTO="+cla+"\tUBICACION="+ubicacion);
+					if (can==""||can=="undefined"||idp==""||idp=="undefined"||cla==""||cla=="undefined"||ubicacion==""||ubicacion=="undefined"){
 						alert("Error: No omita campos en las filas seleccionadas (Todos los campos son obligatorios).");
 						return;
 						
 					} else {
-						valoresX+=idp+"?"+can+"?"+existen+"?"+cla+"?"+cun+",";
+						//valoresX+=idp+"?"+can+"?"+existen+"?"+cla+"?"+cun+",";
+						valoresX+=idp+"?"+can+"?"+existen+"?"+cla+"?"+ubicacion+",";
 					}
 					//alert("VALORES ALMACENADOS="+valoresX);	
+				}else{
+					alert("Error al Generar el detalle del movimiento");
 				}	
 			}
 			//alert("VALORES ALMACENADOS FINALES="+valoresX);
@@ -310,8 +297,6 @@
 	.contenedor_entradas { position:relative; width:800px; height:150px; float:left; color:#006600; }
 	.contenedor_salidas {  position:relative; width:800px; height:130px; float:left; color:#FF0000; }
 	/* ESTILOS DE LOS TIPOS DE MOVS */	
-	
-	
 	/*.div_contenido_interno{ background-color:#00FFFF; width:100%; height:395px; overflow:auto;}*/
 	.botones { text-align:center; clear:both; margin:5px;}
 	.btn1 { font-size:9px; width:25px; height:18px;}
@@ -327,32 +312,21 @@
 
 	/* ESTILOS DE DATOS2 */
 	#almacenes1{ position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; border:#000000 1px solid; }
-
 	/* ESTILOS DE DATOS2 */	
-	
-	
 	/* ESTILOS DE ASOCIADOS */
 	#div_asociados2 { position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; border:#000000 1px solid; }
-	
 	/* ESTILOS DE ASOCIADOS */
-	
 	/* ESTILOS DE ITEMS MOVIMEINTOS */
-	#div_items_movs1 { position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; border:#000000 1px solid; }
-	
+	#div_items_movs1 { position:relative; width:1000; /*height:420px;*/ left:50%; margin-left:-500px; padding:0px; border:#000000 1px solid;}
 	/* ESTILOS DE ITEMS MOVIMEINTOS */
-	
 	/* ESTILOS DE PROVEEDORES */
 	#div_proveedores1 { position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; border:#000000 1px solid; }
-	
 	/* ESTILOS DE PROVEEDORES */
-	
 	/* ESTILOS DE PRODUCTOS EN EL MOVIMEINTO X */
 	#div_pem1 { position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; /*border:#000000 2px solid;*/ }
 	#div_prod_ninguno1{ position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; border:#000000 1px solid; }
 	#acciones_proceso{  position:relative; width:802px; /*height:420px;*/ left:50%; margin-left:-401px; padding:0px; border:#000000 1px solid; }
-	/* ESTILOS DE PRODUCTOS EN EL MOVIMEINTO X*/		
-		
-	
+	/* ESTILOS DE PRODUCTOS EN EL MOVIMEINTO X*/			
 </style>
 </head>
 

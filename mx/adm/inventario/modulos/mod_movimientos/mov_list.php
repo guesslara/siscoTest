@@ -52,7 +52,7 @@ if ($_POST){
 					$asociadoMov=$row_detalle_movimiento["dasociado"];
 					
 ?>
-<table width="95%" align="center" cellspacing="0" style="border:#333333 1px solid;">
+<table width="95%" align="center" cellspacing="0" style="border:#333333 1px solid;font-size: 12px;">
   <tr>
     <td colspan="4" height="20" style=" background-color:#333333;text-align:center; font-weight:bold; color:#FFFFFF;">Movimiento <?=$id_movimiento_recibido?></td>
   </tr>
@@ -88,7 +88,7 @@ if ($_POST){
 }			
 			?>
 			<br />
-			<table width="95%" align="center" cellpadding="0" cellspacing="0" class="tablax" style="font-size: 10px;">
+			<table width="95%" align="center" cellpadding="0" cellspacing="0" class="tablax" style="font-size: 12px;">
 				<tr>
 					<td colspan="8" bgcolor="#333333" height="20" class="style9"><?=$trows?> Productos registrados en el Movimiento</td>
 				</tr>
@@ -102,7 +102,7 @@ if ($_POST){
 				    <td width="228" bgcolor="#CCCCCC" class="style17">Acciones</td>
 				</tr>
             <?
-			$color="#D9FFB3";
+			$color="#F0F0F0";
 			while($row=mysql_fetch_array($resultado)){
 				$sqlInfoProd="select $lista_campos from catprod where id='".$row['id_prod']."' ORDER BY id";
 				$resultado1=mysql_query($sqlInfoProd,$link);
@@ -173,7 +173,7 @@ if ($_POST){
 				</tr>
 			<?
 				}
-				($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";
+				($color=="#F0F0F0")? $color="#ffffff" : $color="#F0F0F0";
 				$totArticulos=$totArticulos+$row['cantidad'];	
 			}
 			?>
@@ -263,15 +263,11 @@ mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id
 <style type="text/css">
 .td1{ border-right:#CCCCCC 1px solid; padding:1px; }
 .tablax{ border:#333333 1px solid; }
-#detalle{ position:absolute; display:none; border:#333333 3px solid; background-color:#ffffff; 
-width:800px; height:450px; left:50%; top:50%; margin-left:-400px; margin-top:-225px; z-index:3;}
+#detalle{position:absolute; display:none; border:#333333 3px solid; background-color:#ffffff; width:800px; /*height:450px;*/ left:50%; top:240px;; margin-left:-400px; margin-top:-225px; z-index:3;}
 #d_tit{width:710px; height:20px; float:left; background-color:#333333; color:#FFFFFF;font-size: 12px;}
 #d_cer{width:90px; height:20px; float:right; text-align:right; background-color:#333333;}
-#d_con{ clear:both; margin:2px; margin-top:3px; padding:2px; height:425px; /*border:#333333 1px solid;*/ overflow:auto;font-size: 10px;}
-
+#d_con{ clear:both; margin:2px; margin-top:3px; padding:2px; height:95%; /*border:1px solid #ff0000;*/ overflow:auto;font-size: 10px;}
 .tdx{ background-color:#CCCCCC; font-weight:bold; text-align:left; padding-left:2px;}
-
-
 /*==========================================================================================*/
  .paginador1:link{ border:#CCCCCC 1px solid; background-color:#efefef; color:#000000; text-align:center; 
  width:20px; height:30px; padding:2px; font-size:10px; margin:1px;}
@@ -293,7 +289,18 @@ width:800px; height:450px; left:50%; top:50%; margin-left:-400px; margin-top:-22
 <link rel="stylesheet" type="text/css" href="../../../../../recursos/grid/grid.css" />
 <!--Fin de l ainclusion de las librerias-->
 <script language="javascript">
-<!-- 
+<!--
+$(document).ready(function(){
+	redimensionarVentana();
+})
+
+	function redimensionarVentana(){
+		var altoDoc=$(document).height();
+		//alert(altoDoc);
+		$("#detalle").css("height",90+"%");		
+	}
+	window.onresize=redimensionarVentana;
+	
 function popUp(URL) {
 		day = new Date();
 		id = day.getTime();
@@ -436,11 +443,7 @@ document.onkeypress = cerrar;
 </head>
 <body topmargin="0">
 <div id="all" style="">
-
-
 <center>
-<br /><br />
-
 <div class="buscador">
 	<div class="form_buscador">
 		<form name="frm_buscador" action="<?=$_SERVER['PHP_SELF'];?>" method="get" style="margin:0px; padding:0px;">
@@ -508,7 +511,7 @@ mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id
 
 		//echo "<hr>SQL [$sql7]";
 		$result=mysql_query($sql7,$link);  	
-		$color=="#D9FFB3";
+		$color=="#F0F0F0";
 		
 		while($row=mysql_fetch_array($result)){	
 $id_mov=$row[0];
@@ -567,7 +570,7 @@ $aso2='';
 	</td>
   </tr>
   <?
-  	($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";
+  	($color=="#F0F0F0")? $color="#ffffff" : $color="#F0F0F0";
 	} 
   ?>
 </table>

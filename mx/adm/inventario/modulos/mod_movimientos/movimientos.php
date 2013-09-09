@@ -2,37 +2,34 @@
 	include ("../../conf/conectarbase.php");
 	include ("clase_movimientos.php");
 	include ("catalogo_errores.php");
-	
-	
 	header("Cache-Control: no-store, no-cache, must-revalidate");
 	header("Content-Type: text/xml; charset=ISO-8859-1");
 	
 	$actual=$_SERVER['PHP_SELF'];
-	$color="#D9FFB3";
+	$color="#F0F0F0";
 	//print_r($_POST);
 	$ac=$_POST["accion"];
 	
-	if ($ac=="ver_asociados")
-	{
+	if ($ac=="ver_asociados"){
 		$asociadoX=$_POST["a"];
-		?>
+?>
 		<div id="div_asociados2">
 			<div class="tit1">
 				<span class="tit_mov">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASOCIADOS&nbsp;</span>
 				<span class="cer_mov"><a href="javascript:cerrar('div_asociados2');">CERRAR</a>&nbsp;</span>
 			</div>
 			<br />			
-			<?php
-			$color="#D9FFB3";
+<?php
+			$color="#F0F0F0";
 			if($asociadoX=="Cliente" || $asociadoX=="Ninguno"){
 				//echo "<br>BD=[$sql_inv] SQL=".
 				$sql="SELECT id_cliente,n_comercial FROM cat_clientes";
 				$result=mysql_query($sql,$link);
-				?>
+?>
 				<br /><table align="center" width="98%" cellspacing="0" style="border:#333333 1px solid;">
 				<tr>
 					<td colspan="2" height="20" style="background-color:#333333; text-align:center; font-weight:bold; color:#FFFFFF;">Cat&aacute;logo de Clientes.</td>
-				  </tr>		
+				</tr>		
 				<tr style="background-color:#cccccc; text-align:center; font-weight:bold; color:#000000;">
 					<td width="10%" height="20">ID</td>
 					<td width="90%">Cliente</td>
@@ -43,13 +40,13 @@
 					<td>&nbsp;<?=$row["n_comercial"];?></td>
 				</tr>
 				<?php 
-					($color=="#D9FFB3")? $color="#FFFFFF" : $color="#D9FFB3";
+					($color=="#F0F0F0")? $color="#FFFFFF" : $color="#F0F0F0";
 				} ?>		
 				</table><br />
 				  <?php 			
 			} elseif($asociadoX=="Almacen"){
 			$conceptoX=$_POST["conceptoX"];
-			$color="#D9FFB3";
+			$color="#F0F0F0";
 			$sql="SELECT * FROM tipoalmacen";
 			$result=mysql_query($sql,$link);
 			?>
@@ -67,7 +64,7 @@
 				<td>&nbsp;<?= $row["almacen"]?></td>
 				</tr>
 				<?
-				($color=="#D9FFB3")? $color="#FFFFFF": $color="#D9FFB3";
+				($color=="#F0F0F0")? $color="#FFFFFF": $color="#F0F0F0";
 				}
 				?>
 			  </table>
@@ -78,16 +75,14 @@
 		</div>		
 		<?php
 	}	
-	if ($ac=="crear_movimiento")
-	{
+	if ($ac=="crear_movimiento"){
 		$t=$_POST["t"];		$f=$_POST["f"];		$al=$_POST["al"];		$as=$_POST["as"];		$r=$_POST["r"];		$o=$_POST["o"];		$fr=date("Y-m-d H:i:s");
 		$sql_nuevo_mov="INSERT INTO mov_almacen (id_mov,fecha,fecha_real,tipo_mov,almacen,referencia,asociado,observ,seriesGen) VALUES (NULL,'$f','$fr','$t','$al','$r','$as','$o','No Generado')";
-		if (mysql_query($sql_nuevo_mov,$link))
-		{
+		if (mysql_query($sql_nuevo_mov,$link)){
 			$u_id=mysql_insert_id($link);
 			echo "<div align='center'>Se ha creado el Movimiento: $u_id.</div>";
 			//exit();
-			?>
+?>
 			<br><br><div id="div_items_movs1">
 				<div class="tit1">
 					<span class="tit_mov">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVIMIENTO <?=$u_id?> <input type="hidden" name="hdn_ndm1" id="hdn_ndm1" value="<?=$u_id?>" />.&nbsp;</span>
@@ -95,7 +90,7 @@
 				</div>
 				<br>
 				<form id="frm1" name="frm1" method="post" action="">
-				  <table width="98%" align="center" cellspacing="0"  style="border:#000000 1px solid;font-weight:bold; ">
+				  <table width="98%" align="center" cellspacing="0"  style="border:#000000 1px solid;font-weight:bold;font-size: 12px;">
 					<tr style="text-align:center; font-weight:bold; background-color:#333333; color:#FFFFFF;">
 					  <td width="29">&nbsp;</td>
 					  <td width="70" height="25">Cantidad</td>
@@ -103,23 +98,25 @@
 					  <td width="317">Clave Producto </td>
 					  <td width="362">Descripci&oacute;n</td>
 					  <td width="273">Especificaci&oacute;n</td>
-					  <td width="60">C.U.</td>
+					  <td width="60">Posici&oacute;n</td>
+					  <!--<td width="60">C.U.</td>-->
 				    </tr>
-					<?php 
+<?php 
 					$color="#EFEFEF";
-					for ($a=1;$a<=10;$a++) {
-					?>
+				for ($a=1;$a<=10;$a++){
+?>
 					<tr style="background-color:<?=$color?>; text-align:center;">
 					  <td><input type="checkbox" name="chk_<?=$a?>" id="chk_<?=$a?>" value="<?=$a?>" /></td>
-					  <td class="td1"><input name="ca<?=$a?>" type="text" id="ca<?=$a?>" size="5" class="txtNC" style="text-align:right;" /></td>
-					  <td ><input name="idp<?=$a?>" type="text" id="idp<?=$a?>" size="5" /></td>
+					  <td class="td1"><input name="ca<?=$a?>" type="text" id="ca<?=$a?>" size="5" class="txtNC" style="width: 100px;text-align:right;" /></td>
+					  <td><input name="idp<?=$a?>" type="text" id="idp<?=$a?>" size="5" /></td>
 					  <td align="left" >
-						<input name="clave<?=$a?>" type="text" size="15" id="clave<?=$a?>" style="cursor:hand;" />
+						<input name="clave<?=$a?>" type="text" size="15" id="clave<?=$a?>" style="cursor:hand; width: 100px;" />
 						<input name="btn_tipo<?=$a?>" id="btn_tipo<?=$a?>" type="button" value="..." class="btn2" onclick="javascript:elegir_producto1('<?=$a?>');" />					  </td>
-					  <td ><input name="ds<?=$a?>" type="text" id="ds<?=$a?>" />					  </td>
-					  <td ><input name="es<?=$a?>" type="text" id="es<?=$a?>" /></td>
-					  <td ><input name="cu<?=$a?>" type="text" id="cu<?=$a?>" size="5" value="0" readonly="1" style="text-align:right;" /></td>
-				    </tr>
+					  <td><input name="ds<?=$a?>" type="text" id="ds<?=$a?>" />					  </td>
+					  <td><input name="es<?=$a?>" type="text" id="es<?=$a?>" style="width: 100px;" /></td>
+					  <td><input name="po<?=$a?>" type="text" id="po<?=$a?>" size="5" style="text-align:right;" /></td>
+					  <!--<td><input name="cu<?=$a?>" type="text" id="cu<?=$a?>" size="5" value="0" readonly="1" style="text-align:right;" /></td>-->
+					</tr>
 					<?
 					($color=="#EFEFEF")? $color="#FFFFFF": $color="#EFEFEF";
 					}
@@ -182,7 +179,8 @@
 				<td width="65"><a href="#" title="<?=$desceX?>" style="color:#000000;">Exist.</a></td>
 				<td width="64"><a href="#" title="<?=$desctX?>" style="color:#000000;">Trans.</a></td>
 			  </tr>
-			<?php			
+			<?php
+			$color="#F0F0F0";
 			while ($ro0=mysql_fetch_array($r0))
 			{
 				$idx0=$ro0["id"];
@@ -227,7 +225,7 @@
 										<td style="border-left:#CCCCCC 1px solid; " align="right"><?=$ro1["$ctX"]?>&nbsp;</td>
 									</tr>
 									<?php
-									($color=="#D9FFB3")?$color="#FFFFFF" : $color="#D9FFB3";
+									($color=="#F0F0F0")?$color="#FFFFFF" : $color="#F0F0F0";
 									//print_r($ro1);
 								}	
 							} else {
@@ -303,7 +301,7 @@
 						<td style="border-left:#CCCCCC 1px solid; " align="right"><?=$tra;?>&nbsp;</td>
 					</tr>
 					<?php
-					($color=="#D9FFB3")?$color="#FFFFFF" : $color="#D9FFB3";
+					($color=="#F0F0F0")?$color="#FFFFFF" : $color="#F0F0F0";
 				}
 				?></table>
 				<br>
@@ -358,7 +356,7 @@
 					<td style="border-left:#CCCCCC 1px solid; " align="right"><?=$tra;?>&nbsp;</td>
 				</tr>
 				<?php
-				($color=="#D9FFB3")?$color="#FFFFFF" : $color="#D9FFB3";
+				($color=="#F0F0F0")?$color="#FFFFFF" : $color="#F0F0F0";
 			}
 			?></table>
 			<br>
@@ -398,7 +396,8 @@
 			//echo "<br>$p";
 			if ($p!=='')
 			{
-				$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,cu,id) VALUES ('$m',";
+				//$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,cu,id,ubicacion) VALUES ('$m',";
+				$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,id,ubicacion) VALUES ('$m',";
 				$valores0=str_replace('?',',',$p);
 				$valores=explode(',',$valores0);
 				
