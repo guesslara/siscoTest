@@ -232,6 +232,7 @@ class movimientos{
 	protected function m_inserta_producto(){
 		include ("../../conf/conectarbase.php");
 		//echo "<br>***...*** Insertar producto: [".$this->sql_prodxmov."]<br>";
+		//exit();
 		if (mysql_query($this->sql_prodxmov,$link)){
 			echo "<li>El producto (".$this->id_p.") se agrego al movimiento (".$this->idm.") correctamente.</li>";
 			?>

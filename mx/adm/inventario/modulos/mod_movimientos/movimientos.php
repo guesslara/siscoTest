@@ -374,11 +374,9 @@
 	
 	
 	
-	if ($ac=="insertar_productos")
-	{
+	if ($ac=="insertar_productos"){
 		$m=$_POST["idm"];		$v=$_POST["valores"];
-		$productos=explode(',',$v);
-		
+		$productos=explode(',',$v);		
 		echo "<br>";
 		echo "<br><div id='acciones_proceso'>
 				<div class='tit1'>
@@ -389,20 +387,16 @@
 		<ul>
 			
 			<li><b>Obtener y Validar la Informaci&oacute;n.</b></li><br />
-		<?php		
-		
-		foreach ($productos as $p)
-		{
+<?php		
+		foreach ($productos as $p){
 			//echo "<br>$p";
-			if ($p!=='')
-			{
+			if ($p!==''){
 				//$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,cu,id,ubicacion) VALUES ('$m',";
 				$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,id,ubicacion) VALUES ('$m',";
 				$valores0=str_replace('?',',',$p);
 				$valores=explode(',',$valores0);
 				
-				if ($sistema_costeoX=="CP")
-				{
+				if ($sistema_costeoX=="CP"){
 					// VERIFICAR SI YA EXISTE EL PRODUCTO EN EL MOVIMENTO ...
 					//echo "<br>".
 					$sql_existe="SELECT id FROM prodxmov WHERE id_prod='".$valores[0]."' AND nummov='$m' "; 
@@ -415,13 +409,16 @@
 				}
 				//errorX(0);			
 				
-				foreach ($valores as $vp)
-				{
+				foreach ($valores as $vp){
 					//echo "'$vp',";
 					$sql_insertar.="'$vp',";
 				}
 				$sql_insertar.="NULL)";
 				//echo "<br><br>*** SQL ANTES DE INSTANCIAR $sql_insertar<br><br>";
+					/*echo "<pre>";
+					print_r($valores);
+					echo "</pre>";
+					exit();*/
 					$nuevo_movimiento=new movimientos($m,$valores[0],$valores[1],$valores[3],$valores[4]);
 					$nuevo_movimiento->mueve_producto($sql_insertar);
 					unset($nuevo_movimiento);
