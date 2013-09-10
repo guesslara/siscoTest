@@ -392,7 +392,8 @@
 			//echo "<br>$p";
 			if ($p!==''){
 				//$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,cu,id,ubicacion) VALUES ('$m',";
-				$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,id,ubicacion) VALUES ('$m',";
+				$sql_insertar="INSERT INTO prodxmov(nummov,id_prod,cantidad,existen,clave,ubicacion,id) VALUES ('$m',";
+				
 				$valores0=str_replace('?',',',$p);
 				$valores=explode(',',$valores0);
 				
@@ -414,7 +415,10 @@
 					$sql_insertar.="'$vp',";
 				}
 				$sql_insertar.="NULL)";
+				//$sql_insertar.=")";
+				
 				//echo "<br><br>*** SQL ANTES DE INSTANCIAR $sql_insertar<br><br>";
+				//exit();
 					/*echo "<pre>";
 					print_r($valores);
 					echo "</pre>";
