@@ -1,0 +1,41 @@
+/*Estilos para poder generar las ventanas de informacion*/
+/*estilos para hacer el drag*/
+.dragDiv{
+        width:700px;
+        background-color:#FFF;/*#EFF7FF*/
+        border:2px solid #333;/*#96C2F1*/
+        position:absolute;
+        left:300px;
+        top:100px;
+}
+.dragDiv h5{
+        background-color:#F0F0F0;/*#B2D3F5*/
+	border: 1px solid #CCC;
+        padding:5px;
+        margin:1px;
+}
+.dragDiv div{
+        padding:5px;
+        margin-bottom:10px;
+	/*height: 450px;*/
+	overflow: auto;
+	position: relative;
+}
+.dragDiv2{
+        background-color:#F0FBEB;
+        border:1px solid #9BDF70;
+        width:200px;
+        position:absolute;
+        left:400px;
+        top:400px;
+}
+.dragDiv2 h5{
+        background-color:#C2ECA7;
+        padding:5px;
+        margin:1px;
+}
+.dragDiv2 div{
+        padding:5px;
+        margin-bottom:10px;
+}
+/*fin estilos drag*/

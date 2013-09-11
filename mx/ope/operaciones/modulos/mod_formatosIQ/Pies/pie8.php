@@ -1,0 +1,16 @@
+<div id="conPie" style="width:100%;height:100%">
+    <div id="firma01" style="with:160px;height:35px;margin: 5px 5px 5px 60px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:left;font-size:10px;"><n class="fo">INGENIERO HP</n></div></div>
+		<div id="firma02" style="with:160px;height:35px;margin: 5px 5px 5px 20px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:left;font-size:10px;"><n class="fo">DATE</div></div>
+		<div id="firma03" style="with:160px;height:35px;margin: 5px 0px 5px 70px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:left;font-size:10px;"><n class="fo">OPERATIONS Vo.Bo.</div></div>
+		<div id="firma04" style="with:160px;height:35px;margin: 5px 0px 5px 30px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:left;font-size:10px;"><n class="fo">DATE</n></div></div><br><br><br>
+	
+		<div id="firmas" style="margin:20px auto 0px auto;">
+		<div id="firma1" style="with:160px;height:35px;margin: 5px 10px 5px 80px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;font-size:10px;"><n class="fo">ELABOR&Oacute;</n><BR>Jose Manuel Cocom Montiel<br>Ingenieria HP Sitex</div></div>
+		<div id="firma2" style="with:160px;height:35px;margin: 5px auto 5px 80px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;font-size:10px;"><n class="fo">REVIS&Oacute;</n><BR>Lic.Belinda D&iacute;az Trujillo<br>Responsable del SAC</div></div>
+		<div id="firma3" style="with:160px;height:35px;margin: 5px auto 5px 80px; float:left;border:0px solid #000;"><div id="linea" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;">_________________</div><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;font-size:10px;"><n class="fo">AUTORIZ&Oacute;</n><BR>Lic.Humberto Galv&aacute;n Lassard<br>Subdirecci&oacute;n de Operaciones</div></div>
+	        
+			
+	</div>
+	        <br><br><br><div id="firma4" style="with:160px;height:35px;margin: 3px 10px 5px 80px; float:left;border:0px solid #000;"><br><div id="nombre" style="margin:2px auto 0 auto; clear:both:width:80%;text-align:center;font-size:10px;"><br><n class="fo">ESTE DOCUMENTO ES DE USO EXLCUSIVO DE IQ ELECTRONICS INTERNATIONAL, S.A. DE C.V.
+		QUEDA ESTRICTAMENTE <br>PROHIBIDA SU REPRODUCCI&Oacute;N TOTAL O PARCIAL SIN AUTORIZACI&Oacute;N PREVIA</n></div></div><br>
+</div>			

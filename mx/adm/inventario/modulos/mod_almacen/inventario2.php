@@ -28,8 +28,8 @@
 		$campo_almacen="a_".$ialm."_".$almacen;
 		$campo_existencias="exist_".$ialm;	
 		$campo_transferencias="trans_".$ialm;
-		//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`exist_13`,`exist_14`,`$campo_transferencias` ";
-		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
+		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`$campo_transferencias` ";
+		//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
 		if ($op=='LIKE'){
 			$where=" WHERE $campo LIKE '%" . $cri . "%' AND ".$campo_almacen."=1 "; 
 		} else {

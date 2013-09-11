@@ -1,0 +1,22 @@
+select * from equipos where imei in ('001704249923810',
+'001703824060810',
+'001702177336810',
+'001703181241810',
+'001702069420810')
+
+UPDATE equipos set statusProceso='Desensamble',statusDesensamble='N/A',statusDiagnostico='N/A',statusAlmacen='N/A',statusIngenieria='N/A',statusEmpaque='N/A' where imei in ('001704249923810',
+'001703824060810',
+'001702177336810',
+'001703181241810',
+'001702069420810')
+
+UPDATE equipos set statusProceso='Desensamble',statusDesensamble='N/A',statusDiagnostico='N/A',statusAlmacen='N/A',statusIngenieria='N/A',statusEmpaque='N/A' where imei in ('001700452277880',
+'001700034014880',
+'001700538273880',
+'001700548691880',
+'001700518342880',
+'001700237648880',
+'001700481428880')
+
+
+
