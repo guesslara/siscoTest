@@ -4,7 +4,7 @@
     if($_POST["radio"]=="Almacen"){
 	$nombreProyecto="Almacen";
     }else{
-	$nombreProyecto=dameNombreProyecto($_POST["radio"]);
+	$nombreProyecto=dameNombreProyecto($_POST["radio"]);	
     }    
     
     switch($nombreProyecto){
@@ -20,14 +20,14 @@
 	    header("Location: ".$url);	   
             exit();
 	break;
-        /*case "Lexmark":
-            header("Location: ../ope/lexmark/modulos/mod_login/index.php");
+        case "HP":
+            header("Location: ../ope/operaciones/modulos/mod_login/index.php");
             exit();
         break;
 	default:
 	    header("Location: index.php");
 	    exit();
-	break;*/
+	break;
     }
     
     function devuelveNombreProyectoConvertido($nombreProyecto){

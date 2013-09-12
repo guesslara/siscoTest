@@ -60,7 +60,7 @@
 </div>
 <div id="transparenciaGeneral1" class="transparenciaGeneral" style="display:block;">
 	<div id="divMensajeCaptura" class="ventanaDialogo">
-		<div id="barraTitulo1VentanaDialogoValidacion" class="barraTitulo1VentanaDialogoValidacion">Seleccionar Modulo...</div>
+		<div id="barraTitulo1VentanaDialogoValidacion" class="barraTitulo1VentanaDialogoValidacion">Seleccionar ...</div>
 		<form name="proyecto" id="proyecto" action="procesarPeticion.php" method="post">
 		<div id="listadoEmpaqueValidacion" style="border:1px solid #CCC; margin:4px; font-size:10px;height:87%; overflow:auto;">			
 			<div style="border: 1px solid #e1e1e1;height: 97%;width: 462px;float: left;position: relative;margin: 3px;overflow: auto;">
