@@ -39,12 +39,38 @@ function mostrarFormulario(){
 	ajaxApp("detalleEmpaque","controladorEnsamble.php","action=mostrarFormularioBusqueda","POST");
 }
 function buscarProductoProd(evento){
-	if(evento.which==13){	
+	//if(evento.which==13){	
 		var parametro=$("#txtBusquedaProd").val();
 		if(parametro=="" || parametro==null){
 			alert("Error: Introduzca un parametro de Busqueda");
 		}else{
 			ajaxApp("divBusqueda","controladorEnsamble.php","action=busquedaProd&parametro="+parametro,"POST");
 		}
+	//}
+}
+function capturarExistencias(id){
+	ajaxApp("gridBusqueda","controladorEnsamble.php","action=mostrarFormularioCaptura&id="+id,"POST");
+}
+var valores =  "";
+function siguienteCaja(caja,indiceSig,evento){
+	if(evento.which==13){
+		caja=$("#"+caja).val();
+		if(valores==""){
+			valores=caja;
+		}else{
+			valores=valores+","+caja;
+		}				
+		if(indiceSig==13){//se manda el enlace a la siguiente caja
+			$("#btnActualizarExist").focus();
+			valores.legth=0;
+		}else{
+			$("#exist_"+indiceSig).focus();	
+		}		
 	}
+}
+function guardarActualizacion(){
+	idProducto=$("#hdnIdProducto").val();	
+	alert("Valores "+": "+valores);
+	//se mandan los valores para actualizarlos en la base de datos
+	ajaxApp("gridBusqueda","controladorEnsamble.php","action=guardarExistencia&valores="+valores+"&idProducto="+idProducto,"POST");
 }
