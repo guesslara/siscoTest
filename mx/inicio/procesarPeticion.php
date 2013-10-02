@@ -1,6 +1,4 @@
 <?php
-    //print_r($_POST);
-    //exit();
     if($_POST["radio"]=="Almacen"){
 	$nombreProyecto="Almacen";
     }else{
