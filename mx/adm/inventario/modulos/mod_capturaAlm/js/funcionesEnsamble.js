@@ -62,9 +62,11 @@ function siguienteCaja(caja,indiceSig,evento){
 		}				
 		if(indiceSig==13){//se manda el enlace a la siguiente caja
 			$("#btnActualizarExist").focus();
+			$("#btnActualizarExist").select();
 			valores.legth=0;
 		}else{
-			$("#exist_"+indiceSig).focus();	
+			$("#exist_"+indiceSig).focus();
+			$("#exist_"+indiceSig).select();	
 		}		
 	}
 }

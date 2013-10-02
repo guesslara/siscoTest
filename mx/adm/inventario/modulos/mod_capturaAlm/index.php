@@ -58,8 +58,8 @@
 <div id="contenedorEnsamble">
 	<div id="contenedorEnsamble3">
 		<div id="barraOpcionesEnsamble">
-			<div class="opcionesEnsamble" onclick="" title="">Opcion 1</div>
-			<div class="opcionesEnsamble" onclick="" title="">Opcion 2</div>			
+			<!--<div class="opcionesEnsamble" onclick="" title="">Opcion 1</div>
+			<div class="opcionesEnsamble" onclick="" title="">Opcion 2</div>-->
 			<div id="cargadorEmpaque" style="float:right;width:200px;height:20px;padding:5px;background:#FFF;border:1px solid #CCC;font-size:13px;text-align:right;"></div>
 		</div>
 		<!--<div id="infoEnsamble3">			
