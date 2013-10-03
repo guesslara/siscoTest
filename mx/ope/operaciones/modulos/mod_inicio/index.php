@@ -69,7 +69,7 @@
 	<div id="divMensajeCaptura" class="ventanaDialogo">
 		<div id="barraTitulo1VentanaDialogoValidacion" class="barraTitulo1VentanaDialogoValidacion">Seleccionar Modulo...</div>
 		<form name="proyecto" id="proyecto" action="../main-4.php?<?=$SID?>" method="post">
-		<div id="listadoEmpaqueValidacion" style="border:1px solid #CCC; margin:4px; font-size:10px;height:87%; overflow:auto;">			
+		<div id="listadoEmpaqueValidacion" style="border:1px solid #CCC; margin:4px; font-size:10px;height:255px; overflow:auto;">			
 			<div style="border: 1px solid #e1e1e1;height: 97%;width: 462px;float: left;position: relative;margin: 3px;overflow: auto;">
 <?
 			if(mysql_num_rows($result)==0){
