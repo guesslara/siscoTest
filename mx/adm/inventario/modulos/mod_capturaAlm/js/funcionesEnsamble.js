@@ -60,10 +60,9 @@ function siguienteCaja(caja,indiceSig,evento){
 		}else{
 			valores=valores+","+caja;
 		}				
-		if(indiceSig==13){//se manda el enlace a la siguiente caja
+		if(indiceSig==14){//se manda el enlace a la siguiente caja
 			$("#btnActualizarExist").focus();
-			$("#btnActualizarExist").select();
-			valores.legth=0;
+			$("#btnActualizarExist").select();			
 		}else{
 			$("#exist_"+indiceSig).focus();
 			$("#exist_"+indiceSig).select();	
@@ -75,4 +74,5 @@ function guardarActualizacion(){
 	alert("Valores "+": "+valores);
 	//se mandan los valores para actualizarlos en la base de datos
 	ajaxApp("gridBusqueda","controladorEnsamble.php","action=guardarExistencia&valores="+valores+"&idProducto="+idProducto,"POST");
+	valores="";
 }

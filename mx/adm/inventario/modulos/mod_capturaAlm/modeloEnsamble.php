@@ -17,7 +17,8 @@
 		public function guardarExistencia($valores,$idProducto){			
 			$valores=explode(",",$valores);
 			//se insertan los datos en los registros de la tabla
-			$sql="UPDATE catprod set exist_2='".$valores[0]."',exist_3='".$valores[1]."',exist_4='".$valores[2]."',exist_5='".$valores[3]."',exist_6='".$valores[4]."',exist_7='".$valores[5]."',exist_8='".$valores[6]."',exist_9='".$valores[7]."',exist_10='".$valores[8]."',exist_11='".$valores[9]."',exist_12='".$valores[10]."' WHERE id='".$idProducto."'";
+			//$sql="UPDATE catprod set exist_2='".$valores[0]."',exist_3='".$valores[1]."',exist_4='".$valores[2]."',exist_5='".$valores[3]."',exist_6='".$valores[4]."',exist_7='".$valores[5]."',exist_8='".$valores[6]."',exist_9='".$valores[7]."',exist_10='".$valores[8]."',exist_11='".$valores[9]."',exist_12='".$valores[10]."' WHERE id='".$idProducto."'";
+			$sql="UPDATE catprod set exist_13='".$valores[1]."',exist_14='".$valores[0]."' WHERE id='".$idProducto."'";
 			$res=mysql_query($sql,$this->conectarBd()); //se ejecuta la consulta en la base de datos			
 			$sql0="SELECT id_prod FROM catprod WHERE id='".$idProducto."'";//se busca la clave del producto en la tabla catprod
 			$res0=mysql_query($sql0,$this->conectarBd());
@@ -43,10 +44,10 @@
 			$row=mysql_fetch_array($res);
 			echo "<div style='margin:5px;height:15px;padding:5px;'>Actualizar existencias.</div>";
 ?>
-			<script type="text/javascript"> $("#exist_2").focus(); $("#exist_2").select();  </script>
+			<script type="text/javascript"> $("#exist_14").focus(); $("#exist_14").select();  </script>
 			<input type="hidden" name="hdnIdProducto" id="hdnIdProducto" value="<?=$id;?>">
 			<table border="0" cellpading="1" cellspacing="1" width="400" style="margin: 10px;font-size: 12px;">
-				<tr>
+				<!--<tr>
 					<td width="250" style="height: 15px;padding:5px;">Equipo Nuevo</td>
 					<td width="150"><input type="text" name="exist_2" id="exist_2" value="<?=$row["exist_2"];?>" onkeyup="siguienteCaja('exist_2','3',event)"></td>
 				</tr>
@@ -89,10 +90,18 @@
 				<tr>
 					<td style="height: 15px;padding:5px;">Consumibles Ingenier&iacute;a</td>
 					<td><input type="text" name="exist_12" id="exist_12" value="<?=$row["exist_12"];?>" onkeyup="siguienteCaja('exist_12','13',event)"></td>
+				</tr>-->
+				<tr>
+					<td style="height: 15px;padding:5px;">3039</td>
+					<td><input type="text" name="exist_14" id="exist_14" value="<?=$row["exist_14"];?>" onkeyup="siguienteCaja('exist_14','13',event)"></td>
+				</tr>
+				<tr>
+					<td style="height: 15px;padding:5px;">3040</td>
+					<td><input type="text" name="exist_13" id="exist_13" value="<?=$row["exist_13"];?>" onkeyup="siguienteCaja('exist_13','14',event)"></td>
 				</tr>
 				<tr>
 					<td colspan="2" style="height: 15px;padding:5px;"><hr style="background: #666;"></td>					
-				</tr>
+				</tr>				
 				<tr>
 					<td colspan="2"><input type="button" id="btnActualizarExist" value="Actualizar" onclick="guardarActualizacion()"></td>					
 				</tr>

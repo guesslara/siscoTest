@@ -28,7 +28,7 @@
 		$campo_almacen="a_".$ialm."_".$almacen;
 		$campo_existencias="exist_".$ialm;	
 		$campo_transferencias="trans_".$ialm;
-		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`$campo_transferencias` ";
+		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`exist_13`,`exist_14`,`$campo_transferencias` ";
 		//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
 		if ($op=='LIKE'){
 			$where=" WHERE $campo LIKE '%" . $cri . "%' AND ".$campo_almacen."=1 "; 
@@ -69,7 +69,7 @@
 			if ($final>$numPags) $final=$numPags; 
 		}	
 		//echo "$sql_inv&nbsp;";
-		echo $sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
+		$sql="SELECT $lista_campos FROM catprod ".$where." ORDER BY ".$orden." ".$ascdes." LIMIT ".$limitInf.",".$tamPag; 
 		$result=mysql_query($sql,$link);
 ?>
 <div class="buscador">
@@ -135,7 +135,7 @@
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?=$campo_existencias?>','<?=$ascdes?>','<?=$pagina?>');">
 		Equipo<br>Recibido</a></td>
-		<td width="4%">
+		<!--<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_2','<?=$ascdes?>','<?=$pagina?>');">
 		Equipo<br>Nuevo</a></td>
 		<td width="4%">
@@ -167,13 +167,13 @@
 		Consumibles<br>Tintas</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_12','<?=$ascdes?>','<?=$pagina?>');">
-		Consumibles<br>Ingenier&iacute;a</a></td>
-		<!--<td width="4%">
+		Consumibles<br>Ingenier&iacute;a</a></td>-->
+		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_13','<?=$ascdes?>','<?=$pagina?>');">
-		A13</a></td>
+		3039</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_14','<?=$ascdes?>','<?=$pagina?>');">
-		A14</a></td>-->
+		3040</a></td>
 
 	  </tr>
 <?php 
@@ -197,7 +197,7 @@
 ?>
 		</td>-->
 		<td class="td1" align="right"><?=$row[$campo_existencias]?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_2']?>&nbsp;</td>
+		<!--<td class="td1" align="right"><?=$row['exist_2']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_3']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_4']?>&nbsp;</td>		
 		<td class="td1" align="right"><?=$row['exist_5']?>&nbsp;</td>
@@ -207,9 +207,9 @@
 		<td class="td1" align="right"><?=$row['exist_9']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_10']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_11']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_12']?>&nbsp;</td>
-		<!--<td class="td1" align="right"><?=$row['exist_13']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_14']?>&nbsp;</td>-->
+		<td class="td1" align="right"><?=$row['exist_12']?>&nbsp;</td>-->
+		<td class="td1" align="right"><?=$row['exist_14']?>&nbsp;</td>
+		<td class="td1" align="right"><?=$row['exist_13']?>&nbsp;</td>
 		
 	  </tr>
 <?php 
