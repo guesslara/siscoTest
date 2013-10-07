@@ -4,7 +4,7 @@
 # HTTP="true"
 $hostname_prueba2 = "localhost";
 $database_prueba2 = "prueba";
-$username_prueba2 = "root";
-$password_prueba2 = "xampp";
+$username_prueba2 = "desarrollo";
+$password_prueba2 = "desarrollo";
 $prueba2 = mysql_pconnect($hostname_prueba2, $username_prueba2, $password_prueba2) or trigger_error(mysql_error(),E_USER_ERROR); 
 ?>

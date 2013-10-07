@@ -254,7 +254,7 @@
 						$ncalm3="a_".$ialm3."_$nalm3";
 						//echo "<br>NCA DESTINO=($ncalm2)<BR>";
 					}				
-				//echo "<BR>".
+				echo "<BR>".
 				$sql0="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `cpromedio`, `$ceX`, `$ctX` FROM `catprod` WHERE $ncalm=1 AND $ncalm3=1 AND $ceX>0 ORDER BY `id`";
 				//exit();
 				$r0=mysql_query($sql0,$link);

@@ -18,7 +18,7 @@
 			$valores=explode(",",$valores);
 			//se insertan los datos en los registros de la tabla
 			//$sql="UPDATE catprod set exist_2='".$valores[0]."',exist_3='".$valores[1]."',exist_4='".$valores[2]."',exist_5='".$valores[3]."',exist_6='".$valores[4]."',exist_7='".$valores[5]."',exist_8='".$valores[6]."',exist_9='".$valores[7]."',exist_10='".$valores[8]."',exist_11='".$valores[9]."',exist_12='".$valores[10]."' WHERE id='".$idProducto."'";
-			$sql="UPDATE catprod set exist_13='".$valores[1]."',exist_14='".$valores[0]."' WHERE id='".$idProducto."'";
+			echo $sql="UPDATE catprod set exist_4='".$valores[0]."',exist_5='".$valores[1]."' WHERE id='".$idProducto."'";
 			$res=mysql_query($sql,$this->conectarBd()); //se ejecuta la consulta en la base de datos			
 			$sql0="SELECT id_prod FROM catprod WHERE id='".$idProducto."'";//se busca la clave del producto en la tabla catprod
 			$res0=mysql_query($sql0,$this->conectarBd());

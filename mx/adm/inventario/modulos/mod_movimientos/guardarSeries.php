@@ -14,19 +14,17 @@
         $row2=mysql_fetch_array($res);        
         	
 	if($row2["total"] != $cantidad){//se compara la captura paa saber si finaliza
-            //se guarda el numero de serie en la tabla
-            //echo "Se guarda el numero de serie";
-            //print_r($_POST);
+            //se guarda el numero de serie en la tabla            
 	    $valores=explode(",",$valores);
-	    /*
-	    echo "<pre>";
-	    print_r($valores);
-	    echo "</pre>";
-	    */
-            $sqlSerie="INSERT INTO num_series (serie,noParte,clave_prod,mov,status,nombreCliente) VALUES ('".$valores[0]."','".$valores[1]."','".$claveProd."','".$numMov."','almacen','".$valores[2]."')";
-            
-	    //exit();
+	    //se busca el asociado del movimiento    
+	    $sql="SELECT id_mov,fecha,tipo_mov,concepto,concepmov.asociado AS asociado,tipoalmacen.almacen as almacen
+	    FROM (mov_almacen INNER JOIN concepmov ON mov_almacen.tipo_mov=concepmov.id_concep) INNER JOIN tipoalmacen ON mov_almacen.almacen=tipoalmacen.id_almacen
+	    WHERE id_mov='".$numMov."'";
+	    $res=mysql_query($sql,$link);
+	    $row=mysql_fetch_array($res);
 	    
+            $sqlSerie="INSERT INTO num_series (serie,noParte,clave_prod,mov,status,nombreCliente,almacenAsociado) VALUES ('".$valores[0]."','".$valores[1]."','".$claveProd."','".$numMov."','almacen','".$valores[2]."','".$row["almacen"]."')";            
+	    //exit();	    
 	    $resSerie=mysql_query($sqlSerie,$link);
             if($resSerie){
                 $msgCaja="Informacion Guardada";
