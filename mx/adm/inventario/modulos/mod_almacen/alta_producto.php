@@ -53,7 +53,7 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 <body>
 <div id="all">
 
-<?php include("../menu/menu.php");  
+<?php 
 if(!$_GET) { 
 if(!$_POST) { ?>
 <br />
@@ -159,7 +159,7 @@ if(!$_POST) { ?>
 		<div style="text-align:left; padding:2px; height:100px; overflow-y:scroll; margin:20px; border:#CCCCCC 2px solid; ">
 		<?php 
 		$sql="Select * from tipoalmacen";
-		$resultado=mysql_db_query($sql_inv,$sql);
+		$resultado=mysql_query($sql,$link);
 		while($fila=mysql_fetch_array($resultado)){
 		echo "<input name='a_".$fila['id_almacen']."_".$fila['almacen']."' type=\"checkbox\" value=\"1\" />a_".$fila['id_almacen']."_".$fila['almacen']."<br>";
 		} ?>
@@ -203,7 +203,7 @@ if(!$_POST) { ?>
 	{	echo '<br><div align=center>Faltan datos. Por favor no omita campos obligatorios.<div>';	} else {
 		// ----------------- INVESTIGAR NOMBRE DE LOS CAMPOS DE LOS ALMACENES ------------------------
 		$almacenes=array(); $campos_almacenes=''; $valores_almacenes='';	
-		$qry=mysql_db_query($sql_inv,"select * from tipoalmacen"); 
+		$qry=mysql_query("select * from tipoalmacen",$link); 
 		while ($row2=mysql_fetch_array($qry))
 		{
 			$id_alm=$row2['id_almacen'];
@@ -222,20 +222,20 @@ VALUES
 (NULL,'$id_prod','$tipo','$kit_array','$descripgral','$especificacion','$linea','$marca','$control_alm','$ubicacion','$uni_entrada','$uni_salida','$stock_min','$stock_max','$observa','','$unidad','' $valores_almacenes)";	
 		echo "<br>SQL: <br>$ssql ";
 		//exit;
-		if (mysql_db_query($sql_inv,$ssql,$link))
+		if (mysql_query($ssql,$link))
 		{
 			$u_id=mysql_insert_id($link);
 			$consec=sprintf('%05s',$u_id);
 	
 			$ssql_up="SELECT id,id_prod,linea FROM catprod WHERE id='$u_id' AND (id_prod='$id_prod' AND descripgral='$descripgral' AND especificacion='$especificacion' AND control_alm='$control_alm') ";
-			$r_up=mysql_db_query($sql_inv,$ssql_up,$link);
+			$r_up=mysql_query($ssql_up,$link);
 			while ($row_up=mysql_fetch_array($r_up))
 			{
 				$linea2=$row_up["linea"];
 				$id_up0=$row_up["id_prod"];
 			}
 			$update="UPDATE catprod SET id_prod='".$linea2.$especificacion.$consec."' WHERE id='$u_id' AND id_prod='$id_up0' ";
-			if (!mysql_db_query($sql_inv,$update))
+			if (!mysql_query($update,$link))
 			{	
 				echo "<br><div align='center'>Error SQL: El producto se inserto, pero el consecutivo no se genero.</div>";
 				exit();
@@ -247,7 +247,7 @@ VALUES
 	}
 } 
 } 
-include("../../f.php");	?>
+?>
 </div>
  
  
