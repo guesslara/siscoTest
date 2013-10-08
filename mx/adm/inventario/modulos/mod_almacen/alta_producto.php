@@ -130,7 +130,21 @@ if(!$_POST) { ?>
   <tr>
     <td class="etiqueta">Marca</td>
     <td width="150">
-      <input size=15 name=marca value="LEXMARK" />
+<?
+	$sql_c="select id_cliente,r_social from cat_clientes where activo=1";
+	$res_c=mysql_query($sql_c,$link);
+?>
+	<select name="marca" id="marca">
+		<option value="">Seleccionar...</option>
+<?
+	while($row_c=mysql_fetch_array($res_c)){
+?>
+		<option value="<?=strtoupper($row_c["r_social"]);?>"><?=$row_c["r_social"];?></option>
+<?
+	}
+?>	
+	</select>	
+      <!--<input size=15 name=marca value="LEXMARK" />-->
         </td>
     <td width="150">&nbsp;</td>
     <td width="150">&nbsp;</td>
