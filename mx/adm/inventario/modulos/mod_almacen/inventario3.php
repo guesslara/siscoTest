@@ -1,7 +1,7 @@
 <?php
     //generacion del listado del inventario
     //se incluyen las clases
-    include("../../../../../clases/claseGrid3.php");
+    include("../../../../../clases/claseGrid3.php");    
     include("../../../../../includes/config.inc.php");
     
     $grid= new grid3($host,$usuario,$pass,$db);

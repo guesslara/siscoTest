@@ -33,10 +33,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL = sprintf("UPDATE catprod SET id=%s, descripgral=%s, especificacion=%s, linea=%s, marca=%s, control_alm=%s, ubicacion=%s, uni_entrada=%s, uni_salida=%s, stock_min=%s, stock_max=%s, observa=%s, existencias=%s, unidad=%s, tipo=%s, status1=%s, noParte=%s WHERE id_prod=%s",
+  $updateSQL = sprintf("UPDATE catprod SET id=%s, descripgral=%s, familia=%s, subfamilia=%s, linea=%s, marca=%s, control_alm=%s, ubicacion=%s, uni_entrada=%s, uni_salida=%s, stock_min=%s, stock_max=%s, observa=%s, existencias=%s, unidad=%s, tipo=%s, status1=%s, noParte=%s WHERE id_prod=%s",
                        GetSQLValueString($_POST['id'], "int"),
                        GetSQLValueString($_POST['descripgral'], "text"),
-                       GetSQLValueString($_POST['especificacion'], "text"),
+                       GetSQLValueString($_POST['familia'], "text"),
+                       GetSQLValueString($_POST['subfamilia'], "text"),
                        GetSQLValueString($_POST['linea'], "text"),
                        GetSQLValueString($_POST['marca'], "text"),
                        GetSQLValueString($_POST['control_alm'], "text"),
@@ -63,17 +64,18 @@ if (isset($_GET['id'])) {
 }
 mysql_select_db($database_operacion, $operacion);
 //$query_Recordset1 = sprintf("SELECT id, id_prod, descripgral, especificacion, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, kit, cpromedio, activo, status1 FROM catprod WHERE id = %s ORDER BY id ASC", $colname_Recordset1);
-$query_Recordset1 = "SELECT id, id_prod, descripgral, especificacion, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, kit, cpromedio, activo, status1, noParte FROM catprod WHERE id LIKE '%".$colname_Recordset1."%' ORDER BY id ASC";
+$query_Recordset1 = "SELECT id, id_prod, descripgral, familia, subfamilia, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, kit, cpromedio, activo, status1, noParte FROM catprod WHERE id LIKE '%".$colname_Recordset1."%' ORDER BY id ASC";
 $Recordset1 = mysql_query($query_Recordset1, $operacion) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO catprod (id, id_prod, descripgral, especificacion, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, status1, noParte) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO catprod (id, id_prod, descripgral, familia, subfamilia, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, status1, noParte) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['id'], "int"),
                        GetSQLValueString($_POST['id_prod'], "text"),
                        GetSQLValueString($_POST['descripgral'], "text"),
-                       GetSQLValueString($_POST['especificacion'], "text"),
+                       GetSQLValueString($_POST['familia'], "text"),
+                       GetSQLValueString($_POST['subfamilia'], "text"),
                        GetSQLValueString($_POST['linea'], "text"),
                        GetSQLValueString($_POST['marca'], "text"),
                        GetSQLValueString($_POST['control_alm'], "text"),
@@ -166,7 +168,7 @@ table.hovertable {
 <body>
 &nbsp&nbsp
 <form method="POST" name="formx" action="prueba3.php">
-<center><input type="submit" value="Buscador" style="color: #003366; background-color: #99CCFF"><!--<input type="submit" value="Actualizar">--></center>
+<center><input type=image src="boton_buscar.png" width="150" height="30"></center>
 </form>
 <form method="POST" name="form1" action="<?php echo $editFormAction; ?>">
      
@@ -184,8 +186,16 @@ table.hovertable {
       <td><input type="text" name="descripgral" value="<?php echo $row_Recordset1['descripgral']; ?>" size="32"></td>
     </tr>
     <tr valign="baseline">
-      <td nowrap align="right">Especificacion:</td>
-      <td><input type="text" name="especificacion" value="<?php echo $row_Recordset1['especificacion']; ?>" size="32"></td>
+      <td nowrap align="right">No.Parte:</td>
+      <td><input type="text" name="noParte" value="<?php echo $row_Recordset1['noParte']; ?>" size="32"></td>
+    </tr>
+    <tr valign="baseline">
+      <td nowrap align="right">Familia:</td>
+      <td><input type="text" name="familia" value="<?php echo $row_Recordset1['familia']; ?>" size="32"></td>
+    </tr>
+    <tr valign="baseline">
+      <td nowrap align="right">Subfamilia:</td>
+      <td><input type="text" name="subfamilia" value="<?php echo $row_Recordset1['subfamilia']; ?>" size="32"></td>
     </tr>
     <tr valign="baseline">
       <td nowrap align="right">Linea:</td>
@@ -239,12 +249,9 @@ table.hovertable {
       <td nowrap align="right">Status1:</td>
       <td><input type="text" name="status1" value="<?php echo $row_Recordset1['status1']; ?>" size="32"></td>
     </tr>
-    <tr valign="baseline">
-      <td nowrap align="right">NoParte:</td>
-      <td><input type="text" name="noParte" value="<?php echo $row_Recordset1['noParte']; ?>" size="32"></td>
-    </tr>
+    
                         </table>
-<center><input type="submit" value="Guardar Modificacion" style="color: #003366; background-color: #99CCFF"><!--<input type="submit" value="Actualizar">--></center>
+<center><input type=image src="guardar3.png" width="130" height="40"></center>
     <input type="hidden" name="MM_update" value="form1">
   <input type="hidden" name="id_prod" value="<?php echo $row_Recordset1['id_prod']; ?>">
   <!--<input type="hidden" name="MM_insert" value="form1">-->

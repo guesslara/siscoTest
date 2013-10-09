@@ -39,9 +39,21 @@
 	    .paginadorGrid{border: 0px solid #FF0000;text-align:center; height:20px;font-size: 12px; padding:5px;}
 	    </style>";   
         }
+	
+	private function funcionesJavaScript(){
+?>
+	    <script type="text/javascript" src="jquery.js"></script>
+	    <script type="text/javascript">
+		function mostrarFiltro(div){
+		    $("#"+div).show();
+		}
+	    </script>
+<?
+	}
         
         public function mostrarListado($camposTitulo,$fecha1,$fecha2,$campos,$campoOrden,$tipoOrden,$condiciones,$regsxpagina,$from,$where,$titulosReporte,$pag,$arrayGet){
 	    $this->estilosReporteTabla();
+	    $this->funcionesJavaScript();
 	    $url=$_SERVER["PHP_SELF"];
             //set_time_limit(0);
 	    $this->arrayParametros=$arrayGet;	    
@@ -116,8 +128,13 @@
 <?
 				//valores de las columnas
 				for($i=0;$i<($totalCampos+1);$i++){
+				    $nombreDivFiltro="div_".$camposTitulo[$i];
 ?>
-                                <td align="center" class="estiloTitulosColumnas"><?=$camposTitulo[$i];?></td>
+                                <td align="center" class="estiloTitulosColumnas" valign="middle"><?=$camposTitulo[$i];?>&nbsp;&nbsp;
+				    <a href="#" onclick="mostrarFiltro('<?=$nombreDivFiltro;?>')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+				    <div id="<?=$nombreDivFiltro;?>" style="display: none;position: absolute;border: 1px solid #000;width: 250px;height: 300px;"></div>
+				</td>
+				
 <?
 				}
 ?>
