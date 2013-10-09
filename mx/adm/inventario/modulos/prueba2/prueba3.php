@@ -1,6 +1,61 @@
 <?php require_once('Connections/operacion.php'); ?>
 <?php
+$currentPage = $_SERVER["PHP_SELF"];
 
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+
+$editFormAction = $_SERVER['PHP_SELF'];
+if (isset($_SERVER['QUERY_STRING'])) {
+  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+}
+
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
+  $updateSQL = sprintf("UPDATE catprod SET id=%s, descripgral=%s, especificacion=%s, linea=%s, marca=%s, control_alm=%s, ubicacion=%s, uni_entrada=%s, uni_salida=%s, stock_min=%s, stock_max=%s, observa=%s, existencias=%s, unidad=%s, tipo=%s, status1=%s, noParte=%s WHERE id_prod=%s",
+                       GetSQLValueString($_POST['id'], "int"),
+                       GetSQLValueString($_POST['descripgral'], "text"),
+                       GetSQLValueString($_POST['especificacion'], "text"),
+                       GetSQLValueString($_POST['linea'], "text"),
+                       GetSQLValueString($_POST['marca'], "text"),
+                       GetSQLValueString($_POST['control_alm'], "text"),
+                       GetSQLValueString($_POST['ubicacion'], "text"),
+                       GetSQLValueString($_POST['uni_entrada'], "int"),
+                       GetSQLValueString($_POST['uni_salida'], "double"),
+                       GetSQLValueString($_POST['stock_min'], "int"),
+                       GetSQLValueString($_POST['stock_max'], "int"),
+                       GetSQLValueString($_POST['observa'], "text"),
+                       GetSQLValueString($_POST['existencias'], "double"),
+                       GetSQLValueString($_POST['unidad'], "text"),
+                       GetSQLValueString($_POST['tipo'], "text"),
+                       GetSQLValueString($_POST['status1'], "int"),
+                       GetSQLValueString($_POST['noParte'], "text"),
+                       GetSQLValueString($_POST['id_prod'], "text"));
+
+  mysql_select_db($database_operacion, $operacion);
+  $Result1 = mysql_query($updateSQL, $operacion) or die(mysql_error());
+}
 
 $colname_Recordset1 = "-1";
 if (isset($_POST['idbusc'])) {
@@ -55,6 +110,7 @@ table.hovertable {
  border-color: #999999;
  border-collapse: collapse;
  }
+ 
  table.hovertable2 th {
  background-color:#c3dde0;
  border-width: 1px;
@@ -86,11 +142,12 @@ table.hovertable {
   
 </table>
 </form>
-<form method="POST" name="form1" action="modifica.php">
+<form  name="form1" >
 
 <table class="hovertable2" border=1>       
-                        <tr onmouseover="this.style.backgroundColor='#F4FA58';" onmouseout="this.style.backgroundColor='transparent';">
-                            <td><input type="text" value="Id" readonly="" size="1"></td>&nbsp;
+                        <tr onmouseover="this.style.backgroundColor='transparent';" onmouseout="this.style.backgroundColor='transparent';">
+                            <td><input type="text" value="" readonly="" size="1"></td>&nbsp;
+                            <td><input type="text" value="Id" readonly="" size="1"></td>
                             <td><input type="text" value="Id_Prod" readonly="" size="8"></td>
                             <td><input type="text" value="Descripgral" readonly="" size="14"></td>
                             <td><input type="text" value="Especificacion" readonly="" size="8"></td>
@@ -108,12 +165,14 @@ table.hovertable {
                             <td><input type="text" value="Tipo" readonly="" size="3"></td>
                             <td><input type="text" value="Status1" readonly="" size="8"></td>
                             <td><input type="text" value="NoParte" readonly="" size="8"></td>
+                            <td><input type="text" value="" readonly="" size="1"></td>
                         </tr>
 
 </table>
 <?php do { ?>
 <table class="hovertable" border=1>
                     <tr onmouseover="this.style.backgroundColor='#5858FA';" onmouseout="this.style.backgroundColor='transparent';">
+                            <td><a href="modifica.php?id=<?=$row_Recordset1['id']?>">Modificar.</a></td>
                             <td><input type="text" name="id" value="<?php echo $row_Recordset1['id']; ?>" size="1"></td>
                             <td><input type="text" name="id_prod" value="<?php echo $row_Recordset1['id_prod']; ?> "size="8"></td>
                             <td><input type="text" name="descripgral" value="<?php echo $row_Recordset1['descripgral']; ?>"size="14"></td>
@@ -132,7 +191,8 @@ table.hovertable {
                             <td><input type="text" name="tipo" value="<?php echo $row_Recordset1['tipo']; ?>"size="3"></td>
                             <td><input type="text" name="status1" value="<?php echo $row_Recordset1['status1']; ?>"size="8"></td>
                             <td><input type="text" name="noParte" value="<?php echo $row_Recordset1['noParte']; ?>"size="8"></td>
-                            <td><input type="submit" value="Modificar registro" style="color: #003366; background-color: #99CCFF"><!--<input type="submit" value="Actualizar">--></td>
+                            <td><a href="modifica.php?id=<?=$row_Recordset1['id']?>">Modificar.</a></td>
+                            <!--<td><a href="modifica.php?id=<?=$row_Recordset1['id']?>"><img src="boton_modificar.png" height="60" width="80"></a></td>-->
                         </tr>
                   
                    

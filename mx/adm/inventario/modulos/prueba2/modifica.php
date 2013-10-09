@@ -58,12 +58,12 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
 }
 
 $colname_Recordset1 = "-1";
-if (isset($_POST['idbusc'])) {
-  $colname_Recordset1 = (get_magic_quotes_gpc()) ? $_POST['idbusc'] : addslashes($_POST['idbusc']);
+if (isset($_GET['id'])) {
+  $colname_Recordset1 = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
 }
 mysql_select_db($database_operacion, $operacion);
 //$query_Recordset1 = sprintf("SELECT id, id_prod, descripgral, especificacion, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, kit, cpromedio, activo, status1 FROM catprod WHERE id = %s ORDER BY id ASC", $colname_Recordset1);
-$query_Recordset1 = "SELECT id, id_prod, descripgral, especificacion, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, kit, cpromedio, activo, status1, noParte FROM catprod WHERE descripgral LIKE '%".$colname_Recordset1."%' OR especificacion LIKE '%".$colname_Recordset1."%' ORDER BY id ASC";
+$query_Recordset1 = "SELECT id, id_prod, descripgral, especificacion, linea, marca, control_alm, ubicacion, uni_entrada, uni_salida, stock_min, stock_max, observa, existencias, unidad, tipo, kit, cpromedio, activo, status1, noParte FROM catprod WHERE id LIKE '%".$colname_Recordset1."%' ORDER BY id ASC";
 $Recordset1 = mysql_query($query_Recordset1, $operacion) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
@@ -92,15 +92,16 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   mysql_select_db($database_operacion, $operacion);
   $Result1 = mysql_query($insertSQL, $operacion) or die(mysql_error());
 }
-//if($Result1){
+if($Result1){
 ?>
-<!--<script type="text/javascript">
-alert("Registros modificados correctamente");
 
-</script>-->
+<script type="text/javascript">
+alert("Registros modificados correctamente");
+document.location=('prueba3.php');
+</script>
 
 <?php
-//}
+}
 
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -108,6 +109,7 @@ alert("Registros modificados correctamente");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
+
  <style type="text/css">
 table.hovertable {
  font-family: verdana,arial,sans-serif;
