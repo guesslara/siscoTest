@@ -73,7 +73,7 @@ function verificaTeclaImeiBusquedaPrincipal(evento){
 		$("#divBusquedaPrincipal").show();
 		var filtro=$("input[name='filtroBusqueda']:checked").val();
 		//alert(imei+" "+filtro);
-		ajaxApp("divResultadosBusquedaPrincipal","mod_busqueda/controladorEnsamble.php","action=buscarEquipo&imei="+imei+"&filtro="+filtro,"POST");		
+		ajaxApp("divResultadosBusquedaPrincipal","../adm/inventario/modulos/mod_busqueda/controladorEnsamble.php","action=buscarEquipo&imei="+parametro+"&filtro="+filtro,"POST");		
 	}
 }
 function mostrarBuscadorEquipos(){

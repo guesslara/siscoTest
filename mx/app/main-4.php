@@ -105,19 +105,19 @@
         </div>
         <div id="menu" class="barraMenu" style="z-index: 50;height: 25px;">
 <?          $objPermisos->construyeMenuNuevo2($_SESSION[$txtApp['session']['idUsuario']],$idCliente);?>
-	    <!--<div class="estiloImgBuscador" title="Mostrar Buscador" onclick="mostrarBuscadorEquipos()">
-		<img src="../../../../img/search-icon.png" border="0">
-	</div>-->
+	    <div class="estiloImgBuscador" title="Mostrar Buscador" onclick="mostrarBuscadorEquipos()">
+		<img src="../../img/search-icon.png" border="0">
+	    </div>
         </div>
 	
 	<!--Adpatacion de la capa del buscador-->	
-	<div id="buscadorEquiposUI">
+	<div id="buscadorEquiposUI" style="display: block;">
 	    <div id="estiloDivBusqueda">
 		<span class="estiloTituloBuscar">Buscar:</span>
 		<input type="text" name="txtBusquedaPrincipal" id="txtBusquedaPrincipal" onkeypress="verificaTeclaImeiBusquedaPrincipal(event)">
-		<input type="radio" id="filtroImei" name="filtroBusqueda" value="id" checked="checked" ><label for="filtroImei">Id</label>
-		<input type="radio" id="filtroSerie" name="filtroBusqueda" value="noParte"><label for="filtroSerie">No Parte</label>
-		<div id="estiloBtnCerrarDiv"><a href="#" onclick="cerrarBusquedaPrincipal()"><img src="../../../../img/close-icon.png"></a></div>
+		<!--<input type="radio" id="filtroImei" name="filtroBusqueda" value="id" checked="checked" ><label for="filtroImei">Id</label>-->
+		<input type="radio" id="filtroSerie" name="filtroBusqueda" value="noParte" checked="checked"><label for="filtroSerie">No Parte</label>
+		<div id="estiloBtnCerrarDiv"><a href="#" onclick="cerrarBusquedaPrincipal()"><img src="../../img/close-icon.png"></a></div>
 	    </div>	    
 	    <div id="divResultadosBusquedaPrincipal"></div>
 	</div>	
