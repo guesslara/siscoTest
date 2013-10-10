@@ -111,7 +111,7 @@
         </div>
 	
 	<!--Adpatacion de la capa del buscador-->	
-	<div id="buscadorEquiposUI" style="display: block;">
+	<div id="buscadorEquiposUI">
 	    <div id="estiloDivBusqueda">
 		<span class="estiloTituloBuscar">Buscar:</span>
 		<input type="text" name="txtBusquedaPrincipal" id="txtBusquedaPrincipal" onkeypress="verificaTeclaImeiBusquedaPrincipal(event)">

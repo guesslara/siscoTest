@@ -513,46 +513,50 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 			</tr>
 			<tr>
 				<td>Almac&eacute;n:</td>
-				<td>
-				<select name="e_almacen" id="e_almacen">
-                  <option value="<?=$idalm?>" selected="selected"><?=$nalm0?></option>
-				  <?php 
-				  	$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE almacen<>'$nalm0' ORDER BY almacen";
-				  	$result0=mysql_query($sql_alm,$link);
-					while ($row0=mysql_fetch_array($result0))
-					{ ?>
-					 	<option value="<?=$row0["id_almacen"];?>"><?=$row0["almacen"];?></option>
-					<?php }  ?>
-				</select>
+				<td>					
+					<select name="e_almacen" id="e_almacen">
+						<option value="<?=$idalm?>" selected="selected"><?=$nalm0?></option>						
+<?php 
+						$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE almacen<>'$nalm0' ORDER BY id_almacen";
+						$result0=mysql_query($sql_alm,$link);
+						while ($row0=mysql_fetch_array($result0)){
+?>
+							<option value="<?=$row0["id_almacen"];?>"><?=$row0["almacen"];?></option>
+<?php
+						}
+?>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>Campo</td>
 				<td>
-				<select name="e_campo" id="e_campo">
-                   <option value="id">Id</option>
-				  <option value="id_prod">Clave del producto</option>
-                  <option value="descripgral">Descripci&oacute;n</option>
-                  <option value="especificacion">Especificaci&oacute;n</option>
-                  <option value="control_alm">Control de Almac&eacute;n</option>
-                  <option value="linea">L&iacute;nea</option>
-				  <option value="unidad">Unidad</option>
-				  <option value="stock_min">Stock Minimo</option>
-				  <option value="stock_max">Stock Maximo</option>
-                  <option value="exist_1">Existencias</option>
-                  <option value="trans_1">Transferencias</option>
-                </select>				</td>
+					<select name="e_campo" id="e_campo">
+						<option value="id">Id</option>
+						<option value="id_prod">Clave del producto</option>
+						<option value="descripgral">Descripci&oacute;n</option>
+						<option value="especificacion">Especificaci&oacute;n</option>
+						<option value="control_alm">Control de Almac&eacute;n</option>
+						<option value="linea">L&iacute;nea</option>
+						<option value="unidad">Unidad</option>
+						<option value="stock_min">Stock Minimo</option>
+						<option value="stock_max">Stock Maximo</option>
+						<option value="exist_1">Existencias</option>
+						<option value="trans_1">Transferencias</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>Operador</td>
 				<td>
-				<select name="e_operador" id="e_operador">
-				  <option value="LIKE">Similar a</option>
-                  <option value="=">Igual</option>
-                  <option value=">">Mayor que</option>
-                  <option value="<">Menor que</option>
-                  <option value="<>">Distinto</option>
-                </select></td>
+					<select name="e_operador" id="e_operador">
+						<option value="LIKE">Similar a</option>
+						<option value="=">Igual</option>
+						<option value=">">Mayor que</option>
+						<option value="<">Menor que</option>
+						<option value="<>">Distinto</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>Criterio</td>
@@ -561,19 +565,19 @@ border:#333333 2px solid; background-color:#FFFFFF;}
 			<tr>
 				<td>Orden</td>
 				<td>
-				<select name="e_orden" id="e_orden">                  
-				  <option value="id">Id</option>
-				  <option value="id_prod">Clave del producto</option>
-                  <option value="descripgral">Descripci&oacute;n</option>
-                  <option value="especificacion">Especificaci&oacute;n</option>
-                  <option value="control_alm">Control de Almac&eacute;n</option>
-				  <option value="linea">L&iacute;nea</option>
-				  <option value="unidad">Unidad</option>
-				  <option value="stock_min">Stock Minimo</option>
-				  <option value="stock_max">Stock Maximo</option>
-                  <option value="exist_1">Existencias</option>
-                  <option value="trans_1">Transferencias</option>
-				</select>
+					<select name="e_orden" id="e_orden">                  
+						<option value="id">Id</option>
+						<option value="id_prod">Clave del producto</option>
+						<option value="descripgral">Descripci&oacute;n</option>
+						<option value="especificacion">Especificaci&oacute;n</option>
+						<option value="control_alm">Control de Almac&eacute;n</option>
+						<option value="linea">L&iacute;nea</option>
+						<option value="unidad">Unidad</option>
+						<option value="stock_min">Stock Minimo</option>
+						<option value="stock_max">Stock Maximo</option>
+						<option value="exist_1">Existencias</option>
+						<option value="trans_1">Transferencias</option>
+					</select>
 				<select name="e_ascdesc" id="e_ascdesc">                  
 				  <option value="ASC">Ascendente</option>
                   <option value="DESC">Descendente</option>

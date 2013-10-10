@@ -19,6 +19,7 @@
 		(isset($_GET['op']))? $op=$_GET["op"] : $op='LIKE';
 		
 		$sql_alm="SELECT id_almacen,almacen FROM tipoalmacen WHERE id_almacen=".$ialm;
+		
 		$result0=mysql_query($sql_alm,$link);
 		while ($row0=mysql_fetch_array($result0)){ 
 			//print_r($row0);
@@ -28,7 +29,7 @@
 		$campo_almacen="a_".$ialm."_".$almacen;
 		$campo_existencias="exist_".$ialm;	
 		$campo_transferencias="trans_".$ialm;
-		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`exist_6`,`exist_7`,`exist_8`,`exist_9`,`exist_10`,`exist_11`,`exist_12`,`exist_13`,`exist_14`,`$campo_transferencias` ";
+		$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,noParte,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
 		//$lista_campos=" `id`,`id_prod`,`descripgral`,`especificacion`,`control_alm`,`status1`,`$campo_existencias`,`exist_2`,`exist_3`,`exist_4`,`exist_5`,`$campo_transferencias` ";
 		if ($op=='LIKE'){
 			$where=" WHERE $campo LIKE '%" . $cri . "%' AND ".$campo_almacen."=1 "; 
@@ -37,7 +38,6 @@
 		}
 		// ... Reviso # de resultados con el criterio introducido ............. 
 	
-		//echo "<br>".
 		$sql_criterio="SELECT count(id) as total_registros FROM catprod ".$where;
 		$result0=mysql_query($sql_criterio,$link);
 		$row0=mysql_fetch_array($result0);
@@ -119,62 +119,34 @@
       </tr>
 	<tr style="background-color:#CCCCCC; text-align:center; font-weight:bold;">
 	  <td width="2%">
-	  		<a alt="Ordenar por Id" title="Ordenar por Id (<?=$ascdes2?>)" href="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id','<?=$ascdes?>','<?=$pagina?>');">Id </a>	  </td>
+	  	<a alt="Ordenar por Id" title="Ordenar por Id (<?=$ascdes2?>)" href="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id','<?=$ascdes?>','<?=$pagina?>');">Id </a>	  </td>
 		<!--<td width="6%" height="20">
-			<<a alt="Ordenar por Id" title="Ordenar por Clave del producto (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id_prod','<?=$ascdes?>','<?=$pagina?>');">Clave del Producto </a>		</td>-->
-		<td width="16%">
-	  <a alt="Ordenar por Descripci&oacute;n" title="Ordenar por Descripci&oacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','descripgral','<?=$ascdes?>','<?=$pagina?>');">Descripci&oacute;n</a></td>
+		<a alt="Ordenar por Id" title="Ordenar por Clave del producto (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','id_prod','<?=$ascdes?>','<?=$pagina?>');">Clave del Producto </a>		</td>-->
 		<td width="6%">
-    <a alt="Ordenar por Especificaci&oacute;n" title="Ordenar por Especificaci&oacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','especificacion','<?=$ascdes?>','<?=$pagina?>');">Part.</a></td>
+		<a alt="Ordenar por Especificaci&oacute;n" title="Ordenar por Especificaci&oacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','especificacion','<?=$ascdes?>','<?=$pagina?>');">Part.</a></td>
+		<td width="16%">
+		<a alt="Ordenar por Descripci&oacute;n" title="Ordenar por Descripci&oacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','descripgral','<?=$ascdes?>','<?=$pagina?>');">Descripci&oacute;n</a></td>		
 		<td width="6%">
 		<a alt="Ordenar por Control de Almac&eacute;n" title="Ordenar por Control de Almac&eacute;n (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','control_alm','<?=$ascdes?>','<?=$pagina?>');">
-	  Ctrl Alm</a></td>
-		<!--<td width="6%">
+		Ctrl Alm</a></td>
+		<td width="6%">
 		<a alt="Ordenar por Status" title="Ordenar por Status (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','status1','<?=$ascdes?>','<?=$pagina?>');">
-		Status</a></td>-->
+		Status</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?=$campo_existencias?>','<?=$ascdes?>','<?=$pagina?>');">
 		Equipo<br>Recibido</a></td>
-		<!--<td width="4%">
+		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_2','<?=$ascdes?>','<?=$pagina?>');">
 		Equipo<br>Nuevo</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_3','<?=$ascdes?>','<?=$pagina?>');">
-		Equipo<br>Proceso</a></td>
+		Equipo<br>Convertido</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_4','<?=$ascdes?>','<?=$pagina?>');">
 		Ingenieria</a></td>
 		<td width="4%">
 		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_5','<?=$ascdes?>','<?=$pagina?>');">
-		Equipo<br>Terminado</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_6','<?=$ascdes?>','<?=$pagina?>');">
-		Equipo<br>Convertido</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_7','<?=$ascdes?>','<?=$pagina?>');">
-		Equipo<br>Cuarentena</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_8','<?=$ascdes?>','<?=$pagina?>');">
-		Equipo<br>No SAP</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_9','<?=$ascdes?>','<?=$pagina?>');">
 		Scrap</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_10','<?=$ascdes?>','<?=$pagina?>');">
-		Consumibles<br>Nuevos</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_11','<?=$ascdes?>','<?=$pagina?>');">
-		Consumibles<br>Tintas</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_12','<?=$ascdes?>','<?=$pagina?>');">
-		Consumibles<br>Ingenier&iacute;a</a></td>-->
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_13','<?=$ascdes?>','<?=$pagina?>');">
-		3039</a></td>
-		<td width="4%">
-		<a alt="Ordenar por Control de Existencias" title="Ordenar por Existencias (<?=$ascdes2?>)" href="#" onclick="javascript:paginar('<?=$ialm?>','<?=$campo?>','<?=$op?>','<?=$cri?>','exist_14','<?=$ascdes?>','<?=$pagina?>');">
-		3040</a></td>
-
 	  </tr>
 <?php 
 	while($row=mysql_fetch_array($result)){
@@ -182,10 +154,10 @@
 	<tr id="<?=$row["id"]?>" class="m2" bgcolor="<? echo $color; ?>" onmouseover="this.style.background='#cccccc';" onmouseout="this.style.background='<? echo $color; ?>'" onclick="javascript:ver_producto('<?=$row["id"];?>');" style="cursor:pointer;">
 	  <td class="td1" height="20" align="center">&nbsp;<?=$row["id"]?></td>
 		<!--<td class="td1" align="left">&nbsp;<?=$row["id_prod"]?></td>-->
-		<td class="td1" align="left">&nbsp;<?=$row["descripgral"]?></td>
-		<td class="td1" align="left">&nbsp;<?=$row["especificacion"]?></td>
+		<td class="td1" align="left">&nbsp;<?=$row["noParte"]?></td>
+		<td class="td1" align="left">&nbsp;<?=$row["descripgral"]?></td>		
 		<td class="td1" align="left">&nbsp;<?=$row["control_alm"]?></td>
-		<!--<td class="td1" align="left">
+		<td class="td1" align="left">
 <?php
 			if ($row["status1"]==2){
 				echo "Obsoleto";	
@@ -195,22 +167,12 @@
 				echo "Uso.Constante";
 			}
 ?>
-		</td>-->
+		</td>
 		<td class="td1" align="right"><?=$row[$campo_existencias]?>&nbsp;</td>
-		<!--<td class="td1" align="right"><?=$row['exist_2']?>&nbsp;</td>
+		<td class="td1" align="right"><?=$row['exist_2']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_3']?>&nbsp;</td>
 		<td class="td1" align="right"><?=$row['exist_4']?>&nbsp;</td>		
-		<td class="td1" align="right"><?=$row['exist_5']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_6']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_7']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_8']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_9']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_10']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_11']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_12']?>&nbsp;</td>-->
-		<td class="td1" align="right"><?=$row['exist_14']?>&nbsp;</td>
-		<td class="td1" align="right"><?=$row['exist_13']?>&nbsp;</td>
-		
+		<td class="td1" align="right"><?=$row['exist_5']?>&nbsp;</td>		
 	  </tr>
 <?php 
 	($color=="#F0F0F0")? $color="#ffffff" : $color="#F0F0F0";  //($color=="#D9FFB3")? $color="#ffffff" : $color="#D9FFB3";

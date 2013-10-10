@@ -62,4 +62,16 @@
 			$datoE=clean($_POST["datoE"]);
 			$objLote->muestraTec($idLote,$idUsuario,$idProyecto,$noFormato,$nombre,$datoE);
 		break;
+	        case "insertardatos":
+                        $date=$_POST["fecha"];
+			$hora=$_POST["timer"];
+			$nom=$_POST['name'];
+			$intrr=$_POST['introd'];
+			$numparte=$_POST["nuparte"];
+		        $foto=$_POST["fott"];
+			$coment=$_POST["comenta"];
+			$firma=$_POST["firma"];
+			$objLote->insertardatos($date,$hora,$nom,$intrr,$numparte,$foto,$coment,$firma);
+			/*window.location.href="uploader2.php?pic=<?=$foto?>";*/
+                break;
 	}

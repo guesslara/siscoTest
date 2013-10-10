@@ -8,7 +8,7 @@
 	$db="2013_control_operaciones2";
 	$dbPrueba="2013_control_operaciones";
 	$db_inventario="iqe_inv_2010";
-	$db2="iqe_lex_inv_2010";
+	$db2="2013_iqe_operacion";
 	/***********/
 	$strP="e10adc3949ba59abbe56e057f20f883e";
 	$tabla_usuarios="userdbcontroloperaciones";

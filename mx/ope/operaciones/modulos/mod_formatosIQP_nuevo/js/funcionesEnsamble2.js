@@ -93,23 +93,38 @@ function muestraTiempo(noFormato){
 	ajaxApp("cuerpo","Cuerpos/"+noFormato+"-1.php",parametros,"POST");
 }
 
-function insertform(noform){
+ffunction insertform(noform){
 	//alert("aqui esta");
 	var fecha=document.getElementById("fecha").value;
+	var iframe = document.getElementById("reloj");
+	var input= iframe.contentWindow.document.getElementById("reloj2").value;
+	var nombr=document.getElementById("nombre").value;
+        var intro=document.getElementById("intro").value;
 	var numparte=document.getElementById("numpart").value;
-	var picture=document.getElementById("uploadedfile").value;
+	var picture=document.getElementById("uploadedfile");
+	var inputt= picture.contentWindow.document.getElementById("nbre").value;
 	var comentarios=document.getElementById("coment").value;
 	var firma=document.getElementById("firma").value;
-	var parametros="action=insertardatos&fecha="+fecha+"&nuparte="+numparte+"&pic="+picture+"&coment="+comentarios+"&firma="+firma;
+	var parametros="action=insertardatos&fecha="+fecha+"&timer="+input+"&name="+nombr+"&introd="+intro+"&nuparte="+numparte+"&fott="+inputt+"&comenta="+comentarios+"&firma="+firma;
 //alert(parametros);
-	ajaxApp("uno","../controladorEnsamble.php",parametros,"POST");
+	ajaxApp("uno","controladorEnsamble.php",parametros,"POST");
 }
+function confirma(){ 
+            confirma=confirm("El documento no contendra evidencia fotografica?");	
+	    if (confirma){ 
+               alert('confirma');
+	            insertform();
+	        }else{ 
+                 alert('Cargar Imagen en el boton examinar');
+	         return;}
+            }
+
 function valida(){
         var fech=document.getElementById("fecha").value;
         var nombr=document.getElementById("nombre").value;
         var intro=document.getElementById("intro").value;
         var numparte=document.getElementById("numpart").value;
-        var fotito=document.getElementById("uploadedfile").value;
+        //var fotito=document.getElementById("uploadedfile").value;
 	var comentar=document.getElementById("coment").value;
 	var fir=document.getElementById("firma").value;
         var validando=true;
@@ -127,16 +142,16 @@ function valida(){
         if (numparte==""){
             msj="Ingresa el numero de parte en el espacio correspondiente";
         }
-        if (fotito==""){
-            msj="Cargar foto de evidencia en el espacio correspondiente";
-        }
+        //if (fotito==""){
+          //   confirmar();
+	//}
         if (comentar==""){
             msj="Escribir comentarios en el espacio correspondiente";
         }
 	if (fir==""){
             msj="Firma o nombre de quien elabora";
         }
-	if(fech==""||nombr==""||intro==""||numparte==""||fotito==""||comentar==""||fir=="") {
+	if(fech==""||nombr==""||intro==""||numparte==""||comentar==""||fir=="") {
 	  alert(msj);
 	  return;
 	}else{
@@ -144,4 +159,3 @@ function valida(){
 
 	}
 }
-    
