@@ -4,7 +4,7 @@
    .tituloReporte{border: 1px solid #CCC;background-color:#F0F0F0; height:20px; padding: 5px; width:auto; margin:4px;font-weight: bold;font-size: 12px;}
    .paginadorGrid{border: 0px solid #FF0000;text-align:center; height:20px;font-size: 12px; padding:5px;}
    /*filtros en la tabla*/
-   .ventanaFiltro{display: block;position: absolute;width: 250px;height: 350px;border: 1px solid #000;}
+   .ventanaFiltro{display: none;position: absolute;width: 250px;height: 350px;border: 1px solid #000;}
    .contenedorTituloFiltro{height: 15px;padding: 3px;background: #000;color: #FFF;}
    .contenidoFiltroResultados{background: #FFF;width: 247px;height: 327px;border: 1px solid #FF0000;overflow: auto;}
    .resultadosFiltrosConsulta{width:auto;font-weight:normal;text-align:left;height: auto;padding: 3px;font-size: 10px;border-bottom: 1px solid #CCC;}
@@ -15,7 +15,7 @@
     campos="id,noParte,familia,subfamilia,descripgral,linea,control_alm";
     $(document).ready(function(){        	
         listarInventario();
-        colocarCabeceras();
+        //colocarCabeceras();
     });
     
     function ajaxApp(divDestino,url,parametros,metodo){	
@@ -50,11 +50,14 @@
         ajaxApp("cabecerasFiltros","controladorInventario4.php","action=colocarCabeceras&campos="+campos,"POST");
     }
     
-    function mostrarFiltro(div){        
+    function mostrarFiltro(div,campo){        
         for(i=1;i<=7;i++){
             $("#div_"+i).hide();
         }
-        $("#div_"+div).show();        
+        $("#div_"+div).show();
+	//se manda la peticion para llenar el div con el contenido
+	divContenido="contenidoFiltro_"+div;
+	ajaxApp(divContenido,"controladorInventario4.php","action=llenarFiltro&campo="+campo,"POST");
     }
     
     function cierraInstancias(){
@@ -71,9 +74,4 @@
     <div id="cabecerasFiltros"></div>
     <div id="listadoInventario"></div>    
 </div>
-    <div id="div_1" class="ventanaFiltro">
-        <div class="contenedorTituloFiltro">
-            <div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_1')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div>
-        </div>
-        <div id="contenidoFiltro_1" class="contenidoFiltroResultados"></div>
-    </div>
+    

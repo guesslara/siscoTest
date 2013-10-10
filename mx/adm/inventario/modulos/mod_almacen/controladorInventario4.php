@@ -9,5 +9,8 @@
         case "colocarCabeceras":
             $obj->llenarFiltros($_POST["campos"]);
         break;
+        case "llenarFiltro":
+            $obj->llenarFiltros($_POST["campo"]);
+        break;
     }
 ?>

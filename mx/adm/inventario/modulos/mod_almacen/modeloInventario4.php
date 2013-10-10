@@ -12,25 +12,27 @@
             }				
 	}
         
-        public function llenarFiltros($campos){
-            $campos=explode(",",$campos);
-            for($i=0;$i<count($campos);$i++){
-                $sqlF="SELECT COUNT( * ) AS `Filas` , ".$campos[$i]." FROM `catprod` GROUP BY ".$campos[$i]." ORDER BY ".$campos[$i]."";
+        public function llenarFiltros($campo){
+            //$campos=explode(",",$campos);
+            //for($i=0;$i<count($campos);$i++){
+                $sqlF="SELECT COUNT( * ) AS `Filas` , ".$campo." FROM `catprod` GROUP BY ".$campo." ORDER BY ".$campo."";
                 $resF=mysql_query($sqlF,$this->conectarBd());
                 if(mysql_num_rows($resF)==0){
                     echo "(0) resultados";
                 }else{
                     while($rowF=mysql_fetch_array($resF)){
-                        $nombreDiv="#contenidoFiltro_".($i+1);
-?>
-                        <script type="text/javascript">
+                        //$nombreDiv="#contenidoFiltro_".($i+1);
+			/*
+			<script type="text/javascript">
                             $("<?=$nombreDiv?>").append("<div class='resultadosFiltrosConsulta'><input type='checkbox'><?=utf8_encode($rowF[$campos[$i]]);?></div>");
                         </script>
-                        
+			*/
+?>
+                        <div class='resultadosFiltrosConsulta'><input type='checkbox'><?=utf8_encode($rowF[$campo]);?></div>
 <?
                     }
                 }
-            }
+            //}
         }
         
                 
@@ -100,27 +102,26 @@
                     <form name="frm_consultas" id="frm_contenedor">
                         <table border="1" cellpadding="1" cellspacing="1" style="font-size: 10px;width:auto;" >
                             <tr>
-                                <td width="50" align="center" class="estiloTitulosColumnas" valign="middle">Id&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('1')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <div id="1" style="position: absolute;border: 1px solid #ff0000;"></div>
-                                    <!--<div id="div_1" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_1')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_1" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="50" align="center" class="estiloTitulosColumnas" valign="middle">Id&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('1','id')"><img src="../../../../../img/filtro.jpg" border="0"></a>                                    
+                                    <div id="div_1" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_1')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_1" class="contenidoFiltroResultados"></div></div>
                                 </td>
-                                <td width="150" align="center" class="estiloTitulosColumnas" valign="middle">No Parte&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('2')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <!--<div id="div_2" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_2')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_2" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="150" align="center" class="estiloTitulosColumnas" valign="middle">No Parte&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('2','noParte')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+                                    <div id="div_2" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_2')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_2" class="contenidoFiltroResultados"></div></div>
                                 </td>
-                                <td width="200" align="center" class="estiloTitulosColumnas" valign="middle">Familia&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('3')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <!--<div id="div_3" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_3')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_3" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="200" align="center" class="estiloTitulosColumnas" valign="middle">Familia&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('3','familia')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+                                    <div id="div_3" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_3')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_3" class="contenidoFiltroResultados"></div></div>
                                 </td>
-                                <td width="200" align="center" class="estiloTitulosColumnas" valign="middle">SubFamilia&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('4')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <!--<div id="div_4" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_4')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_4" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="200" align="center" class="estiloTitulosColumnas" valign="middle">SubFamilia&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('4','subfamilia')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+                                    <div id="div_4" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_4')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_4" class="contenidoFiltroResultados"></div></div>
                                 </td>
-                                <td width="300" align="center" class="estiloTitulosColumnas" valign="middle">Descripgral&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('5')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <!--<div id="div_5" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_5')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_5" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="300" align="center" class="estiloTitulosColumnas" valign="middle">Descripgral&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('5','descripgral')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+                                    <div id="div_5" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_5')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_5" class="contenidoFiltroResultados"></div></div>
                                 </td>
-                                <td width="100" align="center" class="estiloTitulosColumnas" valign="middle">L&iacute;nea&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('6')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <!--<div id="div_6" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_6')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_6" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="100" align="center" class="estiloTitulosColumnas" valign="middle">L&iacute;nea&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('6','linea')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+                                    <div id="div_6" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_6')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_6" class="contenidoFiltroResultados"></div></div>
                                 </td>
-                                <td width="100" align="center" class="estiloTitulosColumnas" valign="middle">Ctrl Alm.&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('7')"><img src="../../../../../img/filtro.jpg" border="0"></a>
-                                    <!--<div id="div_7" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_7')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_7" class="contenidoFiltroResultados"></div></div>-->
+                                <td width="100" align="center" class="estiloTitulosColumnas" valign="middle">Ctrl Alm.&nbsp;&nbsp;<a href="#" onclick="mostrarFiltro('7','control_alm')"><img src="../../../../../img/filtro.jpg" border="0"></a>
+                                    <div id="div_7" class="ventanaFiltro"><div class="contenedorTituloFiltro"><div style="float: left;">Filtrar Datos</div><div style="float: right;"><a href="#" onclick="cerrarFiltroVentana('div_7')" title="Cerrar Ventana"><img src="../../../../../img/close.gif" height="15" width="15" border="0"></a></div></div><div id="contenidoFiltro_7" class="contenidoFiltroResultados"></div></div>
                                 </td>
                             </tr>
 <?
