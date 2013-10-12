@@ -2,7 +2,7 @@
 $idUsuario="1";
 $idLote="11";
 $idProyecto="1";
-$noFormato="IQF0750306";
-$nombre="IQF0750306_INFORME DE DAÑOS Y SUCESOS_REV.00_3";
+$noFormato="IQF0750304";
+$nombre="IQF0750304_INVENTARIO DE MONITORES SCRAP_REV.01_0";
 $datoE="0";
 ?>
