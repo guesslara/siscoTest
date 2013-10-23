@@ -11,9 +11,9 @@
 		$nds=$_POST["nds"];
 	
 		//echo "<br>BD [$sql_inv] <br>SQL=".
-		$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov 
+		echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov,status 
 			FROM catprod,num_series 
-			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie LIKE '%$nds%'";
+			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie = '$nds'";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";		echo "<br>NDR=".
 			$ndr1=mysql_num_rows($resultado1);
@@ -51,6 +51,12 @@
 						<input type="text" class="tex0" size="50" name="txt4" id="txt4" value="<?=$registro1['especificacion'];?>" readonly="1" />
 						</td>
 					</tr>
+					<tr id="asignacion">
+						<td class="campos_verticales">&nbsp;STATUS </td>
+						<td colspan="2">
+						<input type="text" class="tex0" size="50" name="txt5" id="txt5" value="<?=$registro1['status'];?>" readonly="1" />
+						</td>
+					</tr>
 					<tr id="descripcion">
 					  <td class="campos_verticales">&nbsp;</td>
 					  <td colspan="2">&nbsp;</td>
@@ -58,11 +64,11 @@
 					<tr id="descripcion">
 					  <td class="campos_verticales">&nbsp;DIAGN&Oacute;STICO </td>
 					  <td colspan="2">
-					  <br><select name="txt5" id="txt5" class="tex0">
+					  <br><select name="txt6" id="txt6" class="tex0">
 					  <option value="">...</option>
 					  <? 
 							//$claveProd=intval($claveProd);
-							$sql2="SELECT * FROM cat_diagnosticos WHERE aplica_productos LIKE '%$idp%' ORDER BY id";
+						$sql2="SELECT * FROM cat_diagnosticos WHERE aplica_productos LIKE '%$idp%' ORDER BY id";
 							if ($resultado2=mysql_query($sql2,$link)){
 								//echo "<div align=center>OK</div>";	echo "<br>NDR=".
 								$ndr2=mysql_num_rows($resultado2);
@@ -166,10 +172,11 @@
 		VALUES 
 		(NULL,'BD','$b','$a','$id_usuario','$fr','','$f','','','$x','','','','1','REC','REC','$g')";
 		$res=mysql_query($sql3,$link);
+		
 		if ($res){
 			echo "<div align=center>&nbsp;La OT se guardo correctamente.</div>";
-			$id_insertado=mysql_insert_id($res);
-			$idc=sprintf('%06s',$id_insertado);		
+			//$id_insertado=mysql_insert_id($res);
+			$idc=sprintf('%06s',$res);		
 			$ot="BD".date("y").date("m").$idc;
 			//echo "<br><br>".
 			$sql4="UPDATE ot SET ot='$ot' WHERE id=$id_insertado";

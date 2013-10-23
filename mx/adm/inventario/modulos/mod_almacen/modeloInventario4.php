@@ -78,7 +78,11 @@
             if($Res>0) $PagUlt=floor($PagUlt)+1;
 ?>                
                 <div class="tituloReporte">
-                    <strong>Listado de Productos</strong><br />                    
+                    <div style="float: left;border: 1px solid #FF0000;width: auto;"><strong>Listado de Productos</strong></div>
+                    <div style="clear: both;"></div>
+                    <div style="float: left;border: 1px solid #FF0000;width: auto;">
+                        
+                    </div>
                 </div>
                 <div class="paginadorGrid">
 		    <div style="float: left;width: 20px;height: 15px;border: 1px solid #CCC;padding: 2px;"><a href="#" onclick="Pagina('1','<?=$campoFiltro;?>','<?=$valorAFiltrar;?>')" title="Primero" style="cursor:pointer; text-decoration:none;">|&lt;</a>&nbsp;</div>

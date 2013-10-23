@@ -81,9 +81,9 @@
 	 ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+variableCampo+"&valorAFiltrar="+variableFiltro,"POST");
 	 //se coloca el valor del filtro aplicado en el div de filtros
 	 divFiltroAplicado="filtrosAplicados_"+campo;
-	 alert(divFiltroAplicado);
+	 //alert(divFiltroAplicado);
 	 //$("#"+divFiltroAplicado).append("<div style='height:10px;padding:5px;border-bottom:1px solid #CCC;'>"+valorAFiltrar+"</div>");
-	 $("#"+divFiltroAplicado).append("1");
+	 //$("#"+divFiltroAplicado).append("1");
     }
 </script>
 <div id="" style="border: 1px solid #FF0000;" onclick="">

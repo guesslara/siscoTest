@@ -11,12 +11,13 @@
 	{
 		$t=$_POST["tecnico"];
 		$ids=$_POST["ids"];
-		$ids2=split(',',$ids);
+		$ids2=explode(',',$ids);
 		//echo "<br>";	print_r($ids2);
 		
 		foreach ($ids2 as $ids2a){
 			echo "<br>".$sql_update="UPDATE ot SET status_cliente='REP', repara='$t', fecha_inicio='".date("Y-m-d H:i:s")."', status_proceso='DIAG' WHERE id=$ids2a";
-			if (!mysql_db_query($sql_ing,$sql_update)){
+			//if (!mysql_db_query($sql_ing,$sql_update)){
+				if (!mysql_query("UPDATE ot SET status_cliente='REP', repara='$t', fecha_inicio='".date("Y-m-d H:i:s")."', status_proceso='DIAG' WHERE id=$ids2a",$sql_ing)){
 				echo "<br>&nbsp;Error SQL. El script se detuvo.";
 				exit();
 			}

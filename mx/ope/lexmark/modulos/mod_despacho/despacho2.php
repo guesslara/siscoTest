@@ -61,7 +61,7 @@
             Enviar los productos seleccionados al almac&eacute;n: <br />
             <?php
 			$sql_almacenes="SELECT * FROM  `tipoalmacen` ORDER BY id_almacen";
-			$resultado_almacenes=mysql_db_query($sql_inv,$sql_almacenes);
+			$resultado_almacenes=mysql_query($sql_inv,$sql_almacenes);
 			?>
             <select id="sel_almacen" style="margin-top:5px; margin-bottom:5px;">
 				<option value="">...</option><?php 
