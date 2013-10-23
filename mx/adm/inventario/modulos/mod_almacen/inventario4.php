@@ -10,13 +10,17 @@
    
    .resultadosFiltrosConsulta{width:auto;font-weight:normal;text-align:left;height: auto;padding: 3px;font-size: 10px;border-bottom: 1px solid #CCC;}
    .resultadosFiltrosConsulta:hover{background: #F0F0F0;}
+   
+   .btnMostrarTodo{float: left;width: 100px;height: 15px;border: 1px solid #CCC;padding: 2px;margin-left: 10px;}
+   .btnMostrarTodo:hover{cursor: pointer;background: #f0f0f0;}
 </style>
 <script type="text/javascript" src="../../../../../clases/jquery.js"></script>
 <script type="text/javascript">
     campos="id,noParte,familia,subfamilia,descripgral,linea,control_alm,exist_1,exist_2,exist_3,exist_4,exist_5,exist_6";
     nombreCampos="ID,No Parte,Familia,Subfamilia,Descripción,Línea,Control Almacén,Exist. 1,Exist. 2,Exist. 3,Exist. 4,Exist. 5,Exist. 6";
     $(document).ready(function(){        	
-        listarInventario('N/A','N/A');
+        //listarInventario('N/A','N/A');
+        cargarClientes();
     });
     
     function ajaxApp(divDestino,url,parametros,metodo){	
@@ -38,9 +42,20 @@
 	});
     }
     
+    function cargarClientes(){
+        ajaxApp("contenidoListadoClientes","controladorInventario4.php","action=listarClientes","POST");
+    }
     
     function listarInventario(campo,valorAFiltrar){
-        ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+campo+"&valorAFiltrar="+valorAFiltrar,"POST");
+        //se recupera el cliente Seleccionado
+        idCliente=$("#cboClienteInventario").val();
+        if(idCliente=="" || idCliente==null || idCliente==undefined){
+            alert("Seleccione un Cliente para mostrar su inventario");
+        }else{
+            $("#hdnClienteInventario").attr("value",idCliente);
+            ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+campo+"&valorAFiltrar="+valorAFiltrar+"&idCliente="+idCliente,"POST");
+            $("#div_ventanaSeleccionClientes").hide();
+        }        
     }
     
     function Pagina(pagina,campo,valorAFiltrar){
@@ -78,16 +93,37 @@
 	    variableCampo=variableCampo+","+campo;
 	    variableFiltro=variableFiltro+","+valorAFiltrar;
 	 }
-	 ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+variableCampo+"&valorAFiltrar="+variableFiltro,"POST");
-	 //se coloca el valor del filtro aplicado en el div de filtros
-	 divFiltroAplicado="filtrosAplicados_"+campo;
-	 //alert(divFiltroAplicado);
-	 //$("#"+divFiltroAplicado).append("<div style='height:10px;padding:5px;border-bottom:1px solid #CCC;'>"+valorAFiltrar+"</div>");
-	 //$("#"+divFiltroAplicado).append("1");
+         idCliente=$("#cboClienteInventario").val();
+         
+         if(idCliente=="" || idCliente==null || idCliente==undefined){
+            alert("Seleccione un Cliente para mostrar su inventario");
+        }else{
+            ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+variableCampo+"&valorAFiltrar="+variableFiltro,"POST");
+            //se coloca el valor del filtro aplicado en el div de filtros
+            divFiltroAplicado="filtrosAplicados_"+campo;
+            //alert(divFiltroAplicado);
+            //$("#"+divFiltroAplicado).append("<div style='height:10px;padding:5px;border-bottom:1px solid #CCC;'>"+valorAFiltrar+"</div>");
+            //$("#"+divFiltroAplicado).append("1");   
+        }
+         
+         
+         
+	 
     }
 </script>
 <div id="" style="border: 1px solid #FF0000;" onclick="">
     <div id="cabecerasFiltros"></div>
     <div id="listadoInventario"></div>    
 </div>
+<div id="div_ventanaSeleccionClientes" style="position: absolute;width: 100%;height: 100%;z-index: 900;background: url(../../../../../img/desv.png) repeat;top: 0;">
+    <div style="position: absolute;width: 400px;height: 200px;left: 50%;top: 50%;margin-left: -200px;margin-top: -100px;border: 1px solid #000;background: #fff;">
+        <div style="position: relative;width: 100%;background: #000;overflow: hidden;">
+            <div style="float: left;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;">Seleccione al Cliente para ver sus inventarios</div>
+            <div style="float: right;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;"><!--<a href="#" onclick=""><img src="../../../../../img/close.gif" border="0"></a>--></div>            
+        </div>
+        <div id="contenidoListadoClientes" style="border: 0px solid #ff0000;width: 100%;height: 165px;overflow: auto;">
+
+        </div>
+    </div>
+</div>    
     

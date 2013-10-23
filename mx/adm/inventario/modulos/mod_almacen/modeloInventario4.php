@@ -12,6 +12,31 @@
             }				
 	}
         
+        
+        public function listarClientes(){
+            $sql="SELECT * FROM cat_clientes WHERE activo=1";
+            $res=mysql_query($sql,$this->conectarBd());
+            if(mysql_num_rows($res)==0){
+                echo "No existen Clientes Capturados";
+            }else{
+?>
+                <div style="margin: 10px;font-size: 12px;">
+                Seleccione el cliente para mostrar su inventario:<br><br>
+                <select name="cboClienteInventario" id="cboClienteInventario" style="margin-left: 30px;width: 200px;font-size: 18px;" onchange="listarInventario('N/A','N/A')">
+                    <option value="">Selecciona...</option>
+<?
+                while($row=mysql_fetch_array($res)){
+?>
+                    <option value="<?=$row["id_cliente"];?>"><?=$row["r_social"];?></option>
+<?
+                }
+?>
+                </select>
+                </div>
+<?
+            }
+        }
+        
         public function llenarFiltros($campo){
 	    $sqlF="SELECT COUNT( * ) AS `Filas` , ".$campo." FROM `catprod` GROUP BY ".$campo." ORDER BY ".$campo."";
 	    $resF=mysql_query($sqlF,$this->conectarBd());
@@ -27,7 +52,7 @@
         }
         
                 
-        public function mostrarInventario($campos,$nombresCampo,$campoFiltro,$valorAFiltrar){	    
+        public function mostrarInventario($campos,$nombresCampo,$campoFiltro,$valorAFiltrar,$idCliente){	    
             $RegistrosAMostrar=20;
             //estos valores los recibo por GET
             if(isset($_POST['pag'])){
@@ -43,8 +68,8 @@
 	    
             $tabla="catprod";
             if($campoFiltro=="N/A" || $valorAFiltrar=="N/A"){
-		$sqlListar="SELECT ".$campos." FROM ".$tabla." ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
-		$sqlListar1="SELECT ".$campos." FROM ".$tabla." ORDER BY id ASC";
+		$sqlListar="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
+		$sqlListar1="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' ORDER BY id ASC";
 	    }else{//se aplica el filtro en el listado
 		$campoFiltro=explode(",",$campoFiltro);
 		$valorAFiltrar=explode(",",$valorAFiltrar);
@@ -56,8 +81,8 @@
 			$camposWhere=$camposWhere." AND ".$campoFiltro[$i]." = '".$valorAFiltrar[$i]."'";
 		    }		    
 		}
-		$sqlListar="SELECT ".$campos." FROM ".$tabla." WHERE ".$camposWhere." ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
-		$sqlListar1="SELECT ".$campos." FROM ".$tabla." WHERE ".$camposWhere." ORDER BY id ASC";
+		$sqlListar="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
+		$sqlListar1="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC";
 	    }
                         
             echo "<br>".$sqlListar;
@@ -78,7 +103,7 @@
             if($Res>0) $PagUlt=floor($PagUlt)+1;
 ?>                
                 <div class="tituloReporte">
-                    <div style="float: left;border: 1px solid #FF0000;width: auto;"><strong>Listado de Productos</strong></div>
+                    <div style="float: left;border: 1px solid #FF0000;width: auto;"><strong>Listado de Productos</strong><input type="hidden" name="hdnClienteInventario" id="hdnClienteInventario"></div>
                     <div style="clear: both;"></div>
                     <div style="float: left;border: 1px solid #FF0000;width: auto;">
                         
@@ -100,7 +125,7 @@
 		}
 ?>     
                     <div style="float: left;width: 20px;height: 15px;border: 1px solid #CCC;padding: 2px;"><a href="#" onclick="Pagina('<?=$PagUlt;?>','<?=$campoFiltro;?>','<?=$valorAFiltrar;?>')" title="Ultimo" style="cursor:pointer; text-decoration:none;">&gt;|</a>&nbsp;</div>
-		    <div style='float: left;width: 100px;height: 15px;border: 1px solid #CCC;padding: 2px;margin-left: 10px;'><strong>Mostrar Todo</strong></div>
+		    <div class="btnMostrarTodo" onclick="listarInventario('N/A','N/A');"><strong>Mostrar Todo</strong></div>
 		    <div style="float:right;width: 200px;height: 15px;text-align: left;border: 1px solid #CCC;padding: 2px;font-weight: bold;font-size: 12px;">Resultados:&nbsp;<?=$NroRegistros;?></div>
                 </div>
                 <div align="left" style="margin:5px 0px 0px 4px;">
