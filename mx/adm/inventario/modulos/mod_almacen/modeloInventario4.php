@@ -198,11 +198,17 @@
 ?>
                             <tr style="background:#FFF;" onMouseOver="anterior=this.style.backgroundColor;this.style.backgroundColor='#D5EAFF'" onmouseout="this.style.backgroundColor=anterior">
 <?
-			for($i=0;$i<count($camposSelectConsulta);$i++){
+			for($i=0;$i<count($camposSelectConsulta);$i++){                            
+                            if($i==1){
+?>                                
+                                <td width="200" class="estiloResultados" style="<?=$borde1;?>">&nbsp;<a href="#" onclick="ver_kardex('<?=$row["id"];?>')" style="color:blue;"><?=utf8_encode($row[$camposSelectConsulta[$i]]);?></a></td>
+<?                                
+                            }else{
 ?>
 				<td width="200" class="estiloResultados" style="<?=$borde1;?>">&nbsp;<?=utf8_encode($row[$camposSelectConsulta[$i]]);?></td>
 <?
-			}
+                            }
+                        }
 ?>
                             </tr>    
 <?

@@ -764,10 +764,11 @@ class grid_mov_almacen_ini
    function conectDB()
    {
       global $glo_senha_protect;
+      
       $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
       if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']) && isset($_SESSION['scriptcase']['grid_mov_almacen']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['grid_mov_almacen']['glo_nm_conexao']))
       { 
-          $this->Db = db_conect_devel($_SESSION['scriptcase']['grid_mov_almacen']['glo_nm_conexao'], $this->root . $this->path_prod, 'Lexmark'); 
+          $this->Db = db_conect_devel($_SESSION['scriptcase']['grid_mov_almacen']['glo_nm_conexao'], $this->root . $this->path_prod, 'Lexmark');         
       } 
       else 
       { 

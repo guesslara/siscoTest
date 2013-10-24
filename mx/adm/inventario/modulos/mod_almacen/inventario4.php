@@ -22,7 +22,16 @@
     $(document).ready(function(){        	
         //listarInventario('N/A','N/A');
         cargarClientes();
+        redimensionarVentana();
     });
+    window.onresize=redimensionarVentana;    
+    function redimensionarVentana(){
+        var altoDoc=$(document).height();
+        altoDoc=altoDoc - 100;
+        altoDoc1=-(altoDoc / 2);
+        $("#contenedorVentanaKardex").css("height",altoDoc+"px");
+        $("#contenedorVentanaKardex").css("margin-top",altoDoc1+"px");
+    }
     
     function ajaxApp(divDestino,url,parametros,metodo){	
 	$.ajax({
@@ -115,12 +124,17 @@
     function cambiarCliente(){
       $("#div_ventanaSeleccionClientes").show("fadeout");
     }
+    
+    function ver_kardex(id){
+        $("#div_ventanaKardexProducto").show();	
+        ajaxApp("contenidoKardex","kardex2.php","action=ver_kardex&id="+id,"POST");
+    }
 </script>
 <div id="" style="border: 0px solid #FF0000;margin: 2px;font-family: Verdana,Arial;font-size: 12px;" onclick="">
     <div id="cabecerasFiltros"></div>
     <div id="listadoInventario"></div>    
 </div>
-<div id="div_ventanaSeleccionClientes" style="position: absolute;width: 100%;height: 100%;z-index: 900;background: url(../../../../../img/desv.png) repeat;top: 0;">
+<div id="div_ventanaSeleccionClientes" style="display: block;position: absolute;width: 100%;height: 100%;z-index: 900;background: url(../../../../../img/desv.png) repeat;top: 0;">
     <div style="position: absolute;width: 400px;height: 200px;left: 50%;top: 50%;margin-left: -200px;margin-top: -100px;border: 1px solid #000;background: #fff;">
         <div style="position: relative;width: 100%;background: #000;overflow: hidden;">
             <div style="float: left;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;">Seleccione al Cliente para ver sus inventarios</div>
@@ -130,5 +144,16 @@
 
         </div>
     </div>
-</div>    
+</div>
+<div id="div_ventanaKardexProducto" style="display: none;position: absolute;width: 100%;height: 100%;z-index: 900;background: url(../../../../../img/desv.png) repeat;top: 0;">
+    <div id="contenedorVentanaKardex" style="position: absolute;width: 800px;/*height: 450px;*/left: 50%;top: 50%;margin-left: -400px;/*margin-top: -225px;*/border: 1px solid #000;background: #fff;">
+        <div style="position: relative;width: 100%;background: #000;overflow: hidden;">
+            <div style="float: left;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;">Movimientos - </div>
+            <div style="float: right;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;"><a href="#" onclick="cerrarFiltroVentana('div_ventanaKardexProducto')"><img src="../../../../../img/close.gif" border="0"></a></div>            
+        </div>
+        <div id="contenidoKardex" style="border: 0px solid #ff0000;width: 99.8%;height: 96%;overflow: auto;">
+
+        </div>
+    </div>
+</div>
     
