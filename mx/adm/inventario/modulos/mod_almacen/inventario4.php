@@ -1,4 +1,5 @@
 <style type='text/css'>
+   body{margin: 0;}
    .estiloTitulosColumnas{height: 20px;padding: 5px;border:1px solid #CCC;background:#F0F0F0;font-weight:bold;}
    .estiloResultados{height:25px;padding: 5px;border-bottom:1px solid #CCC; width:auto;font-size: 10px;text-align: center;}
    .tituloReporte{border: 1px solid #CCC;background-color:#F0F0F0; height:20px; padding: 5px; width:auto; margin:4px;font-weight: bold;font-size: 12px;}
@@ -16,8 +17,8 @@
 </style>
 <script type="text/javascript" src="../../../../../clases/jquery.js"></script>
 <script type="text/javascript">
-    campos="id,noParte,familia,subfamilia,descripgral,linea,control_alm,exist_1,exist_2,exist_3,exist_4,exist_5,exist_6";
-    nombreCampos="ID,No Parte,Familia,Subfamilia,Descripción,Línea,Control Almacén,Exist. 1,Exist. 2,Exist. 3,Exist. 4,Exist. 5,Exist. 6";
+    campos="id,noParte,familia,subfamilia,descripgral,linea,control_alm";
+    nombreCampos="ID,No Parte,Familia,Subfamilia,Descripcion,Linea,Control Almacen";
     $(document).ready(function(){        	
         //listarInventario('N/A','N/A');
         cargarClientes();
@@ -51,15 +52,19 @@
         idCliente=$("#cboClienteInventario").val();
         if(idCliente=="" || idCliente==null || idCliente==undefined){
             alert("Seleccione un Cliente para mostrar su inventario");
-        }else{
-            $("#hdnClienteInventario").attr("value",idCliente);
+        }else{            
             ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+campo+"&valorAFiltrar="+valorAFiltrar+"&idCliente="+idCliente,"POST");
             $("#div_ventanaSeleccionClientes").hide();
         }        
     }
     
     function Pagina(pagina,campo,valorAFiltrar){
-        ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&pag="+pagina+"&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+campo+"&valorAFiltrar="+valorAFiltrar,"POST");
+        idCliente=$("#hdnClienteInventario").val();
+	if(idCliente=="" || idCliente==null || idCliente==undefined){
+            alert("Seleccione un Cliente para mostrar su inventario");
+        }else{
+	    ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&pag="+pagina+"&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+campo+"&valorAFiltrar="+valorAFiltrar+"&idCliente="+idCliente,"POST");
+	}
     }
     
     function colocarCabeceras(){
@@ -93,25 +98,25 @@
 	    variableCampo=variableCampo+","+campo;
 	    variableFiltro=variableFiltro+","+valorAFiltrar;
 	 }
-         idCliente=$("#cboClienteInventario").val();
+         idCliente=$("#hdnClienteInventario").val();
          
          if(idCliente=="" || idCliente==null || idCliente==undefined){
             alert("Seleccione un Cliente para mostrar su inventario");
         }else{
-            ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+variableCampo+"&valorAFiltrar="+variableFiltro,"POST");
+            ajaxApp("listadoInventario","controladorInventario4.php","action=listarInventario&campos="+campos+"&nombresCampo="+nombreCampos+"&campo="+variableCampo+"&valorAFiltrar="+variableFiltro+"&idCliente="+idCliente,"POST");
             //se coloca el valor del filtro aplicado en el div de filtros
             divFiltroAplicado="filtrosAplicados_"+campo;
             //alert(divFiltroAplicado);
             //$("#"+divFiltroAplicado).append("<div style='height:10px;padding:5px;border-bottom:1px solid #CCC;'>"+valorAFiltrar+"</div>");
             //$("#"+divFiltroAplicado).append("1");   
         }
-         
-         
-         
-	 
+    }
+    
+    function cambiarCliente(){
+      $("#div_ventanaSeleccionClientes").show("fadeout");
     }
 </script>
-<div id="" style="border: 1px solid #FF0000;" onclick="">
+<div id="" style="border: 0px solid #FF0000;margin: 2px;font-family: Verdana,Arial;font-size: 12px;" onclick="">
     <div id="cabecerasFiltros"></div>
     <div id="listadoInventario"></div>    
 </div>

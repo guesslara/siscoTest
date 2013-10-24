@@ -22,7 +22,7 @@
 ?>
                 <div style="margin: 10px;font-size: 12px;">
                 Seleccione el cliente para mostrar su inventario:<br><br>
-                <select name="cboClienteInventario" id="cboClienteInventario" style="margin-left: 30px;width: 200px;font-size: 18px;" onchange="listarInventario('N/A','N/A')">
+                <select name="cboClienteInventario" id="cboClienteInventario" style="margin-left: 30px;width: 200px;font-size: 14px;" onchange="listarInventario('N/A','N/A')">
                     <option value="">Selecciona...</option>
 <?
                 while($row=mysql_fetch_array($res)){
@@ -67,9 +67,42 @@
 	    $camposSelect=explode(",",$nombresCampo);
 	    
             $tabla="catprod";
+	    
+	    //se extraen los almacenes del cliente seleccionado	    
+	    $sqlAlm="SELECT almacenCliente.id_almacen AS id_almacen, almacen
+	    FROM almacenCliente INNER JOIN tipoalmacen ON almacenCliente.id_almacen = tipoalmacen.id_almacen
+	    WHERE id_cliente = '".$idCliente."'";
+	    $resAlm=mysql_query($sqlAlm,$this->conectarBd());
+	    if(mysql_num_rows($resAlm)==0){
+		echo "No hay almacenes asociados con este cliente";
+	    }else{
+		$camposExist="";
+		while($rowAlm=mysql_fetch_array($resAlm)){
+		    if($camposExist==""){
+			$camposExist="exist_".$rowAlm["id_almacen"];
+			array_push($camposSelectConsulta,$camposExist);
+			array_push($camposSelect,$rowAlm["almacen"]);
+		    }else{
+			$camposExist=$camposExist.",exist_".$rowAlm["id_almacen"];
+			array_push($camposSelectConsulta,"exist_".$rowAlm["id_almacen"]);
+			array_push($camposSelect,$rowAlm["almacen"]);
+		    }
+		}
+	    }
+	    //exit();
+	    /*
+	    echo "<br>".$campos."<br>";
+	    echo "<br>".$camposExist."<br>";	    
+	    echo "<br>".$campos.",".$camposExist."<br>";	    
+	    exit();
+	    echo "<pre>";
+	    print_r($camposSelectConsulta);
+	    echo "</pre>";
+	    exit();
+	    */
             if($campoFiltro=="N/A" || $valorAFiltrar=="N/A"){
-		$sqlListar="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
-		$sqlListar1="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' ORDER BY id ASC";
+		$sqlListar="SELECT ".$campos.",".$camposExist." FROM ".$tabla." WHERE id_clientes='".$idCliente."' ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
+		$sqlListar1="SELECT ".$campos.",".$camposExist." FROM ".$tabla." WHERE id_clientes='".$idCliente."' ORDER BY id ASC";
 	    }else{//se aplica el filtro en el listado
 		$campoFiltro=explode(",",$campoFiltro);
 		$valorAFiltrar=explode(",",$valorAFiltrar);
@@ -84,26 +117,26 @@
 		$sqlListar="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
 		$sqlListar1="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC";
 	    }
-                        
+            /*            
             echo "<br>".$sqlListar;
             echo "<br>".$sqlListar1;
-            
+            */
             $rs=mysql_query($sqlListar,$this->conectarBd());
             $rs1=mysql_query($sqlListar1,$this->conectarBd());
-            
-            //******--------determinar las páginas---------******//
-            $NroRegistros=mysql_num_rows($rs1);
-            $PagAnt=$PagAct-1;
-            $PagSig=$PagAct+1;
-            $PagUlt=$NroRegistros/$RegistrosAMostrar;
-            
-            //verificamos residuo para ver si llevará decimales
-            $Res=$NroRegistros%$RegistrosAMostrar;
-            // si hay residuo usamos funcion floor para que me devuelva la parte entera, SIN REDONDEAR, y le sumamos una unidad para obtener la ultima pagina
-            if($Res>0) $PagUlt=floor($PagUlt)+1;
+            if(mysql_num_rows($rs1)!=0){		
+		//******--------determinar las páginas---------******//
+		$NroRegistros=mysql_num_rows($rs1);
+		$PagAnt=$PagAct-1;
+		$PagSig=$PagAct+1;
+		$PagUlt=$NroRegistros/$RegistrosAMostrar;
+		
+		//verificamos residuo para ver si llevará decimales
+		$Res=$NroRegistros%$RegistrosAMostrar;
+		// si hay residuo usamos funcion floor para que me devuelva la parte entera, SIN REDONDEAR, y le sumamos una unidad para obtener la ultima pagina
+		if($Res>0) $PagUlt=floor($PagUlt)+1;
 ?>                
                 <div class="tituloReporte">
-                    <div style="float: left;border: 1px solid #FF0000;width: auto;"><strong>Listado de Productos</strong><input type="hidden" name="hdnClienteInventario" id="hdnClienteInventario"></div>
+                    <div style="float: left;border: 0px solid #FF0000; width: auto;"><strong>Listado de Productos</strong><input type="hidden" name="hdnClienteInventario" id="hdnClienteInventario" value=""></div>
                     <div style="clear: both;"></div>
                     <div style="float: left;border: 1px solid #FF0000;width: auto;">
                         
@@ -126,19 +159,14 @@
 ?>     
                     <div style="float: left;width: 20px;height: 15px;border: 1px solid #CCC;padding: 2px;"><a href="#" onclick="Pagina('<?=$PagUlt;?>','<?=$campoFiltro;?>','<?=$valorAFiltrar;?>')" title="Ultimo" style="cursor:pointer; text-decoration:none;">&gt;|</a>&nbsp;</div>
 		    <div class="btnMostrarTodo" onclick="listarInventario('N/A','N/A');"><strong>Mostrar Todo</strong></div>
-		    <div style="float:right;width: 200px;height: 15px;text-align: left;border: 1px solid #CCC;padding: 2px;font-weight: bold;font-size: 12px;">Resultados:&nbsp;<?=$NroRegistros;?></div>
+		    <div class="btnMostrarTodo" style="width:150px;" onclick="cambiarCliente();"><strong>Cambiar Cliente</strong></div>
+		    <div style="float:right;width: 200px;height: 15px;text-align: left;border: 0px solid #CCC;padding: 2px;font-weight: bold;font-size: 12px;">Resultados:&nbsp;<?=$NroRegistros;?></div>
                 </div>
                 <div align="left" style="margin:5px 0px 0px 4px;">
                     <form name="frm_consultas" id="frm_contenedor">
-                        <table width="1500" border="1" cellpadding="1" cellspacing="1" style="font-size: 10px;" >
+                        <table width="1500" border="0" cellpadding="1" cellspacing="1" style="font-size: 10px;border:1px solid #000;" >
                             <tr>                            
-<?
-			/*echo "<pre>";
-			print_r($camposSelectConsulta);
-			echo "</pre>";
-			echo "<pre>";
-			print_r($campoFiltro);
-			echo "</pre>";*/			
+<?			
 			for($i=0;$i<count($camposSelect);$i++){			    
 			    if($campoFiltro != "N/A"){
 				if(in_array($camposSelectConsulta[$i],$campoFiltro)){	
@@ -182,9 +210,22 @@
 ?>                            
                         </table>
                     </form>
-                </div>    
+                </div>
+		<script type="text/javascript">
+		    $("#hdnClienteInventario").attr("value",'<?=$idCliente;?>');
+		</script>
 <?                
-        }
+	    }else{
+?>
+		<div class="tituloReporte">
+                    <div style="float: left;border: 0px solid #FF0000; width: auto;"><strong>( 0 ) Productos Encontrados</strong><input type="hidden" name="hdnClienteInventario" id="hdnClienteInventario" value=""></div>
+                    <div class="btnMostrarTodo" style="width:150px;" onclick="cambiarCliente();"><strong>Cambiar Cliente</strong></div>
+		    <div style="clear: both;"></div>
+                    <div style="float: left;border: 1px solid #FF0000;width: auto;"></div>
+                </div>
+<?
+	    }
+	}
     }//fin de la clase
 
 ?>

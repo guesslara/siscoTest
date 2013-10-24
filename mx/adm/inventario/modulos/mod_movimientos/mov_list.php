@@ -136,7 +136,7 @@ if ($_POST){
 <?
 					}else{
 ?>						
-						<a href="#" onclick="capturarSeries('<?=$id_movimiento_recibido;?>','<?=$row['clave'];?>','<?=$row['cantidad'];?>')">Capturar Series</a>
+						<a href="#" onclick="capturarSeries('<?=$id_movimiento_recibido;?>','<?=$row['id_prod'];?>','<?=$row['cantidad'];?>')">Capturar Series</a>
 <?
 					}
 ?>
