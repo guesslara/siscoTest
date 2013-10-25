@@ -127,7 +127,7 @@
     
     function ver_kardex(id){
         $("#div_ventanaKardexProducto").show();	
-        ajaxApp("contenidoKardex","kardex2.php","action=ver_kardex&id="+id,"POST");
+        ajaxApp("contenidoKardex","kardex2.php","action=ver_kardex&id="+id,"GET");
     }
 </script>
 <div id="" style="border: 0px solid #FF0000;margin: 2px;font-family: Verdana,Arial;font-size: 12px;" onclick="">

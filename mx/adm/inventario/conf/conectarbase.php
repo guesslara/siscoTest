@@ -9,7 +9,7 @@
 	$sql_iqe_inv="--";	// DB DEL SISTEMA DE INVENTARIOS IQ. 
 	$dbcompras="--";	// DB DEL SISTEMA DE COMPRAS IQ. 
 	$ialm=1;
-	$calm0="a_1_Equipo_Recibido";
+	$calm0="a_1_Equipo_Proceso";
 	$cexi0="exist_$ialm";
 	$ctra0="trans_$ialm";
 	

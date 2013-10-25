@@ -164,7 +164,7 @@
                 </div>
                 <div align="left" style="margin:5px 0px 0px 4px;">
                     <form name="frm_consultas" id="frm_contenedor">
-                        <table width="1500" border="0" cellpadding="1" cellspacing="1" style="font-size: 10px;border:1px solid #000;" >
+                        <table width="1900" border="0" cellpadding="1" cellspacing="1" style="font-size: 10px;border:1px solid #000;" >
                             <tr>                            
 <?			
 			for($i=0;$i<count($camposSelect);$i++){			    
@@ -177,8 +177,10 @@
 			    }
 ?>
 				<td align="center" class="estiloTitulosColumnas" valign="middle" style="background: <?=$fondoTitulo;?>">
-				    <div style="float: left;width: auto;border: 0px solid #FF0000;margin-top: 4px;"><?=utf8_decode($camposSelect[$i]);?></div>
-				    <div style="float: left;width: auto;margin-left: 10px;border: 0px solid #FF0000;"><a href="#" onclick="mostrarFiltro('<?=($i+1);?>','<?=$camposSelectConsulta[$i];?>')"><img src="../../../../../img/filtro.jpg" border="0"></a></div>
+				    <div style="border: 0px solid blue;width: auto;overflow: hidden;height: 15px;">
+					<div style="float: left;width: auto;border: 0px solid #FF0000;margin-top: -4px;text-align: left;"><?=utf8_decode($camposSelect[$i]);?>&nbsp;<a href="#" onclick="mostrarFiltro('<?=($i+1);?>','<?=$camposSelectConsulta[$i];?>')"><img src="../../../../../img/filtro.jpg" border="0"></a></div>
+					<!--<div style="float: left;width: auto;margin-left: 2px;border: 1px solid #FF0000;"><a href="#" onclick="mostrarFiltro('<?=($i+1);?>','<?=$camposSelectConsulta[$i];?>')"><img src="../../../../../img/filtro.jpg" border="0"></a></div>-->
+				    </div>
                                     <div id="div_<?=($i+1);?>" class="ventanaFiltro">
 					<div class="contenedorTituloFiltro">
 					    <div style="float: left;">Filtrar Datos</div>
@@ -201,11 +203,11 @@
 			for($i=0;$i<count($camposSelectConsulta);$i++){                            
                             if($i==1){
 ?>                                
-                                <td width="200" class="estiloResultados" style="<?=$borde1;?>">&nbsp;<a href="#" onclick="ver_kardex('<?=$row["id"];?>')" style="color:blue;"><?=utf8_encode($row[$camposSelectConsulta[$i]]);?></a></td>
+                                <td class="estiloResultados" style="width: auto;">&nbsp;<a href="#" onclick="ver_kardex('<?=$row["id"];?>')" style="color:blue;"><?=utf8_encode($row[$camposSelectConsulta[$i]]);?></a></td>
 <?                                
                             }else{
 ?>
-				<td width="200" class="estiloResultados" style="<?=$borde1;?>">&nbsp;<?=utf8_encode($row[$camposSelectConsulta[$i]]);?></td>
+				<td class="estiloResultados" style="width: auto;">&nbsp;<?=utf8_encode($row[$camposSelectConsulta[$i]]);?></td>
 <?
                             }
                         }
