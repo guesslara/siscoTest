@@ -122,12 +122,17 @@
     }
     
     function cambiarCliente(){
-      $("#div_ventanaSeleccionClientes").show("fadeout");
+      $("#div_ventanaSeleccionClientes").show();
+      cargarClientes();
     }
     
     function ver_kardex(id){
         $("#div_ventanaKardexProducto").show();	
         ajaxApp("contenidoKardex","kardex2.php","action=ver_kardex&id="+id,"GET");
+    }
+    
+    function exportarExcel(){
+        ajaxApp("cabecerasFiltros","controladorInventario4.php","action=exportarInventario","POST");
     }
 </script>
 <div id="" style="border: 0px solid #FF0000;margin: 2px;font-family: Verdana,Arial;font-size: 12px;" onclick="">

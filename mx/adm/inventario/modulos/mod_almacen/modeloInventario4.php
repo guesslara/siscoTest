@@ -23,7 +23,7 @@
                 <div style="margin: 10px;font-size: 12px;">
                 Seleccione el cliente para mostrar su inventario:<br><br>
                 <select name="cboClienteInventario" id="cboClienteInventario" style="margin-left: 30px;width: 200px;font-size: 14px;" onchange="listarInventario('N/A','N/A')">
-                    <option value="">Selecciona...</option>
+                    <option value="" selected="selected">Selecciona...</option>
 <?
                 while($row=mysql_fetch_array($res)){
 ?>
@@ -53,7 +53,8 @@
         
                 
         public function mostrarInventario($campos,$nombresCampo,$campoFiltro,$valorAFiltrar,$idCliente){	    
-            $RegistrosAMostrar=20;
+            session_start();
+	    $RegistrosAMostrar=20;
             //estos valores los recibo por GET
             if(isset($_POST['pag'])){
               $RegistrosAEmpezar=($_POST['pag']-1)*$RegistrosAMostrar;
@@ -114,13 +115,20 @@
 			$camposWhere=$camposWhere." AND ".$campoFiltro[$i]." = '".$valorAFiltrar[$i]."'";
 		    }		    
 		}
-		$sqlListar="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
-		$sqlListar1="SELECT ".$campos." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC";
+		$sqlListar="SELECT ".$campos.",".$camposExist." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
+		$sqlListar1="SELECT ".$campos.",".$camposExist." FROM ".$tabla." WHERE id_clientes='".$idCliente."' AND ".$camposWhere." ORDER BY id ASC";
 	    }
             /*            
             echo "<br>".$sqlListar;
             echo "<br>".$sqlListar1;
             */
+	    $_SESSION["camposSelect"]=$camposSelect;
+	    $_SESSION["campos"]=$campos;
+	    $_SESSION["camposExist"]=$camposExist;
+	    $_SESSION["clienteExport"]=$idCliente;
+	    $_SESSION["camposWhere"]=$camposWhere;
+	    
+	    
             $rs=mysql_query($sqlListar,$this->conectarBd());
             $rs1=mysql_query($sqlListar1,$this->conectarBd());
             if(mysql_num_rows($rs1)!=0){		
@@ -160,6 +168,7 @@
                     <div style="float: left;width: 20px;height: 15px;border: 1px solid #CCC;padding: 2px;"><a href="#" onclick="Pagina('<?=$PagUlt;?>','<?=$campoFiltro;?>','<?=$valorAFiltrar;?>')" title="Ultimo" style="cursor:pointer; text-decoration:none;">&gt;|</a>&nbsp;</div>
 		    <div class="btnMostrarTodo" onclick="listarInventario('N/A','N/A');"><strong>Mostrar Todo</strong></div>
 		    <div class="btnMostrarTodo" style="width:150px;" onclick="cambiarCliente();"><strong>Cambiar Cliente</strong></div>
+		    <div class="btnMostrarTodo" style="width:150px;" onclick="exportarExcel();"><strong>Exportar a Excel</strong></div>
 		    <div style="float:right;width: 200px;height: 15px;text-align: left;border: 0px solid #CCC;padding: 2px;font-weight: bold;font-size: 12px;">Resultados:&nbsp;<?=$NroRegistros;?></div>
                 </div>
                 <div align="left" style="margin:5px 0px 0px 4px;">

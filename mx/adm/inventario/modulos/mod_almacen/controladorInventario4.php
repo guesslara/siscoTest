@@ -9,6 +9,13 @@
         case "llenarFiltro":
             $obj->llenarFiltros($_POST["campo"]);
         break;
+        case "exportarInventario":
+?>
+        <script type="text/javascript">
+            window.location.href="exportarInventario.php";
+        </script>
+<?
+        break;
         case "listarClientes":
             $obj->listarClientes();
         break;
