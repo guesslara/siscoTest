@@ -97,14 +97,14 @@ if ($_POST){
 				    <td width="77" bgcolor="#CCCCCC" class="style17">Clave Producto</td>
 				    <td width="62" bgcolor="#CCCCCC" class="style17">Cantidad</td>
 				    <td width="41" bgcolor="#CCCCCC" class="style17">C.U. </td>
-				    <td width="360" bgcolor="#CCCCCC" class="style17">Descripci&oacute;n</td>
-				    <td colspan="2" width="228" bgcolor="#CCCCCC" class="style17">Especificaci&oacute;n</td>
+				    <td colspan="2" width="228" bgcolor="#CCCCCC" class="style17">No Parte</td>
+				    <td width="360" bgcolor="#CCCCCC" class="style17">Descripci&oacute;n</td>				    
 				    <td width="228" bgcolor="#CCCCCC" class="style17">Acciones</td>
 				</tr>
             <?
 			$color="#F0F0F0";
 			while($row=mysql_fetch_array($resultado)){
-				$sqlInfoProd="select $lista_campos from catprod where id='".$row['id_prod']."' ORDER BY id";
+				$sqlInfoProd="select $lista_campos,noParte from catprod where id='".$row['id_prod']."' ORDER BY id";
 				$resultado1=mysql_query($sqlInfoProd,$link);
 				$des_prod=mysql_fetch_array($resultado1);
 				//se consultan los numeros de serie
@@ -126,8 +126,8 @@ if ($_POST){
 ?>
 					<td width="62"  align="right" class="td1" ><?=$row['cantidad'];?>&nbsp;</td>
 					<td class="td1" align="right"><?php if($row['cu']!==''||$row['cu']!==' ') echo '$'.$row['cu']; ?>&nbsp;</td>
-					<td class="td1"><?=$des_prod['descripgral'];?></td>
-					<td colspan="2" ><?=$des_prod['especificacion'];?></td>
+					<td class="td1" colspan="2" ><?=$des_prod['noParte'];?></td>
+					<td ><?=$des_prod['descripgral'];?></td>					
 					<td style="text-align: center;">
 <?
 					if($tipoMovimiento=="Traspaso" && $asociadoMov=="Almacen"){
@@ -626,7 +626,9 @@ $aso2='';
 	<div style="position: absolute;width: 650px;height: 400px;border: 1px solid #000;top: 50%;left: 50%;margin-top: -200px;margin-left: -325px;z-index: 999999;background: #FFF;">
 		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;"><div id="tituloVentanaModal" style="float: left;">Capturar # de Serie</div><div style="float: right;color: #FFF;" onclick="cerrarSeries()">Cerrar</div></div>
 		<div id="divCapturaSeries" style="width: 99.5%;height: 341px;border: 0px solid #FF0000;overflow: auto;"></div>
-		<div id="errores" style="height: 30px;border: 1px solid #CCC;font-size: 10px;color: #FF0000;overflow: auto;"></div>
+		<div id="errores" style="text-align: right;height: 30px;border: 1px solid #CCC;font-size: 10px;color: #FF0000;overflow: auto;">
+			<input type="button" value="Asignar Series">
+		</div>
 	</div>
 </div>
 <!--Fin de los numeros de serie-->

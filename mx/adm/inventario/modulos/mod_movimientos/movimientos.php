@@ -50,7 +50,7 @@
 			$sql="SELECT * FROM tipoalmacen";
 			$result=mysql_query($sql,$link);
 			?>
-			  <table width="100%" border="0" align="center" cellspacing="0">
+			  <table width="100%" border="0" align="center" cellspacing="0" style="font-size: 12px;font-family: Verdana;">
 				<tr style="background-color:#333333; text-align:center; font-weight:bold; color:#FFFFFF;">
 				  <td colspan="2" height="23">Cat&aacute;logo de  Almacenes </td>
 				</tr>
@@ -61,7 +61,7 @@
 				<? while($row=mysql_fetch_array($result)) { ?>
 				<tr bgcolor="<?=$color?>" onmouseover="this.style.background='#cccccc';" onmouseout="this.style.background='<? echo $color; ?>'" onclick="javascript:coloca_proveedor1('<?= $row["id_almacen"]; ?>','<?= $row["almacen"]; ?>');" style="cursor:pointer;">
 				<td align="center" style="border-right:#CCCCCC 1px solid; text-align:center;" height="20"><?= $row["id_almacen"]; ?></td>
-				<td>&nbsp;<?= $row["almacen"]?></td>
+				<td>&nbsp;<?= $row["almacen"]." - ".$row["observ"];?></td>
 				</tr>
 				<?
 				($color=="#F0F0F0")? $color="#FFFFFF": $color="#F0F0F0";
@@ -254,7 +254,7 @@
 						$ncalm3="a_".$ialm3."_$nalm3";
 						//echo "<br>NCA DESTINO=($ncalm2)<BR>";
 					}				
-				echo "<BR>".
+				//echo "<BR>".
 				$sql0="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `cpromedio`, `$ceX`, `$ctX` FROM `catprod` WHERE $ncalm=1 AND $ncalm3=1 AND $ceX>0 ORDER BY `id`";
 				//exit();
 				$r0=mysql_query($sql0,$link);

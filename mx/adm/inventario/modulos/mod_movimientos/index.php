@@ -369,11 +369,11 @@
 				<br />
 				<div class="div_contenido_interno">			
 				<?php
-				$color="#D9FFB3";
+				$color="#FFF";
 				$sql="SELECT * FROM tipoalmacen";
 				$result=mysql_query($sql,$link);
 				?>
-				  <table width="100%" border="0" align="center" cellspacing="0">
+				  <table width="100%" border="0" align="center" cellspacing="0" style="font-size: 12px;font-family: Verdana;">
 					<tr style="background-color:#333333; text-align:center; font-weight:bold; color:#FFFFFF;">
 					  <td colspan="2" height="23">Movimiento al Almac&eacute;n </td>
 					</tr>
@@ -384,10 +384,10 @@
 					<? while($row=mysql_fetch_array($result)) { ?>
 					<tr bgcolor="<?=$color?>" onmouseover="this.style.background='#cccccc';" onmouseout="this.style.background='<? echo $color; ?>'" onclick="javascript:coloca_almacen1('<?= $row["id_almacen"]; ?>','<?= $row["almacen"]; ?>');" style="cursor:pointer;">
 					<td align="center" style="border-right:#CCCCCC 1px solid; text-align:center;" height="20"><?= $row["id_almacen"]; ?></td>
-					<td>&nbsp;<?= $row["almacen"]?></td>
+					<td>&nbsp;<?= $row["almacen"]." - ".$row["observ"];?></td>
 					</tr>
 					<?
-					($color=="#D9FFB3")? $color="#FFFFFF": $color="#D9FFB3";
+					($color=="#FFF")? $color="#F0F0F0": $color="#FFF";
 					}
 					?>
 				  </table>
