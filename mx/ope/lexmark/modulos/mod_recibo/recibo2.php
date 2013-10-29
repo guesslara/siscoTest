@@ -11,9 +11,12 @@
 		$nds=$_POST["nds"];
 	
 		//echo "<br>BD [$sql_inv] <br>SQL=".
-		echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov,status 
+		/*echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov,status 
 			FROM catprod,num_series 
-			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie = '$nds'";
+			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie = '$nds'";*/
+		$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_2, num_series.serie,mov,status
+                       FROM catprod INNER JOIN num_series ON catprod.id=num_series.clave_prod
+                       WHERE num_series.serie = '$nds' AND num_series.status='asignado'";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";		echo "<br>NDR=".
 			$ndr1=mysql_num_rows($resultado1);
@@ -28,7 +31,7 @@
 					</tr>
 					<tr>
 					  <td width="192" style="border-top:#000000 solid 2px;">&nbsp;NO. SERIE </td>
-					  <td width="300" style="border-top:#000000 solid 2px;" colspan="2"><br><input type="text" class="tex0" size="50" name="txt0" id="txt0" value="<?=$nds?>" readonly="1" /></td>
+					  <td width="300" style="border-top:#000000 solid 2px;" colspan="2"><br><input type="text" class="tex0" size="50" name="txt0" id="nserie" value="<?=$registro1['serie'];?>" readonly="1" /></td>
 					</tr>
 					<tr>
 					  <td class="campos_verticales">&nbsp;ID PRODUCTO </td>
@@ -137,7 +140,7 @@
 		// paso 2
 		if ($x==0){
 			//echo "<br><br>".
-			$sql5="SELECT id FROM ot WHERE nserie='$a'";	
+			 $sql5="SELECT id FROM ot WHERE nserie='$a'";	
 			if ($result5=mysql_query($sql5,$link)){
 				if (mysql_num_rows($result5)>0){
 					?>
@@ -174,7 +177,12 @@
 		$res=mysql_query($sql3,$link);
 		
 		if ($res){
-			echo "<div align=center>&nbsp;La OT se guardo correctamente.</div>";
+			?>
+			<script type="text/javascript">
+			alert("La OT se guardo correctamente.");
+		       </script>
+		       <?PHP
+			
 			//$id_insertado=mysql_insert_id($res);
 			$idc=sprintf('%06s',$res);		
 			$ot="BD".date("y").date("m").$idc;

@@ -47,7 +47,7 @@
             	echo $id_recibe=$registro1["repara"];
 				if (!$id_recibe==""){
 					$sql_usuario1="SELECT dp_nombre,dp_apaterno,dp_amaterno FROM usuarios WHERE id_usuario=$id_recibe ";
-					$resultado_usuario1=mysql_db_query($sql_inv,$sql_usuario1);
+					$resultado_usuario1=mysql_query($sql_usuario1,$link);
 						$registro_usuario1=mysql_fetch_array($resultado_usuario1);
 						echo strtoupper(". ".$registro_usuario1["dp_nombre"]." ".$registro_usuario1["dp_apaterno"]);        
 				}			
@@ -64,7 +64,7 @@
 		
 		//echo "<br>".
 		$sql1="SELECT * FROM ot WHERE id='$id_ot'";	
-		if ($result1=mysql_db_query($sql_ing,$sql1)){
+		if ($result1=mysql_query($sql1,$link)){
 			if ($ndr1=mysql_num_rows($result1)>0){
 				while($registro1=mysql_fetch_array($result1)){
 					//echo "<br>"; print_r($registro1);
@@ -345,7 +345,7 @@ if ($nno>1){
 		$sql_rep_efe="SELECT reg_rep_efectuadas.id, reg_rep_efectuadas.id_ot, reg_rep_efectuadas.id_rep_efectuada, reg_rep_efectuadas.posicion, cat_reparaciones.descripcion 
 			FROM reg_rep_efectuadas,cat_reparaciones 
 			WHERE cat_reparaciones.id=reg_rep_efectuadas.id_rep_efectuada AND reg_rep_efectuadas.id_ot=$id_ot ORDER BY reg_rep_efectuadas.id DESC LIMIT 0,5";
-		if(!$resultado_rep_efe=mysql_db_query($sql_ing,$sql_rep_efe)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
+		if(!$resultado_rep_efe=mysql_query($sql_rep_efe,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
 		//echo "<br>NDR ru=".
 		$ndr_rep_efe=mysql_num_rows($resultado_rep_efe);
 		if ($ndr_rep_efe>5){ echo "<br>Parece que este producto tiene varias Reparaciones Efectuadas, sin embargo se mostraran las ultimas 5 registradas."; }
@@ -430,7 +430,7 @@ if ($nno>1){
 			
 			//echo "<br>BD [$sql_ing] SQL=".
 			$sql1="SELECT * FROM cat_fallas_tecnicas WHERE aplica_productos LIKE '%$idp%' ORDER BY id";
-			if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+			if ($resultado1=mysql_query($sql1,$link)){
 				//echo "<div align=center>OK</div>";
 				$ndr1=mysql_num_rows($resultado1);
 			} else {
@@ -485,7 +485,7 @@ if ($nno>1){
 			
 			//echo "<br>BD [$sql_ing] SQL=".
 			$sql1="SELECT * FROM cat_refacciones WHERE productos LIKE '%$idp%' ORDER BY id_ref";
-			if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+			if ($resultado1=mysql_query($sql1,$link)){
 				//echo "<div align=center>OK</div>";
 				$ndr1=mysql_num_rows($resultado1);
 			} else {

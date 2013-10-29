@@ -73,7 +73,8 @@
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
-		<br /><div align="center"><input type="button" value="Aceptar" onclick="coloca_productos()" /></div><br />
+		<br /><div style="background:transparent; position: fixed;">
+		<input type="button" value="Aceptar" onclick="coloca_productos()" /></div><br />
 		</form>
 		<?php
 	}  
@@ -170,7 +171,7 @@
 		$ps=$_POST["ps"];
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="UPDATE cat_diagnosticos SET aplica_productos='$ps' WHERE id=$idd";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			echo "<div align=center>El diagnostico se guardo correctamente.</div>";?>
 				<script language="javascript"> $("#all").show(); </script>
 			<?php

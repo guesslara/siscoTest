@@ -108,22 +108,12 @@ if ($_POST){
 				$resultado1=mysql_query($sqlInfoProd,$link);
 				$des_prod=mysql_fetch_array($resultado1);
 				//se consultan los numeros de serie
-				$sqlS="SELECT * FROM num_series WHERE mov='".$id_movimiento_recibido."' AND clave_prod='".$row["clave"]."'";
+				$sqlS="SELECT * FROM num_series WHERE mov='".$id_movimiento_recibido."' AND clave_prod='".$row["id_prod"]."'";
 				$resS=mysql_query($sqlS,$link);
 ?>
 				<tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'">
 					<td align="center" class="td1" height="20"><?=$row['id_prod'];?></td>
-					<td class="td1">
-<?php 
-							//echo "<br>Tipo de Concepto=$concepto_tipo";
-						if ($concepto_tipo=="Sal"||$series_gen=="No Generado") {
-							echo "&nbsp;".$row['clave'];
-						} else {
-?>
-							<a href="../reportes/no_series_xls.php?idm=<?=$id_movimiento_recibido?>&clavep=<?=$row['clave']?>" title="Exportar numeros de serie a Excel"><?=$row['clave'];?></a></td>
-<?php
-						}
-?>
+					<td class="td1"><?=$row['clave'];?></a></td>
 					<td width="62"  align="right" class="td1" ><?=$row['cantidad'];?>&nbsp;</td>
 					<td class="td1" align="right"><?php if($row['cu']!==''||$row['cu']!==' ') echo '$'.$row['cu']; ?>&nbsp;</td>
 					<td class="td1" colspan="2" ><?=$des_prod['noParte'];?></td>
@@ -132,7 +122,7 @@ if ($_POST){
 <?
 					if($tipoMovimiento=="Traspaso" && $asociadoMov=="Almacen"){
 ?>
-						<a href="#" onclick="seriesAAsignar()">Buscar Series</a>
+						<a href="#" onclick="seriesAAsignar('<?=$des_prod['noParte'];?>','<?=$row['cantidad'];?>')">Buscar Series</a>
 <?
 					}else{
 ?>						
@@ -412,18 +402,53 @@ function ajaxApp(divDestino,url,parametros,metodo){
 	error:function() { $("#"+divDestino).show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 	});
 }
-function seriesAAsignar(){
+function seriesAAsignar(noParte,cantidadAASignar){
 	//se muestra la ventana para buscar el numero de serie
 	$("#divCapturaSeries").html("");
 	$("#divModalSeries").show();
 	$("#tituloVentanaModal").html("Buscar Seriales a Asignar");
 	
-	ajaxApp("divCapturaSeries","buscarSeries.php","action=mostrarBusquedaSeries","POST");
+	ajaxApp("divCapturaSeries","buscarSeries.php","action=mostrarBusquedaSeries&noParte="+noParte+"&cantidadAsig="+cantidadAASignar,"POST");
+}
+function buscarSeriesNoParte(noParte){
+	ajaxApp("resultadosSerieBusqueda","buscarSeries.php","action=buscarSerie&noParte="+noParte+"&serie=N/A","POST");
 }
 function buscarSerieAAsignar(evento){	
 	if(evento.which==13){
 		var serieAAsignar=$("#txtSerieBusqueda").val();
-		ajaxApp("resultadosSerieBusqueda","buscarSeries.php","action=buscarSerie&serie="+serieAAsignar,"POST");
+		var noParte=$("#hdnNoParteSel").val();
+		ajaxApp("resultadosSerieBusqueda","buscarSeries.php","action=buscarSerie&serie="+serieAAsignar+"&noParte="+noParte,"POST");
+	}
+}
+function asignarSeriesSeleccionadas(){
+	var cantidadElementos=$("#hdnCantidadAsignar").val();
+	var elementos="";
+
+	for (var i=0;i<document.frmBusquedaSeriesAsignar.elements.length;i++){
+		if (document.frmBusquedaSeriesAsignar.elements[i].type=="checkbox"){
+			if (document.frmBusquedaSeriesAsignar.elements[i].checked){				
+				if (elementos=="")
+					elementos=elementos+document.frmBusquedaSeriesAsignar.elements[i].value;
+				else
+					elementos=elementos+","+document.frmBusquedaSeriesAsignar.elements[i].value;
+					
+			}	
+		}
+	}
+	//alert(elementos);
+	if(elementos==""){		
+		alert("Error:\n\n Seleccione por lo menos un item para poder guardar la Asignacion del numero de Serie");
+	}else{
+		cantidadElementosArray=elementos.split(",");
+		if(cantidadElementosArray.length < cantidadElementos){
+			alert("Error: Verifique que la cantidad seleccionada concuerde con la cantidad de Series Asignadas");
+		}else if(cantidadElementosArray.length > cantidadElementos){
+			alert("Error: Verifique que la cantidad seleccionada de Series no sea mayor a cantidad asignada en el movimiento");
+		}else{
+			if(confirm("Esta seguro de Asignar los numeros de Serie al movimiento")){				
+				ajaxApp("resultadosSerieBusqueda","buscarSeries.php","action=asignarSeries&idSeries="+elementos,"POST");
+			}
+		}
 	}
 }
 /*Fin de la Modificacion*/
@@ -627,7 +652,7 @@ $aso2='';
 		<div style="height: 15px;padding: 5px;color: #FFF;background: #000;font-size: 12px;"><div id="tituloVentanaModal" style="float: left;">Capturar # de Serie</div><div style="float: right;color: #FFF;" onclick="cerrarSeries()">Cerrar</div></div>
 		<div id="divCapturaSeries" style="width: 99.5%;height: 341px;border: 0px solid #FF0000;overflow: auto;"></div>
 		<div id="errores" style="text-align: right;height: 30px;border: 1px solid #CCC;font-size: 10px;color: #FF0000;overflow: auto;">
-			<input type="button" value="Asignar Series">
+			<input type="button" value="Asignar Series" onclick="asignarSeriesSeleccionadas()">
 		</div>
 	</div>
 </div>

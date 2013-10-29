@@ -36,7 +36,7 @@
 	function guardar_ot(){
 		if (document.form1.chk1.checked){ var x="1"; } else { var x="0"; }
 		
-		var a=$("#txt0").attr("value");
+		var a=$("#nserie").attr("value");
 		var b=$("#txt1").attr("value");
 		var c=$("#txt2").attr("value");
 		var d=$("#txt3").attr("value");
