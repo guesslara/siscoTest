@@ -66,7 +66,7 @@
 	.txt_numero{ text-align:right;}
 </style>
 <body>
-<?php include("../menu/menu2.php"); ?>	
+<?php include("../../menu/menu2.php"); ?>	
     <div id="all">
     	<div id="menu">&nbsp;	</div>
         <div id="contenido">&nbsp;</div>
@@ -74,7 +74,7 @@
         <div id="grafica">
         	<div id="placeholder" style=" position:relative; width:600px; height:400px; left:50%; margin-left:-300px; "></div>  
         </div>
-        <div id="pie"><?php include("../../f.php"); ?></div>
+        
     </div>
     
     

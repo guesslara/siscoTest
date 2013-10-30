@@ -89,7 +89,9 @@
 			exit();
 		}
 		?>
+		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
 		<form name="frm2">
+			
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
 			<tr>
 			  <td colspan="5" align="center">La Falla T&eacute;ccnica  
@@ -173,7 +175,7 @@
 		$ps=$_POST["ps"];
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="UPDATE cat_fallas_tecnicas SET aplica_productos='$ps' WHERE id=$idd";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			echo "<div align=center>La Falla Tecnica se guardo correctamente.</div>";?>
 				<script language="javascript"> $("#all").show(); </script>
 			<?php

@@ -22,7 +22,7 @@
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();
 		}
-		echo "<br>".$sql1;	
+		//echo "<br>".$sql1;	
 		?>
 		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0">
 		<tr>
@@ -345,7 +345,8 @@ if ($nno>1){
 		$sql_rep_efe="SELECT reg_rep_efectuadas.id, reg_rep_efectuadas.id_ot, reg_rep_efectuadas.id_rep_efectuada, reg_rep_efectuadas.posicion, cat_reparaciones.descripcion 
 			FROM reg_rep_efectuadas,cat_reparaciones 
 			WHERE cat_reparaciones.id=reg_rep_efectuadas.id_rep_efectuada AND reg_rep_efectuadas.id_ot=$id_ot ORDER BY reg_rep_efectuadas.id DESC LIMIT 0,5";
-		if(!$resultado_rep_efe=mysql_query($sql_rep_efe,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
+		if(!$resultado_rep_efe=mysql_query($sql_rep_efe,$link)){
+			echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
 		//echo "<br>NDR ru=".
 		$ndr_rep_efe=mysql_num_rows($resultado_rep_efe);
 		if ($ndr_rep_efe>5){ echo "<br>Parece que este producto tiene varias Reparaciones Efectuadas, sin embargo se mostraran las ultimas 5 registradas."; }

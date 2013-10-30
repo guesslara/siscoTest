@@ -193,12 +193,12 @@ border:#000000 2px solid; display:none; padding:0px 0px 0px 0px; }
 <body>
 <div id="transparente"></div>
 <div id="todo">
-	<?php include("../menu/menu2sjq.php"); ?>
+	<?php include("../../menu/menu2sjq.php"); ?>
 	<div style="text-align:right;">
 		<a href="javascript:bavanzada();">Busqueda Avanzada</a> &nbsp;&nbsp;&nbsp;
 	</div><br />
 	<div id="contenido">&nbsp;</div>
-	<?php include("../../f.php"); ?>
+	
 </div>
 
 	<div id="busqueda1" align="center">

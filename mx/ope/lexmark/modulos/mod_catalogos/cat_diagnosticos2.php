@@ -7,6 +7,7 @@
 	if ($a=="nuevo"){
 		//Muestro formulario.
 		?>
+		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
 		<form name="frm1">
 		<br /><table align="center" width="100%" style="font-weight:bold; font-size:10px;">
 			<tr>
@@ -52,6 +53,7 @@
 		}
 		?>
 		<form name="frm2">
+			<div><input type="button" value="Aceptar" onclick="coloca_productos()" /></div>
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
 			<tr>
 			  <td colspan="5" align="center">El diagn&oacute;stico aplica a los productos seleccionados. </td>
@@ -73,8 +75,8 @@
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
-		<br /><div style="background:transparent; position: fixed;">
-		<input type="button" value="Aceptar" onclick="coloca_productos()" /></div><br />
+		<br /><div id="aceptar" align="center"><input type="button" value="Aceptar" onclick="coloca_productos()" /></div><br />
+		
 		</form>
 		<?php
 	}  
@@ -112,7 +114,7 @@
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
-		<br /><div align="center"><input type="button" value="Aceptar" onclick="coloca_productos2(<?=$idd?>)" /></div><br />
+		<br /><div id="aceptar" align="center" style="position: fixed"><input type="button" value="Aceptar" onclick="coloca_productos2(<?=$idd?>)" /></div><br />
 		</form>
 		<?php
 	}  
