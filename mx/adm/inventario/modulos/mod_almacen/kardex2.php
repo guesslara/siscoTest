@@ -29,7 +29,7 @@ $esp=$_GET['esp'];
 	  		$id_prod2=$r1_cpy['id_prod'];
 		}
 
-$sql_cardex="SELECT mov_almacen.id_mov, concepmov.id_concep, concepmov.concepto,concepmov.tipo,mov_almacen.asociado, mov_almacen.almacen, mov_almacen.fecha, prodxmov.cantidad, prodxmov.cu, catprod.id_prod, catprod.descripgral
+echo $sql_cardex="SELECT mov_almacen.id_mov, concepmov.id_concep, concepmov.concepto,concepmov.tipo,mov_almacen.asociado, mov_almacen.almacen, mov_almacen.fecha, prodxmov.cantidad, prodxmov.cu, catprod.id_prod, catprod.descripgral
 FROM (mov_almacen INNER JOIN concepmov ON mov_almacen.tipo_mov = concepmov.id_concep) INNER JOIN (catprod INNER JOIN prodxmov ON catprod.id_prod = prodxmov.clave) ON mov_almacen.id_mov = prodxmov.nummov
 WHERE (((catprod.id)='$id')) order by id_mov;";
 

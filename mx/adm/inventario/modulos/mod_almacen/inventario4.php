@@ -156,7 +156,7 @@
             <div style="float: left;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;">Movimientos - </div>
             <div style="float: right;background: #000;border: 1px solid #000;color: #fff;font-size: 12px;padding: 5px;"><a href="#" onclick="cerrarFiltroVentana('div_ventanaKardexProducto')"><img src="../../../../../img/close.gif" border="0"></a></div>            
         </div>
-        <div id="contenidoKardex" style="border: 0px solid #ff0000;width: 99.8%;height: 96%;overflow: auto;">
+        <div id="contenidoKardex" style="border: 0px solid #ff0000;width: 99.8%;height: 93%;overflow: auto;">
 
         </div>
     </div>

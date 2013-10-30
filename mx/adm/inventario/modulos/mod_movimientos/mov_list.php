@@ -32,20 +32,25 @@ if ($_POST){
 					$series_gen=$row_detalle_movimiento["seriesGen"];
 					
 					// PROVEEDOR ...
-					if ($row_detalle_movimiento["dasociado"]=="Proveedor")
-					{
+					if ($row_detalle_movimiento["dasociado"]=="Proveedor"){
 						$sql_proveedor="SELECT nr FROM catprovee WHERE id_prov=".$row_detalle_movimiento["asociado"];
 						$result_proveedor=mysql_db_query($dbcompras,$sql_proveedor);
 						$row_proveedor=mysql_fetch_array($result_proveedor);
 						$xasociado=$row_proveedor["nr"];	
 					}
 					// ALMACENES
-					if ($row_detalle_movimiento["dasociado"]=="Almacen")
-					{
+					if ($row_detalle_movimiento["dasociado"]=="Almacen"){
 						$sql_almacen_asociado="SELECT almacen FROM `tipoalmacen` WHERE `id_almacen`=".$row_detalle_movimiento["asociado"];
 						$result_almacen_asociado=mysql_query($sql_almacen_asociado,$link);	
 						while($row_almacen_asociado=mysql_fetch_array($result_almacen_asociado)){	
 							$xasociado=$row_almacen_asociado["almacen"];
+						}
+					}
+					if ($row_detalle_movimiento["dasociado"]=="Cliente"){
+						$sql_almacen_asociado="SELECT r_social FROM `cat_clientes` WHERE `id_cliente`=".$row_detalle_movimiento["asociado"];
+						$result_almacen_asociado=mysql_query($sql_almacen_asociado,$link);	
+						while($row_almacen_asociado=mysql_fetch_array($result_almacen_asociado)){	
+							$xasociado=$row_almacen_asociado["r_social"];
 						}
 					}
 					$tipoMovimiento=$row_detalle_movimiento["concepto"];
@@ -57,7 +62,7 @@ if ($_POST){
     <td colspan="4" height="20" style=" background-color:#333333;text-align:center; font-weight:bold; color:#FFFFFF;">Movimiento <?=$id_movimiento_recibido?></td>
   </tr>
   <tr bgcolor="#FFFFFF" onMouseOver="this.style.background='#D9FFB3';" onMouseOut="this.style.background='#FFFFFF'">
-    <td class="tdx">Id_Movimiento</td>
+    <td class="tdx"># Movimiento</td>
     <td>&nbsp;<?=$id_movimiento_recibido?></td>
     <td class="tdx">Fecha</td>
     <td>&nbsp;<?=$row_detalle_movimiento["fecha"]?></td>
@@ -88,18 +93,18 @@ if ($_POST){
 }			
 			?>
 			<br />
-			<table width="95%" align="center" cellpadding="0" cellspacing="0" class="tablax" style="font-size: 12px;">
+			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="tablax" style="font-size: 12px;">
 				<tr>
 					<td colspan="8" bgcolor="#333333" height="20" class="style9"><?=$trows?> Productos registrados en el Movimiento</td>
 				</tr>
 				<tr style="text-align:center; font-weight:bold;">
 				    <td width="33" height="20" bgcolor="#CCCCCC" class="style17">ID</td>
-				    <td width="77" bgcolor="#CCCCCC" class="style17">Clave Producto</td>
-				    <td width="62" bgcolor="#CCCCCC" class="style17">Cantidad</td>
+				    <!--<td width="77" bgcolor="#CCCCCC" class="style17">Clave Producto</td>-->
+				    <td width="62" bgcolor="#CCCCCC" class="style17">Cantidad</td>				    
+				    <td colspan="2" width="300" bgcolor="#CCCCCC" class="style17">No Parte</td>
+				    <td width="360" bgcolor="#CCCCCC" class="style17">Descripci&oacute;n</td>
 				    <td width="41" bgcolor="#CCCCCC" class="style17">C.U. </td>
-				    <td colspan="2" width="228" bgcolor="#CCCCCC" class="style17">No Parte</td>
-				    <td width="360" bgcolor="#CCCCCC" class="style17">Descripci&oacute;n</td>				    
-				    <td width="228" bgcolor="#CCCCCC" class="style17">Acciones</td>
+				    <td width="130" bgcolor="#CCCCCC" class="style17">Acciones</td>
 				</tr>
             <?
 			$color="#F0F0F0";
@@ -113,11 +118,11 @@ if ($_POST){
 ?>
 				<tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'">
 					<td align="center" class="td1" height="20"><?=$row['id_prod'];?></td>
-					<td class="td1"><?=$row['clave'];?></a></td>
-					<td width="62"  align="right" class="td1" ><?=$row['cantidad'];?>&nbsp;</td>
+					<!--<td class="td1"><?=$row['clave'];?></a></td>-->
+					<td align="right" class="td1" ><?=$row['cantidad'];?>&nbsp;</td>					
+					<td class="td1" colspan="2" style="text-align: center;"><?=$des_prod['noParte'];?></td>
+					<td class="td1"><?=$des_prod['descripgral'];?></td>
 					<td class="td1" align="right"><?php if($row['cu']!==''||$row['cu']!==' ') echo '$'.$row['cu']; ?>&nbsp;</td>
-					<td class="td1" colspan="2" ><?=$des_prod['noParte'];?></td>
-					<td ><?=$des_prod['descripgral'];?></td>					
 					<td style="text-align: center;">
 <?
 					if($tipoMovimiento=="Traspaso" && $asociadoMov=="Almacen"){
@@ -136,7 +141,7 @@ if ($_POST){
 				if(mysql_num_rows($resS)!=0){
 ?>				
 				<tr>
-					<td colspan="8">
+					<td colspan="9">
 						<table border="0" cellpadding="0" cellspacing="0" width="300" style="margin: 10px;border: 1px solid #666;">
 							<tr>
 								<td width="20" style="height: 15px;padding: 5px;background: #CCC;font-weight: bold;color: #000;text-align: center;border-bottom: 1px solid #000;border-right:1px solid #000;">#</td>
@@ -168,12 +173,14 @@ if ($_POST){
 			}
 			?>
 				<tr>
-					<td colspan="6"><hr color="#000000" /></td>
+					<td colspan="8"><hr color="#000000" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" bgcolor="#CCCCCC" class=""><div class="style10">Total de Articulos </div></td>
+					<td bgcolor="#CCCCCC" class=""><div class="style10">Total</div></td>
 					<td style="text-align:right; padding-right:px;">
 					<b><?=$totArticulos;?></b>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
