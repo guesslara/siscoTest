@@ -560,18 +560,24 @@ $aso2='';
 
 	if ($asoc=='Almacenes')
 	{
-			$sql_aso2="SELECT almacen FROM `tipoalmacen` WHERE `id_almacen`='$id_aso'";
-			$result_aso2=mysql_db_query($sql_inv,$sql_aso2);	
-			while($row_aso2=mysql_fetch_array($result_aso2)){	
-				$aso2=$row_aso2["almacen"];
-			}
+		$sql_aso2="SELECT almacen FROM `tipoalmacen` WHERE `id_almacen`='$id_aso'";
+		$result_aso2=mysql_db_query($sql_inv,$sql_aso2);	
+		while($row_aso2=mysql_fetch_array($result_aso2)){	
+			$aso2=$row_aso2["almacen"];
+		}
 	}
 	if ($asoc=='Proveedor'){
 		$sql3="SELECT id_prov,nr FROM catprovee WHERE id_prov='$id_aso' ";
 		$result3=mysql_db_query($dbcompras,$sql3);
 		$row3=mysql_fetch_array($result3);
 		$aso2=$row3["nr"];	
-	}		
+	}
+	if ($asoc=='Cliente'){
+		$sql3="SELECT r_social FROM cat_clientes WHERE id_cliente='$id_aso' ";
+		$result3=mysql_query($sql3,$link);
+		$row3=mysql_fetch_array($result3);
+		$aso2=$row3["r_social"];	
+	}
 ?>
   <tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'" style="font-size:11px; padding:1px; font-family:Verdana, Arial, Helvetica, sans-serif; text-align:left; ">
 
@@ -581,7 +587,7 @@ $aso2='';
       	<?=$tip_mov; ?>    </td>
     <td width="92" class="td1">
       	<?= $row["almacen"]; ?>	</td>
-    <td width="240" align="left" class="td1" style="padding:1px;">
+    <td width="240" align="left" class="td1" style="padding:1px;">&nbsp;
 		<?
 		if ($aso2==''){
 		echo $row["asociado"];
