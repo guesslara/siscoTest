@@ -94,6 +94,7 @@
 		
 		?>
 		<br><br>
+		<div style="text-align:center; margin: 0px 50px 5px 183px; position:fixed;"><center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></center></div>
 		<div id="div_reparacion">
 			<div id="div_rep0">
 				Reparaci&oacute;n de la OT <?=$id_ot?> 
@@ -173,7 +174,7 @@
 					</select>
 					<br><br><b>Observaciones:</b><br>
 					<textarea id="txt_obs_rep" rows="2" style="width:250px;"></textarea>
-					<div style="text-align:center;"><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></div>
+					<!--<div style="text-align:center;"><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></div>-->
 				</div>			   
 			   
 			   
@@ -345,10 +346,13 @@ if ($nno>1){
 		$sql_rep_efe="SELECT reg_rep_efectuadas.id, reg_rep_efectuadas.id_ot, reg_rep_efectuadas.id_rep_efectuada, reg_rep_efectuadas.posicion, cat_reparaciones.descripcion 
 			FROM reg_rep_efectuadas,cat_reparaciones 
 			WHERE cat_reparaciones.id=reg_rep_efectuadas.id_rep_efectuada AND reg_rep_efectuadas.id_ot=$id_ot ORDER BY reg_rep_efectuadas.id DESC LIMIT 0,5";
-		if(!$resultado_rep_efe=mysql_query($sql_rep_efe,$link)){
-			echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
-		//echo "<br>NDR ru=".
-		$ndr_rep_efe=mysql_num_rows($resultado_rep_efe);
+		if($resultado_rep_efe=mysql_query($sql_rep_efe,$link)){
+			$ndr_rep_efe=mysql_num_rows($resultado_rep_efe);
+	                                                               }else{
+			 "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit();
+	                                                                 }
+		
+		
 		if ($ndr_rep_efe>5){ echo "<br>Parece que este producto tiene varias Reparaciones Efectuadas, sin embargo se mostraran las ultimas 5 registradas."; }
 		
 		while($registro_rep_efe=mysql_fetch_array($resultado_rep_efe)){

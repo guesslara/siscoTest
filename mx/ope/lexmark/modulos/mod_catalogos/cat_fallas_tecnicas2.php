@@ -43,7 +43,7 @@
 	if ($a=="elegir_productos"){
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
@@ -89,7 +89,7 @@
 			exit();
 		}
 		?>
-		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
+		<!--<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos(<?=$idd?>)" /></center></div>-->
 		<form name="frm2">
 			
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">

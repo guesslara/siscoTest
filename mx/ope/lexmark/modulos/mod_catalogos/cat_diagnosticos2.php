@@ -114,7 +114,7 @@
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
-		<br /><div id="aceptar" align="center" style="position: fixed"><input type="button" value="Aceptar" onclick="coloca_productos2(<?=$idd?>)" /></div><br />
+		<br /><div id="aceptar" align="center"><input type="button" value="Aceptar" onclick="coloca_productos2(<?=$idd?>)" /></div><br />
 		</form>
 		<?php
 	}  

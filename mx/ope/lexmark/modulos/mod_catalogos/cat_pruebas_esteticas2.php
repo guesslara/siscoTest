@@ -7,6 +7,7 @@
 	if ($a=="nuevo"){
 		//Muestro formulario.
 		?>
+		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
 		<form name="frm1">
 		<br /><table align="center" width="100%" style="font-weight:bold; font-size:10px;">
 			<tr>
@@ -75,7 +76,7 @@
 		$idd=$_POST["idd"];
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
@@ -165,7 +166,7 @@
 		$ps=$_POST["ps"];
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="UPDATE cat_pruebas_esteticas SET productos='$ps' WHERE id=$idd";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			echo "<div align=center><br><br>La prueba Estetica se guardo correctamente.</div>";?>
 <script language="javascript"> $("#all").show(); </script>
 			<?php
