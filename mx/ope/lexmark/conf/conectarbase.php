@@ -13,8 +13,8 @@
 	$cexi0="exist_$ialm";
 	$ctra0="trans_$ialm";
 	
-	$id_almacen_ingenieria=2;
-	$nombre_almacen_ingenieria="a_2_ingenieria";
+	$id_almacen_ingenieria=4;
+	$nombre_almacen_ingenieria="a_4_ingenieria";
 	if(!$link){
 		echo "Error de Conexion";
 		exit();

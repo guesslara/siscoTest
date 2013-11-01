@@ -22,6 +22,10 @@
             header("Location: ../ope/operaciones/modulos/mod_login/index.php");
             exit();
         break;
+	case "IBM":
+            header("Location: ../ope/ibm/modulos/mod_login/index.php");
+            exit();
+        break;
 	default:
 	    header("Location: index.php");
 	    exit();

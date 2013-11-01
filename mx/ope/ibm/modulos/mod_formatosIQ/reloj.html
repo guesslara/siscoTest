@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    
+<script language="JavaScript">
+function mueveReloj(){
+	momentoActual = new Date()
+	hora = momentoActual.getHours()
+	minuto = momentoActual.getMinutes()
+	segundo = momentoActual.getSeconds()
+	
+	str_segundo = new String (segundo)
+	if (str_segundo.length == 1) 
+		segundo = "0" + segundo
+		
+	str_minuto = new String (minuto)
+	if (str_minuto.length == 1) 
+		minuto = "0" + minuto
+
+	str_hora = new String (hora)
+	if (str_hora.length == 1) 
+		hora = "0" + hora
+		
+	horaImprimible = hora + " : " + minuto + " : " + segundo
+	
+	document.form_reloj.reloj.value = horaImprimible
+	
+	setTimeout("mueveReloj()",1000)
+}
+</script>
+</head>
+<body onload="mueveReloj()">
+    <form name="form_reloj">
+<center><input type="text" name="reloj" id="reloj2" size="10"  style="background-color : #D8D8D8; color : Black; font-family : Verdana, Arial, Helvetica; font-size : 9pt; text-align : center; "onfocus="window.document.form_reloj.reloj.blur()"> </center>
+</form>
+</body>
+</html>

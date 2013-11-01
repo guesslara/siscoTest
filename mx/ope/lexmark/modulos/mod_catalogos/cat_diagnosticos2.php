@@ -53,8 +53,9 @@
 		}
 		?>
 		<form name="frm2">
-			<div><input type="button" value="Aceptar" onclick="coloca_productos()" /></div>
+			<div>Busqueda Avanzada<input type="text" value=""/></div>
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
+			
 			<tr>
 			  <td colspan="5" align="center">El diagn&oacute;stico aplica a los productos seleccionados. </td>
 		  </tr>
@@ -139,7 +140,7 @@
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
-			echo "<div align=center>Error SQL. La consulta a la BAse de Datos no se ejecuto.</div>";
+			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();
 		}		
 		?>

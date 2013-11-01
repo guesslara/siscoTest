@@ -51,7 +51,7 @@
 			exit();
 		}
 		?>
-		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
+		
 		<form name="frm2">
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
 			<tr>

@@ -1,0 +1,89 @@
+<?	/*
+	 *modeloEnsamble:Clase del modulo mod_DYR que realiza las consultas e inserciones de los diagnosticos de
+	  fallas y reparaciones de los items de cada uno de los técnicos, asi mismo mostrando los detalles necesarios para ambas funciones
+	 *Autor: Rocio Manuel Aguilar
+	 *Fecha:
+	*/
+	session_start();
+	include("../../clases/funcionesComunes.php");
+	include("../../clases/cargaInicial.php");
+	date_default_timezone_set("America/Mexico_City");
+	class modeloEnsamble{
+		
+		private function conectarBd(){
+			require("../../includes/config.inc.php");
+			$link=mysql_connect($host,$usuario,$pass);
+			if($link==false){
+				echo "Error en la conexion a la base de datos";
+			}else{
+				mysql_select_db($db);
+				return $link;
+			}				
+		}
+		
+		public function diagnostica($idProyecto,$idUser,$opt){
+			if($opt=="Diagnosticar"){
+				$sel="SELECT * FROM detalle_lote WHERE id_tecnico=$idUser and id_proyecto=$idProyecto and status='Asignado'";
+			}
+			if($opt=="nada"){
+			 	$sel="SELECT * FROM detalle_lote WHERE id_tecnico=$idUser and id_proyecto=$idProyecto and (status='Asignado' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk')";
+			}
+			if($opt=="Asignado"){
+				$sel="SELECT * FROM detalle_lote WHERE id_tecnico=$idUser and id_proyecto=$idProyecto and (status='Asignado')";
+			}
+			if($opt=="x"){
+				exit;
+			}
+			if($opt=="Diagnosticado"){
+				$sel="SELECT * FROM detalle_lote WHERE id_tecnico=$idUser and id_proyecto=$idProyecto and (status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk')";
+			}
+		
+			$exeSel=mysql_query($sel,$this->conectarBd());
+			$noCol=mysql_num_rows($exeSel);
+			if($noCol==0){
+				if($opt=="nada"||$opt=="Asignado"||$opt=="Diagnosticado"){
+					?><script type="text/javascript">alert("POR EL MOMENTO NO TIENES ITEMS ASIGNADOS CON EL STATUS DE: <?=strtoupper($opt);?>");
+					muestraSel('<?=$idProyecto;?>','<?=$idUser;?>');</script>
+					<?
+				}else{
+				?><script type="text/javascript">alert("POR EL MOMENTO NINGUN ITEM TE HA SIDO ASIGNADO o SE ENCUENTRAN EN OTRO PROCESO");</script><?
+				}
+			}
+			else{
+			
+				if($opt=="nada"||$opt=="Asignado"||$opt=="Diagnosticado"){
+					if($opt=="nada"){
+						?><div id="tituloDetalle" style="background: #DDD;width: 100%; height:20px; font-size: 12px;text-align: center;font-weight: bold;">MOSTRANDO TODOS LOS ITEM OBTENIDOS</div><?
+					}
+					else{
+						?><div id="tituloDetalle" style="background: #DDD;width: 100%; height:20px; font-size: 12px;text-align: center;font-weight: bold;">MOSTRANDO LOS ITEMS <?=strtoupper($opt)."S";?></div><?
+					}
+				}
+				else{
+					?><div id="tituloDetalle" style="background: #DDD;width: 100%; height:20px; font-size: 12px;text-align: center;font-weight: bold;">MOSTRANDO LOS ITEMS HA DIAGNOSTICAR</div><?
+				}
+				
+				$color="#EEEEEE";
+				?><form name="recuperados" id="recuperados"><?
+				if($opt=="Diagnosticado"){?>
+					<div id="pushbutton" style="width: 100%; height: 30px;text-align: right;"><input type="button" name="enviaCC" id="enviaCC" value="Enviar a CC" onclick="confirmar();recupera();"/><input type="button" id="cancelar" name="cancelar" onclick="muestraSel('<?=$idProyecto;?>','<?=$idUser;?>');" value="Cancelar"/></div>
+				<?}
+				while($rowAsi=mysql_fetch_array($exeSel)){
+					$name="check".$rowAsi['id_partes'];
+					if($color=="#FFFFFF"){
+						$color="#EEEEEE";
+					}
+					else{
+						$color="#FFFFFF";
+					}
+					if($opt=="Diagnosticar"){
+						$link="formDia('".$idProyecto."','".$idUser."','".$rowAsi['id_partes']."');";
+						$txt="Da clic para poder diagnosticar el item";
+					}
+					if($opt=="Diagnosticado"){
+						$link="";
+						$txt="";
+					}
+					if($opt=="nada"||$opt=="Asignado"){
+						if($rowAsi['status']=="Diagnosticado_Ao"||$rowAsi['status']=="Diagnosticado_Co"||$rowAsi['status']=="Diagnosticado_Nt"||$rowAsi['status']=="Diagnosticado_Ir"||$rowAsi['status']=="Diagnosticado_Wk"){
+							$link="consultaDia('".$rowAsi['id_partes']."','".$idPro

@@ -90,8 +90,18 @@
 		}
 		?>
 		<!--<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos(<?=$idd?>)" /></center></div>-->
+		<div>
+		<form id="frmbusc" name="frmbusc" method="post" action="">
+		        <tr>
+		            <td>Busqueda por No. de Serie: </td>
+			    <td><input type="text" name="txt_ot" id="txt_ot" size="10" /></td>
+			    <td><input type="button" value="Buscar" onclick="buscar_ns()" /></td>		
+			</tr>
+		
+		</form>
+		</div>
 		<form name="frm2">
-			
+		
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
 			<tr>
 			  <td colspan="5" align="center">La Falla T&eacute;ccnica  

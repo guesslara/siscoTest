@@ -1,0 +1,23 @@
+html,body,document{position:absolute;margin:0px;height:100%; width:100%; margin:0px; overflow:hidden; font-family:Verdana, Geneva, sans-serif;}
+#contenedorEnsamble{height:99%; position:relative;margin:0 auto 0 auto; overflow:auto; background:#CCC;border:1px solid #000;}
+#hoja{
+	margin: 0px auto 0 auto;
+	overflow: hidden;
+	background: #fff;
+}
+#cabecera{
+	/*background: #ff0000;*/
+	height:3cm; 
+	font-size: 12px;
+	clear: both;
+	overflow: hidden;
+}
+#cuerpo{
+	font-size:12px;
+	overflow: hidden;
+	clear: both;
+}
+#pie{
+	font-size: 12px; 
+	clear: both;
+}

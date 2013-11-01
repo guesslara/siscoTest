@@ -94,7 +94,7 @@
 		
 		?>
 		<br><br>
-		<div style="text-align:center; margin: 0px 50px 5px 183px; position:fixed;"><center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></center></div>
+		<!--<div style="text-align:center; margin: 0px 50px 5px 183px;"><center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></center></div>-->
 		<div id="div_reparacion">
 			<div id="div_rep0">
 				Reparaci&oacute;n de la OT <?=$id_ot?> 
@@ -120,9 +120,11 @@
 				</tr>
 				<tr>
 				  <td  height="23" class="tabla_campo2">Observaciones</td>
-				  <td>&nbsp;<?=$obs;?></td>
+				  <td>&nbsp;<?=$obs;?></td>				  
 				</tr>
-			  </table>		
+			
+			  </table>
+			  <center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px; width:230px; height:57px"></center>
 			
 			</div>
 			<div id="div_rep2">
@@ -143,7 +145,7 @@
 				  <td>&nbsp;<?=$ffn?></td>
 				</tr>
 				<tr>
-				  <td  height="23" class="tabla_campo2">No. de Reparaciones </td>
+				  <td  height="23" class="tabla_campo2">Reparaciones </td>
 				  <td>&nbsp;<?=$nno?></td>
 			    </tr>
 				<tr>
@@ -342,7 +344,7 @@ if ($nno>1){
 					</tr>
         <?php            
 		// Reparaciones Efectuadas.
-		//echo "<br>".
+		//echo "<br>".AQUI ESTA LA CONSULTA
 		$sql_rep_efe="SELECT reg_rep_efectuadas.id, reg_rep_efectuadas.id_ot, reg_rep_efectuadas.id_rep_efectuada, reg_rep_efectuadas.posicion, cat_reparaciones.descripcion 
 			FROM reg_rep_efectuadas,cat_reparaciones 
 			WHERE cat_reparaciones.id=reg_rep_efectuadas.id_rep_efectuada AND reg_rep_efectuadas.id_ot=$id_ot ORDER BY reg_rep_efectuadas.id DESC LIMIT 0,5";
@@ -545,7 +547,7 @@ if ($nno>1){
 			
 			//echo "<br>BD [$sql_ing] SQL=".
 			$sql1="SELECT * FROM cat_reparaciones WHERE tipos_productos LIKE '%$idp%' ORDER BY id";
-			if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+			if ($resultado1=mysql_query($sql1,$link)){
 				//echo "<div align=center>OK</div>";
 				$ndr1=mysql_num_rows($resultado1);
 			} else {
@@ -629,16 +631,18 @@ if ($nno>1){
 			// a)
 			//echo "<br>".
 			$sqlre="SELECT id_ref,id_producto,cantidad FROM cat_refacciones WHERE id_ref='".$$ndref."'";
-			$resultado_ref=mysql_db_query($sql_ing,$sqlre);
+			//exit;
+			$resultado_ref=mysql_query($sqlre,$link);
 			if ($ndr_ref=mysql_num_rows($resultado_ref)>0){
 				
 				while($row_ref=mysql_fetch_array($resultado_ref)){
 					//echo "<br>"; print_r($row_ref);
 					//b)´
 					$campo_existencias="exist_".$id_almacen_ingenieria;
-					//echo "<br>&nbsp;&nbsp;".
+					echo "<br>&nbsp;&nbsp;".
 					$sql_ex_p="SELECT ".$campo_existencias." FROM catprod WHERE id=".$row_ref["id_producto"]." LIMIT 1";
-					$resultado_ex_p=mysql_db_query($sql_inv,$sql_ex_p);
+					
+					$resultado_ex_p=mysql_query($sql_ex_p,$link);
 					$row_ex_p=mysql_fetch_array($resultado_ex_p);
 						//echo "<br>"; print_r($row_ex_p);
 						//echo "<br>EDP=".
@@ -658,7 +662,7 @@ if ($nno>1){
 						//echo "<br>".
 						$sql_consumo="INSERT INTO reg_consumo_prods(id,fecha,id_ot,id_refaccion,id_producto,cantidad,concepto) 
 							VALUES (NULL,'".date("Y-m-d")."','$idot','".$row_ref["id_ref"]."','".$row_ref["id_producto"]."','".$row_ref["cantidad"]."','CONSUMO DE REFACCIONES')";	
-						if(!mysql_db_query($sql_ing,$sql_consumo)){ echo "<br>ERROR SQL: NO SE REGISTRO EL CONSUMO DE LA REFACCION (".$row_ref["id_ref"].")."; exit(); }
+						if(!mysql_query($sql_consumo,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO EL CONSUMO DE LA REFACCION (".$row_ref["id_ref"].")."; exit(); }
 					/*	
 					} else{
 						echo "<br>&nbsp;&nbsp;Error: las existencias del producto en el almacen de Ingenieria es 0. El sistema de detuvo.";
@@ -683,7 +687,7 @@ if ($nno>1){
 			//echo "<br>".
 			$sql="INSERT INTO reg_fallas_tecnicas (id,fecha,id_falla_tecnica,id_ot,descripcion,posicion)
 							  VALUES (NULL,'".date("Y-m-d")."','".$$ndfal."','$idot','','$posicion3')";
-			if(!mysql_db_query($sql_ing,$sql)){ echo "<br>ERROR SQL: NO SE REGISTRO LA FALLA TECNICA (".$$ndfal.")."; exit(); }
+			if(!mysql_query($sql,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA FALLA TECNICA (".$$ndfal.")."; exit(); }
 			++$posicion3;
 		}
 		//echo "<br><hr>";
@@ -698,9 +702,9 @@ if ($nno>1){
 		foreach($letras_rep as $ndrep){
 			//echo "<br>N de R E=$ndrep";
 			//echo "<br>".
-			$sql="INSERT INTO reg_rep_efectuadas (id,fecha,id_ot,id_rep_efectuada,posicion)
+			echo $sql="INSERT INTO reg_rep_efectuadas (id,fecha,id_ot,id_rep_efectuada,posicion)
 							  VALUES (NULL,'".date("Y-m-d")."','$idot','".$$ndrep."','$posicion4')";
-			if(!mysql_db_query($sql_ing,$sql)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }
+			if(!mysql_query($sql,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }
 			++$posicion4;			
 			
 		}
@@ -710,18 +714,18 @@ if ($nno>1){
 		if ($nvo_status=="REP"){
 			//echo "<br>ST=".
 			$nvo_status." -- ".$sql5="UPDATE ot SET status_proceso='".$nvo_status."',status_cliente='CC',fecha_fin_rep='".date("Y-m-d")."',obs='".$obs_rep."' WHERE id=$idot";
-			if(!mysql_db_query($sql_ing,$sql5)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }
+			if(!mysql_query($sql5,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }
 		}elseif($nvo_status=="WIP"){
 			//echo "<br>ST=".
 			$nvo_status." -- ".$sql5="UPDATE ot SET status_proceso='".$nvo_status."',status_cliente='REP',fecha_fin_rep='".date("Y-m-d")."',obs='".$obs_rep."' WHERE id=$idot";
-			if(!mysql_db_query($sql_ing,$sql5)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }		
+			if(!mysql_query($sql5,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }		
 		}elseif($nvo_status=="NOREP"){
 			echo "<br>ST=".$nvo_status." -- ".$sql5="UPDATE ot SET status_proceso='".$nvo_status."',status_cliente='DES',fecha_fin_rep='".date("Y-m-d")."',obs='".$obs_rep."' WHERE id=$idot";
-			if(!mysql_db_query($sql_ing,$sql5)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }		
+			if(!mysql_query($sql5,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }		
 		}elseif($nvo_status=="SCRAP"){
 			//echo "<br>ST=".
 			$nvo_status." -- ".$sql5="UPDATE ot SET status_proceso='".$nvo_status."',status_cliente='DES',fecha_fin_rep='".date("Y-m-d")."',obs='".$obs_rep."' WHERE id=$idot";
-			if(!mysql_db_query($sql_ing,$sql5)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }					
+			if(!mysql_query($sql5,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }					
 		}
 		//echo "<br><hr>";	
 
@@ -741,7 +745,7 @@ if ($nno>1){
 		$sql_ft="SELECT reg_fallas_tecnicas.id_falla_tecnica,reg_fallas_tecnicas.id_ot,reg_fallas_tecnicas.posicion,cat_fallas_tecnicas.descripcion 
 			FROM reg_fallas_tecnicas,cat_fallas_tecnicas 
 			WHERE cat_fallas_tecnicas.id=reg_fallas_tecnicas.id_falla_tecnica AND reg_fallas_tecnicas.id_ot=$idot ORDER BY reg_fallas_tecnicas.posicion DESC LIMIT 0,5";
-		if(!$resultado_ft=mysql_db_query($sql_ing,$sql_ft)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS FALLAS TECNICAS PARA ESTA OT."; exit(); }
+		if(!$resultado_ft=mysql_query($sql_ft,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS FALLAS TECNICAS PARA ESTA OT."; exit(); }
 		//echo "<br>NDR FT=".
 		$ndr_ft=mysql_num_rows($resultado_ft);
 		if ($ndr_ft>5){ echo "<br>Parece que este producto tiene varias Fallas Tecnicas, sin embargo se mostraran las ultimas 5 registradas."; }
@@ -769,7 +773,7 @@ if ($nno>1){
 		$sql_ru="SELECT reg_consumo_prods.id,reg_consumo_prods.id_ot,reg_consumo_prods.id_refaccion,cat_refacciones.descripcion 
 			FROM reg_consumo_prods,cat_refacciones 
 			WHERE cat_refacciones.id_ref=reg_consumo_prods.id_refaccion AND reg_consumo_prods.id_ot=$idot ORDER BY reg_consumo_prods.id DESC LIMIT 0,5";
-		if(!$resultado_ru=mysql_db_query($sql_ing,$sql_ru)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
+		if(!$resultado_ru=mysql_query($sql_ru,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
 		//echo "<br>NDR ru=".
 		$ndr_ru=mysql_num_rows($resultado_ru);
 		if ($ndr_ru>5){ echo "<br>Parece que este producto tiene varias Refacciones utilizadas, sin embargo se mostraran las ultimas 5 registradas."; }
@@ -790,7 +794,7 @@ if ($nno>1){
 		$sql_rep_efe="SELECT reg_rep_efectuadas.id, reg_rep_efectuadas.id_ot, reg_rep_efectuadas.id_rep_efectuada, reg_rep_efectuadas.posicion, cat_reparaciones.descripcion 
 			FROM reg_rep_efectuadas,cat_reparaciones 
 			WHERE cat_reparaciones.id=reg_rep_efectuadas.id_rep_efectuada AND reg_rep_efectuadas.id_ot=$idot ORDER BY reg_rep_efectuadas.id DESC LIMIT 0,5";
-		if(!$resultado_rep_efe=mysql_db_query($sql_ing,$sql_rep_efe)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
+		if(!$resultado_rep_efe=mysql_query($sql_rep_efe,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
 		//echo "<br>NDR ru=".
 		$ndr_rep_efe=mysql_num_rows($resultado_rep_efe);
 		if ($ndr_rep_efe>5){ echo "<br>Parece que este producto tiene varias Reparaciones Efectuadas, sin embargo se mostraran las ultimas 5 registradas."; }
