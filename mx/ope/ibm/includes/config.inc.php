@@ -1,8 +1,8 @@
 <?
 	//configuracion de usuario MYSQL para primer base de datos
 	$host="localhost";
-	$usuario="desarrollo";
-	$pass="desarrollo";
+	$usuario="root";
+	$pass="xampp";
 	//tabla usuarios	
 	//base de datos
 	$db="2013_iqe_operacionIBM";

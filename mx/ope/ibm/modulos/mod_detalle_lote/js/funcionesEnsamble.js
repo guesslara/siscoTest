@@ -153,8 +153,8 @@ function agregar(idLote,idProyectoSeleccionado,item,idUsuario){
 	var modelo=$("#modelo").val(); 
 	var idTipoComodity=$("#tipoComodity").val(); 
 	if(idProyectoSeleccionado==2){ 
-	var codeType=$("#codeType").val(); 
-	var flowTag=$("#flowTag").val(); 
+		var codeType=$("#codeType").val(); 
+		var flowTag=$("#flowTag").val(); 
 	}else{ 
 		var codeType="N/A"; 
 		var flowTag="N/A"; 
@@ -162,14 +162,17 @@ function agregar(idLote,idProyectoSeleccionado,item,idUsuario){
 	var numSerie=$("#numSerie").val(); 
 	var obs=$("#obs").val(); 
 	var idSENC=document.getElementById("id_SEC").value; 
-	if(idSENC==""||numSerie==""||codeType==""||flowTag==""||idTipoComodity==""){//||modelo=="" 
+	var noParte=$("#noParte").val()
+	//alert("Senc= "+idSENC+"\nSerie: "+numSerie+"\ncodeType= "+codeType+"\nFlowtag= "+flowTag+"\n Commoditty: "+idTipoComodity);
+	
+	if(numSerie==""||codeType==""||flowTag==""||idTipoComodity==""||noParte==""){//||modelo==""   idSENC==""||
 		alert("Verifique que los campos no se encuentren vacios"); 
 		return; 
 	} 
 	 else{ 
-			$("#transparenciaGeneral1").hide(); 
-			$("#divMensajeCaptura").hide(); 
-			ajaxApp("detalleEmpaque","controladorEnsamble.php","action=addDetalleLote&modelo="+modelo+"&codeType="+codeType+"&flowTag="+flowTag+"&numSerie="+numSerie+"&desc="+obs+"&idLote="+idLote+"&idProyectoSeleccionado="+idProyectoSeleccionado+"&item="+item+"&idSENC="+idSENC+"&idTipoComodity="+idTipoComodity+"&idUsuario="+idUsuario,"POST"); 
+		$("#transparenciaGeneral1").hide(); 
+		$("#divMensajeCaptura").hide(); 
+		ajaxApp("detalleEmpaque","controladorEnsamble.php","action=addDetalleLote&modelo="+modelo+"&codeType="+codeType+"&flowTag="+flowTag+"&numSerie="+numSerie+"&desc="+obs+"&idLote="+idLote+"&idProyectoSeleccionado="+idProyectoSeleccionado+"&item="+item+"&idSENC="+idSENC+"&idTipoComodity="+idTipoComodity+"&idUsuario="+idUsuario+"&noParte="+noParte,"POST"); 
 	 } 
 } 
 function formModifica(idLote,idProyectoSeleccionado,idItem,idUsuario){ 
@@ -188,15 +191,16 @@ function modifica(idLote,idProyectoSeleccionado,idItem,idUsuario){
 	var numSerie=$("#numSerie").val(); 
 	var fechReg=$("#date").val(); 
 	var horaReg=$("#hour").val(); 
-	var desc=$("#desc").val(); 
-	 if(idSENC==""||numSerie==""||codeType==""||flowTag==""||idTipoComodity==""){ 
+	var desc=$("#desc").val();
+	var noParte=$("#noParte").val();
+	 if(idSENC==""||numSerie==""||codeType==""||flowTag==""||idTipoComodity==""||noParte==""){ 
 		alert("Verifique que los campos no se encuentren vacios"); 
 		return; 
 	 } 
 	 else{ 
 	$("#transparenciaGeneral1").hide(); 
 	$("#divMensajeCaptura").hide();
-	ajaxApp("detalleEmpaque","controladorEnsamble.php","action=modifica&modelo="+modelo+"&codeType="+codeType+"&flowTag="+flowTag+"&numSerie="+numSerie+"&fechReg="+fechReg+"&horaReg="+horaReg+"&desc="+desc+"&idLote="+idLote+"&idProyectoSeleccionado="+idProyectoSeleccionado+"&idItem="+idItem+"&idTipoComodity="+idTipoComodity+"&idUsuario="+idUsuario+"&idSENC="+idSENC,"POST"); 
+	ajaxApp("detalleEmpaque","controladorEnsamble.php","action=modifica&modelo="+modelo+"&codeType="+codeType+"&flowTag="+flowTag+"&numSerie="+numSerie+"&fechReg="+fechReg+"&horaReg="+horaReg+"&desc="+desc+"&idLote="+idLote+"&idProyectoSeleccionado="+idProyectoSeleccionado+"&idItem="+idItem+"&idTipoComodity="+idTipoComodity+"&idUsuario="+idUsuario+"&idSENC="+idSENC+"&noParte="+noParte,"POST"); 
 	} 	 
 }
 function quita(){
