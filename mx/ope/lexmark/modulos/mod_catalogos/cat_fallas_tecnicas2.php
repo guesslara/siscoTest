@@ -93,13 +93,15 @@
 		<div>
 		<form id="frmbusc" name="frmbusc" method="post" action="">
 		        <tr>
-		            <td>Busqueda por No. de Serie: </td>
+		            <td>Busqueda por Id: </td>
 			    <td><input type="text" name="txt_ot" id="txt_ot" size="10" /></td>
 			    <td><input type="button" value="Buscar" onclick="buscar_ns()" /></td>		
 			</tr>
 		
 		</form>
 		</div>
+		
+		
 		<form name="frm2">
 		
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
