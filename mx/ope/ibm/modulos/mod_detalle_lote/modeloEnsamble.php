@@ -617,7 +617,7 @@
 					</tr>
 					<tr>	
 						<th  align="left">Num SECN</th>
-						<td><input type="text" name="noSEC" id="noSEC" readonly=""/></td>
+						<td><input type="text" name="noSEC" id="noSEC" value="N/A"/></td>
 					</tr>
 					<tr>
 						<th  align="left">Modelo</th>
@@ -680,7 +680,7 @@
 					</tr>
 				</table></form><?
 		}
-		public function agregar($id_modelo,$codeType,$flowTag,$numSerie,$desc,$id_lote,$id_proyecto,$noItem,$idSENC,$idTipoComodity,$idUsuario){
+		public function agregar($id_modelo,$codeType,$flowTag,$numSerie,$desc,$id_lote,$id_proyecto,$noItem,$idSENC,$idTipoComodity,$idUsuario,$noParte){
 			$conPrueba="SELECT * from detalle_lotes where id_lote=$id_lote";
 			$conPrueba2=mysql_query($conPrueba,$this->conectarBd());
 			$a=mysql_num_rows($conPrueba2);
@@ -707,7 +707,7 @@
 			$fechaReg=date('Y-m-d');
 			$horaReg=date('G:i:s');
 				if($a < $noItem){
-					$add="INSERT INTO detalle_lotes (id_modelo,codeType,flowTag,numSerie,observaciones,id_lote,id_Senc,fecha_registro,hora_registro,id_commodity,cantEntrada) VALUES ('".$modelo."','".$codeType."','".$flowTag."','".$numSerie."','".$desc."','".$id_lote."','".$idSENC."','".$fechaReg."','".$horaReg."','".$idTipoComodity."','".$comeBackReal."')";
+					$add="INSERT INTO detalle_lotes (id_modelo,codeType,flowTag,numSerie,observaciones,id_lote,id_Senc,fecha_registro,hora_registro,id_commodity,cantEntrada,noParte) VALUES ('".$modelo."','".$codeType."','".$flowTag."','".$numSerie."','".$desc."','".$id_lote."','".$idSENC."','".$fechaReg."','".$horaReg."','".$idTipoComodity."','".$comeBackReal."','".$noParte."')";
 					//print($add)					;
 					$una=mysql_query($add,$this->conectarBd());
 					if(!$una){
@@ -789,7 +789,7 @@
 				?>
 				<tr>	
 					<th  align="left">Num parte</th>
-					<td><input type="text"name="noParte" id="noParte" onclick="limpia('noSEC');"onkeyup="buskSEC(event);" value="<?=$rowSENC['NoParte']?>" /></td>
+					<td><input type="text"name="noParte" id="noParte" onclick="limpia('noSEC');"onkeyup="buskSEC(event);" value="<?=$row['noParte']?>" /></td>
 				</tr>
 				<tr>	
 					<th  align="left">Num SECN</th>
@@ -865,15 +865,15 @@
 			</table></form><?
 		}//fin formModifica
 		
-		public function modifica($modelo,$codeType,$flowTag,$numSerie,$fechaReg,$horaReg,$desc,$id_lote,$id_proyecto,$idItem,$idTipoComodity,$idUsuario,$idSENC){
+		public function modifica($modelo,$codeType,$flowTag,$numSerie,$fechaReg,$horaReg,$desc,$id_lote,$id_proyecto,$idItem,$idTipoComodity,$idUsuario,$idSENC,$noParte){
 			$muestraOriginal="SELECT * FROM detalle_lotes WHERE id_item='".$idItem."'";
 			$DATE=date('Y-m-d');
 			$HOUR=date('G:i:s');
 			$exeOriginal=mysql_query($muestraOriginal,$this->conectarBd());
 			$arrayOriginal=mysql_fetch_array($exeOriginal);
-			$resp="INSERT INTO detalleLotes_cambios (fecha_cambio, hora_cambio, id_usuarioCambio,id_item, id_modelo, codeType, flowTag, numSerie, observaciones, id_Senc, fecha_registro, hora_registro, id_commodity)
-			VALUES ('".$DATE."','".$HOUR."','".$idUsuario."','".$idItem."','".$arrayOriginal['id_modelo']."','".$arrayOriginal['codeType']."','".$arrayOriginal['flowTag']."','".$arrayOriginal['numSerie']."','".$arrayOriginal['observaciones']."','".$arrayOriginal['id_Senc']."','".$arrayOriginal['fecha_registro']."','".$arrayOriginal['hora_registro']."','".$arrayOriginal['id_commodity']."')";
-			$mod="UPDATE detalle_lotes SET id_modelo='".$modelo."',codeType='".$codeType."',flowTag='".$flowTag."',numSerie='".$numSerie."',observaciones='".$desc."',fecha_registro='".$fechaReg."',id_commodity='".$idTipoComodity."',id_Senc='".$idSENC."' WHERE id_lote='".$id_lote."' and id_item='".$idItem."'";
+			$resp="INSERT INTO detalleLotes_cambios (fecha_cambio, hora_cambio, id_usuarioCambio,id_item, id_modelo, codeType, flowTag, numSerie, observaciones, id_Senc, fecha_registro, hora_registro, id_commodity,noParte)
+			VALUES ('".$DATE."','".$HOUR."','".$idUsuario."','".$idItem."','".$arrayOriginal['id_modelo']."','".$arrayOriginal['codeType']."','".$arrayOriginal['flowTag']."','".$arrayOriginal['numSerie']."','".$arrayOriginal['observaciones']."','".$arrayOriginal['id_Senc']."','".$arrayOriginal['fecha_registro']."','".$arrayOriginal['hora_registro']."','".$arrayOriginal['id_commodity']."','".$arrayOriginal['noParte']."')";
+			$mod="UPDATE detalle_lotes SET id_modelo='".$modelo."',codeType='".$codeType."',flowTag='".$flowTag."',numSerie='".$numSerie."',observaciones='".$desc."',fecha_registro='".$fechaReg."',id_commodity='".$idTipoComodity."',id_Senc='".$idSENC."',noParte='".$noParte."' WHERE id_lote='".$id_lote."' and id_item='".$idItem."'";
 			$una=mysql_query($mod,$this->conectarBd());
 			if(!$una){
 				echo 'Error: ' . mysql_error();

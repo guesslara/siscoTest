@@ -22,11 +22,21 @@
 		}
 		
 		public function diagnostica($idProyecto,$idUser,$opt){
+			include("../../includes/txtApp.php");
+			//echo "ID USUARIO: ".$_SESSION[$txtApp['session']['nivelUsuario']]."<br>";
 			if($opt=="Diagnosticar" || $opt=="Asignado"){
-				$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Asignado' OR status='Diagnosticado_NT' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co'  OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos=vecesDiagnosticado)";
+				if($_SESSION[$txtApp['session']['nivelUsuario']]==0){
+					$sel="SELECT * FROM detalle_lotes WHERE (status='Asignado' OR status='Diagnosticado_NT' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co'  OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos=vecesDiagnosticado)";
+				}else{
+					$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Asignado' OR status='Diagnosticado_NT' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co'  OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos=vecesDiagnosticado)";
+				}
 			}
 			if($opt=="nada"){
-			 	$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Asignado' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk')";
+				if($_SESSION[$txtApp['session']['nivelUsuario']]==0){
+					$sel="SELECT * FROM detalle_lotes WHERE (status='Asignado' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk')";
+				}else{
+					$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Asignado' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk')";
+				}
 			}
 			/*if($opt=="Asignado"){
 				$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Asignado' OR status='Diagnosticado_NT' OR status='Diagnosticado_Ao' OR status='Diagnosticado_Co'  OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos=vecesDiagnosticado)";
@@ -35,10 +45,14 @@
 				exit;
 			}
 			if($opt=="Diagnosticado"){
-				$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos<vecesDiagnosticado)";
+				if($_SESSION[$txtApp['session']['nivelUsuario']]==0){
+					$sel="SELECT * FROM detalle_lotes WHERE (status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos<vecesDiagnosticado)";
+				}else{
+					$sel="SELECT * FROM detalle_lotes WHERE id_tecnico=$idUser and (status='Diagnosticado_Ao' OR status='Diagnosticado_Co' OR status='Diagnosticado_Nt' OR status='Diagnosticado_Ir' OR status='Diagnosticado_Wk') AND (cantRechazos<vecesDiagnosticado)";
+				}
 			}
 
-		
+			//echo "<br>".$sel;
 			$exeSel=mysql_query($sel,$this->conectarBd());
 			$noCol=mysql_num_rows($exeSel);
 			if($noCol==0){
@@ -201,7 +215,7 @@
 								$exeFindSenc=mysql_query($findSenc,$this->conectarBd());
 								$rowSENC=mysql_fetch_array($exeFindSenc);?>
 							<th align="left">Num. Parte:</th>
-							<td><?=$rowSENC['NoParte'];?></td>
+							<td><?=$rowDeta["noParte"];//$rowSENC['NoParte'];?></td>
 						</tr>
 						<tr>
 							<th align="left">Num. Serie:</th>

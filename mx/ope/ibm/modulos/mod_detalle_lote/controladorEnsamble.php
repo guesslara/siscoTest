@@ -98,7 +98,8 @@
 			$idSENC=clean($_POST['idSENC']);
 			$idTipoComodity=clean($_POST['idTipoComodity']);
 			$idUsuario=clean($_POST['idUsuario']);
-			$objLote->agregar($id_modelo,$codeType,$flowTag,$numSerie,$desc,$id_lote,$id_proyecto,$noItem,$idSENC,$idTipoComodity,$idUsuario);
+                        $noParte=clean($_POST['noParte']);
+			$objLote->agregar($id_modelo,$codeType,$flowTag,$numSerie,$desc,$id_lote,$id_proyecto,$noItem,$idSENC,$idTipoComodity,$idUsuario,$noParte);
 		break;
 		case "formModifica":
 			$id_lote=clean($_POST['idLote']);
@@ -120,8 +121,9 @@
 			$idItem=clean($_POST['idItem']);
 			$idTipoComodity=clean($_POST['idTipoComodity']);
 			$idUsuario=clean($_POST['idUsuario']);
-            $idSENC=clean($_POST['idSENC']);
-			$objLote->modifica($modelo,$codeType,$flowTag,$numSerie,$fechaReg,$horaReg,$desc,$id_lote,$id_proyecto,$idItem,$idTipoComodity,$idUsuario,$idSENC);
+                        $idSENC=clean($_POST['idSENC']);
+                        $noParte=clean($_POST['noParte']);
+			$objLote->modifica($modelo,$codeType,$flowTag,$numSerie,$fechaReg,$horaReg,$desc,$id_lote,$id_proyecto,$idItem,$idTipoComodity,$idUsuario,$idSENC,$noParte);
 		break;
 		case "exportar":
 			$id_lote=clean($_POST['idLote']);
