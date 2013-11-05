@@ -94,7 +94,7 @@
 			$id_producto=0;
 			//echo "<br>".
 			$sql_datos_producto="SELECT idp FROM  ot WHERE id=$idot";
-			$resultado_datos_producto=mysql_db_query($sql_ing,$sql_datos_producto);
+			$resultado_datos_producto=mysql_query($sql_datos_producto,$link);
 			$reg_datos_producto=mysql_fetch_array($resultado_datos_producto);
 			//print_r($reg_datos_producto);
 			$id_producto=$reg_datos_producto["idp"];
@@ -103,9 +103,9 @@
 			$sql_almacen_resta="UPDATE catprod SET $campo_existencias_origen=$campo_existencias_origen-1 WHERE id='$id_producto'";
 			$sql_almacen_suma="UPDATE catprod SET $campo_trasnferencias_destino=$campo_trasnferencias_destino+1 WHERE id='$id_producto'";
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='ENV',status_proceso='ALM',shipdate='".date("Y-m-d")."',id_almacen_destino=$id_almacen WHERE id='$idot'";
-			if (!mysql_db_query($sql_inv,$sql_almacen_resta)){ echo "<br>&nbsp;Error SQL (Paso 2)."; exit; }
-			if (!mysql_db_query($sql_inv,$sql_almacen_suma)){ echo "<br>&nbsp;Error SQL (Paso 3)."; exit; }
-			if (!mysql_db_query($sql_ing,$sql_actualiza_ot)){ echo "<br>&nbsp;Error SQL (Paso 4)."; exit; }
+			if (!mysql_query($sql_almacen_resta,$link)){ echo "<br>&nbsp;Error SQL (Paso 2)."; exit; }
+			if (!mysql_query($sql_almacen_suma,$link)){ echo "<br>&nbsp;Error SQL (Paso 3)."; exit; }
+			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL (Paso 4)."; exit; }
 			?>
             <div style=" margin-top:5px; text-align:center; font-size:16px; font-weight:bold; color:#063;"> El proceso de Envio de la OT (<?=$idot?>) se realizo correctamente.</div>
             <?php

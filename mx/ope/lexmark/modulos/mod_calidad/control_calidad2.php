@@ -17,7 +17,7 @@
 		
 		
 		//echo "<br>BD [$sql_ing] SQL=".
-		$sql1="SELECT * FROM ot $sql_where ORDER BY id";
+		 $sql1="SELECT * FROM ot $sql_where ORDER BY id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
@@ -49,7 +49,7 @@
 			<td><?php
             	echo ' '.$id_repara=$registro1["repara"];
 				$sql_tecnico="SELECT dp_nombre,dp_apaterno FROM usuarios WHERE id_usuario='$id_repara' LIMIT 1; ";
-				if ($resultado_tecnico=mysql_db_query($sql_inv,$sql_tecnico)){
+				if ($resultado_tecnico=mysql_query($sql_tecnico,$link)){
 					//echo "<div align=center>OK</div>";
 					$reg_tecnico=mysql_fetch_array($resultado_tecnico);
 					echo ". ".$reg_tecnico["dp_nombre"]." ".$reg_tecnico["dp_apaterno"];
@@ -70,7 +70,7 @@
 		$id_ot=$_POST["id_ot"];
 		//echo "<br>BD [$sql_ing] SQL=".
 		$sql1="SELECT * FROM ot WHERE id=$id_ot";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 			$registro1=mysql_fetch_array($resultado1);
@@ -95,7 +95,7 @@
                       <td>&nbsp;<?php
                         echo $id_urecibe=$registro1["u_recibe"];
                         $sql_usuario="SELECT dp_nombre,dp_apaterno,dp_amaterno FROM usuarios WHERE id_usuario=$id_urecibe ";
-                        $resultado_usuario=mysql_db_query($sql_inv,$sql_usuario);
+                        $resultado_usuario=mysql_query($sql_usuario,$link);
                             $registro_usuario=mysql_fetch_array($resultado_usuario);
                             echo ". ".$registro_usuario["dp_nombre"]." ".$registro_usuario["dp_apaterno"]." ".$registro_usuario["dp_amaterno"];
                         ?>
@@ -112,7 +112,7 @@
                       <td>&nbsp;<?php
                         echo $id_repara=$registro1["repara"];
                         $sql_usuario2="SELECT dp_nombre,dp_apaterno,dp_amaterno FROM usuarios WHERE id_usuario=$id_repara ";
-                        $resultado_usuario2=mysql_db_query($sql_inv,$sql_usuario2);
+                        $resultado_usuario2=mysql_query($sql_usuario2,$link);
                             $registro_usuario2=mysql_fetch_array($resultado_usuario2);
                             echo ". ".$registro_usuario2["dp_nombre"]." ".$registro_usuario2["dp_apaterno"]." ".$registro_usuario2["dp_amaterno"];
                         ?>          
@@ -135,7 +135,7 @@
 					$ndr3=0;
 					//echo "<br>BD [$sql_ing] SQL=".
 					$sql_pfuncionales="SELECT * FROM cat_pruebas_funcionales WHERE productos LIKE '%$idp%' ORDER BY id";
-					if ($resultado_pfuncionales=mysql_db_query($sql_ing,$sql_pfuncionales)){
+					if ($resultado_pfuncionales=mysql_query($sql_pfuncionales,$link)){
 						//echo "<div align=center>OK</div>";
 						//echo "<br>NDR=".
 						$ndr_pfuncionales=mysql_num_rows($resultado_pfuncionales);
@@ -154,7 +154,7 @@
 						
 						//echo "<br>".
 						$sql_pfuncionales_ya_seleccionadas="SELECT tipo_prueba,id_prueba FROM evaluacion_pruebas WHERE id_ot = '$id_ot_XXX' AND valor='1' ORDER BY id";
-						if ($resultado_pfuncionales_ya_seleccionadas=mysql_db_query($sql_ing,$sql_pfuncionales_ya_seleccionadas)){
+						if ($resultado_pfuncionales_ya_seleccionadas=mysql_query($sql_pfuncionales_ya_seleccionadas,$link)){
 							//echo "<div align=center>OK</div>";
 							//echo "<br>NDR=".
 							$ndr_pfuncionales_ya_seleccionadas=mysql_num_rows($resultado_pfuncionales_ya_seleccionadas);
@@ -232,7 +232,7 @@
 					$ndr3=0;
 					//echo "<br>BD [$sql_ing] SQL=".
 					$sql_pesteticas="SELECT * FROM cat_pruebas_esteticas WHERE productos LIKE '%$idp%' ORDER BY id";
-					if ($resultado_pesteticas=mysql_db_query($sql_ing,$sql_pesteticas)){
+					if ($resultado_pesteticas=mysql_query($sql_pesteticas,$link)){
 						//echo "<div align=center>OK</div>";
 						//echo "<br>NDR=".
 						$ndr_pesteticas=mysql_num_rows($resultado_pesteticas);
@@ -326,10 +326,10 @@
 		$idot=$_POST["idot"];
 		$idp=$_POST["idp"];
 		$status=$_POST["nvo_status"];
-		$ids_pf=split(",",trim($_POST["ids_pf"]));
+		$ids_pf=explode(",",trim($_POST["ids_pf"]));
 			$n_pf=count($ids_pf);
 			//echo "<br>NDF=$n_pf   ";	print_r($ids_pf);
-		$ids_pc=split(",",trim($_POST["ids_pe"]));
+		$ids_pc=explode(",",trim($_POST["ids_pe"]));
 			$n_pc=count($ids_pc);
 			//echo "<br>NDC=$n_pc   ";	print_r($ids_pc);		
 			
@@ -347,7 +347,7 @@
 			// Obtener las pruebas funcionales asociadas al producto en curso.
 			//echo "<br>&nbsp;".
 			$sql_pfuncionales="SELECT * FROM cat_pruebas_funcionales WHERE productos LIKE '%$idp%' ORDER BY id";
-				if ($resultado_pfuncionales=mysql_db_query($sql_ing,$sql_pfuncionales)){
+				if ($resultado_pfuncionales=mysql_query($sql_pfuncionales,$link)){
 					//echo "<div align=center>OK</div>";
 					//echo "<br>NDR=".
 					$ndr_pfuncionales=mysql_num_rows($resultado_pfuncionales);
@@ -365,14 +365,14 @@
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','1')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
 							
 							} else { 
 								//echo "<br> ".$registro_pfuncionales["id"]." NO esta en el array (ids_pf). ";
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','0')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
 							}
 						}
 					}
@@ -381,7 +381,7 @@
 			
 			// Obtener las pruebas cosmeticas asociadas al producto en curso.
 			$sql_pesteticas="SELECT * FROM cat_pruebas_esteticas WHERE productos LIKE '%$idp%' ORDER BY id";
-			if ($resultado_pesteticas=mysql_db_query($sql_ing,$sql_pesteticas)){
+			if ($resultado_pesteticas=mysql_query($sql_pesteticas,$link)){
 				//echo "<div align=center>OK</div>";
 				//echo "<br>NDR=".
 				$ndr_pesteticas=mysql_num_rows($resultado_pesteticas);
@@ -398,14 +398,14 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','1')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
 						
 						} else { 
 							//echo "<br> ".$registro_pesteticas["id"]." NO esta en el array (ids_pc). ";
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','0')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
 						}
 					}
 				}
@@ -414,14 +414,14 @@
 			// ------------------------------------------------------------------------------------			
 			//echo "<br><br>OK ".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='DES', status_proceso='$status',fecha_fin='".date("Y-m-d H:i:s")."' WHERE id=$idot ";
-			if (!mysql_db_query($sql_ing,$sql_actualiza_ot)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
 			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php
 		} elseif ($status=="NOK"){
 			
 			// Obtener las pruebas funcionales asociadas al producto en curso.
 			//echo "<br>&nbsp;".
 			$sql_pfuncionales="SELECT * FROM cat_pruebas_funcionales WHERE productos LIKE '%$idp%' ORDER BY id";
-				if ($resultado_pfuncionales=mysql_db_query($sql_ing,$sql_pfuncionales)){
+				if ($resultado_pfuncionales=mysql_query($sql_pfuncionales,$link)){
 					//echo "<div align=center>OK</div>";
 					//echo "<br>NDR=".
 					$ndr_pfuncionales=mysql_num_rows($resultado_pfuncionales);
@@ -439,14 +439,14 @@
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','1')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
 							
 							} else { 
 								//echo "<br> ".$registro_pfuncionales["id"]." NO esta en el array (ids_pf). ";
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','0')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
 							}
 						}
 					}
@@ -455,7 +455,7 @@
 			
 			// Obtener las pruebas cosmeticas asociadas al producto en curso.
 			$sql_pesteticas="SELECT * FROM cat_pruebas_esteticas WHERE productos LIKE '%$idp%' ORDER BY id";
-			if ($resultado_pesteticas=mysql_db_query($sql_ing,$sql_pesteticas)){
+			if ($resultado_pesteticas=mysql_query($sql_pesteticas,$link)){
 				//echo "<div align=center>OK</div>";
 				//echo "<br>NDR=".
 				$ndr_pesteticas=mysql_num_rows($resultado_pesteticas);
@@ -472,7 +472,7 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','1')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
 						
 						} else { 
 							//echo "<br> ".$registro_pesteticas["id"]." NO esta en el array (ids_pc). ";
@@ -488,13 +488,13 @@
 			// ------------------------------------------------------------------------------------			
 			//echo "<br>NOK".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='REP', status_proceso='$status',num_no_ok=num_no_ok+1 WHERE id=$idot ";
-			if (!mysql_db_query($sql_ing,$sql_actualiza_ot)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
 			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php			
 		} elseif($status=="OKF"){
 			// Obtener las pruebas funcionales asociadas al producto en curso.
 			//echo "<br>&nbsp;".
 			$sql_pfuncionales="SELECT * FROM cat_pruebas_funcionales WHERE productos LIKE '%$idp%' ORDER BY id";
-				if ($resultado_pfuncionales=mysql_db_query($sql_ing,$sql_pfuncionales)){
+				if ($resultado_pfuncionales=mysql_query($sql_pfuncionales,$link)){
 					//echo "<div align=center>OK</div>";
 					//echo "<br>NDR=".
 					$ndr_pfuncionales=mysql_num_rows($resultado_pfuncionales);
@@ -512,7 +512,7 @@
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','1')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
 							
 							} else { 
 								//echo "<br> ".$registro_pfuncionales["id"]." NO esta en el array (ids_pf). ";
@@ -528,7 +528,7 @@
 			
 			// Obtener las pruebas cosmeticas asociadas al producto en curso.
 			$sql_pesteticas="SELECT * FROM cat_pruebas_esteticas WHERE productos LIKE '%$idp%' ORDER BY id";
-			if ($resultado_pesteticas=mysql_db_query($sql_ing,$sql_pesteticas)){
+			if ($resultado_pesteticas=mysql_query($sql_pesteticas,$link)){
 				//echo "<div align=center>OK</div>";
 				//echo "<br>NDR=".
 				$ndr_pesteticas=mysql_num_rows($resultado_pesteticas);
@@ -545,7 +545,7 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','1')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
 						
 						} else { 
 							//echo "<br> ".$registro_pesteticas["id"]." NO esta en el array (ids_pc). ";
@@ -574,7 +574,7 @@
 			// Obtener las pruebas funcionales asociadas al producto en curso.
 			//echo "<br>&nbsp;".
 			$sql_pfuncionales="SELECT * FROM cat_pruebas_funcionales WHERE productos LIKE '%$idp%' ORDER BY id";
-				if ($resultado_pfuncionales=mysql_db_query($sql_ing,$sql_pfuncionales)){
+				if ($resultado_pfuncionales=mysql_query($sql_pfuncionales,$link)){
 					//echo "<div align=center>OK</div>";
 					//echo "<br>NDR=".
 					$ndr_pfuncionales=mysql_num_rows($resultado_pfuncionales);
@@ -609,7 +609,7 @@
 			// ------------------------------------------------------------------------------------			
 			// Obtener las pruebas cosmeticas asociadas al producto en curso.
 			$sql_pesteticas="SELECT * FROM cat_pruebas_esteticas WHERE productos LIKE '%$idp%' ORDER BY id";
-			if ($resultado_pesteticas=mysql_db_query($sql_ing,$sql_pesteticas)){
+			if ($resultado_pesteticas=mysql_query($sql_pesteticas,$link)){
 				//echo "<div align=center>OK</div>";
 				//echo "<br>NDR=".
 				$ndr_pesteticas=mysql_num_rows($resultado_pesteticas);
@@ -626,7 +626,7 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','1')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }									
 						
 						} else { 
 							//echo "<br> ".$registro_pesteticas["id"]." NO esta en el array (ids_pc). ";
@@ -671,7 +671,7 @@
 			//echo "<br>$status".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='CC', status_proceso='$status'  WHERE id=$idot ";
 			
-			if (!mysql_db_query($sql_ing,$sql_actualiza_ot)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
 			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php					
 			
 			

@@ -639,7 +639,7 @@ if ($nno>1){
 					//echo "<br>"; print_r($row_ref);
 					//b)´
 					$campo_existencias="exist_".$id_almacen_ingenieria;
-					echo "<br>&nbsp;&nbsp;".
+					 "<br>&nbsp;&nbsp;".
 					$sql_ex_p="SELECT ".$campo_existencias." FROM catprod WHERE id=".$row_ref["id_producto"]." LIMIT 1";
 					
 					$resultado_ex_p=mysql_query($sql_ex_p,$link);
@@ -660,7 +660,7 @@ if ($nno>1){
 					*/	
 						
 						//echo "<br>".
-						$sql_consumo="INSERT INTO reg_consumo_prods(id,fecha,id_ot,id_refaccion,id_producto,cantidad,concepto) 
+						 $sql_consumo="INSERT INTO reg_consumo_prods(id,fecha,id_ot,id_refaccion,id_producto,cantidad,concepto) 
 							VALUES (NULL,'".date("Y-m-d")."','$idot','".$row_ref["id_ref"]."','".$row_ref["id_producto"]."','".$row_ref["cantidad"]."','CONSUMO DE REFACCIONES')";	
 						if(!mysql_query($sql_consumo,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO EL CONSUMO DE LA REFACCION (".$row_ref["id_ref"].")."; exit(); }
 					/*	
@@ -685,7 +685,7 @@ if ($nno>1){
 		foreach($letras_fal as $ndfal){
 			//echo "<br>N de F T=$ndfal";
 			//echo "<br>".
-			$sql="INSERT INTO reg_fallas_tecnicas (id,fecha,id_falla_tecnica,id_ot,descripcion,posicion)
+		 $sql="INSERT INTO reg_fallas_tecnicas (id,fecha,id_falla_tecnica,id_ot,descripcion,posicion)
 							  VALUES (NULL,'".date("Y-m-d")."','".$$ndfal."','$idot','','$posicion3')";
 			if(!mysql_query($sql,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA FALLA TECNICA (".$$ndfal.")."; exit(); }
 			++$posicion3;
@@ -702,7 +702,7 @@ if ($nno>1){
 		foreach($letras_rep as $ndrep){
 			//echo "<br>N de R E=$ndrep";
 			//echo "<br>".
-			echo $sql="INSERT INTO reg_rep_efectuadas (id,fecha,id_ot,id_rep_efectuada,posicion)
+			 $sql="INSERT INTO reg_rep_efectuadas (id,fecha,id_ot,id_rep_efectuada,posicion)
 							  VALUES (NULL,'".date("Y-m-d")."','$idot','".$$ndrep."','$posicion4')";
 			if(!mysql_query($sql,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }
 			++$posicion4;			

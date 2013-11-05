@@ -12,7 +12,7 @@
 		
 		// TOTAL DE OT'S.
 		$sql1="SELECT id FROM ot";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -21,7 +21,7 @@
 		
 		// TOTAL DE OT'S EN RECIBO.
 		$sql2="SELECT id FROM ot WHERE status_cliente='REC'";
-		if ($resultado2=mysql_db_query($sql_ing,$sql2)){
+		if ($resultado2=mysql_query($sql2,$link)){
 			$ndr2=mysql_num_rows($resultado2);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -30,7 +30,7 @@
 		
 		// TOTAL DE OT'S EN REPARACION.
 		$sql3="SELECT id FROM ot WHERE status_cliente='REP'";
-		if ($resultado3=mysql_db_query($sql_ing,$sql3)){
+		if ($resultado3=mysql_query($sql3,$link)){
 			$ndr3=mysql_num_rows($resultado3);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -39,7 +39,7 @@
 
 		// TOTAL DE OT'S EN CALIDAD.
 		$sql4="SELECT id FROM ot WHERE status_cliente='CC'";
-		if ($resultado4=mysql_db_query($sql_ing,$sql4)){
+		if ($resultado4=mysql_query($sql4,$link)){
 			$ndr4=mysql_num_rows($resultado4);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -48,7 +48,7 @@
 
 		// TOTAL DE OT'S EN DESPACHO.
 		$sql5="SELECT id FROM ot WHERE status_cliente='DES'";
-		if ($resultado5=mysql_db_query($sql_ing,$sql5)){
+		if ($resultado5=mysql_query($sql5,$link)){
 			$ndr5=mysql_num_rows($resultado5);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -57,7 +57,7 @@
 		
 		// TOTAL DE OT'S ENVIADAS.
 		$sql6="SELECT id FROM ot WHERE status_cliente='ENV'";
-		if ($resultado6=mysql_db_query($sql_ing,$sql6)){
+		if ($resultado6=mysql_query($sql6,$link)){
 			$ndr6=mysql_num_rows($resultado6);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -113,7 +113,7 @@
 		$modulos=array('rec'=>'RECIBO','rep'=>'REPARACION','cc'=>'CONTROL DE CALIDAD','des'=>'DESPACHO','env'=>'ENVIADOS');
 		
 		$sql1="SELECT id,status_proceso FROM ot WHERE status_cliente='$m' GROUP BY status_proceso ORDER BY status_proceso,id";
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			$ndr1=mysql_num_rows($resultado1);
 			if ($ndr1==0){ echo "<br><div align=center>Error: No se encontradron resultados.</div>"; exit(); }
 			?>
@@ -132,7 +132,7 @@
 				while($registro1=mysql_fetch_array($resultado1)){ 
 				$sp=$registro1["status_proceso"];
 				$sql2="SELECT id FROM ot WHERE status_cliente='$m' AND status_proceso='$sp'";
-				if ($resultado2=mysql_db_query($sql_ing,$sql2)){
+				if ($resultado2=mysql_query($sql2,$link)){
 					$ndr2=mysql_num_rows($resultado2);	
 				}
 				?>
