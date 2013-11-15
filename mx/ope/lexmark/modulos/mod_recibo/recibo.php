@@ -41,8 +41,8 @@
 		var c=$("#txt2").attr("value");
 		var d=$("#txt3").attr("value");
 		var e=$("#txt4").attr("value");
-		var f=$("#txt5").attr("value");	
-		var g=$("#txt6").attr("value");	
+		var f=$("#txt6").attr("value");	
+		var g=$("#txt5").attr("value");	
 		if(f==""||f=="undefined"||f==null){
 			alert("Por favor seleccione el Diagnostico.");
 			return;
@@ -76,7 +76,7 @@
 </head>
 
 <body>
-<!--
+
 <div id="div_productos">&nbsp;</div>
 <div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nuevo Diagn&oacute;stico.</div>
@@ -86,22 +86,22 @@
 		<br /><input type="button" value="Cancelar" onclick="cancelar()" class="boton1" />
 	</div>
 </div>
-//-->
+
 
 <div id="all">	
 	<br /><br />
-	<div id="catalogo">&nbsp;</div>	
-  <div id="div_recibo">
+	<div id="catalogo">&nbsp;</div>
+	<div id="div_recibo">
 		<form id="form1" name="form1" method="post" action="">
-		<h3 align="center">Registro de OT (Alta de Equipo).</h3>
+		<h3 align="center">Alta de equipos</h3>
 		<div align="center" id="div_datos1">
 			No. de Serie: <input type="text" name="txt_ot" id="txt_ot" size="50" />
 			<input type="button" value="Buscar" onclick="buscar_ns()" />		
 		</div>
 		<div align="center" id="div_datos2">&nbsp;</div>
 		<div align="center" id="div_resultado">&nbsp;</div>
-        </form>
-    </div>	
-</div>
+                </form>
+        </div>
+</div> 
 </body>
 </html>

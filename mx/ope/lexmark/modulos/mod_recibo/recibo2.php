@@ -145,7 +145,9 @@
 				if (mysql_num_rows($result5)>0){
 					?>
 					<br>
-					<div style="font-size:18px; color:#FF0000;">&nbsp;El n&uacute;mero de serie ya existe. Por lo tanto,<br> debe ser capturado como garant&iacute;a.</div>
+					<script type="text/javascript">
+			                        alert("El numero de serie ya existe. Por lo tanto, debe ser capturado como garantia.");
+		                             </script>
 					<?php
 					exit();
 				}

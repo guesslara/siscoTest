@@ -26,7 +26,7 @@
 		?>
 		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0">
 		<tr>
-		  <td colspan="7" class="titulo_tabla1" height="23">Productos en Reparaci&oacute;n  (<?=$ndr1?> Resultados) </td>
+		  <td colspan="7" class="titulo_tabla1" height="23" align="center">Productos en Reparaci&oacute;n  (<?=$ndr1?> Resultados) </td>
 		  </tr>
 		<tr>
 		  <td height="23" width="17" class="campos_tabla1">Id</td>
@@ -94,7 +94,7 @@
 		
 		?>
 		<br><br>
-		<!--<div style="text-align:center; margin: 0px 50px 5px 183px;"><center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></center></div>-->
+		<!--<div style="text-align:center; margin: 0px 50px 5px 183px;"><center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;" style="width:100%; height:100%;"></center></div>-->
 		<div id="div_reparacion">
 			<div id="div_rep0">
 				Reparaci&oacute;n de la OT <?=$id_ot?> 
@@ -116,7 +116,11 @@
 				</tr>
 				<tr>
 				  <td  height="23" class="tabla_campo2">Diagn&oacute;stico</td>
-				  <td>&nbsp;<?=$dia?><input type="hidden" id="hdn_st_anterior" value="<?=$dia?>" /></td>
+				  <td>&nbsp;<?=$dia?><input type="hidden" id="hdn_st_anterior" value="<?=$dia?>" />
+				  <? $sql_diagnostico="SELECT diagnostico FROM cat_diagnosticos WHERE id=$dia ";
+			             $resultado_diagnostico=mysql_query($sql_diagnostico,$link);
+				     $registro_diagnostico=mysql_fetch_array($resultado_diagnostico);
+				echo strtoupper(". ".$registro_diagnostico["diagnostico"]); ?>			</td>
 				</tr>
 				<tr>
 				  <td  height="23" class="tabla_campo2">Observaciones</td>
@@ -124,17 +128,22 @@
 				</tr>
 			
 			  </table>
-			  <center><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px; width:230px; height:57px"></center>
+			  <center><input type="button" value="Guardar" onClick="guardar_reparacion()" style=" margin-top:3px; width:230px; height:86px"></center>
 			
 			</div>
 			<div id="div_rep2">
-			  <table align="center" cellspacing="0" cellpadding="2" width="95%" class="tabla2">
+			  <table align="center" cellspacing="0" cellpadding="2" width="98%" class="tabla2">
 				<tr>
 				  <td colspan="2" height="23" class="tabla_titulo2">Datos de Reparaci&oacute;n</td>
 				</tr>
 				<tr>
-				  <td width="349"  class="tabla_campo2" height="23"> T&eacute;cnico</td>
-				  <td width="494" class="td1" >&nbsp;<?=$tec;?></td>
+				  <td width="320"  class="tabla_campo2" height="23"> T&eacute;cnico</td>
+				  <td width="540" class="td1" >&nbsp;<?=$tec;
+				  $tecnico="SELECT dp_nombre,dp_apaterno,dp_amaterno FROM usuarios WHERE id_usuario=$tec ";
+				$resultado_usuario22=mysql_query($tecnico,$link);
+					$registro_usuario22=mysql_fetch_array($resultado_usuario22);
+					echo strtoupper($registro_usuario22["dp_nombre"]." ".$registro_usuario22["dp_apaterno"]." ".$registro_usuario22["dp_amaterno"]);        
+				  ?></td>
 			    </tr>
 				<tr>
 				  <td  height="23" class="tabla_campo2">Fecha de Inicio </td>
@@ -159,11 +168,11 @@
 			  </table>				
 			</div>
 			<div id="div_rep5">
-				<div id="div_rep5a" style="width:100px; height:150px; margin-top:3px; margin-left:5px; float:left; border:#CCCCCC 1px solid;">
+				<div id="div_rep5a" style="width:100px; height:218px; margin-top:3px; margin-left:5px; float:left; border:#CCCCCC 1px solid;">
 					<div id="div_rep5b1" style="text-align:center; font-weight:bold;">Reparacion #</div> 
 					<div id="div_rep5b2" style="text-align:center; font-size:72px; font-weight:bold; margin-top:20px;"><?=$nno?></div> 
 				</div>
-			  <div id="div_rep5b" style="width:280px; height:150px; margin-top:3px; margin-left:3px; float:left; background-color:#FFFFFF; border:#EFEFEF 1px solid;">
+			  <div id="div_rep5b" style="width:280px; height:218px; margin-top:3px; margin-left:3px; float:left; background-color:#FFFFFF; border:#EFEFEF 1px solid;">
 			   
 				<div style="margin:5px;">
 					<b>Nuevo Status:</b><br>
@@ -175,7 +184,7 @@
 						<option value="SCRAP"> SCRAP</option>						
 					</select>
 					<br><br><b>Observaciones:</b><br>
-					<textarea id="txt_obs_rep" rows="2" style="width:250px;"></textarea>
+					<textarea id="txt_obs_rep" rows="7" style="width:250px;"></textarea>
 					<!--<div style="text-align:center;"><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></div>-->
 				</div>			   
 			   
@@ -194,7 +203,7 @@
 							$sql_ft="SELECT reg_fallas_tecnicas.id_falla_tecnica,reg_fallas_tecnicas.id_ot,reg_fallas_tecnicas.posicion,cat_fallas_tecnicas.descripcion 
 								FROM reg_fallas_tecnicas,cat_fallas_tecnicas 
 								WHERE cat_fallas_tecnicas.id=reg_fallas_tecnicas.id_falla_tecnica AND reg_fallas_tecnicas.id_ot=$id_ot ORDER BY reg_fallas_tecnicas.posicion DESC LIMIT 0,5";
-							if(!$resultado_ft=mysql_db_query($sql_ing,$sql_ft)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS FALLAS TECNICAS PARA ESTA OT."; exit(); }
+							if(!$resultado_ft=mysql_query($sql_ft,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS FALLAS TECNICAS PARA ESTA OT."; exit(); }
 							//echo "<br>NDR FT=".
 							$ndr_ft=mysql_num_rows($resultado_ft);
 							while($registro_ft=mysql_fetch_array($resultado_ft)){
@@ -271,7 +280,7 @@ if ($nno>1){
 	$sql_ru="SELECT reg_consumo_prods.id,reg_consumo_prods.id_ot,reg_consumo_prods.id_refaccion,cat_refacciones.descripcion 
 		FROM reg_consumo_prods,cat_refacciones 
 		WHERE cat_refacciones.id_ref=reg_consumo_prods.id_refaccion AND reg_consumo_prods.id_ot=$id_ot ORDER BY reg_consumo_prods.id DESC LIMIT 0,5";
-	if(!$resultado_ru=mysql_db_query($sql_ing,$sql_ru)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
+	if(!$resultado_ru=mysql_query($sql_ru,$link)){ echo "<br>ERROR SQL: NO SE PUDO CONSULTAR LAS REFACCIONES UTILIZADAS PARA ESTA OT."; exit(); }
 	//echo "<br>NDR ru=".
 	$ndr_ru=mysql_num_rows($resultado_ru);
 	if ($ndr_ru>5){ echo "<br>Parece que este producto tiene varias Refacciones utilizadas, sin embargo se mostraran las ultimas 5 registradas."; }
@@ -732,7 +741,10 @@ if ($nno>1){
 
 		// PASO 6.
 		?>
-        <div style=" font-weight:bold; font-size:14px; text-align:center; color:#060;">El proceso de Reparaci&oacute;n concluy&oacute; correctamente para la OT (<?=$idot?>).</div>
+					<script type="text/javascript">
+			                        alert("El proceso de Reparacion concluyo correctamente para la OT (<?=$idot?>).");
+		                        </script>
+        
         <?php
 	}	
 	

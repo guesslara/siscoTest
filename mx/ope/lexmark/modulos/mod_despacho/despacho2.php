@@ -107,7 +107,10 @@
 			if (!mysql_query($sql_almacen_suma,$link)){ echo "<br>&nbsp;Error SQL (Paso 3)."; exit; }
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL (Paso 4)."; exit; }
 			?>
-            <div style=" margin-top:5px; text-align:center; font-size:16px; font-weight:bold; color:#063;"> El proceso de Envio de la OT (<?=$idot?>) se realizo correctamente.</div>
+            
+	    <script type="text/javascript">
+	    alert("El proceso de Envio de la OT (<?=$idot?>) se realizo correctamente.");
+	    </script>
             <?php
 			
 		}

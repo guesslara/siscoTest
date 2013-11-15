@@ -11,7 +11,7 @@
 	if ($a=="listar"){
 		
 		// TOTAL DE OT'S.
-		$sql1="SELECT id FROM ot";
+	        $sql1="SELECT id FROM ot";
 		if ($resultado1=mysql_query($sql1,$link)){
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
@@ -112,7 +112,7 @@
 		$m=$_POST["m"];
 		$modulos=array('rec'=>'RECIBO','rep'=>'REPARACION','cc'=>'CONTROL DE CALIDAD','des'=>'DESPACHO','env'=>'ENVIADOS');
 		
-		$sql1="SELECT id,status_proceso FROM ot WHERE status_cliente='$m' GROUP BY status_proceso ORDER BY status_proceso,id";
+		echo $sql1="SELECT id,status_proceso FROM ot WHERE status_cliente='$m' GROUP BY status_proceso ORDER BY status_proceso,id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			$ndr1=mysql_num_rows($resultado1);
 			if ($ndr1==0){ echo "<br><div align=center>Error: No se encontradron resultados.</div>"; exit(); }

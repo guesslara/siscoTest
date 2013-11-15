@@ -175,7 +175,7 @@ ul.jd_menu_slate ul li.jd_menu_hover a.jd_menu_hover {
 			}
 			// We're passed a LI
 			function onClickMenu() {
-				$(this).toggleClass('LOCKED');
+				$(this).toggleClass('.LOCKED');
 				return true;
 			}
 		</script>
@@ -207,7 +207,7 @@ ul.jd_menu_slate ul li.jd_menu_hover a.jd_menu_hover {
 		<ul>
 			<!--<li><a href="..admin/catalogo_status.php">Status en el Sistema</a></li>//-->
  			<li><a href="../catalogos/index.php">Cat&aacute;logos</a></li>	
-			<li><a href="../consultas/consulta.php">Consulta de equipos</a></li>			
+			<li><a href="../mod_consultas/consulta.php">Consulta de equipos</a></li>			
 			<li><a href="../admin/estadisticas.php">Estad&iacute;sticas </a></li>			
 		</ul>
 	</li>				

@@ -47,6 +47,7 @@
 			error:function() { $("#div_nuevoC").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 		});			
 	}
+	
 	function cancelar(){
 		$("#all").show();
 		$("#div_nuevo").hide();
@@ -201,7 +202,8 @@
 		<a href="javascript:nuevo();">Nuevo</a> 
 	</div>
 	<br /><br />
-	<div id="catalogo">&nbsp;</div>	
-</div>
+	<div id="catalogo">&nbsp;</div>
+		
+
 </body>
 </html>

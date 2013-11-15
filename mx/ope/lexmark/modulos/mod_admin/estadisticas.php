@@ -10,7 +10,7 @@
 <title>Estad&iacute;sticas</title>
 </head>
 <link href="../../js/flot/examples/layout.css" rel="stylesheet" type="text/css"></link>
-<script language="javascript" type="text/javascript" src="../../js/flot/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript" type="text/javascript" src="../../js/flot/jquery.flot.js"></script>
 
 <script language="javascript">
@@ -66,7 +66,7 @@
 	.txt_numero{ text-align:right;}
 </style>
 <body>
-<?php include("../../menu/menu2.php"); ?>	
+
     <div id="all">
     	<div id="menu">&nbsp;	</div>
         <div id="contenido">&nbsp;</div>

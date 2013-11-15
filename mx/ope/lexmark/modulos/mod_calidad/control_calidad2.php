@@ -29,7 +29,7 @@
 		?>
 		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0" id="tbl_calidad">
 		<tr>
-		  <td colspan="7" class="titulo_tabla1" height="23">Productos en Control de Calidad(<?=$ndr1?> Resultados) </td>
+		  <td colspan="7" class="titulo_tabla1" height="23" align="center">Productos en Control de Calidad(<?=$ndr1?> Resultados) </td>
 		  </tr>
 		<tr>
 		  <td height="23" width="17" class="campos_tabla1">Id</td>
@@ -86,7 +86,11 @@
                       <td width="22%" class="campos_negritas">Id OT</td>
                       <td width="28%">&nbsp;<?=$id_ot_XXX=$registro1["id"]?></td>
                       <td width="22%" class="campos_negritas">Diagn&oacute;stico</td>
-                      <td width="28%">&nbsp;<?=$registro1["cod_diag"]?></td>
+                      <td width="28%">&nbsp;<?=$diag2=$registro1["cod_diag"];
+		      $sql_diagnostico="SELECT diagnostico FROM cat_diagnosticos WHERE id=$diag2 ";
+			             $resultado_diagnostico=mysql_query($sql_diagnostico,$link);
+				     $registro_diagnostico=mysql_fetch_array($resultado_diagnostico);
+				echo strtoupper(". ".$registro_diagnostico["diagnostico"]); 		?></td>
                   </tr>
                     <tr>
                       <td class="campos_negritas">Fecha de Recibo</td>
@@ -415,7 +419,10 @@
 			//echo "<br><br>OK ".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='DES', status_proceso='$status',fecha_fin='".date("Y-m-d H:i:s")."' WHERE id=$idot ";
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
-			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php
+			?>
+			<script type="text/javascript">
+			                        alert("La OT <?=$idot?> se guardó correctamente.");
+		                        </script><?php
 		} elseif ($status=="NOK"){
 			
 			// Obtener las pruebas funcionales asociadas al producto en curso.
@@ -479,17 +486,21 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','0')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
 						}
 					}
 				}
 				
-			}			
+			}
+			
 			// ------------------------------------------------------------------------------------			
 			//echo "<br>NOK".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='REP', status_proceso='$status',num_no_ok=num_no_ok+1 WHERE id=$idot ";
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
-			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php			
+			?>
+			<script type="text/javascript">
+			                        alert("La OT (<?=$idot?>) se guardó correctamente.");
+		                        </script><?php
 		} elseif($status=="OKF"){
 			// Obtener las pruebas funcionales asociadas al producto en curso.
 			//echo "<br>&nbsp;".
@@ -519,7 +530,7 @@
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','0')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
 							}
 						}
 					}
@@ -552,7 +563,7 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','0')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
 						}
 					}
 				}
@@ -561,8 +572,11 @@
 			// ------------------------------------------------------------------------------------				
 			//echo "<br>$status".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='DES', status_proceso='$status',fecha_fin='".date("Y-m-d H:i:s")."'  WHERE id=$idot ";
-			if (!mysql_db_query($sql_ing,$sql_actualiza_ot)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
-			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php				
+			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			?>
+			                <script type="text/javascript">
+			                        alert("La OT (<?=$idot?>) se guardó correctamente.");
+		                        </script><?php				
 		} elseif($status=="PDC"){
 			
 			
@@ -592,7 +606,7 @@
 								//echo "<br><br>".
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','1')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}									
 							
 							} else { 
 								//echo "<br> ".$registro_pfuncionales["id"]." NO esta en el array (ids_pf). ";
@@ -600,7 +614,7 @@
 								
 								$sql_registro_cc_pf="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 									VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','FUNCIONAL','".$registro_pfuncionales["id"]."','0')";
-								if (!mysql_db_query($sql_ing,$sql_registro_cc_pf)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
+								if (!mysql_query($sql_registro_cc_pf,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Funcional ($id_pf).";	exit;}								
 								
 							}
 						}
@@ -633,7 +647,7 @@
 							//echo "<br><br>".
 							$sql_registro_cc_pc="INSERT INTO evaluacion_pruebas(id,fecha,hora,id_usuario,id_ot,tipo_prueba,id_prueba,valor) 
 								VALUES(NULL,'".date("Y-m-d")."','".date("H:i:s")."','$id_usuario','$idot','COSMETICA','".$registro_pesteticas["id"]."','0')";
-							if (!mysql_db_query($sql_ing,$sql_registro_cc_pc)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
+							if (!mysql_query($sql_registro_cc_pc,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit; }								
 						}
 					}
 				}

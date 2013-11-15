@@ -29,6 +29,24 @@
 			error:function() { $("#catalogo").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 		});	
 	}
+	function buscar_ns(){
+		var nds=$("#txt_ot").attr("value");
+		if (nds==""||nds=="undefined"||nds==null){ return; }
+		$.ajax({
+			async:true,
+			type: "POST",
+			dataType: "html",
+			contentType: "application/x-www-form-urlencoded",
+			url:"cat_fallas_tecnicas2.php",
+			data:"action=buscar&nds="+nds,
+			beforeSend:function(){ 
+				$("#div_datos2").show().html('<div align=center>Procesando datos, espere un momento.</div>'); 
+			},
+			success:function(datos){ $("#div_datos2").show().html(datos); },
+			timeout:90000000,
+			error:function() { $("#div_datos2").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
+		});				
+	}
 	function nuevo(){
 		$("#all").hide();
 		$("#div_nuevo").show();

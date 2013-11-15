@@ -14,7 +14,7 @@
 		$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie 
 			FROM catprod,num_series 
 			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie LIKE '%$nds%'";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";		echo "<br>NDR=".
 			$ndr1=mysql_num_rows($resultado1);
 			if ($ndr1>0){
@@ -47,11 +47,14 @@
 						<input type="text" class="tex0" size="50" name="txt4" id="txt4" value="<?=$registro1['especificacion'];?>" readonly="1" />
 						</td>
 					</tr>
-					<tr id="descripcion">
-					  <td class="campos_verticales">&nbsp;</td>
-					  <td colspan="2">&nbsp;</td>
+					<tr id="status">
+					  <td class="campos_verticales">&nbsp;STATUS</td>
+					  <input type="text" class="tex0" size="50" name="txt7" id="txt7" value="<?=$registro1['status'];?>" readonly="1" />
+					  <td colspan="2">
+						
+					  </td>
 					</tr>
-					<tr id="descripcion">
+					<tr id="diagnostico">
 					  <td class="campos_verticales">&nbsp;DIAGN&Oacute;STICO </td>
 					  <td colspan="2">
 					  <br><select name="txt5" id="txt5" class="tex0">
@@ -59,7 +62,7 @@
 					  <? 
 							//$claveProd=intval($claveProd);
 							$sql2="SELECT * FROM cat_diagnosticos WHERE aplica_productos LIKE '%$idp%' ORDER BY id";
-							if ($resultado2=mysql_db_query($sql_ing,$sql2)){
+							if ($resultado2=mysql_query($sql2,$link)){
 								//echo "<div align=center>OK</div>";	echo "<br>NDR=".
 								$ndr2=mysql_num_rows($resultado2);
 								if ($ndr2>0){
@@ -115,7 +118,7 @@
 				4. Generar el campo OT.
 				5. Avisos.
 			  --------------- ALGORITMO -------------------*/
-		
+		echo "<br>["; print_r($_POST);
 		$a=$_POST["a"];				$b=$_POST["b"];				$c=$_POST["c"];			$g=$_POST["g"];	
 		$d=$_POST["d"];				$e=$_POST["e"];				$f=$_POST["f"];			$x=$_POST["x"];				
 
@@ -128,7 +131,7 @@
 		if ($x==0){
 			//echo "<br><br>".
 			$sql5="SELECT id FROM ot WHERE nserie='$a'";	
-			if ($result5=mysql_db_query($sql_ing,$sql5)){
+			if ($result5=mysql_query($sql5,$link)){
 				if (mysql_num_rows($result5)>0){
 					?>
 					<br>
@@ -142,7 +145,7 @@
 		} elseif($x==1){
 			//echo "<br><br>".
 			$sql5="SELECT id FROM ot WHERE nserie='$a'";	
-			if ($result5=mysql_db_query($sql_ing,$sql5)){
+			if ($result5=mysql_query($sql5,$link)){
 				if (mysql_num_rows($result5)<=0){
 					//Error. Se reporta como garantia pero no existe regsitrado en el sistema.
 					//echo "<br>&nbsp;El numero de serie no se encuentra en el sistema, por lo tanto no puede ser capturado como garantia.";
@@ -157,18 +160,18 @@
 			}		
 		}
 		//echo "<br><br>".
-		$sql3="INSERT INTO ot 
+		 $sql3="INSERT INTO ot 
 		(id,ot,idp,nserie,u_recibe,f_recibo,cod_refac,cod_diag,cod_rep,obs_rep,garantia,fecha_inicio,fecha_fin,repara,num_no_ok,status_proceso,status_cliente,obs) 
 		VALUES 
 		(NULL,'BD','$b','$a','$id_usuario','$fr','','$f','','','$x','','','','1','REC','REC','$g')";	
-		if (mysql_db_query($sql_ing,$sql3,$link)){
+		if (mysql_query($sql3,$link)){
 			echo "<div align=center>&nbsp;La OT se guardo correctamente.</div>";
 			$id_insertado=mysql_insert_id($link);
 			$idc=sprintf('%06s',$id_insertado);		
 			$ot="BD".date("y").date("m").$idc;
 			//echo "<br><br>".
 			$sql4="UPDATE ot SET ot='$ot' WHERE id=$id_insertado";
-			mysql_db_query($sql_ing,$sql4);
+			mysql_query($sql4,$link);
 		} else {
 			echo "<div align=center>&nbsp;Error SQL. La OT NO se guardo.</div>";
 		}

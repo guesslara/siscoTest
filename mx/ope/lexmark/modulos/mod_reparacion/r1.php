@@ -10,15 +10,15 @@
 <title>Reparacion 1</title>
 <link href="../../css/estilos.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-	#div_reparacion{ z-index:3; position:absolute; width:800px; left:50%; margin-left:-400px; border:#000000 2px solid; background-color:#CCCCCC;}
-		#div_rep0{ width:794px; height:20px; margin:2px; border:#000000 1px solid; float:left; clear:both;  background-color:#FFFFFF; text-align:center; font-size:16px; font-weight:bold; }
-		#div_rep1{ width:400px; height:200px; margin:2px; border:#000000 1px solid; float:left;  background-color:#FFFFFF;}
-		#div_rep2{ width:388px; height:200px; margin:2px; border:#000000 1px solid; float:left; clear:right;  background-color:#FFFFFF;}
-		#div_rep3{ width:400px; height:200px; margin:2px; border:#000000 1px solid; float:left;  background-color:#FFFFFF; overflow:auto;}
-		#div_rep4{ width:388px; height:200px; margin:2px; border:#000000 1px solid; float:left; clear:right;  background-color:#FFFFFF; overflow:auto;}		
+	#div_reparacion{ z-index:3; position:absolute; width:1206px; left:30%; top:30px; margin-left:-400px; border:#000000 2px solid; background-color:#CCCCCC;}
+		#div_rep0{ width:1200px; height:20px; margin:2px; border:#000000 1px solid; float:left; clear:both;  background-color:#FFFFFF; text-align:center; font-size:16px; font-weight:bold; }
+		#div_rep1{ width:400px; height:230px; margin:2px; border:#000000 1px solid; float:left;  background-color:#FFFFFF;}
+		#div_rep2{ width:388px; height:230px; margin:2px; border:#000000 1px solid; float:left;  background-color:#FFFFFF;}
+		#div_rep3{ width:388px; height:230px; margin:2px; border:#000000 1px solid; float:left;  background-color:#FFFFFF; overflow:auto;}
+		#div_rep4{ width:400px; height:230px; margin:2px; border:#000000 1px solid; float:left; clear:right;  background-color:#FFFFFF; overflow:auto;}		
 		
-		#div_rep5{ width:400px; height:160px; margin:2px; border:#000000 1px solid; float:left; clear:left;  background-color:#FFFFFF;}
-		#div_rep6{ width:388px; height:160px; margin:2px; border:#000000 1px solid; float:left; clear:right;  background-color:#FFFFFF; overflow:auto;}
+		#div_rep5{ width:400px; height:230px; margin:2px; border:#000000 1px solid; float:left; background-color:#FFFFFF;}
+		#div_rep6{ width:400px; height:230px; margin:2px; border:#000000 1px solid; float:left; clear:right;  background-color:#FFFFFF; overflow:auto;}
 	#guardar{ position:relative; width:800px; left:50%; margin-left:-400px; z-index:4; background-color:#FFFFFF; text-align:justify; padding:10px; display:none; margin-top:700px;}
 	
 		
@@ -181,14 +181,14 @@
 <body>
 
 <div id="div_productos">&nbsp;</div>
-<div id="div_nuevo">
+<!--<div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nuevo Diagn&oacute;stico.</div>
 	<div class="div_nuevoC" id="div_nuevoC">&nbsp;</div>
 	<div class="div_nuevoD" id="div_nuevoD">
 		<br /><input type="button" value="Guardar" class="boton1" onclick="guardar()" />
 		<br /><input type="button" value="Cancelar" onclick="cancelar()" class="boton1" />
 	</div>
-</div>
+</div>-->
 
 
 <div id="all">

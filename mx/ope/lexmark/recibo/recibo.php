@@ -86,6 +86,16 @@
 		<br /><input type="button" value="Cancelar" onclick="cancelar()" class="boton1" />
 	</div>
 </div>
+<form id="fbusc" name="fbusc" method="get" action="">
+		<h3 align="center">Busqueda Avanzada</h3>
+		<div align="center" id="busc_avan">
+			No. de Parte: <input type="text" name="buscador" id="buscador" size="50" />
+			<input type="button" value="Buscar" onclick="buscar_np()" />
+					</div>
+		          <div align="center" id="divdates">&nbsp;</div>
+		          <div align="center" id="div_resultado">&nbsp;</div>
+				  
+	</form>
 //-->
 
 <div id="all">
@@ -107,3 +117,6 @@
 </div>
 </body>
 </html>
+
+
+	

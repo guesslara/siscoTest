@@ -1,7 +1,7 @@
 <?php 	
 	//include ("../conf/conexion.php");
 	include ("../../conf/conectarbase.php");
-	include('../../clases/clase_fecha.php');
+	include('../../../../../clases/clase_fecha.php');
 	header("Cache-Control: no-store, no-cache, must-revalidate");
 	header("Content-Type: text/xml; charset=ISO-8859-1");
 	//print_r($_POST);
@@ -36,7 +36,7 @@ if ($_GET)
 	$s_sql0="SELECT ot.* FROM ot WHERE $campo$sql_criterio $modulo_sql ORDER BY $orden";
 	//echo "<hr>";
 	
-	if ($resultado0=mysql_db_query($sql_ing,$s_sql0)){
+	if ($resultado0=mysql_query($s_sql0,$link)){
 		$ndr0=mysql_num_rows($resultado0);
 		while($registro0=mysql_fetch_array($resultado0)){
 			//echo "<br><br>";	print_r($registro0);
@@ -77,7 +77,7 @@ if ($_GET)
 	// SQL CON LIMITES >>
 	//echo "<br><br>".
 	$s_sql1="SELECT ot.* FROM ot WHERE $campo$sql_criterio $modulo_sql ORDER BY $orden $ascdes LIMIT $limitInf,$tamPag ";
-	if ($resultado1=mysql_db_query($sql_ing,$s_sql1)){
+	if ($resultado1=mysql_query($s_sql1,$link)){
 		$ndr1=mysql_num_rows($resultado1);
 	} else {	echo "<br>&nbsp;Error SQL[1]."; exit;	}	
 	?>
@@ -125,7 +125,7 @@ if ($_GET)
 		//echo "<br><br>";	print_r($registro1);
 		//echo "<br>BD ($sql_inv)".
 		$sql2="SELECT descripgral,especificacion FROM catprod WHERE id='".$registro1["idp"]."'";
-		if ($resultado2=mysql_db_query($sql_inv,$sql2)){
+		if ($resultado2=mysql_query($sql2,$link)){
 			$ndr2=mysql_num_rows($resultado2);
 			while($registro2=mysql_fetch_array($resultado2)){
 				//echo "<br><br>";	print_r($registro2);
@@ -188,10 +188,12 @@ if ($_GET)
 if ($_POST["action"]=="ver_equipo"){
 	$ot=$_POST["ot"];
 	$sql1="SELECT * FROM ot WHERE ot='$ot'";	
-	if ($result1=mysql_db_query($sql_ing,$sql1)){
+	if ($result1=mysql_query($sql1,$link)){
 		if ($ndr1=mysql_num_rows($result1)>0){
 			while($registro1=mysql_fetch_array($result1)){
-				//echo "<br>"; print_r($registro1);
+				?><pre><?php
+                                //echo "<br>"; print_r($registro1);
+                                 ?></pre><?php
 				$idp=$registro1["idp"];		$nds=$registro1["nserie"];		$fdr=$registro1["f_recibo"];		$dig=$registro1["cod_diag"];
 				$ure=$registro1["u_recibe"];		$urp=$registro1["repara"];		$fio=$registro1["fecha_inicio"];		$ffr=$registro1["fecha_fin_rep"];
 				$ffn=$registro1["fecha_fin"];		$stp=$registro1["status_proceso"];		$stc=$registro1["status_cliente"];		$obr=$registro1["obs_rep"];
@@ -202,7 +204,7 @@ if ($_POST["action"]=="ver_equipo"){
 				
 			
 				$sql2="SELECT descripgral,especificacion FROM catprod WHERE id='".$registro1["idp"]."'";
-				if ($resultado2=mysql_db_query($sql_inv,$sql2)){
+				if ($resultado2=mysql_query($sql2,$link)){
 					$ndr2=mysql_num_rows($resultado2);
 					while($registro2=mysql_fetch_array($resultado2)){
 						//echo "<br><br>";	print_r($registro2);
@@ -254,9 +256,9 @@ if ($_POST["action"]=="ver_equipo"){
 	  <tr>
 		<td height="20" class="campos_verticales_n">DIAGN&Oacute;STICO</td>
 		<td class="campos_verticales_d">&nbsp;<?php
-			echo $id_diag=$dig;
-			$sql_diagnostico="SELECT diagnostico FROM cat_diagnosticos WHERE id=$id_diag ";
-			$resultado_diagnostico=mysql_db_query($sql_ing,$sql_diagnostico);
+			 echo $id_diag=$dig;
+			 $sql_diagnostico="SELECT diagnostico FROM cat_diagnosticos WHERE id=$id_diag ";
+			 $resultado_diagnostico=mysql_query($sql_diagnostico,$link);
 				$registro_diagnostico=mysql_fetch_array($resultado_diagnostico);
 				echo strtoupper(". ".$registro_diagnostico["diagnostico"]); 			
 		?></td>
@@ -268,7 +270,7 @@ if ($_POST["action"]=="ver_equipo"){
 			echo $id_recibe=$ure;
 			if (!$id_recibe==""){
 				$sql_usuario1="SELECT dp_nombre,dp_apaterno,dp_amaterno FROM usuarios WHERE id_usuario=$id_recibe ";
-				$resultado_usuario1=mysql_db_query($sql_inv,$sql_usuario1);
+				$resultado_usuario1=mysql_query($sql_usuario1,$link);
 					$registro_usuario1=mysql_fetch_array($resultado_usuario1);
 					echo strtoupper(". ".$registro_usuario1["dp_nombre"]." ".$registro_usuario1["dp_apaterno"]." ".$registro_usuario1["dp_amaterno"]);        
 			}
@@ -276,32 +278,33 @@ if ($_POST["action"]=="ver_equipo"){
 	  </tr>
 	  <tr>
 		<td height="20" class="campos_verticales_n">REPARA</td>
+		
 		<td class="campos_verticales_d">&nbsp;<?php
-			$id_repara=$registro1["repara"];
-			if (!$id_repara==""){
+			 //$id_repara=$registro1["repara"];
+			 $id_repara=$urp;
+			 if($id_repara==""){
+				?><span style="color:#FF0000;">AUN NO SE HA ASIGNADO UN TECNICO.</span><?php
+			 }else{			
 				$sql_usuario2="SELECT dp_nombre,dp_apaterno,dp_amaterno FROM usuarios WHERE id_usuario=$id_repara ";
-				$resultado_usuario2=mysql_db_query($sql_inv,$sql_usuario2);
+				$resultado_usuario2=mysql_query($sql_usuario2,$link);
 					$registro_usuario2=mysql_fetch_array($resultado_usuario2);
 					echo strtoupper("$id_repara. ".$registro_usuario2["dp_nombre"]." ".$registro_usuario2["dp_apaterno"]." ".$registro_usuario2["dp_amaterno"]);        
-			} else { ?><span style="color:#F00;">EL EQUIPO AUN NO HA SIDO ASIGNADO.</span><?php }
+			 }
 		?></td>
 	  </tr>
 	  <tr>
 		<td height="20" class="campos_verticales_n">FECHA INICIO </td>
 		<td class="campos_verticales_d">&nbsp;<?php 
 			$fecha2=new fecha(substr($fio,0,10));
-			echo $fecha2->dame_fecha()." (".substr($m1['fecha_inicio'],11,8).")";
+			echo $fecha2->dame_fecha();
 		?>	</td>
 	  </tr>
 	  <tr>
 		<td height="20" class="campos_verticales_n">FECHA FIN REPARACION </td>
 		<td class="campos_verticales_d">&nbsp;<?php 
-			if ($ffr=="0000-00-00"){
-				?><span style="color:#FF0000;">EN PROCESO.</span><?php
-			} else {
-				$fecha3=new fecha($ffr);
-				echo $fecha3->dame_fecha();
-			}	
+			echo $fechafin=$ffr;
+
+				
 		?>	</td>
 	  </tr>
 	  <tr>
@@ -357,7 +360,7 @@ if ($_POST["action"]=="ver_equipo"){
 			<td class="campos_verticales_d">&nbsp;<?php 
 				//echo "<br>BD[$sql_inv] ".
 				$sql_3="SELECT id_almacen,almacen FROM `tipoalmacen` WHERE id_almacen=".$ade;
-				if ($resultado3=mysql_db_query($sql_inv,$sql_3)){
+				if ($resultado3=mysql_query($sql_3,$link)){
 					$ndr3=mysql_num_rows($resultado3);
 					while($registro3=mysql_fetch_array($resultado3)){
 						//echo "<br><br>";	print_r($registro3);

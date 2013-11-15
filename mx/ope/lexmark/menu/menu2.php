@@ -136,7 +136,7 @@ ul.jd_menu_slate ul li.jd_menu_hover a.jd_menu_hover {
 		<script src="../../js/jdmenu/jquery.dimensions.js" type="text/javascript"></script>
 		<script src="../../js/jdmenu/jquery.jdMenu.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			$(function(){
+			(function(){
 				$('ul.jd_menu').jdMenu({	onShow: loadMenu	});
 				$('ul.jd_menu_vertical').jdMenu({onShow: loadMenu, onHide: unloadMenu, offset: 1, onAnimate: onAnimate});
 			});

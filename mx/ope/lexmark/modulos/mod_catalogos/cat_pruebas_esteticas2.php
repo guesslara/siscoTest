@@ -37,7 +37,7 @@
 	}
 	if ($a=="elegir_productos"){
 		//echo "<br>BD [$sql_inv] SQL=".
-		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
+		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
 		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
@@ -54,17 +54,17 @@
 			<tr>
 			  <td>&nbsp;</td>
 			  <td>Id</td>
-			  <td>Clave del Producto </td>
+			  <td>No. Parte </td>
 			  <td>Descripci&oacute;n</td>
-			  <td>Especificaci&oacute;n</td>
+			  <td>Familia</td>
 		  </tr>
 			<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
 			<tr style="font-weight:normal;">
 			  <td width="37"><input type="checkbox" value="<?=$registro1["id"]?>" /></td>
 			  <td width="26"><?=$registro1["id"]?></td>
-			  <td width="118"><?=$registro1["id_prod"]?></td>
+			  <td width="118"><?=$registro1["noParte"]?></td>
 			  <td width="381"><?=$registro1["descripgral"]?></td>
-			  <td width="153"><?=$registro1["especificacion"]?></td>
+			  <td width="153"><?=$registro1["familia"]?></td>
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
@@ -75,7 +75,7 @@
 	if ($a=="elegir_productos2"){
 		$idd=$_POST["idd"];
 		//echo "<br>BD [$sql_inv] SQL=".
-		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
+		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
@@ -94,17 +94,17 @@
 			<tr>
 			  <td>&nbsp;</td>
 			  <td>Id</td>
-			  <td>Clave del Producto </td>
+			  <td>No.Parte </td>
 			  <td>Descripción</td>
-			  <td>Especificaci&oacute;n</td>
+			  <td>Familia</td>
 		  </tr>
 			<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
 			<tr style="font-weight:normal;">
 			  <td width="37"><input type="checkbox" value="<?=$registro1["id"]?>" /></td>
 			  <td width="26"><?=$registro1["id"]?></td>
-			  <td width="118"><?=$registro1["id_prod"]?></td>
+			  <td width="118"><?=$registro1["noParte"]?></td>
 			  <td width="381"><?=$registro1["descripgral"]?></td>
-			  <td width="153"><?=$registro1["especificacion"]?></td>
+			  <td width="153"><?=$registro1["familia"]?></td>
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>

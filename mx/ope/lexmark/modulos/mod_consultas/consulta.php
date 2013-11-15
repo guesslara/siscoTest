@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Consulta de equipos</title>
-<script language="javascript" src="../../js/jquery.js"></script>
+<script language="javascript" src="../../../../../clases/jquery.js"></script>
 <script language="javascript">
 $(document).ready(start);
 function start()
@@ -140,6 +140,11 @@ function cancelar()
 	//$('#ventana4').hide();			
 }
 // ---------------------------------------------------
+
+function ocultar(){
+	$("#ventana").hide();
+}
+// ---------------------------------------------------
 function cerrar(elEvento) {
 var evento = elEvento || window.event;
 var codigo = evento.charCode || evento.keyCode;
@@ -167,8 +172,8 @@ border:#000000 2px solid; display:none; padding:0px 0px 0px 0px; }
 #contenido{ z-index:1; }
 #transparente{ z-index:2; background-image:url(../../img/transparente.png); width:100%; height:900px; position:absolute; margin:0px; padding:0px; display:none;}
 #busqueda1{ z-index:5; display:none; position:absolute; width:400px; height:230px; top:50%; left:50%; margin-left:-200px; margin-top:-110px; background-color:#FFFFFF; border:#000000 2px solid; }
-#v3_t{ height:17px; text-align:right; padding:1px; padding-bottom:2px; background-color:#000000; color:#FFFFFF;}
-#v3_c{ height:200px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#ffffff; text-align:center;}
+#v3_t{ height:17px; text-align:right; padding:1px; padding-bottom:2px; background-color:#000000; color:#FE2E2E;}
+#v3_c{ height:200px; margin-top:0px; overflow:auto; text-align:right; padding:1px; background-color:#FE2E2E; text-align:center;}
 
  .paginador1:link{ border:#cccccc 1px solid; background-color:#efefef; color:#000000; text-align:center; 
  width:20px; height:30px; padding:2px; font-size:10px; margin:1px;}
@@ -193,9 +198,9 @@ border:#000000 2px solid; display:none; padding:0px 0px 0px 0px; }
 <body>
 <div id="transparente"></div>
 <div id="todo">
-	<?php include("../../menu/menu2sjq.php"); ?>
+	
 	<div style="text-align:right;">
-		<a href="javascript:bavanzada();">Busqueda Avanzada</a> &nbsp;&nbsp;&nbsp;
+		<!--<a href="javascript:bavanzada();">Busqueda Avanzada</a> &nbsp;&nbsp;&nbsp;-->
 	</div><br />
 	<div id="contenido">&nbsp;</div>
 	
@@ -203,8 +208,8 @@ border:#000000 2px solid; display:none; padding:0px 0px 0px 0px; }
 
 	<div id="busqueda1" align="center">
 	<div id="v3_t">
-		<div style="float:left; padding-left:5px; font-weight:bold;">B&uacute;squeda avanzada</div>
-			<a href="javascript:cancelar();"><img src="../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a>
+		<!--<div style="float:left; padding-left:5px; font-weight:bold;">B&uacute;squeda avanzada</div>-->
+			<a href="javascript:cancelar();"><img src="../../img/cerrar.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a>
 		</div>
 	<div id="v3_c">
 		
@@ -278,10 +283,10 @@ border:#000000 2px solid; display:none; padding:0px 0px 0px 0px; }
 	</div>
 
 
-	<div id="ventana">
+	<div id="ventana" style="position:fixed;">
 	<div class="ven_tit">
 		<div style="float:left; padding-left:5px; font-weight:bold;">Descripci&oacute;n de la Orden de Trabajo (OT).</div>
-		<a href="javascript:cancelar();"><img src="../../img/cerrar_2.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer;" /></a>
+		<a href="javascript:cancelar();"><img src="cerrar.png" align="Cerrar" class="invisible" border="0" title="Cerrar esta ventana." style="cursor:pointer; height: 18px; widht: 20px;" /></a>
 	</div>			
 		<div class="ven_con" id="ven_con"></div>
 	</div>

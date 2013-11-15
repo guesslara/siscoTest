@@ -42,7 +42,7 @@
 	}
 	if ($a=="elegir_productos"){
 		//echo "<br>BD [$sql_inv] SQL=".
-		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
+		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
@@ -59,17 +59,17 @@
 			<tr>
 			  <td>&nbsp;</td>
 			  <td>Id</td>
-			  <td>Clave del Producto </td>
+			  <td>No. Parte </td>
 			  <td>Descripci&oacute;n</td>
-			  <td>Especificaci&oacute;n</td>
+			  <td>Familia</td>
 		  </tr>
 			<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
 			<tr style="font-weight:normal;">
 			  <td width="37"><input type="checkbox" value="<?=$registro1["id"]?>" /></td>
 			  <td width="26"><?=$registro1["id"]?></td>
-			  <td width="118"><?=$registro1["id_prod"]?></td>
+			  <td width="118"><?=$registro1["noParte"]?></td>
 			  <td width="381"><?=$registro1["descripgral"]?></td>
-			  <td width="153"><?=$registro1["especificacion"]?></td>
+			  <td width="153"><?=$registro1["familia"]?></td>
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
@@ -80,7 +80,7 @@
 	if ($a=="elegir_productos2"){
 		$idd=$_POST["idd"];
 		//echo "<br>BD [$sql_inv] SQL=".
-		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
+		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
@@ -90,18 +90,7 @@
 		}
 		?>
 		<!--<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos(<?=$idd?>)" /></center></div>-->
-		<div>
-		<form id="frmbusc" name="frmbusc" method="post" action="">
-		        <tr>
-		            <td>Busqueda por Id: </td>
-			    <td><input type="text" name="txt_ot" id="txt_ot" size="10" /></td>
-			    <td><input type="button" value="Buscar" onclick="buscar_ns()" /></td>		
-			</tr>
-		
-		</form>
-		</div>
-		
-		
+				
 		<form name="frm2">
 		
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
@@ -112,17 +101,17 @@
 			<tr>
 			  <td>&nbsp;</td>
 			  <td>Id</td>
-			  <td>Clave del Producto </td>
+			  <td>No. Parte</td>
 			  <td>Descripci&oacute;n</td>
-			  <td>Especificaci&oacute;n</td>
+			  <td>Familia</td>
 		  </tr>
 			<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
 			<tr style="font-weight:normal;">
 			  <td width="37"><input type="checkbox" value="<?=$registro1["id"]?>" /></td>
 			  <td width="26"><?=$registro1["id"]?></td>
-			  <td width="118"><?=$registro1["id_prod"]?></td>
+			  <td width="118"><?=$registro1["noParte"]?></td>
 			  <td width="381"><?=$registro1["descripgral"]?></td>
-			  <td width="153"><?=$registro1["especificacion"]?></td>
+			  <td width="153"><?=$registro1["familia"]?></td>
 		  </tr>
 		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
@@ -137,7 +126,7 @@
 		$sql1="INSERT INTO cat_fallas_tecnicas(id,clave,descripcion,aplica_productos,obs) 
 			VALUES (NULL,'".$_POST["c"]."','".$_POST["d"]."','".$_POST["p"]."','".$_POST["o"]."')";
 		
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			echo "<div align=center>La Falla Tecnica se guardo correctamente.</div>";
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
