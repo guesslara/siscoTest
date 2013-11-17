@@ -38,13 +38,16 @@
 		  </tr>
 			
 		</table>
-		</form>	
+		
+		</form>
+		
+		
 		<?php
 	
 	}
 	if ($a=="elegir_productos"){
 		//echo "<br>BD [$sql_inv] SQL=".
-		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
+		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
@@ -79,6 +82,9 @@
 		<br /><div id="aceptar" align="center"><input type="button" value="Aceptar" onclick="coloca_productos()" /></div><br />
 		
 		</form>
+		
+		
+                
 		<?php
 	}
 	
@@ -96,7 +102,61 @@
 		?>
 		
 		<form name="frm2">
-				
+		<form id="formbusc" >
+				<h3 align="center">Busqueda Avanzada</h3>
+		<div align="center" id="div_datos1">
+			No. de Parte: <input type="text" name="busc" id="busc" size="50" />
+			<input type="button" value="Buscar" onclick="buscar_ns()" />		
+		</div>
+		<div align="center" id="div_datos2">&nbsp;</div>
+		<div align="center" id="div_resultado">&nbsp;</div>
+		</form>
+		<?php
+		
+		if ($a=="buscar"){
+		     $nds=$_POST["nds"];
+		     ?><pre><?php
+                     echo "<br>"; print_r($nds);
+                     ?></pre><?php
+		     $sql1="SELECT id,noParte,descripgral,familia FROM catprod  WHERE noParte= $nds ORDER BY id";
+		if ($resultado1=mysql_query($sql1,$link)){
+			//echo "<div align=center>OK</div>";
+			$ndr1=mysql_num_rows($resultado1);
+		} else {
+			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
+			exit();
+		}
+		?>
+		
+		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
+			<tr>
+			  <td colspan="5" align="center">El diagn&oacute;stico  <input type="hidden" id="txt_idd" value="<?=$nds?>" />  aplica a los productos seleccionados. </td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>Id</td>
+			  <td>No. Parte </td>
+			  <td>Descripci&oacute;n</td>
+			  <td>Familia</td>
+		  </tr>
+			<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
+			<tr style="font-weight:normal;">
+			  <td width="37"><input type="checkbox" value="<?=$registro1["id"]?>" /></td>
+			  <td width="26"><?=$registro1["id"]?></td>
+			  <td width="118"><?=$registro1["noParte"]?></td>
+			  <td width="381"><?=$registro1["descripgral"]?></td>
+			  <td width="153"><?=$registro1["familia"]?></td>
+		  </tr>
+		  	<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
+		</table>
+		<br /><div id="aceptar" align="center"><input type="button" value="Aceptar" onclick="coloca_productos2(<?=$idd?>)" /></div><br />
+		</form>
+		
+		<?php
+	                        }
+		    ?>
+<!------------------------------------------------------------------------------------------------------------>
+		
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
 			<tr>
 			  <td colspan="5" align="center">El diagn&oacute;stico  <input type="hidden" id="txt_idd" value="<?=$idd?>" />  aplica a los productos seleccionados. </td>
