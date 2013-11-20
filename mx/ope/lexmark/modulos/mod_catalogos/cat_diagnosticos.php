@@ -29,6 +29,27 @@
 			error:function() { $("#catalogo").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 		});	
 	}
+	function buscar() {
+			var part=document.getElementById("busc").value;
+			//alert(part);
+			if (part==""||part=="undefined"||part==null){ return; }
+		$.ajax({
+			async:true,
+			type: "POST",
+			dataType: "html",
+			contentType: "application/x-www-form-urlencoded",
+			url:"controladorEnsamble.php",
+			data:"action=buscar&part="+part,
+			beforeSend:function(){ 
+				$("#div_productos").show().html('<div align=center>Procesando datos, espere un momento.</div>'); 
+			},
+			success:function(datos){
+				$("#div_productos").show().html(datos);
+			},
+			timeout:90000000,
+			error:function() { $("#div_productos").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
+		});
+	}
 	function nuevo(){
 		$("#all").hide();
 		$("#div_nuevo").show();
@@ -180,27 +201,7 @@
 			error:function() { $("#div_productos").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 		});			
 	}
-	function buscar_ns(){
-		var nds=$("#busc").attr("value");
-		//alert (nds);
-		if (nds==""||nds=="undefined"||nds==null){ return; }
-		$.ajax({
-			async:true,
-			type: "POST",
-			dataType: "html",
-			contentType: "application/x-www-form-urlencoded",
-			url:"cat_diagnosticos2.php",
-			data:"action=buscar&nds="+nds,
-			beforeSend:function(){ 
-				$("#div_datos2").show().html('<div align=center>Procesando datos, espere un momento.</div>'); 
-			},
-			success:function(datos){
-				$("#div_datos2").show().html(datos);
-			},
-			timeout:90000000,
-			error:function() { $("#div_datos2").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
-		});				
-	}
+	
 </script>
 </head>
 
