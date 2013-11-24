@@ -499,7 +499,7 @@
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
 			?>
 			<script type="text/javascript">
-			                        alert("La OT (<?=$idot?>) se guardó correctamente.");
+			                        alert("La OT (<?=$idot?>) se guardo correctamente.");
 		                        </script><?php
 		} elseif($status=="OKF"){
 			// Obtener las pruebas funcionales asociadas al producto en curso.
@@ -575,7 +575,7 @@
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
 			?>
 			                <script type="text/javascript">
-			                        alert("La OT (<?=$idot?>) se guardó correctamente.");
+			                        alert("La OT (<?=$idot?>) se guardo correctamente.");
 		                        </script><?php				
 		} elseif($status=="PDC"){
 			

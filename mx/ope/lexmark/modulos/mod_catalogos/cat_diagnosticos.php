@@ -31,6 +31,7 @@
 	}
 	function buscar() {
 			var part=document.getElementById("busc").value;
+			var idd=document.getElementById("num").value;
 			//alert(part);
 			if (part==""||part=="undefined"||part==null){ return; }
 		$.ajax({
@@ -39,7 +40,7 @@
 			dataType: "html",
 			contentType: "application/x-www-form-urlencoded",
 			url:"controladorEnsamble.php",
-			data:"action=buscar&part="+part,
+			data:"action=buscar&part="+part+"&idd="+idd,
 			beforeSend:function(){ 
 				$("#div_productos").show().html('<div align=center>Procesando datos, espere un momento.</div>'); 
 			},
@@ -225,7 +226,7 @@
 	</div>
 	<br /><br />
 	<div id="catalogo">&nbsp;</div>
-		
+	<div align="center" id="div_datos2">&nbsp;</div>
 
 </body>
 </html>

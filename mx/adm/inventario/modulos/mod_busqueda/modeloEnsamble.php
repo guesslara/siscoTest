@@ -67,6 +67,9 @@
 					//$rowBitacora=mysql_fetch_array($resBitacora);
 				if(mysql_num_rows($resBuscar) != 0){
 					while($rowEquipos=mysql_fetch_array($resBuscar)){
+						//extraemos los almacenes internos del producto de acuerdo al cliente al que este asociado el item
+						$sqlAlm="SELECT almacenCliente.id_almacen AS id_almacen, almacen FROM almacenCliente INNER JOIN tipoalmacen ON almacenCliente.id_almacen = tipoalmacen.id_almacen WHERE id_cliente='".$rowEquipos['id_clientes']."'";
+						$resAlm=mysql_query($sqlAlm,$this->conectarBd());
 ?>
 						<div style="clear: both;margin-bottom: 10px;">&nbsp;</div>
 							<div class="divCajaPrincipal">
@@ -114,31 +117,22 @@
 							<div class="divCajaPrincipal">	
 								<div class="divCajaPrincipalTitulo">Almacenes Internos:</div>
 								<table width="90%" align="center" border="0" cellpadding="1" cellspacing="1" style="background: #FFF;">
+<?
+								while($rowAlm=mysql_fetch_array($resAlm)){
+									$existenciaAlmInterno="exist_".$rowAlm["id_almacen"];
+?>
 									<tr>
-										<td width="28%" class="estiloTitulosDatos">Equipo Recibido</td>
-										<td width="70%" class="estiloDatosBusqueda" style="border-top:1px solid #CCC;"><span id="datos_imei"><?=$rowEquipos["exist_1"];?></span></td>
+										<td width="28%" class="estiloTitulosDatos"><?=$rowAlm["almacen"];?></td>
+										<td width="70%" class="estiloDatosBusqueda" style="border-top:1px solid #CCC;"><?=$rowEquipos[$existenciaAlmInterno];?></td>
 									</tr>
-									<tr>
-										<td width="28%" class="estiloTitulosDatos">Equipo Nuevo</td>
-										<td width="70%" class="estiloDatosBusqueda" style="border-top:1px solid #CCC;"><span id="datos_imei"><?=$rowEquipos["exist_2"];?></span></td>
-									</tr>
-									<tr>
-										<td width="28%" class="estiloTitulosDatos">Equipo Convertido</td>
-										<td width="70%" class="estiloDatosBusqueda" style="border-top:1px solid #CCC;"><span id="datos_imei"><?=$rowEquipos["exist_3"];?></span></td>
-									</tr>
-									<tr>
-										<td width="28%" class="estiloTitulosDatos">Ingenier&iacute;a</td>
-										<td width="70%" class="estiloDatosBusqueda" style="border-top:1px solid #CCC;"><span id="datos_imei"><?=$rowEquipos["exist_4"];?></span></td>
-									</tr>
-									<tr>
-										<td width="28%" class="estiloTitulosDatos">Scrap</td>
-										<td width="70%" class="estiloDatosBusqueda" style="border-top:1px solid #CCC;"><span id="datos_imei"><?=$rowEquipos["exist_5"];?></span></td>
-									</tr>
+<?
+								}
+?>
 								</table><br>
 							</div>
 							<div style="clear: both;margin-bottom: 15px;">&nbsp;</div>
 <?
-							$sqlS="SELECT * FROM num_series WHERE noParte='".$rowEquipos["noParte"]."'";
+							$sqlS="SELECT * FROM num_series WHERE noParte='".$rowEquipos["noParte"]."' AND clave_prod='".$rowEquipos["id"]."'";
 							$resS=mysql_query($sqlS,$this->conectarBd());
 							if(mysql_num_rows($resS)!=0){
 ?>

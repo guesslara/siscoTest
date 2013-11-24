@@ -31,6 +31,28 @@
 			error:function() { $("#catalogo").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 		});	
 	}
+	function buscar() {
+			var part=document.getElementById("busc").value;
+			var idd=document.getElementById("num").value;
+			//alert(part);
+			if (part==""||part=="undefined"||part==null){ return; }
+		$.ajax({
+			async:true,
+			type: "POST",
+			dataType: "html",
+			contentType: "application/x-www-form-urlencoded",
+			url:"controladorEnsamble.php",
+			data:"action=buscar&part="+part+"&idd="+idd,
+			beforeSend:function(){ 
+				$("#div_productos").show().html('<div align=center>Procesando datos, espere un momento.</div>'); 
+			},
+			success:function(datos){
+				$("#div_productos").show().html(datos);
+			},
+			timeout:90000000,
+			error:function() { $("#div_productos").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
+		});
+	}
 	function nuevo(){
 		$("#all").hide();
 		$("#div_nuevo").show();

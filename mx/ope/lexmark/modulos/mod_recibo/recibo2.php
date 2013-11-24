@@ -102,7 +102,7 @@
 					<tr id="descripcion">
 					  <td height="40" class="campos_verticales">&nbsp;OBSERVACIONES</td>
 						<td colspan="2">
-						<input type="text" class="tex0" size="50" name="txt6" id="txt6" value="<?=$observaciones;?>" />	</td>
+						<input type="text" class="tex0" size="50" name="txt7" id="txt7" value="<?=$observaciones;?>" />	</td>
 					</tr>
 					<tr id="Guardar" align="right">
 						<td colspan="3" style="border-top:#000000 solid 2px; padding:5px;">
@@ -129,8 +129,8 @@
 				5. Avisos.
 			  --------------- ALGORITMO -------------------*/
 		
-		$a=$_POST["a"];				$b=$_POST["b"];				$c=$_POST["c"];			$g=$_POST["g"];	
-		$d=$_POST["d"];				$e=$_POST["e"];				$f=$_POST["f"];			$x=$_POST["x"];				
+		$a=$_POST["a"];				$b=$_POST["b"];				$c=$_POST["c"];			$g=$_POST["g"];	     
+		$d=$_POST["d"];				$e=$_POST["e"];				$f=$_POST["f"];			$x=$_POST["x"];		$h=$_POST["h"];		
 
 		$y=date("y");
 		$m=date("m");
@@ -175,7 +175,7 @@
 		$sql3="INSERT INTO ot 
 		(id,ot,idp,nserie,u_recibe,f_recibo,cod_refac,cod_diag,cod_rep,obs_rep,garantia,fecha_inicio,fecha_fin,repara,num_no_ok,status_proceso,status_cliente,obs) 
 		VALUES 
-		(NULL,'BD','$b','$a','$id_usuario','$fr','','$f','','','$x','','','','1','REC','REC','$g')";
+		(NULL,'BD','$b','$a','$id_usuario','$fr','','$f','','','$x','','','','1','REC','REC','$h')";
 		$res=mysql_query($sql3,$link);
 		
 		if ($res){

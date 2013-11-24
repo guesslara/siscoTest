@@ -42,12 +42,13 @@
 		var d=$("#txt3").attr("value");
 		var e=$("#txt4").attr("value");
 		var f=$("#txt6").attr("value");	
-		var g=$("#txt5").attr("value");	
+		var g=$("#txt5").attr("value");
+		var h=$("#txt7").attr("value");	
 		if(f==""||f=="undefined"||f==null){
 			alert("Por favor seleccione el Diagnostico.");
 			return;
 		}
-		var url="action=guardar&a="+a+"&b="+b+"&c="+c+"&d="+d+"&e="+e+"&f="+f+"&g="+g+"&x="+x;
+		var url="action=guardar&a="+a+"&b="+b+"&c="+c+"&d="+d+"&e="+e+"&f="+f+"&g="+g+"&x="+x+"&h="+h;
 		//alert(url);
 		if (confirm("¿Desea guardar la OT?")){
 			$.ajax({
@@ -93,7 +94,7 @@
 	<div id="catalogo">&nbsp;</div>
 	<div id="div_recibo">
 		<form id="form1" name="form1" method="post" action="">
-		<h3 align="center">Alta de equipos</h3>
+		<h3 align="center">Alta de equipos registro de (OT)</h3>
 		<div align="center" id="div_datos1">
 			No. de Serie: <input type="text" name="txt_ot" id="txt_ot" size="50" />
 			<input type="button" value="Buscar" onclick="buscar_ns()" />		
