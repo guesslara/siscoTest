@@ -173,7 +173,7 @@
 			  </tr>
 			  <tr style="background-color:#CCCCCC; text-align:center; font-weight:bold;">
 				<td width="17" height="20">Id</td>
-				<td width="176">Clave del Producto </td>
+				<td width="176">No Parte</td>
 				<td width="481">Descripci&oacute;n</td>
 				<td width="377">Especificaci&oacute;n</td>
 				<td width="65"><a href="#" title="<?=$desceX?>" style="color:#000000;">Exist.</a></td>
@@ -204,7 +204,7 @@
 						foreach($m_productos as $idp_matriz)
 						{
 							//echo "<br>&nbsp;".
-							$sql_p_clientes="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `$ceX`, `$ctX`, `cpromedio` FROM catprod WHERE id=$idp_matriz AND $ncalm=1 LIMIT 1";
+							$sql_p_clientes="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `$ceX`, `$ctX`, `cpromedio`,noParte FROM catprod WHERE id=$idp_matriz AND $ncalm=1 LIMIT 1";
 							if ($r1=mysql_query($sql_p_clientes,$link))
 							{
 								while ($ro1=mysql_fetch_array($r1))
@@ -218,7 +218,7 @@
 									?>
 									<tr bgcolor="<?=$color;?>" onmouseover="this.style.background='#cccccc';" onmouseout="this.style.background='<? echo $color; ?>'" onclick="javascript:coloca_producto1('<?=$ro1["id"]?>','<?=$ro1["id_prod"]?>','<?=$ro1["descripgral"]?>','<?=$ro1["especificacion"]?>','<?=$cpX?>','<?=$n?>');" style="cursor:pointer;">
 									  <td height="20" align="center"><?=$ro1["id"]?></td>
-										<td style="border-right:#CCCCCC 1px solid;border-left: #CCCCCC 1px solid;">&nbsp;<?=$ro1["id_prod"]?></td>
+										<td style="border-right:#CCCCCC 1px solid;border-left: #CCCCCC 1px solid;">&nbsp;<?=$ro1["noParte"]?></td>
 										<td>&nbsp;<?=$ro1["descripgral"]?></td>
 										<td style="border-left:#CCCCCC 1px solid; border-right:#CCCCCC 1px solid;">&nbsp;<?=$ro1["especificacion"]?></td>
 										<td align="right"><?=$ro1["$ceX"]?>&nbsp;</td>
