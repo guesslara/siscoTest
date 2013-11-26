@@ -68,7 +68,9 @@ class movimientos{
 
 				if($this->id_almacen==$this->id_asociado){
 					echo "<br>Se realiza el traspaso de la transferencia a la existencia";
-					echo "<br>".$sqlExist="UPDATE catprod set exist_".$this->id_almacen."=(exist_".$this->id_almacen+$this->cantidad.") WHERE id='".$this->id_p."'";
+					$campoExistencia="exist_".$this->id_almacen;
+					$cantidad=$this->cantidad;
+					echo "<br>".$sqlExist="UPDATE catprod set $campoExistencia=($campoExistencia+$cantidad) WHERE id='".$this->id_p."'";
 				}
 				exit();				
 				
