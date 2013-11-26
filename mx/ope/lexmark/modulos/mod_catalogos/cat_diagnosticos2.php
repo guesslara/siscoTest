@@ -92,20 +92,29 @@
 	<?php
 	if ($a=="elegir_productos2"){
 		 $idd=$_POST["idd"];
-	
+	        $diagno="SELECT diagnostico FROM cat_diagnosticos WHERE id=$idd ";
+		if ($diagnostico=mysql_query($diagno,$link)){
+		                    
+			$ndr1=mysql_num_rows($diagnostico);
+		} else {
+			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
+			exit();
+		}
+		 $col="#FFFFFF";	while($registro1=mysql_fetch_array($diagnostico)){
 	?>
 		
 		<form id="formbusc">
 				<h3 align="center">Busqueda de Producto por:</h3>
 		<div align="center" id="div_datos1">
 			No. de Parte: <input type="text" name="busc" id="busc" size="10" />
-			<input type="button" value="Buscar" onclick="buscar()" />
-			Diagnostico #: <input type="text" name="num" id="num" value="<?php echo $idd; ?>" size="1" readonly="1" />
+			<input type="button" value="Buscar" onclick="buscar()" /><br>
+			Se Agregar&aacute; el Diagn&oacute;stico #: <input type="text" name="num" id="num" value="<?php echo $idd ; ?>" size="1" readonly="1" />
+			<input type="text" name="num" id="num" value="<?php echo $registro1["diagnostico"] ; ?>" size="20" readonly="1" />
 		</div>
 		
 		</form>
 	
-		
+		<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($diagnostico); ?>
 <!------------------------------------------------------------------------------------------------------------>
 		
 		<?php

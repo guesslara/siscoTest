@@ -58,6 +58,20 @@ class movimientos{
 			if ($resultado=$this->m_traspaso())
 			{
 				echo "<li>El movimiento de Traspaso del Producto (".$this->id_p.") se realizo correctamente.</li>";
+				
+				echo "<br>Tipo Mov: ".$this->id_tipo_mov;
+				echo "<br>Concep: ".$this->con_mov;
+				echo "<br>Id Almacen".$this->id_almacen;
+				echo "<br>Asociado".$this->asociado0;
+				echo "<br>id Asociado".$this->id_asociado;
+				echo "<br>tipo: ".$this->tipo;
+
+				if($this->id_almacen==$this->id_asociado){
+					echo "<br>Se realiza el traspaso de la transferencia a la existencia";
+					echo "<br>".$sqlExist="UPDATE catprod set exist_".$this->id_almacen."=(exist_".$this->id_almacen+$this->cantidad.") WHERE id='".$this->id_p."'";
+				}
+				exit();				
+				
 				$this->m_validar_stock();
 				$this->m_costeo();
 				$this->m_inserta_producto();
@@ -88,22 +102,7 @@ class movimientos{
 		}*/else{
 			echo  "<br>Movimiento NO valido***";
 			exit();
-		}
-		/*
-		 *case "Inventario Inicial":
-				if ($resultado=$this->m_i_inv()){
-					echo "<li>El movimiento de Inventario Inicial del Producto (".$this->id_p.") se realizo correctamente.</li>";
-					$this->m_validar_stock();
-					$this->m_costeo();
-					$this->m_inserta_producto();
-					return true;
-				} else {
-					$this->error(2);
-					return false;
-				}				
-				break;
-		 */
-		
+		}		
 	}
 
 	//=====================================================================================================================
@@ -231,8 +230,8 @@ class movimientos{
 	//------------------------------------------------------------------------------------------------		
 	protected function m_inserta_producto(){
 		include ("../../conf/conectarbase.php");
-		//echo "<br>***...*** Insertar producto: [".$this->sql_prodxmov."]<br>";
-		//exit();
+		echo "<br>***...*** Insertar producto: [".$this->sql_prodxmov."]<br>";
+		exit();
 		if (mysql_query($this->sql_prodxmov,$link)){
 			echo "<li>El producto (".$this->id_p.") se agrego al movimiento (".$this->idm.") correctamente.</li>";
 			?>

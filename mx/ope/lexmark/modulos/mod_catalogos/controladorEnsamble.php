@@ -21,8 +21,8 @@ include("cat_reparaciones2.php");
         function buscar($busc,$idd){
             include ("../../conf/conectarbase.php");
             
-		  $sql1="SELECT id,noParte,descripgral,familia FROM catprod WHERE id=$busc ORDER BY id";
-                 
+		  $sql1="SELECT id,noParte,descripgral,familia FROM catprod WHERE noParte='".$busc."'";
+                
 		if ($resultado1=mysql_query($sql1,$link)){
                     
 			$ndr1=mysql_num_rows($resultado1);

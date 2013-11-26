@@ -421,7 +421,7 @@
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
 			?>
 			<script type="text/javascript">
-			                        alert("La OT <?=$idot?> se guardó correctamente.");
+			                        alert("La OT <?=$idot?> se guardo correctamente.");
 		                        </script><?php
 		} elseif ($status=="NOK"){
 			
@@ -686,7 +686,7 @@
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='CC', status_proceso='$status'  WHERE id=$idot ";
 			
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
-			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guard&oacute; correctamente.</div><?php					
+			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guardo correctamente.</div><?php					
 			
 			
 		} else{
