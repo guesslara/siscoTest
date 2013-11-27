@@ -7,7 +7,7 @@
 	
 	$actual=$_SERVER['PHP_SELF'];
 	$color="#F0F0F0";
-	print_r($_POST);
+	//print_r($_POST);
 	$ac=$_POST["accion"];
 	
 	if ($ac=="ver_asociados"){
@@ -148,7 +148,8 @@
 		//$ias=5000000;	
 		
 		// OBTENER EL NOMBRE DEL CAMPO ASOCIADO ...
-		echo "<br>".$sql2="SELECT `almacen` FROM `tipoalmacen` WHERE id_almacen=$alm ";
+		//echo "<br>".
+		$sql2="SELECT `almacen` FROM `tipoalmacen` WHERE id_almacen=$alm ";
 		$r2=mysql_query($sql2,$link);
 		while ($ro2=mysql_fetch_array($r2))
 		{
@@ -245,7 +246,8 @@
 				//echo "<br><hr>Salida x Traspaso<hr><br>";
 				
 					// OBTENER EL NOMBRE DEL CAMPO DEL ALMACEN ASOCIADO...
-					echo "<br>".$sql9="SELECT `id_almacen`,`almacen` FROM `tipoalmacen` WHERE id_almacen=$ias ";
+					//echo "<br>".
+					$sql9="SELECT `id_almacen`,`almacen` FROM `tipoalmacen` WHERE id_almacen=$ias ";
 					$r9=mysql_query($sql9,$link);
 					while ($ro9=mysql_fetch_array($r9))
 					{
@@ -256,10 +258,10 @@
 					}
 				if($ncalm==$ncalm3){
 					
-					echo "<br>".
+					//echo "<br>".
 					$sql0="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `cpromedio`, `$ceX`, `$ctX` FROM `catprod` WHERE $ncalm=1 AND $ncalm3=1 AND trans_$ialm3>0 ORDER BY `id`";
 				}else{
-					echo "<br>".
+					//echo "<br>".
 					$sql0="SELECT `id`,`id_prod`, `descripgral`, `especificacion`, `cpromedio`, `$ceX`, `$ctX` FROM `catprod` WHERE $ncalm=1 AND $ncalm3=1 AND $ceX>0 ORDER BY `id`";	
 				}
 				

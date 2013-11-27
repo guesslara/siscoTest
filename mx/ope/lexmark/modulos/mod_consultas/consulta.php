@@ -59,9 +59,9 @@ function paginar(mo,ca,op,cr,or,as,pa)
 // =======================================================================================
 
 
-function ver_equipo(ot)
+function ver_equipo(id)
 {
-	//alert(ot);
+	//alert(id);
 	$('#transparente').show();
 	//$('#busqueda1').show();	
 	
@@ -74,7 +74,7 @@ function ver_equipo(ot)
            dataType: "html",
            contentType: "application/x-www-form-urlencoded",
            url:"consulta2.php",
-           data:"action=ver_equipo&ot="+ot,
+           data:"action=ver_equipo&id="+id,
            beforeSend:inicio,
            success:resultado,
            timeout:1000,

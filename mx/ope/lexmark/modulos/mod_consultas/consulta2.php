@@ -109,12 +109,12 @@ if ($_GET)
 	
 	<BR /><table cellspacing="0" align="center" class="tabla1" width="1000">
 	<tr class="titulo_tabla1">
-		<td colspan="7" height="23"><?=$ndr0?> EQUIPOS EN <?php if($modulo_seleccionado=="TODOS") echo "INGENIERIA"; else echo $modulo_seleccionado; ?> </td>
+		<td colspan="7" height="23" align="center"><?=$ndr0?> EQUIPOS EN <?php if($modulo_seleccionado=="TODOS") echo "INGENIERIA"; else echo $modulo_seleccionado; ?> </td>
 	</tr>
 	<tr>
-		<td width="17" height="23" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.id'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por ID">ID</a></td>
-		<td width="139" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.ot'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por ORDEN DE TRABAJO">ORDEN DE TRABAJO</a> </td>
-		<td width="157" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.f_recibo'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por FECHA RECIBO">FECHA RECIBO</a></td>
+		<!--<td width="17" height="23" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.id'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por ID">ID</a></td>-->
+		<td width="258" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.ot'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por ORDEN DE TRABAJO">ORDEN DE TRABAJO</a> </td>
+		<td width="258" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.f_recibo'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por FECHA RECIBO">FECHA RECIBO</a></td>
 		<td width="258" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.idp'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por TIPO DE PRODUCTO (id)">TIPO DE PRODUCTO</a> </td>
 		<td width="159" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.nserie'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por NO. SERIE">NO. SERIE</a>  </td>
 		<td width="69" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.status_cliente'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por MODULO">M&Oacute;DULO</a></td>
@@ -134,21 +134,23 @@ if ($_GET)
 			}
 		} else {	echo "<br>&nbsp;Error SQL[2]."; exit;	}		
 		?>
-		<tr bgcolor="<?=$color?>" onclick="ver_equipo('<?=$registro1["ot"]?>');" style="cursor:pointer;">
-			<td height="23">&nbsp;<?=$registro1["id"]?></td>
-			<td class="tda_tabla1">&nbsp;<?=$registro1["ot"]?></td>
-			<td>&nbsp;
+		<tr>
+			<td height="23" align="center" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?=$registro1["id"]?></td>
+			<!--<td class="tda_tabla1">&nbsp;<?=$registro1["ot"]?></td>-->
+			<td onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;
 			<?php 
 				$fecha=new fecha($registro1['f_recibo']);
 				echo $fecha->dame_fecha();
 			?></td>
-			<td class="tda_tabla1"><a href="#" title="<?=$registro1["idp"].".".$desc_prod2." (".$especific2.")"?>">&nbsp;<?=substr($registro1["idp"].".".$desc_prod2,0,25)?></a></td>
-			<td>&nbsp;<?=$registro1["nserie"]?></td>	
-			<td class="tda_tabla1">&nbsp;<?php
+			
+			<td class="tda_tabla1" bgcolor="<?=$color?>" onclick="ver_equipo('<?=$registro1["id"]?>');" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'><a href="#" title="<?=$registro1["idp"].".".$desc_prod2." (".$especific2.")"?>">&nbsp;<?=substr($registro1["idp"].".".$desc_prod2,0,25)?></a></td>
+			
+			<td onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?=$registro1["nserie"]?></td>	
+			<td class="tda_tabla1" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?php
             	$st_cliente=$registro1["status_cliente"];
 				echo $mmodulos["$st_cliente"];
 			?></td>
-			<td>&nbsp;<?=$registro1["status_proceso"]?></td>
+			<td onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?=$registro1["status_proceso"]?></td>
 	</tr>	
 	<?php ($color=="#FFFFFF")? $color="#EFEFEF" : $color="#FFFFFF"; } ?>
 	</table>
@@ -186,8 +188,8 @@ if ($_GET)
 
 
 if ($_POST["action"]=="ver_equipo"){
-	$ot=$_POST["ot"];
-	$sql1="SELECT * FROM ot WHERE ot='$ot'";	
+	$id=$_POST["id"];
+	$sql1="SELECT * FROM ot WHERE id='$id'";	
 	if ($result1=mysql_query($sql1,$link)){
 		if ($ndr1=mysql_num_rows($result1)>0){
 			while($registro1=mysql_fetch_array($result1)){
@@ -215,17 +217,19 @@ if ($_POST["action"]=="ver_equipo"){
 			
 			}	
 		} else {
-			echo "<div align=center>&nbsp;Error. No se encontro la OT ($ot).</div>";
+			echo "<div align=center>&nbsp;Error. No se encontro la OT ($id).</div>";
 			exit();
 		}
 	} else {
 		echo "<div align=center>&nbsp;Error SQL. La consulta no se ejecuto.</div>";
 	}	
 	?>
+<!------------------------------------------VENTANA EMERGENTE------------------------------------------>
+
     <table width="100%" align="left" cellpadding="0" id="t0" cellspacing="0" style="font-size:18px;" >
 	  <tr>
 		<td width="33%" height="20" class="campos_verticales_n">OT</td>
-		<td width="67%" class="campos_verticales_d">&nbsp;<b><?=$ot; ?></b></td>
+		<td width="67%" class="campos_verticales_d">&nbsp;<b><?= "#".$id; ?></b></td>
 	  </tr>
 	  <tr>
 		<td height="20" class="campos_verticales_n">ID DEL PRODUCTO </td>

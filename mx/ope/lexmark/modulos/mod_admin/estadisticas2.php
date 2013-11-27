@@ -65,7 +65,7 @@
 		}		
 		?>
 		<form name="frm1">
-       <br><table border="0" width="400" align="center" cellspacing="0" style="border:#000 1px solid;">
+       <br><table border="0" width="500" align="center" cellspacing="0" style="border:#000 1px solid;">
         <tr>
           <td colspan="3" height="20" style="text-align:center; font-weight:bold; background-color:#666; color:#FFF;">Distribuci&oacute;n General de las OT.</td>
           </tr>
@@ -112,7 +112,7 @@
 		$m=$_POST["m"];
 		$modulos=array('rec'=>'RECIBO','rep'=>'REPARACION','cc'=>'CONTROL DE CALIDAD','des'=>'DESPACHO','env'=>'ENVIADOS');
 		
-		echo $sql1="SELECT id,status_proceso FROM ot WHERE status_cliente='$m' GROUP BY status_proceso ORDER BY status_proceso,id";
+		 $sql1="SELECT id,status_proceso FROM ot WHERE status_cliente='$m' GROUP BY status_proceso ORDER BY status_proceso,id";
 		if ($resultado1=mysql_query($sql1,$link)){
 			$ndr1=mysql_num_rows($resultado1);
 			if ($ndr1==0){ echo "<br><div align=center>Error: No se encontradron resultados.</div>"; exit(); }

@@ -29,16 +29,16 @@
 		?>
 		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0" id="tbl_calidad">
 		<tr>
-		  <td colspan="7" class="titulo_tabla1" height="23" align="center">Productos en Control de Calidad(<?=$ndr1?> Resultados) </td>
+		  <td colspan="7" class="titulo_tabla1" height="23" align="center" style=" text-shadow: 2px 2px 2px gray;">Productos en Control de Calidad(<?=$ndr1?> Resultados) </td>
 		  </tr>
 		<tr>
-		  <td height="23" width="17" class="campos_tabla1">Id</td>
-		  <td width="60" class="campos_tabla1">OT</td>
-		  <td width="107" class="campos_tabla1">Fecha Recibo </td>
-		  <td width="270" class="campos_tabla1">No. Serie. </td>
-		  <td width="269" class="campos_tabla1">Repar&oacute;</td>
-		  <td width="55" class="campos_tabla1">Status</td>
-		  <td width="96" class="campos_tabla1">Acciones</td>
+		  <td height="23" width="17" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Id</td>
+		  <td width="60" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">OT</td>
+		  <td width="107" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Fecha Recibo </td>
+		  <td width="270" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">No. Serie. </td>
+		  <td width="269" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Repar&oacute;</td>
+		  <td width="55" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Status</td>
+		  <td width="96" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Acciones</td>
 		  </tr>
 		<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
 		<tr bgcolor="<?=$col?>">

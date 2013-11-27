@@ -27,21 +27,21 @@
 		<form name="frm1">
         <br /><table width="100%" align="center" class="tabla1" cellpadding="2" cellspacing="0">
 		<tr>
-		  <td colspan="8" class="titulo_tabla1" height="23">Productos en Despacho (<?=$ndr1?> Resultados) </td>
+		  <td colspan="8" class="titulo_tabla1" height="23" style=" text-shadow: 2px 2px 2px gray;">Productos en Despacho (<?=$ndr1?> Resultados) </td>
 		  </tr>
 		<tr>
-		  <td height="23" width="17" class="campos_tabla1">Id</td>
-		  <td width="63" class="campos_tabla1">OT</td>
-		  <td width="197" class="campos_tabla1">Fecha Recibo </td>
-		  <td width="322" class="campos_tabla1">Fecha Fin</td>
-		  <td width="363" class="campos_tabla1">No. Serie. </td>
-		  <td width="109" class="campos_tabla1">M&oacute;dulo</td>
-		  <td width="82" class="campos_tabla1">Status</td>
-		  <td width="56" class="campos_tabla1">Acciones</td>
+		  <td height="23" width="17" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Id</td>
+		  <td width="63" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">OT</td>
+		  <td width="197" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Fecha Recibo </td>
+		  <td width="322" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Fecha Fin</td>
+		  <td width="363" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">No. Serie. </td>
+		  <td width="109" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">M&oacute;dulo</td>
+		  <td width="82" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Status</td>
+		  <td width="56" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Acciones</td>
 		  </tr>
 		<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){ 
 			//echo "<hr>"; print_r($registro1); ?>
-		<tr bgcolor="<?=$col?>">
+		<tr bgcolor="<?=$col?>" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>
 		  <td height="23" align="center"><?=$registro1["id"]?></td>
 		  <td class="tda_tabla1" align="center"><?=$registro1["ot"]?></td>
 		  <td align="center"><?=$registro1["f_recibo"]?></td>
@@ -56,7 +56,7 @@
 		  </tr>
 		<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
 		</table>
-        <div align="center">
+        <div align="center" style=" text-shadow: 2px 2px 2px gray;">
         	<br />
             Enviar los productos seleccionados al almac&eacute;n: <br />
             <?php

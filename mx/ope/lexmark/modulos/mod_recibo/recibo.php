@@ -95,11 +95,11 @@
 	<div id="div_recibo">
 		<form id="form1" name="form1" method="post" action="">
 		<h3 align="center">Alta de equipos registro de (OT)</h3>
-		<div align="center" id="div_datos1">
+		<div align="center" id="div_datos1" style=" width:100%; border-radius: 10px;text-shadow: 2px 2px 2px gray;">
 			No. de Serie: <input type="text" name="txt_ot" id="txt_ot" size="50" />
 			<input type="button" value="Buscar" onclick="buscar_ns()" />		
 		</div>
-		<div align="center" id="div_datos2">&nbsp;</div>
+		<div align="center" id="div_datos2" align= "center" style=" width:100%; border-radius: 10px;text-shadow: 2px 2px 2px gray;">&nbsp;</div>
 		<div align="center" id="div_resultado">&nbsp;</div>
                 </form>
         </div>

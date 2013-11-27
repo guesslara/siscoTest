@@ -39,21 +39,21 @@
 			<form id="frm1" name="frm1" method="post" action="<?=$_SERVER['PHP_SELF']?>">
 			<table align="center" cellpadding="2" cellspacing="0" class="tabla1" width="800">
 			  <tr>
-				<th colspan="7" class="tabla_titulo">Equipos NO asignados. </th>
+				<th colspan="7" class="tabla_titulo" style=" text-shadow: 2px 2px 2px gray;">Equipos NO asignados. </th>
 			  </tr>
 			  <tr>
 			    <td width="20" class="tabla_campos">&nbsp;</td>
-				<td width="27" class="tabla_campos">Id</td>
-				<td width="78" height="20" class="tabla_campos">OT</td>
-				<td width="438" class="tabla_campos">No Serie</td>
-				<td width="115" class="tabla_campos">Fecha Recibo </td>
-				<td width="96" class="tabla_campos">Obs.</td>
+				<td width="27" class="tabla_campos" style=" text-shadow: 2px 2px 2px gray;">Id</td>
+				<td width="78" height="20" class="tabla_campos" style=" text-shadow: 2px 2px 2px gray;">OT</td>
+				<td width="438" class="tabla_campos" style=" text-shadow: 2px 2px 2px gray;">No Serie</td>
+				<td width="115" class="tabla_campos" style=" text-shadow: 2px 2px 2px gray;">Fecha Recibo </td>
+				<td width="96" class="tabla_campos" style=" text-shadow: 2px 2px 2px gray;">Obs.</td>
 			  </tr>
 				<?php
 				$col="#FFFFFF";
 				while ($row0=mysql_fetch_array($result0)){ 
 				 ?>
-				<tr bgcolor="<?=$col?>">
+				<tr bgcolor="<?=$col?>" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>
 				  <td align="center"><input type="checkbox" name="chk_<?=$row0['id']?>" id="chk_<?=$row0['id']?>" value="<?=$row0['id']?>" /></td>
 				  <td height="20" align="center"><?=$row0['id']?></td>
 					<input name="fechainirep" type="hidden" id="fechainirep" value="<?=date('Y-m-d H:i:s');?>" />
@@ -64,7 +64,7 @@
 				  </tr>
 				<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; } ?>
 			</table>
-			<div align="center"><br />Asignar a: 
+			<div align="center" style=" text-shadow: 2px 2px 2px gray;"><br />Asignar a: 
 				<select name="tecnico" id="tecnico">
 				<option value="">...</option>
 				<?php 

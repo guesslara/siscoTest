@@ -26,19 +26,19 @@
 		?>
 		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0">
 		<tr>
-		  <td colspan="7" class="titulo_tabla1" height="23" align="center">Productos en Reparaci&oacute;n  (<?=$ndr1?> Resultados) </td>
+		  <td colspan="7" class="titulo_tabla1" height="23" align="center" style=" text-shadow: 2px 2px 2px gray;">Productos en Reparaci&oacute;n  (<?=$ndr1?> Resultados) </td>
 		  </tr>
 		<tr>
-		  <td height="23" width="17" class="campos_tabla1">Id</td>
-		  <td width="60" class="campos_tabla1">OT</td>
-		  <td width="107" class="campos_tabla1">Fecha Recibo </td>
-		  <td width="270" class="campos_tabla1">No. Serie. </td>
-		  <td width="269" class="campos_tabla1">Repara</td>
-		  <td width="55" class="campos_tabla1">Status</td>
-		  <td width="96" class="campos_tabla1">Acciones</td>
+		  <td height="23" width="17" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Id</td>
+		  <td width="60" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">OT</td>
+		  <td width="107" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Fecha Recibo </td>
+		  <td width="270" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">No. Serie. </td>
+		  <td width="269" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Repara</td>
+		  <td width="55" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Status</td>
+		  <td width="96" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Acciones</td>
 		  </tr>
 		<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
-		<tr bgcolor="<?=$col?>">
+		<tr bgcolor="<?=$col?>" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>
 		  <td height="23" align="center"><?=$registro1["id"]?></td>
 		  <td class="tda_tabla1" align="center"><?=$registro1["ot"]?></td>
 		  <td align="center"><?=$registro1["f_recibo"]?></td>
@@ -101,7 +101,7 @@
 					<input type="hidden" id="hdn_idot" value="<?=$id_ot?>" />
 					<input type="hidden" id="hdn_idp" value="<?=$idp?>" />
 				.</div>
-			<div id="div_rep1">
+			<div id="div_rep1" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 			  <table align="center" cellspacing="0" cellpadding="2" width="95%" class="tabla2">
 				<tr>
 				  <td colspan="2" height="23" class="tabla_titulo2">Datos del equipo.</td>
@@ -131,7 +131,7 @@
 			  <center><input type="button" value="Guardar" onClick="guardar_reparacion()" style=" margin-top:3px; width:230px; height:86px"></center>
 			
 			</div>
-			<div id="div_rep2">
+			<div id="div_rep2" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 			  <table align="center" cellspacing="0" cellpadding="2" width="98%" class="tabla2">
 				<tr>
 				  <td colspan="2" height="23" class="tabla_titulo2">Datos de Reparaci&oacute;n</td>
@@ -167,12 +167,12 @@
 				</tr>
 			  </table>				
 			</div>
-			<div id="div_rep5">
+			<div id="div_rep5" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 				<div id="div_rep5a" style="width:100px; height:218px; margin-top:3px; margin-left:5px; float:left; border:#CCCCCC 1px solid;">
 					<div id="div_rep5b1" style="text-align:center; font-weight:bold;">Reparacion #</div> 
 					<div id="div_rep5b2" style="text-align:center; font-size:72px; font-weight:bold; margin-top:20px;"><?=$nno?></div> 
 				</div>
-			  <div id="div_rep5b" style="width:280px; height:218px; margin-top:3px; margin-left:3px; float:left; background-color:#FFFFFF; border:#EFEFEF 1px solid;">
+			  <div id="div_rep5b" style="width:280px; height:218px; margin-top:3px; margin-left:3px; float:left; background-color:#FFFFFF; border:#EFEFEF 1px solid;" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 			   
 				<div style="margin:5px;">
 					<b>Nuevo Status:</b><br>
@@ -191,7 +191,7 @@
 			   
 			  </div>
 			</div>
-			<div id="div_rep6">
+			<div id="div_rep6" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 				<table cellspacing="0" cellpadding="0" align="center" width="95%" class="tabla0">
 					<tr>
 					  <td colspan="2" class="tabla_titulo2" height="23">Fallas T&eacute;cnicas </td>
@@ -231,44 +231,56 @@
 					  <td width="4%" class="tabla_campo2" height="27" valign="bottom">1</td>
 					  <td width="96%" class="td1" valign="bottom">
 						<a href="#" onclick="seleccionar('a','1','fallas')">
-						<input type="text" id="a1" size="5" readonly="1"/>
-						<input type="text" id="aa1" size="40" readonly="1"/>
+						<input type="text" id="a1" size="1" readonly="1"/>
+						<input type="text" id="aa1" size="26" readonly="1"/>
 					  </a>			  </td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr>
 					  <td class="tabla_campo2" height="25">2</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('b','1','fallas')">
-					  <input type="text" id="b1" size="5" value="<?=$clave1[1];?>"  readonly="1"/>
-					  <input type="text" id="bb1" size="40" value="<?=$des1[1];?>" readonly="1"/>
+					  <input type="text" id="b1" size="1" value="<?=$clave1[1];?>"  readonly="1"/>
+					  <input type="text" id="bb1" size="26" value="<?=$des1[1];?>" readonly="1"/>
 					  </a>			  </td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">3</td>
 					  <td class="td1"><a href="#" onclick="seleccionar('c','1','fallas')">
-						<input type="text" id="c1" size="5" value="<?=$clave1[2];?>"  readonly="1"/>
-						<input type="text" id="cc1" size="40"  value="<?=$des1[2];?>" readonly="1"/>
+						<input type="text" id="c1" size="1" value="<?=$clave1[2];?>"  readonly="1"/>
+						<input type="text" id="cc1" size="26"  value="<?=$des1[2];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">4</td>
 					  <td class="td1"><a href="#" onclick="seleccionar('d','1','fallas')">
-						<input type="text" id="d1" size="5" value="<?=$clave1[3];?>" readonly="1" />
-						<input type="text" id="dd1" size="40"  value="<?=$des1[3];?>" readonly="1"/>
+						<input type="text" id="d1" size="1" value="<?=$clave1[3];?>" readonly="1" />
+						<input type="text" id="dd1" size="26"  value="<?=$des1[3];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">5</td>
 					  <td class="td1"><a href="#" onclick="seleccionar('e','1','fallas')">
-						<input type="text" id="e1" size="5" value="<?=$clave1[4];?>"  readonly="1"/>
-						<input type="text" id="ee1" size="40"  value="<?=$des1[4];?>" readonly="1"/>
+						<input type="text" id="e1" size="1" value="<?=$clave1[4];?>"  readonly="1"/>
+						<input type="text" id="ee1" size="26"  value="<?=$des1[4];?>" readonly="1"/>
 					  </a></td>
 					</tr>
 				  </table>			
 			
       </div>
 			
-			<div id="div_rep3">
+			<div id="div_rep3" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 				<table cellspacing="0" cellpadding="0" align="center" width="95%" class="tabla0">
 					<tr>
 					  <td colspan="2" class="tabla_titulo2" height="23">Refacciones Utilizadas </td>
@@ -308,45 +320,57 @@ if ($nno>1){
 					  <td width="4%" class="tabla_campo2" height="27" valign="bottom">1</td>
 					  <td width="96%" class="td1" valign="bottom">
 						<a href="#" onclick="seleccionar('f','1','refacciones')">
-						<input type="text" id="f1" size="5" value="<?=$clave1[0];?>"  readonly="1"/>
-						<input type="text" id="ff1" size="40"  value="<?=$des1[0];?>" readonly="1"/>
+						<input type="text" id="f1" size="1" value="<?=$clave1[0];?>"  readonly="1"/>
+						<input type="text" id="ff1" size="24"  value="<?=$des1[0];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr>
 					  <td class="tabla_campo2" height="25">2</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('g','1','refacciones')">
-					  <input type="text" id="g1" size="5" value="<?=$clave1[1];?>"  readonly="1"/>
-					  <input type="text" id="gg1" size="40"  value="<?=$des1[1];?>" readonly="1"/>
+					  <input type="text" id="g1" size="1" value="<?=$clave1[1];?>"  readonly="1"/>
+					  <input type="text" id="gg1" size="24"  value="<?=$des1[1];?>" readonly="1"/>
 					  </a>			  </td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">3</td>
 					  <td class="td1">
 					  	<a href="#" onclick="seleccionar('h','1','refacciones')">
-						<input type="text" id="h1" size="5" value="<?=$clave1[2];?>"  readonly="1"/>
-						<input type="text" id="hh1" size="40"  value="<?=$des1[2];?>" readonly="1"/>
+						<input type="text" id="h1" size="1" value="<?=$clave1[2];?>"  readonly="1"/>
+						<input type="text" id="hh1" size="24"  value="<?=$des1[2];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">4</td>
 					  <td class="td1">
 					  	<a href="#" onclick="seleccionar('i','1','refacciones')">
-						<input type="text" id="i1" size="5" value="<?=$clave1[3];?>" readonly="1" />
-						<input type="text" id="ii1" size="40"  value="<?=$des1[3];?>" readonly="1"/>
+						<input type="text" id="i1" size="1" value="<?=$clave1[3];?>" readonly="1" />
+						<input type="text" id="ii1" size="24"  value="<?=$des1[3];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">5</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('j','1','refacciones')">
-						<input type="text" id="j1" size="5" value="<?=$clave1[4];?>"  readonly="1"/>
-						<input type="text" id="jj1" size="40"  value="<?=$des1[4];?>" readonly="1"/>
+						<input type="text" id="j1" size="1" value="<?=$clave1[4];?>"  readonly="1"/>
+						<input type="text" id="jj1" size="24"  value="<?=$des1[4];?>" readonly="1"/>
 					  </a></td>
 					</tr>
 				  </table>			
       </div>
-			<div id="div_rep4">
+			<div id="div_rep4" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 				<table cellspacing="0" cellpadding="0" align="center" width="95%" class="tabla0">
 					<tr>
 					  <td colspan="2" class="tabla_titulo2" height="23">Reparaciones Efectuadas. </td>
@@ -389,40 +413,52 @@ if ($nno>1){
 					  <td width="4%" class="tabla_campo2" height="27" valign="bottom">1</td>
 					  <td width="96%" class="td1" valign="bottom">
 						<a href="#" onclick="seleccionar('k','1','reparaciones')">
-						<input type="text" id="k1" size="5" value="<?=$clave1[0];?>"  readonly="1"/>
-						<input type="text" id="kk1" size="40"  value="<?=$des1[0];?>" readonly="1"/>
+						<input type="text" id="k1" size="1" value="<?=$clave1[0];?>"  readonly="1"/>
+						<input type="text" id="kk1" size="26"  value="<?=$des1[0];?>" readonly="1"/>
 					  </a>			  </td>
+					</tr>
+		                         <tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr>
 					  <td class="tabla_campo2" height="25">2</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('l','1','reparaciones')">
-					  <input type="text" id="l1" size="5" value="<?=$clave1[1];?>"  readonly="1"/>
-					  <input type="text" id="ll1" size="40"  value="<?=$des1[1];?>" readonly="1"/>
+					  <input type="text" id="l1" size="1" value="<?=$clave1[1];?>"  readonly="1"/>
+					  <input type="text" id="ll1" size="26"  value="<?=$des1[1];?>" readonly="1"/>
 					  </a>			  </td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">3</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('m','1','reparaciones')">
-						<input type="text" id="m1" size="5" value="<?=$clave1[2];?>"  readonly="1"/>
-						<input type="text" id="mm1" size="40"  value="<?=$des1[2];?>" readonly="1"/>
+						<input type="text" id="m1" size="1" value="<?=$clave1[2];?>"  readonly="1"/>
+						<input type="text" id="mm1" size="26"  value="<?=$des1[2];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">4</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('n','1','reparaciones')">
-						<input type="text" id="n1" size="5" value="<?=$clave1[3];?>" readonly="1" />
-						<input type="text" id="nn1" size="40"  value="<?=$des1[3];?>" readonly="1"/>
+						<input type="text" id="n1" size="1" value="<?=$clave1[3];?>" readonly="1" />
+						<input type="text" id="nn1" size="26"  value="<?=$des1[3];?>" readonly="1"/>
 					  </a></td>
+					</tr>
+					<tr>
+					 <td>&nbsp;</td>	
 					</tr>
 					<tr align="left" >
 					  <td class="tabla_campo2" height="24">5</td>
 					  <td class="td1">
 					  <a href="#" onclick="seleccionar('o','1','reparaciones')">
-						<input type="text" id="o1" size="5" value="<?=$clave1[4];?>"  readonly="1"/>
-						<input type="text" id="oo1" size="40"  value="<?=$des1[4];?>" readonly="1"/>
+						<input type="text" id="o1" size="1" value="<?=$clave1[4];?>"  readonly="1"/>
+						<input type="text" id="oo1" size="26"  value="<?=$des1[4];?>" readonly="1"/>
 					  </a></td>
 					</tr>
 				  </table>			
