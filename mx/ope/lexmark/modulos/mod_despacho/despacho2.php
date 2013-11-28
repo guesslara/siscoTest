@@ -24,10 +24,12 @@
 		}		
 		
 		?>
+		
 		<form name="frm1">
-        <br /><table width="100%" align="center" class="tabla1" cellpadding="2" cellspacing="0">
+			
+        <br /><table width="100%" align="center" class="tabla1" cellpadding="2" cellspacing="0" style=" border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 		<tr>
-		  <td colspan="8" class="titulo_tabla1" height="23" style=" text-shadow: 2px 2px 2px gray;">Productos en Despacho (<?=$ndr1?> Resultados) </td>
+		  <td colspan="8" class="titulo_tabla1" align="center" height="23" style=" text-shadow: 2px 2px 2px gray;">Productos en Despacho (<?=$ndr1?> Resultados) </td>
 		  </tr>
 		<tr>
 		  <td height="23" width="17" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Id</td>

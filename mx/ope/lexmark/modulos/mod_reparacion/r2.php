@@ -24,7 +24,7 @@
 		}
 		//echo "<br>".$sql1;	
 		?>
-		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0">
+		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0" style=" border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 		<tr>
 		  <td colspan="7" class="titulo_tabla1" height="23" align="center" style=" text-shadow: 2px 2px 2px gray;">Productos en Reparaci&oacute;n  (<?=$ndr1?> Resultados) </td>
 		  </tr>

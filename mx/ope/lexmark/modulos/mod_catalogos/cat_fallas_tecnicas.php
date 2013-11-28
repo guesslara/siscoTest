@@ -207,6 +207,7 @@
 <body>
 
 <div id="div_productos">&nbsp;</div>
+<div id="catalogo">&nbsp;</div>	
 <div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nueva Falla T&eacute;cnica.</div>
 	<div class="div_nuevoC" id="div_nuevoC">&nbsp;</div>
@@ -223,7 +224,7 @@
 		<a href="javascript:nuevo();">Nuevo</a> 
 	</div>
 	<br /><br />
-	<div id="catalogo">&nbsp;</div>	
+	
 </div>
 </body>
 </html>

@@ -65,7 +65,7 @@
 		}		
 		?>
 		<form name="frm1">
-       <br><table border="0" width="500" align="center" cellspacing="0" style="border:#000 1px solid;">
+       <br><table border="0" width="500" align="center" cellspacing="0" style="border:#000 1px solid;" >
         <tr>
           <td colspan="3" height="20" style="text-align:center; font-weight:bold; background-color:#666; color:#FFF;">Distribuci&oacute;n General de las OT.</td>
           </tr>

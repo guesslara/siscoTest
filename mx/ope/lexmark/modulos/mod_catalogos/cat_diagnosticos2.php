@@ -145,6 +145,7 @@
 			exit();
 		}		
 		?>
+		<div style=" margin:0px 3px 4px 250px; width: 70%; border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 		<table width="853" align="center" class="tabla1" cellpadding="2" cellspacing="0">
 		<tr>
 		  <td colspan="6" class="titulo_tabla1">Cat&aacute;logo de Diagn&oacute;sticos (<?=$ndr1?> Resultados) </td>
@@ -158,7 +159,7 @@
 		  <td width="47" class="campos_tabla1">Mod</td>
 		  </tr>
 		<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
-		<tr bgcolor="<?=$col?>">
+		<tr bgcolor="<?=$col?>" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>
 		  <td>&nbsp;<?=$registro1["id"]?></td>
 		  <td class="tda_tabla1">&nbsp;<?=$registro1["clave"]?></td>
 		  <td>&nbsp;<?=$registro1["diagnostico"]?></td>
@@ -167,7 +168,8 @@
 			<td><a href="javascript:agregar_tipos_productos('<?=$registro1["id"]?>');" title="Modificar los Productos a los que aplica este Diagnostico.">Modificar</a></td>
 		  </tr>
 		<?php ($col=="#FFFFFF")? $col="#EFEFEF" : $col="#FFFFFF"; }	mysql_free_result($resultado1); ?>  
-		</table>	
+		</table>
+		</div>
 	<?php	
 	}
 	if ($a=="modificar"){

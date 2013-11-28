@@ -37,7 +37,7 @@
 		$result1=mysql_query($sql_1,$link);		
 		?>
 			<form id="frm1" name="frm1" method="post" action="<?=$_SERVER['PHP_SELF']?>">
-			<table align="center" cellpadding="2" cellspacing="0" class="tabla1" width="800">
+			<table align="center" cellpadding="2" cellspacing="0" class="tabla1" width="800" style=" border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 			  <tr>
 				<th colspan="7" class="tabla_titulo" style=" text-shadow: 2px 2px 2px gray;">Equipos NO asignados. </th>
 			  </tr>

@@ -7,7 +7,8 @@
 
 <body>
 
-<div id="all" style="position:relative; width:800px; left:50%; margin-left:-400px;">
+<!--<div id="all" style="position:relative; width:800px; left:50%; margin-left:-400px;">-->
+    <div id="all" style=" margin:30px 3px 4px 330px; width: 20%; border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
     <h2>Cat&aacute;logos.</h2>
 	<ul>
 	  <li><a href="cat_diagnosticos.php">Diagn&oacute;sticos.</a></li>

@@ -24,7 +24,7 @@
 				while ($registro1=mysql_fetch_array($resultado1)){
 					//echo "<br>"; print_r($registro1);
 					?>
-					<br><br><table border="0" cellpadding="2" cellspacing="0" width="500" class="tabla0" style="margin-top:1px; background-color:#FFFFFF;">
+					<br><br><table border="0" cellpadding="2" cellspacing="0" width="500" class="tabla0" style=" background-color:#FFFFFF;border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 					<tr>
 					  <td width="192" style="border-top:#000000 solid 2px;">&nbsp;NO. MOVIMIENTO </td>
 					  <td width="300" style="border-top:#000000 solid 2px;" colspan="2"><br><input type="text" class="tex0" size="50" name="txt0" id="txt0" value="<?=$registro1['mov'];?>" readonly="1" /></td>

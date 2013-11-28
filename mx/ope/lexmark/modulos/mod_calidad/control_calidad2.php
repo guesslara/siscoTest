@@ -27,7 +27,7 @@
 		}		
 		
 		?>
-		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0" id="tbl_calidad">
+		<table width="800" align="center" class="tabla1" cellpadding="2" cellspacing="0" id="tbl_calidad" style=" border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 		<tr>
 		  <td colspan="7" class="titulo_tabla1" height="23" align="center" style=" text-shadow: 2px 2px 2px gray;">Productos en Control de Calidad(<?=$ndr1?> Resultados) </td>
 		  </tr>
@@ -41,7 +41,7 @@
 		  <td width="96" class="campos_tabla1" style=" text-shadow: 2px 2px 2px gray;">Acciones</td>
 		  </tr>
 		<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>
-		<tr bgcolor="<?=$col?>">
+		<tr bgcolor="<?=$col?>" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>
 		  <td height="23" align="center"><?=$registro1["id"]?></td>
 		  <td class="tda_tabla1" align="center"><?=$registro1["ot"]?></td>
 		  <td align="center"><?=$registro1["f_recibo"]?></td>

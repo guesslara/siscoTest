@@ -107,12 +107,11 @@ if ($_GET)
 		</div>
 	<?php } ?>
 	
-	<BR /><table cellspacing="0" align="center" class="tabla1" width="1000">
+	<BR /><table cellspacing="0" align="center" class="tabla1" width="1000" style=" border-radius: 10px;-moz-box-shadow: 3px 3px 4px #111; -webkit-box-shadow: 3px 3px 4px #111; box-shadow: 3px 3px 4px #111; -ms-filter: 'progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#111111)'; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#111111');">
 	<tr class="titulo_tabla1">
-		<td colspan="7" height="23" align="center"><?=$ndr0?> EQUIPOS EN <?php if($modulo_seleccionado=="TODOS") echo "INGENIERIA"; else echo $modulo_seleccionado; ?> </td>
+		<td colspan="7" height="23" align="center" style=" text-shadow: 2px 2px 2px gray;"><?=$ndr0?> EQUIPOS EN <?php if($modulo_seleccionado=="TODOS") echo "INGENIERIA"; else echo $modulo_seleccionado; ?> </td>
 	</tr>
 	<tr>
-		<!--<td width="17" height="23" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.id'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por ID">ID</a></td>-->
 		<td width="258" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.ot'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por ORDEN DE TRABAJO">ORDEN DE TRABAJO</a> </td>
 		<td width="258" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.f_recibo'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por FECHA RECIBO">FECHA RECIBO</a></td>
 		<td width="258" class="campos_tabla1"><a href="javascript:paginar('<?=$modulo?>','<?=$campo?>','<?=$op?>','<?=$cri?>','<?='ot.idp'?>','<?=$ascdes?>','<?=$pagina?>');" title="Ordenar por TIPO DE PRODUCTO (id)">TIPO DE PRODUCTO</a> </td>
@@ -134,23 +133,23 @@ if ($_GET)
 			}
 		} else {	echo "<br>&nbsp;Error SQL[2]."; exit;	}		
 		?>
-		<tr>
-			<td height="23" align="center" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?=$registro1["id"]?></td>
+		<tr onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>
+			<td height="23" align="center" >&nbsp;<?=$registro1["id"]?></td>
 			<!--<td class="tda_tabla1">&nbsp;<?=$registro1["ot"]?></td>-->
-			<td onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;
+			<td>&nbsp;
 			<?php 
 				$fecha=new fecha($registro1['f_recibo']);
 				echo $fecha->dame_fecha();
 			?></td>
 			
-			<td class="tda_tabla1" bgcolor="<?=$color?>" onclick="ver_equipo('<?=$registro1["id"]?>');" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'><a href="#" title="<?=$registro1["idp"].".".$desc_prod2." (".$especific2.")"?>">&nbsp;<?=substr($registro1["idp"].".".$desc_prod2,0,25)?></a></td>
+			<td class="tda_tabla1" bgcolor="<?=$color?>" onclick="ver_equipo('<?=$registro1["id"]?>');"><a href="#" title="<?=$registro1["idp"].".".$desc_prod2." (".$especific2.")"?>">&nbsp;<?=substr($registro1["idp"].".".$desc_prod2,0,25)?></a></td>
 			
-			<td onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?=$registro1["nserie"]?></td>	
-			<td class="tda_tabla1" onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?php
+			<td>&nbsp;<?=$registro1["nserie"]?></td>	
+			<td class="tda_tabla1">&nbsp;<?php
             	$st_cliente=$registro1["status_cliente"];
 				echo $mmodulos["$st_cliente"];
 			?></td>
-			<td onmouseover='this.style.background="#819FF7"' onmouseout='this.style.background="white"'>&nbsp;<?=$registro1["status_proceso"]?></td>
+			<td>&nbsp;<?=$registro1["status_proceso"]?></td>
 	</tr>	
 	<?php ($color=="#FFFFFF")? $color="#EFEFEF" : $color="#FFFFFF"; } ?>
 	</table>
