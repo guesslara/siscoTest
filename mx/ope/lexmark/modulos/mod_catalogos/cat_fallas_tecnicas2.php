@@ -105,12 +105,16 @@
 
 
 	if ($a=="guardar"){
-		//echo "<br>BD [$sql_inv] SQL=".
+		
 		$sql1="INSERT INTO cat_fallas_tecnicas(id,clave,descripcion,aplica_productos,obs) 
 			VALUES (NULL,'".$_POST["c"]."','".$_POST["d"]."','".$_POST["p"]."','".$_POST["o"]."')";
 		
 		if ($resultado1=mysql_query($sql1,$link)){
-			echo "<div align=center>La Falla Tecnica se guardo correctamente.</div>";
+			
+			?>
+			<script type="text/javascript">
+			alert("La Falla Tecnica se guardo correctamente.");
+			</script><?php
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();

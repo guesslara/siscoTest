@@ -8,7 +8,7 @@
 		//Muestro formulario.
 		?>
 	
-		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
+		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"></div>
 		<form name="frm1">
 		<br /><table align="center" width="100%" style="font-weight:bold; font-size:10px;">
 			<tr>
@@ -56,7 +56,7 @@
 			exit();
 		}
 		?>
-		
+		<form name="frm2">
 		<br /><table align="center" width="739" style="font-weight:bold; font-size:12px;">
 			
 			<tr>
@@ -109,7 +109,7 @@
 			No. de Parte: <input type="text" name="busc" id="busc" size="10" />
 			<input type="button" value="Buscar" onclick="buscar()" /><br>
 			Se Agregar&aacute; el Diagn&oacute;stico #: <input type="text" name="num" id="num" value="<?php echo $idd ; ?>" size="1" readonly="1" />
-			<input type="text" name="num" id="num" value="<?php echo $registro1["diagnostico"] ; ?>" size="20" readonly="1" />
+			<input type="text" name="num2" id="num2" value="<?php echo $registro1["diagnostico"] ; ?>" size="20" readonly="1" />
 		</div>
 		
 		</form>
@@ -128,7 +128,10 @@
 			VALUES (NULL,'".$_POST["c"]."','".$_POST["d"]."','".$_POST["p"]."','".$_POST["o"]."')";
 		
 		if ($resultado1=mysql_query($sql1,$link)){
-			echo "<div align=center>El diagnostico se guardo correctamente.</div>";
+			?>
+			<script type="text/javascript">
+			alert("El diagnostico se guardo correctamente.");
+			</script><?php
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();

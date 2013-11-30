@@ -104,8 +104,12 @@
 		$sql1="INSERT INTO cat_pruebas_funcionales(id,descripcion,productos,obs) 
 			VALUES (NULL,'".$_POST["d"]."','".$_POST["p"]."','".$_POST["o"]."')";
 		
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
-			echo "<div align=center><br>La Prueba Funcional se guardo correctamente.</div>";
+		if ($resultado1=mysql_query($sql1,$link)){
+			
+			?>
+			<script type="text/javascript">
+			alert("La Prueba Funcional se guardo correctamente.");
+			</script><?php
 		} else {
 			echo "<div align=center><br>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();
@@ -132,7 +136,7 @@
 		  <td width="31" class="campos_tabla1">Id</td>
 		  <td width="476" class="campos_tabla1">Descripci&oacute;n</td>
 		  <td width="164" class="campos_tabla1">Aplica a Productos </td>
-		  <td width="47" class="campos_tabla1">Obs</td>
+		  <td width="300" class="campos_tabla1">Obs</td>
 		  <td width="47" class="campos_tabla1">Acciones</td>
 		  </tr>
 		<?php $col="#FFFFFF";	while($registro1=mysql_fetch_array($resultado1)){?>

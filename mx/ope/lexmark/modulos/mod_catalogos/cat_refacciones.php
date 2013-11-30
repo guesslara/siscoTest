@@ -215,24 +215,26 @@
 <body>
 
 <div id="div_productos">&nbsp;</div>
-<div id="catalogo">&nbsp;</div>	
-<div id="div_nuevo">
-	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nueva Refacci&oacute;n.</div>
-	<div class="div_nuevoC" id="div_nuevoC">&nbsp;</div>
-	<div class="div_nuevoD" id="div_nuevoD">
-		<br /><input type="button" value="Guardar" class="boton1" onclick="guardar()" />
-		<br /><input type="button" value="Cancelar" onclick="cancelar()" class="boton1" />
+
+<div id="div_nuevo" style="width: 50%;">
+	<div class="div_nuevoA" id="div_nuevoA" style="width: 60%;">&nbsp;Nueva Refaccion.</div>
+	<div class="div_nuevoC" id="div_nuevoC"style="width: 10%;">&nbsp;</div>
+	<div class="div_nuevoD" id="div_nuevoD" style="width: 40%;">
+		<input type="button" value="Guardar" class="boton1" onclick="guardar()" /><input type="button" value="Cancelar" onclick="cancelar()" class="boton1" />
+		
 	</div>
 </div>
 
 
 <div id="all">
-	<div id="menu_superior">
+	<div id="menu_superior" style="width: 10%;">
 		<a href="javascript:start();">Listar</a> |
 		<a href="javascript:nuevo();">Nuevo</a> 
 	</div>
 	<br /><br />
-	
+	<div id="catalogo">&nbsp;</div>
+	<div align="center" id="div_datos2">&nbsp;</div>
 </div>
+
 </body>
 </html>

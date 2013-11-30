@@ -51,8 +51,8 @@
 	if ($a=="elegir_productos"){
 		$n=$_POST["n"];
 		//echo "<br>BD [$sql_inv] SQL=".
-		$sql1="SELECT id,id_prod,descripgral,especificacion FROM catprod ORDER BY id";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
+		if ($resultado1=mysql_query($sql1,$link)){
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
@@ -124,14 +124,18 @@
 		$sql1="INSERT INTO cat_refacciones(id_ref,cod_ref,descripcion,productos,id_producto,cantidad,obs) 
 			VALUES (NULL,'".$_POST["a"]."','".$_POST["b"]."','".$_POST["c"]."','".$_POST["d"]."','".$_POST["e"]."','".$_POST["f"]."')";
 		
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
-			echo "<br><div align=center>La Refaccion se guardo correctamente.</div>";
+		if ($resultado1=mysql_query($sql1,$link)){
+			
+			?>
+			<script type="text/javascript">
+			alert("La Falla Tecnica se guardo correctamente.");
+			</script><?php
 		} else {
-			echo "<br><div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
+			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();
 		}
 		
-	}	
+	}
 	if ($a=="listar"){	
 		//echo "<br>BD [$sql_ing] SQL=".
 		$sql1="SELECT * FROM cat_refacciones ORDER BY id_ref";

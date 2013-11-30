@@ -7,7 +7,7 @@
 	if ($a=="nuevo"){
 		//Muestro formulario.
 		?>
-		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"><center><input type="button" value="Aceptar" onclick="coloca_productos()" /></center></div>
+		<div align="center" style="position: fixed; height:auto; margin-top:40px; margin-left:630px;"></div>
 		<form name="frm1">
 		<br /><table align="center" width="100%" style="font-weight:bold; font-size:10px;">
 			<tr>
@@ -38,7 +38,7 @@
 	if ($a=="elegir_productos"){
 		//echo "<br>BD [$sql_inv] SQL=".
 		$sql1="SELECT id,noParte,descripgral,familia FROM catprod ORDER BY id";
-		if ($resultado1=mysql_db_query($sql_inv,$sql1)){
+		if ($resultado1=mysql_query($sql1,$link)){
 			//echo "<div align=center>OK</div>";
 			$ndr1=mysql_num_rows($resultado1);
 		} else {
@@ -104,8 +104,12 @@
 		$sql1="INSERT INTO cat_pruebas_esteticas(id,descripcion,productos,obs) 
 			VALUES (NULL,'".$_POST["d"]."','".$_POST["p"]."','".$_POST["o"]."')";
 		
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
-			echo "<div align=center><br><br>La prueba Estetica se guardo correctamente.</div>";
+		if ($resultado1=mysql_query($sql1,$link)){
+			
+			?>
+			<script type="text/javascript">
+			alert("La Prueba Estetica se guardo correctamente.");
+			</script><?php
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();

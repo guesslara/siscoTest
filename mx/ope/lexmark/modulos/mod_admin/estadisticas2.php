@@ -20,7 +20,7 @@
 		}
 		
 		// TOTAL DE OT'S EN RECIBO.
-		$sql2="SELECT id FROM ot WHERE status_cliente='REC'";
+		echo $sql2="SELECT id FROM ot WHERE status_cliente='REC'";
 		if ($resultado2=mysql_query($sql2,$link)){
 			$ndr2=mysql_num_rows($resultado2);
 		} else {

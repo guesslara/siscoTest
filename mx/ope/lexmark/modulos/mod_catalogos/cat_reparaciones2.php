@@ -111,8 +111,12 @@
 		$sql1="INSERT INTO cat_reparaciones(id,cod_rep,descripcion,tipos_productos,obs) 
 			VALUES (NULL,'".$_POST["c"]."','".$_POST["d"]."','".$_POST["p"]."','".$_POST["o"]."')";
 		
-		if ($resultado1=mysql_db_query($sql_ing,$sql1)){
-			echo "<div align=center>La Reparaci&oacute;n se guardo correctamente.</div>";
+		if ($resultado1=mysql_query($sql1,$link)){
+			
+			?>
+			<script type="text/javascript">
+			alert("La Reparacion se guardo correctamente.");
+			</script><?php
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";
 			exit();
