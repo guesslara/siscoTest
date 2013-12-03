@@ -73,6 +73,7 @@ class movimientos{
 					$campoTransferencia="trans_".$this->id_almacen;
 					$cantidad=$this->cantidad;
 					$sqlExist="UPDATE catprod set $campoExistencia=($campoExistencia+$cantidad),$campoTransferencia=($campoTransferencia-$cantidad) WHERE id='".$this->id_p."'";
+					//exit();
 					$res=mysql_query($sqlExist,$link);
 					if($res==false){
 						echo "<br>Error al ejecutar el traspaso del Producto Indicado";	

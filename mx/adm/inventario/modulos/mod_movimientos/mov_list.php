@@ -113,7 +113,11 @@ if ($_POST){
 				$resultado1=mysql_query($sqlInfoProd,$link);
 				$des_prod=mysql_fetch_array($resultado1);
 				//se consultan los numeros de serie
-				$sqlS="SELECT * FROM num_series WHERE mov='".$id_movimiento_recibido."' AND clave_prod='".$row["id_prod"]."'";
+				if($concepto_tipo=="Sal_Ent"){					
+					$sqlS="SELECT * FROM num_series WHERE status='Asignado' AND clave_prod='".$row["id_prod"]."'";
+				}else{					
+					$sqlS="SELECT * FROM num_series WHERE mov='".$id_movimiento_recibido."' AND clave_prod='".$row["id_prod"]."'";	
+				}				
 				$resS=mysql_query($sqlS,$link);
 ?>
 				<tr bgcolor="<?=$color?>" onMouseOver="this.style.background='#cccccc';" onMouseOut="this.style.background='<?=$color; ?>'">
