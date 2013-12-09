@@ -14,7 +14,7 @@
 		/*echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov,status 
 			FROM catprod,num_series 
 			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie = '$nds'";*/
-		$sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_2, num_series.serie,mov,status
+		echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.noParte,catprod.exist_2, num_series.serie,mov,status
                        FROM catprod INNER JOIN num_series ON catprod.id=num_series.clave_prod
                        WHERE num_series.serie = '$nds' AND num_series.status='asignado'";
 		if ($resultado1=mysql_query($sql1,$link)){
@@ -38,9 +38,9 @@
 					  <td colspan="2"><input class="tex0" type="text" size="35" name="txt1" id="txt1" value="<?=$idp=$registro1['id'];?>" readonly="1" /></td>
 					</tr>
 					<tr>
-						<td class="campos_verticales">&nbsp;CLAVE PRODUCTO </td>
+						<td class="campos_verticales">&nbsp;No Parte </td>
 						<td colspan="2">
-							<input type="text" class="tex0" size="35" name="txt2" id="txt2" value="<?=$registro1['id_prod'];?>" readonly="1" />	</td>
+							<input type="text" class="tex0" size="35" name="txt2" id="txt2" value="<?=$registro1['noParte'];?>" readonly="1" />	</td>
 					</tr>
 					<tr id="txt_descripciongral">
 						<td class="campos_verticales">&nbsp;DESCRIPCI&Oacute;N</td>

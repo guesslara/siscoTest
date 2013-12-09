@@ -105,10 +105,13 @@
 			$id_producto=$reg_datos_producto["idp"];
 			
 			//echo "<br>".
-		        $sql_almacen_resta="UPDATE catprod SET $campo_existencias_origen=$campo_existencias_origen-1 WHERE id='$id_producto'"; echo "<br>";
+			$sql_almacen_resta="UPDATE catprod SET $campo_existencias_origen=$campo_existencias_origen-1 WHERE id='$id_producto'"; echo "<br>";
+			//echo "<br>".
 			$sql_almacen_suma="UPDATE catprod SET $campo_trasnferencias_destino=$campo_trasnferencias_destino+1 WHERE id='$id_producto'"; echo "<br>";
+			//echo "<br>".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='ENV',status_proceso='ALM',shipdate='".date("Y-m-d")."',id_almacen_destino=$id_almacen WHERE id='$idot'";
-						if (!mysql_query($sql_almacen_resta,$link)){ echo "<br>&nbsp;Error SQL (Paso 2)."; exit; }
+			//exit();
+			if (!mysql_query($sql_almacen_resta,$link)){ echo "<br>&nbsp;Error SQL (Paso 2)."; exit; }
 			if (!mysql_query($sql_almacen_suma,$link)){ echo "<br>&nbsp;Error SQL (Paso 3)."; exit; }
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL (Paso 4)."; exit; }
 			?>
