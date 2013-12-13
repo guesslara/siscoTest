@@ -1,0 +1,6 @@
+index.php
+Lexmark
+grafico_Diagnostico
+NAO
+cons
+grafico_Diagnostico

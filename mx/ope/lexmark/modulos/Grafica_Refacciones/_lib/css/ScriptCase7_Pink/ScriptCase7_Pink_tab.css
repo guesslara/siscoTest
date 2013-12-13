@@ -1,0 +1,15 @@
+.scTabPage { background-color: #F9EBE7; background-repeat: repeat-x }
+.scTabTableApls { border-color: #aa0000; border-style: solid; border-width: 0 }
+.scTabLine { background-color: #FFFFFF; background-image: url(../../img/scriptcase__NM__TabsAreaBg.png); background-position: bottom center; background-repeat: repeat-x; width: 100% }
+.scTabHeader { background-color: #F9EBE7 }
+.scTabHeaderFont { color: #333; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; padding: 0; spacing: 1px; text-align: left; text-decoration: none }
+.scTabActive { background-color: #EF366E; color: #FFFFFF; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; font-style: normal; text-decoration: none }
+.scTabActiveFont { color: #FFFFFF; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; font-style: normal; outline: none; text-decoration: none }
+.scTabActiveBg { background-color: #EF366E; padding: 2px 15px 2px 15px }
+.scTabInactive { background-color: #FFFFFF; color: #444444; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; font-style: normal; text-decoration: none }
+.scTabInactiveFont { color: #444444; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; font-style: normal; outline: none; text-decoration: none }
+.scTabInactiveBg { background-color: #FFFFFF; background-image: url(../../img/scriptcase__NM__v5GreenActRoundedTabBg.png); height: 17px; padding: 2px 15px 2px 15px; min-height: 17 }
+.scTabActiveLink { color: #B42A5C; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-style: normal; text-decoration: underline }
+.scTabInactiveLink { color: #222222; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-style: normal; text-decoration: none }
+.scTab_space_wi { width: 2px }
+.scTab_space_he { height: 2px }

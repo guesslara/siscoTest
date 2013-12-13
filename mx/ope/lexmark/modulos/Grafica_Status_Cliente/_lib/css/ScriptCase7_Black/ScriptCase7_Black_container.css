@@ -1,0 +1,10 @@
+.scContainerPage { background-color: #111111 }
+.scContainerHeader { border-color: #282828; border-style: solid; border-width: 0 }
+.scContainerHeaderFont { color: #cccccc; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none }
+.scContainerFooterFont { color: #cccccc; font-family: Arial, sans-serif; font-size: 12px; text-decoration: none }
+.scContainerWidget { background-color: #252525; border-color: #333; border-style: solid; border-width: 1px; margin: 10px 5px }
+.scContainerMaximized { background-color: #252525; border-color: #333; border-style: solid; border-width: 1px }
+.scContainerTitle { color: #FFFFFF; font-family: Arial, sans-serif; font-size: 12px; padding: 1px;px Height:20px; text-decoration: none }
+.widget-placeholder { border-color: #282828; border-style: dashed; border-width: 2px; margin: 10px 5px }
+.widget-head a.remove { background-image: url(../../img/scriptcase__NM__widget_buttons.gif); background-repeat: no-repeat; background-position: -24px }
+.widget-head a.collapse { background-image: url(../../img/scriptcase__NM__widget_buttons.gif); background-repeat: no-repeat; background-position: -52px }

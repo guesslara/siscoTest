@@ -1,0 +1,4 @@
+<chart showValues="1" caption="Gráfica de Ot's con y sin Garantía" xAxisName="(0) Sin Garantía                                     (1) Con Garantía" yAxisName="Cantidad de Ot's" paletteColors="cec86d,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="0" value="8" link="j-scGridLink-garantia?#?0" />
+ <set label="1" value="44" link="j-scGridLink-garantia?#?1" />
+</chart>
