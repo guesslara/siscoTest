@@ -5,6 +5,10 @@
 	include ("../../conf/conectarbase.php");
 	//print_r($_SESSION);
 	//print_r($_POST);
+	$fr=date("Y-m-d");
+	$hr=date("H:i:s");
+	$id_usu=$_SESSION['idUsuarioLX'];
+
 	$a=$_POST["action"];
 
 	if ($a=="listar"){	
@@ -713,8 +717,23 @@ if ($nno>1){
 						echo "<br>&nbsp;&nbsp;Error: las existencias del producto en el almacen de Ingenieria es 0. El sistema de detuvo.";
 						exit();
 					}
-					*/
-				}
+					*/}
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Registro de Refaccion ')";
+		        $res1=mysql_query($history,$link);
+				
 				
 				
 			} else { 
@@ -735,6 +754,23 @@ if ($nno>1){
 			if(!mysql_query($sql,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA FALLA TECNICA (".$$ndfal.")."; exit(); }
 			++$posicion3;
 		}
+		        $id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Registro de Falla Tecnica')";
+		        $res1=mysql_query($history,$link);
+		
+		
 		//echo "<br><hr>";
 
 
@@ -751,8 +787,23 @@ if ($nno>1){
 							  VALUES (NULL,'".date("Y-m-d")."','$idot','".$$ndrep."','$posicion4')";
 			if(!mysql_query($sql,$link)){ echo "<br>ERROR SQL: NO SE REGISTRO LA REPARACION EFECTUADA (".$$ndrep.")."; exit(); }
 			++$posicion4;			
-			
 		}
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Registro de Reparacion ')";
+		        $res1=mysql_query($history,$link);
+		
 		//echo "<br><hr>";
 
 		// PASO 5.

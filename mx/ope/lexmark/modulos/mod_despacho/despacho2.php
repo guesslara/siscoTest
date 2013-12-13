@@ -5,6 +5,9 @@
 	include ("../../conf/conectarbase.php");
 	//print_r($_SESSION);
 	//print_r($_POST);
+	$fr=date("Y-m-d");
+	$hr=date("H:i:s");
+	$id_usu=$_SESSION['idUsuarioLX'];
 	$a=$_POST["action"];
 	$mmodulos=array("REC"=>"RECIBO","REP"=>"REPARACION","CC"=>"CALIDAD","DES"=>"DESPACHO","ENV"=>"ENVIADOS",""=>"TODOS",);
 	if ($a=="listar"){
@@ -114,6 +117,23 @@
 			if (!mysql_query($sql_almacen_resta,$link)){ echo "<br>&nbsp;Error SQL (Paso 2)."; exit; }
 			if (!mysql_query($sql_almacen_suma,$link)){ echo "<br>&nbsp;Error SQL (Paso 3)."; exit; }
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL (Paso 4)."; exit; }
+			
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','En despacho enviada a almacen $id_almacen')";
+		        $res1=mysql_query($history,$link);
+			
 			?>
             
 	    <script type="text/javascript">

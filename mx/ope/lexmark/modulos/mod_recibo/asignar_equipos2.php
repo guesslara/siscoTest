@@ -12,6 +12,10 @@
 		$t=$_POST["tecnico"];
 		$ids=$_POST["ids"];
 		$ids2=explode(',',$ids);
+		$fr=date("Y-m-d");
+		$hr=date("H:i:s");
+		$id_usu=$_SESSION['idUsuarioLX'];
+
 		//echo "<br>";	print_r($ids2);
 		
 		foreach ($ids2 as $ids2a){
@@ -22,7 +26,23 @@
 				echo "<br>&nbsp;Error SQL. El script se detuvo.";
 				
 			}
-		}?>
+			$id="SELECT nserie FROM `ot` WHERE id = '$ids'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Producto Asignado a Tecnico')";
+		        $res1=mysql_query($history,$link);
+		}
+		?>
 		<script type="text/javascript">
 			alert("Los equipos fueron asignados correctamente.");
 		       </script>

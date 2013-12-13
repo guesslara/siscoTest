@@ -5,6 +5,9 @@
 	include ("../../conf/conectarbase.php");
 	//print_r($_SESSION);
 	$id_usuario=$_SESSION["usuario_id"];
+	$fr=date("Y-m-d");
+	$hr=date("H:i:s");
+	$id_usu=$_SESSION['idUsuarioLX'];
 	
 	//print_r($_POST);
 	$a=$_POST["action"];
@@ -419,6 +422,22 @@
 			//echo "<br><br>OK ".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='DES', status_proceso='$status',fecha_fin='".date("Y-m-d H:i:s")."' WHERE id=$idot ";
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Calidad Status OK ')";
+		        $res1=mysql_query($history,$link);
 			?>
 			<script type="text/javascript">
 			                        alert("La OT <?=$idot?> se guardo correctamente.");
@@ -497,6 +516,22 @@
 			//echo "<br>NOK".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='REP', status_proceso='$status',num_no_ok=num_no_ok+1 WHERE id=$idot ";
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Calidad Status NOK ')";
+		        $res1=mysql_query($history,$link);
 			?>
 			<script type="text/javascript">
 			                        alert("La OT (<?=$idot?>) se guardo correctamente.");
@@ -573,6 +608,22 @@
 			//echo "<br>$status".
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='DES', status_proceso='$status',fecha_fin='".date("Y-m-d H:i:s")."'  WHERE id=$idot ";
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
+			
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Calidad Status OKF ')";
+		        $res1=mysql_query($history,$link);
 			?>
 			                <script type="text/javascript">
 			                        alert("La OT (<?=$idot?>) se guardo correctamente.");
@@ -686,8 +737,27 @@
 			$sql_actualiza_ot="UPDATE ot SET status_cliente='CC', status_proceso='$status'  WHERE id=$idot ";
 			
 			if (!mysql_query($sql_actualiza_ot,$link)){ echo "<br>&nbsp;Error SQL: No se registro la Prueba Cosmetica ($id_pc).";	exit;}
-			?><div style="text-align:center; color:#090; font-weight:bold; font-size:14px;">La OT <?=$idot?> se guardo correctamente.</div><?php					
 			
+			$id="SELECT nserie FROM `ot` WHERE id = '$idot'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd2=$registro1['nserie'];
+		
+		        $id="SELECT id FROM `num_series` WHERE serie = '$idd2'";
+		        $resultid=mysql_query($id,$link);
+		        $registro1=mysql_fetch_array($resultid);
+		        $idd=$registro1['id'];
+		
+		        $history="INSERT INTO historial_numSeries
+		        (id,id_serie,fecha,hora,id_usuario,accion)
+		         VALUES
+		        (NULL,'$idd','$fr','$hr','$id_usu','Calidad Status PDC ')";
+		        $res1=mysql_query($history,$link);
+			?>
+			<script type="text/javascript">
+			                        alert("La OT <?=$idot?> se guardo correctamente.");
+		                        </script><?php
+						
 			
 		} else{
 			echo "<br>OTRO";	

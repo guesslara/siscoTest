@@ -14,7 +14,7 @@
 		/*echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.exist_".$id_almacen_ingenieria.", num_series.serie,mov,status 
 			FROM catprod,num_series 
 			WHERE catprod.id_prod=num_series.clave_prod AND num_series.serie = '$nds'";*/
-		echo $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.noParte,catprod.exist_2, num_series.serie,mov,status
+		 $sql1="SELECT catprod.id,catprod.id_prod,catprod.descripgral,catprod.especificacion,catprod.control_alm,catprod.noParte,catprod.exist_2, num_series.serie,mov,status
                        FROM catprod INNER JOIN num_series ON catprod.id=num_series.clave_prod
                        WHERE num_series.serie = '$nds' AND num_series.status='asignado'";
 		if ($resultado1=mysql_query($sql1,$link)){
@@ -136,6 +136,8 @@
 		$m=date("m");
 		$id_usuario=$_SESSION["usuario_id"];
 		$fr=date("Y-m-d");
+		$hr=date("H:i:s");
+		$id_usu=$_SESSION['idUsuarioLX'];
 
 		// paso 2
 		if ($x==0){
@@ -172,6 +174,8 @@
 			}		
 		}
 		//echo "<br><br>".
+		
+			
 		$sql3="INSERT INTO ot 
 		(id,ot,idp,nserie,u_recibe,f_recibo,cod_refac,cod_diag,cod_rep,obs_rep,garantia,fecha_inicio,fecha_fin,repara,num_no_ok,status_proceso,status_cliente,obs) 
 		VALUES 
@@ -179,7 +183,17 @@
 		$res=mysql_query($sql3,$link);
 		
 		if ($res){
-			?>
+		$id="SELECT id FROM `num_series` WHERE serie = '$a'";
+		$resultid=mysql_query($id,$link);
+		while ($registro1=mysql_fetch_array($resultid)){
+		$idd=$registro1['id'];
+		
+		$history="INSERT INTO historial_numSeries
+		(id,id_serie,fecha,hora,id_usuario,accion)
+		VALUES
+		(NULL,'$idd','$fr','$hr','$id_usu','Producto en Recibo')";
+		$res1=mysql_query($history,$link);
+		}?>
 			<script type="text/javascript">
 			alert("La OT se guardo correctamente.");
 		       </script>
@@ -194,5 +208,8 @@
 		} else {
 			echo "<div align=center>&nbsp;Error SQL. La OT NO se guardo.</div>";
 		}
+		
+		
+		
 	}
 ?>	

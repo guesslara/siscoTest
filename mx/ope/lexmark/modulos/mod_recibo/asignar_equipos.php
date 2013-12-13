@@ -2,6 +2,7 @@
 	session_start();
 	include("../../conf/validar_usuarios.php");
 	validar_usuarios(0,1,11,12);
+       //echo $_SESSION['idUsuarioLX'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
