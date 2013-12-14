@@ -284,7 +284,6 @@ background-color:#FFFFFF; border:#CCCCCC 1px solid; padding:1px 1px 1px 1px; cur
 </head>
 
 <body>
-<?php include("../menu/menu.php"); ?>
 <div id="status"></div>
 <div id="seleccionar_movimientos_origen_destino"></div>
 <div id="seleccionar_movimiento"></div>

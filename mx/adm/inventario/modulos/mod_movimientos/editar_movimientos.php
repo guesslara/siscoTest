@@ -22,7 +22,6 @@
 </head>
 
 <body>
-<?php include("../menu/menu.php"); ?>
 <div id="menu777">
 	<p id="t1">EDICI&Oacute;N DE MOVIMIENTOS </p>
 	<ul>

@@ -528,8 +528,19 @@
 						
 						</table>
 						</fieldset>
-					</div>
-				   <?
+					</div>					
+					<table border="1" cellpading="1" cellspacing="1" width="900" style="margin: 5px;">
+						<tr style="height: 15px;">
+							<td style="text-align: center;padding: 5px;">Acciones</td>
+							<td style="text-align: center;padding: 5px;">No Parte</td>
+							<td style="text-align: center;padding: 5px;">SENC</td>
+							<td style="text-align: center;padding: 5px;">Modelo</td>
+							<td style="text-align: center;padding: 5px;">Serie</td>
+							<td style="text-align: center;padding: 5px;">Fecha</td>
+							<td style="text-align: center;padding: 5px;">Hora</td>
+							<td style="text-align: center;padding: 5px;">Descripci&oacute;n</td>							
+						</tr>
+<?
 					while ($row=mysql_fetch_array($reg_loteCon)){
 						if($color=="#FFFFFF"){
 							$color="#EEE";
@@ -545,58 +556,47 @@
 							$txt="De click para modificar el detalle del ITEM";
 						}
 	?>
-					<div id="showdetalleLote" style="background: <?=$color;?>;" onclick="<?=$link;?>" title="<?=$txt;?>">
-						<table>
-							<tr>
-								<th>Numero de Parte:</th>
-								<?
+						<tr style="height: 15px;">
+							<td style="text-align: center;padding: 5px;"><a href="#" onclick="<?=$link;?>" title="<?=$txt;?>">++</a></td>
+							<td style="text-align: center;padding: 5px;">
+<?
 								$idSenc=$row['id_Senc'];
 								$findSenc="Select * from CAT_SENC where id_SENC=$idSenc";
 								$exeFindSenc=mysql_query($findSenc,$this->conectarBd());
-								$rowSENC=mysql_fetch_array($exeFindSenc);?>
-
-								<td><?=$rowSENC['NoParte'];?></td>
-							</tr>
-							<tr>
-								<th>SENC:</th>
-								<td><?=$rowSENC['SECN'];?></td>
-							</tr>
-							<tr>
-								<th>Modelo:</th>
-								<?
+								$rowSENC=mysql_fetch_array($exeFindSenc);
+								echo $row['noParte'];
+?>							</td>
+							<td style="text-align: center;padding: 5px;"><?=$rowSENC['SECN'];?></td>
+							<td style="text-align: center;padding: 5px;">
+<?
 								$queMod="SELECT * FROM CAT_modelo where id_modelo='".$row['id_modelo']."'";
 								$exequeMod=mysql_query($queMod,$this->conectarBd());
 								$fetchMod=mysql_fetch_array($exequeMod);
+								echo $fetchMod['modelo'];
+?>
+							</td>
+							<td style="text-align: center;padding: 5px;">
+								<?
+								if($id_proyecto==2){
+									echo $row['codeType'];
+									echo "Flow Tag ".$row['flowTag'];
+								}else{
+									echo $row['numSerie'];
+								}	
 								?>
-								<td><?=$fetchMod['modelo'];?></td>
-							</tr>
-							<?if($id_proyecto==2){?>
-							<tr>
-								<th>Code Type</th>
-								<td><?=$row['codeType'];?></td>
-							</tr>
-							<tr>
-								<th>Flow Tag</th>
-								<td><?=$row['flowTag'];?></td>
-							</tr>
-							<?}else{}?>
-							<tr>
-								<th>Numero de Serie:</th>
-								<td><?=$row['numSerie'];?></td>
-							</tr>
-							<tr>
-								<th>Fecha y Hora de Registro</th>
-								<td><?=$row['fecha_registro']?> <?=$row['hora_registro']?></td>
-							</tr>
-							<tr>
-								<th>Descripción:</th>
-								<td><?=$row['observaciones']?></td>
-							</tr>
-						</table>
-					</div>
+							</td>
+							<td style="text-align: center;padding: 5px;"><?=$row['fecha_registro'];?></td>
+							<td style="text-align: center;padding: 5px;"><?=$row['hora_registro']?></td>
+							<td style="text-align: center;padding: 5px;"><?=$row['observaciones']?></td>							
+						</tr>
+					<!--<div id="showdetalleLote" style="background: <?=$color;?>;" onclick="<?=$link;?>" title="<?=$txt;?>">
+						
+						
+					</div>-->
 <?
-					}
+					}					
 					?>
+					</table>
 			</div><?
 			}
 		}//fin de consulta

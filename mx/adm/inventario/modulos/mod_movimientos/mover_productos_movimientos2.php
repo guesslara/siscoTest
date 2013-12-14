@@ -19,7 +19,7 @@ if ($_POST)
 		WHERE 
 		mov_almacen.almacen=tipoalmacen.id_almacen AND mov_almacen.tipo_mov=concepmov.id_concep"; 
 		//limit 0,50
-		$result=mysql_db_query($sql_inv,$sql7);  	
+		$result=mysql_query($sql7,$link);  	
 		$numeroRegistros=mysql_num_rows($result);
 	?>
 <table width="95%" border="0" align="center" cellspacing="0" class="tablax">
@@ -43,7 +43,7 @@ $asoc=$row["asociado"];
 $aso2='';
 	
 	$sql_aso="SELECT asociado FROM mov_almacen WHERE id_mov='$id_mov'";
-	$result_aso=mysql_db_query($sql_inv,$sql_aso);	
+	$result_aso=mysql_query($sql_aso,$link);	
 	while($row_aso=mysql_fetch_array($result_aso)){	
 		$id_aso=$row_aso["asociado"];
 	}
@@ -93,7 +93,7 @@ $aso2='';
 	
 			$color="#FFFFFF";
 			$sqlMOV="SELECT * FROM prodxmov WHERE nummov='$movimiento' ORDER BY id";
-			$resultado=mysql_db_query($sql_inv,$sqlMOV);
+			$resultado=mysql_query($sqlMOV,$link);
 			$trows=mysql_num_rows($resultado);	
 	?>
 <form name="frm_<?=$contenedor?>" id="<?=$contenedor?>" style="margin:0px 0px 0px 0px;">
@@ -156,7 +156,7 @@ $aso2='';
 		foreach ($m_ids as $id_prodxmov)
 		{
 			$sql_cambiar="UPDATE prodxmov SET nummov='$mov_destino' WHERE id='$id_prodxmov' LIMIT 1 ";;
-			if (!$result_cambiar=mysql_db_query($sql_inv,$sql_cambiar))
+			if (!$result_cambiar=mysql_query($sql_cambiar,$link))
 			{
 				++$errores;
 				echo "<br>Error SQL ($sql_cambiar) El registro no se modifico. ";

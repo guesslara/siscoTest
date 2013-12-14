@@ -709,6 +709,7 @@ function guardarMenuTituloActualizacion(){
 	}
 }
 function verModulos(){
+	//alert("1");
 	ajaxApp("detalleUsuarios","controladorUsuarios.php","action=verModulosSistema","POST")
 }
 function leerArchivo(archivo){

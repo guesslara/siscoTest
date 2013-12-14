@@ -259,7 +259,7 @@ if($_GET['action']=="cambioStatusAct"){
 		$objModeloUsuarios->mostrarOpcionesMenu();
 	}
 	if($_POST["action"]=="agregarItemSubMenu"){
-		$objModeloUsuarios->agregarItemSubmenu($_POST["idElemento"]);
+		$objModeloUsuarios->agregarItemSubmenu($_POST["idElemento"],$_POST["idCliente"]);
 	}
 	if($_POST["action"]=="guardarSubMenu"){
 		//print_r($_POST);

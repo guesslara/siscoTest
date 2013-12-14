@@ -114,11 +114,11 @@
 	}
 	
 	public function listarModulos($idCliente){	    
-	    if($nombreCliente==""){
+	    if($idCliente=="999"){		
 		$nombreCliente="Almacen";
 	    }else{
 		$nombreCliente=$this->dameNombreCliente($idCliente);
-	    }
+	    }	    
 	    switch($nombreCliente){
 		case "Almacen":
 		    $path="../adm/inventario/modulos"; $path2="../modulos";    
