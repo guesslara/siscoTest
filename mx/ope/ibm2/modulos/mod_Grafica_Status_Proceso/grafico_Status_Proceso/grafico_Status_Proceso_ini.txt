@@ -1,0 +1,6 @@
+index.php
+Lexmark
+grafico_Status_Proceso
+NAO
+cons
+grafico_Status_Proceso

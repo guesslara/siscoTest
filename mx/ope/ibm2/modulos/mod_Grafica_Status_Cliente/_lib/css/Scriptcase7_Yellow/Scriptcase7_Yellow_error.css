@@ -1,0 +1,6 @@
+.scErrorTable { background-color: #FFDFDF; border-color: #EACBCC; border-style: solid; border-width: 1px; height: 30px; width: 320px }
+.scErrorTitle { border-style: none; color: #DF0000; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; padding: 5px 3px 1px 3px; text-align: left; text-decoration: none; vertical-align: middle }
+.scErrorTitleFont { color: #DF0000; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none }
+.scErrorMessage { color: #DF0000; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; padding: 1px 3px 5px 3px; text-align: left; text-decoration: none }
+.scErrorMessageFont { color: #DF0000; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none }
+.scErrorLine { color: #DF0000; font-family: Verdana, Geneva, sans-serif; font-size: 12px; padding: 4px 4px 4px 10px; spacing: 0; text-decoration: none }

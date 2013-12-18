@@ -66,7 +66,12 @@
 						//header('Location: ../adm/inventario/modulos/main-4.php');
 						header('Location: ../app/main-4.php');
 						exit();
-					break;					
+					break;
+					case "IBM":
+						//header('Location: ../adm/inventario/modulos/main-4.php');
+						header('Location: ../app/main-4.php');
+						exit();
+					break;
 				}				
 			}else{
 				session_start();

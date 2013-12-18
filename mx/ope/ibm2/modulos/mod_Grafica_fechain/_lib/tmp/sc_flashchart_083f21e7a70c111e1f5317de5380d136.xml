@@ -1,0 +1,6 @@
+<chart showValues="1" caption="Grafico de Ot's por mes" xAxisName="Fecha de Inicio por mes" yAxisName="Registros" paletteColors="cec86d,4997a6,bb60b2,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="00/0 " value="7" link="j-scGridLink-fecha_inicio?#?@aspass@0000-00@aspass@" />
+ <set label="10/2013 " value="2" link="j-scGridLink-fecha_inicio?#?@aspass@2013-10@aspass@" />
+ <set label="11/2013 " value="31" link="j-scGridLink-fecha_inicio?#?@aspass@2013-11@aspass@" />
+ <set label="12/2013 " value="12" link="j-scGridLink-fecha_inicio?#?@aspass@2013-12@aspass@" />
+</chart>

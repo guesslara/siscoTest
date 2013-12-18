@@ -1,0 +1,6 @@
+index.php
+Lexmark
+grafico_fallas_tecnicas
+NAO
+cons
+grafico_fallas_tecnicas

@@ -4,7 +4,7 @@
     }else{
 	$nombreProyecto=dameNombreProyecto($_POST["radio"]);	
     }    
-    
+    //echo $nombreProyecto; exit();
     switch($nombreProyecto){
 	case "Almacen":
 	    $token=devuelveNombreProyectoConvertido($nombreProyecto);
@@ -23,7 +23,11 @@
             exit();
         break;
 	case "IBM":
-            header("Location: ../ope/ibm/modulos/mod_login/index.php");
+            //header("Location: ../ope/ibm2/modulos/mod_login/index.php");
+            //exit();
+	    $token=devuelveNombreProyectoConvertido($nombreProyecto);
+	    $url="../acceso/index.php?ap=".$token;
+	    header("Location: ".$url);	   
             exit();
         break;
 	default:

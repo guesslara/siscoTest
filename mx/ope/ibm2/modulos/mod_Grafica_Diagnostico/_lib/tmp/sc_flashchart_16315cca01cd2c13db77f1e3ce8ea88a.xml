@@ -1,0 +1,18 @@
+<chart showValues="1" caption="Grafica de Diagnostico de Ot's" xAxisName="Diagnosticos" yAxisName="Cantidad de Ot's" paletteColors="cec86d,c1d075,b4d97e,88ca8b,56b69a,4997a6,4a72b2,605fb5,8558b3,a458b1,bb60b2,cc60a4,cb4e6d,c43f3f,994141,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="Cable dañado" value="7" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Cable dañado@aspass@" />
+ <set label="Pruebas de comunicacion" value="6" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Pruebas de comunicacion@aspass@" />
+ <set label="Scanner dañado" value="6" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Scanner dañado@aspass@" />
+ <set label="Falla sensores" value="5" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Falla sensores@aspass@" />
+ <set label="Impresines tenues" value="4" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Impresines tenues@aspass@" />
+ <set label="No enciende" value="4" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@No enciende@aspass@" />
+ <set label="Falla alto votaje" value="3" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Falla alto votaje@aspass@" />
+ <set label="Display dañado" value="3" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Display dañado@aspass@" />
+ <set label="RIP software" value="3" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@RIP software@aspass@" />
+ <set label="Se apaga" value="3" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Se apaga@aspass@" />
+ <set label="Falla de ventilador" value="2" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Falla de ventilador@aspass@" />
+ <set label="prueba2" value="2" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@prueba2@aspass@" />
+ <set label="Atasco de papel" value="2" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Atasco de papel@aspass@" />
+ <set label="Falla duplex" value="1" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Falla duplex@aspass@" />
+ <set label="Falla DC controller" value="1" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Falla DC controller@aspass@" />
+ <set label="Falla de motores" value="1" link="j-scGridLink-cat_diagnosticos.diagnostico?#?@aspass@Falla de motores@aspass@" />
+</chart>
