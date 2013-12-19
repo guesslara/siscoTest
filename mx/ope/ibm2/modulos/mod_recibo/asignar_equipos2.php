@@ -5,7 +5,7 @@
 	//echo "<br>";	print_r($_SESSION);
 	//echo "<br>";	print_r($_POST);
 
-	include("../../conf/conectarbase.php"); 
+	include("../../conf/conectarbase2.php"); 
 	
 	if ($_POST["accion"]=="asignar")
 	{

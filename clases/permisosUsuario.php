@@ -153,7 +153,7 @@
 				echo "
 				<ul>
 					<li class='nivel1'><a href='#' class='nivel1'>".$nombreMenuTitulo."</a>";
-				$sqlIdTitulo="SELECT id FROM menu WHERE nombreMenu='".$nombreMenuTitulo."'";
+				$sqlIdTitulo="SELECT id FROM menu WHERE nombreMenu='".$nombreMenuTitulo."' AND id_cliente='".$idCliente."'";
 				$mysql->consulta($sqlIdTitulo);
 				$resIdTitulo=$mysql->registrosConsulta();
 				$rowIdTitulo=$mysql->registroUnico();				

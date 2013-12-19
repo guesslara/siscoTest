@@ -2,7 +2,7 @@
 	session_start();
 	header("Cache-Control: no-store, no-cache, must-revalidate");
 	header("Content-Type: text/xml; charset=ISO-8859-1");
-	include ("../../conf/conectarbase.php");
+	include ("../../conf/conectarbase2.php");
 	//print_r($_SESSION);
 	//echo "<br><br>";	print_r($_POST);
 	

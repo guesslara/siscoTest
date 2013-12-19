@@ -126,6 +126,9 @@
 		case "Lexmark":
 		    $path="../ope/lexmark/modulos"; $path2="../modulos";    
 		break;
+		case "IBM":
+		    $path="../ope/ibm2/modulos"; $path2="../modulos";    
+		break;
 		case "HP _PSG":
 		    $path="../hp/modulos"; $path2="../modulos";    
 		break;

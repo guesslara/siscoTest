@@ -1,6 +1,6 @@
 <?php 	
 	//include ("../conf/conexion.php");
-	include ("../../conf/conectarbase.php");
+	include ("../../conf/conectarbase2.php");
 	include('../../../../../clases/clase_fecha.php');
 	header("Cache-Control: no-store, no-cache, must-revalidate");
 	header("Content-Type: text/xml; charset=ISO-8859-1");

@@ -180,7 +180,9 @@
 
 <body>
 
-<div id="div_productos">&nbsp;</div>
+<div id="div_productos"><input type="button" value="Inicio" onclick="'<a href="../ope/lexmark/modulos/mod_Grafica_Fallas_tecnicas/index.php">'"/> </div>
+<input type="button" value="Inicio" onclick="'<a href="../ope/lexmark/modulos/Hdd_1/index.php">'"/>
+<!--href="../ope/lexmark/modulos/mod_Grafica_Fallas_tecnicas/index.php">-->
 <!--<div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nuevo Diagn&oacute;stico.</div>
 	<div class="div_nuevoC" id="div_nuevoC">&nbsp;</div>
