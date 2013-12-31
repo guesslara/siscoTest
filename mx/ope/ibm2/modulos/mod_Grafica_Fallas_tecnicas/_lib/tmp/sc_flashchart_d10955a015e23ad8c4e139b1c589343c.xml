@@ -1,0 +1,8 @@
+<chart showValues="1" caption="Gráfica de Fallas técnicas" xAxisName="Fallas Técnicas" yAxisName="Cantidad de Ot's" paletteColors="cec86d,88ca8b,4a72b2,a458b1,cb4e6d,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="PANTALLAS AZULES" value="5" link="j-scGridLink-cat_fallas_tecnicas.descripcion?#?@aspass@PANTALLAS AZULES@aspass@" />
+ <set label="RECUPERACION DE ATASCO" value="4" link="j-scGridLink-cat_fallas_tecnicas.descripcion?#?@aspass@RECUPERACION DE ATASCO@aspass@" />
+ <set label="Prueba" value="3" link="j-scGridLink-cat_fallas_tecnicas.descripcion?#?@aspass@Prueba@aspass@" />
+ <set label="MANTO PREVENTIVO/CORRECTIVO" value="2" link="j-scGridLink-cat_fallas_tecnicas.descripcion?#?@aspass@MANTO PREVENTIVO/CORRECTIVO@aspass@" />
+ <set label="LINEAS EN IMPRESION" value="2" link="j-scGridLink-cat_fallas_tecnicas.descripcion?#?@aspass@LINEAS EN IMPRESION@aspass@" />
+ <set label="CODIGO DE ERROR" value="2" link="j-scGridLink-cat_fallas_tecnicas.descripcion?#?@aspass@CODIGO DE ERROR@aspass@" />
+</chart>

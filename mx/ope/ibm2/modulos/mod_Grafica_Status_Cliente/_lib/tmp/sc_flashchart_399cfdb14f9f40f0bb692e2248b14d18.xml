@@ -1,0 +1,5 @@
+<chart showValues="1" caption="Status Cliente" xAxisName="Status Cliente" yAxisName="Registros" paletteColors="cec86d,735cb4,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="ENV" value="3" link="j-scGridLink-status_cliente?#?@aspass@ENV@aspass@" />
+ <set label="DES" value="2" link="j-scGridLink-status_cliente?#?@aspass@DES@aspass@" />
+ <set label="REC" value="1" link="j-scGridLink-status_cliente?#?@aspass@REC@aspass@" />
+</chart>

@@ -1,0 +1,10 @@
+<chart showValues="1" caption="OT's por Técnico" xAxisName="Técnicos" yAxisName="Cantidad" paletteColors="" labelDisplay="Rotate" placeValuesInside="1" rotateValues="1" palette="1" decimals="0">
+ <set label="AlejandroMartinez" value="3" link="j-scGridLink-repara?#?@aspass@6@aspass@" />
+ <set label="Angel UlisesCocom" value="3" link="j-scGridLink-repara?#?@aspass@5@aspass@" />
+ <set label="EstebanBarrios" value="2" link="j-scGridLink-repara?#?@aspass@17@aspass@" />
+ <set label="FedericoCordova" value="3" link="j-scGridLink-repara?#?@aspass@10@aspass@" />
+ <set label="FranciscoNieto" value="1" link="j-scGridLink-repara?#?@aspass@14@aspass@" />
+ <set label="HedilbertoAmado" value="2" link="j-scGridLink-repara?#?@aspass@13@aspass@" />
+ <set label="MaximoTorres" value="2" link="j-scGridLink-repara?#?@aspass@11@aspass@" />
+ <set label="PabloOlvera" value="1" link="j-scGridLink-repara?#?@aspass@12@aspass@" />
+</chart>

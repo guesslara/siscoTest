@@ -1,0 +1,3 @@
+<chart showValues="1" caption="Gráfica de reparaciones efectuadas" xAxisName="Tipo de Reparación" yAxisName="Cantidad de Ot's" paletteColors="cec86d" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="MANTENIMIENTO CORRECTIVO" value="2" link="j-scGridLink-cat_reparaciones.descripcion?#?@aspass@MANTENIMIENTO CORRECTIVO@aspass@" />
+</chart>

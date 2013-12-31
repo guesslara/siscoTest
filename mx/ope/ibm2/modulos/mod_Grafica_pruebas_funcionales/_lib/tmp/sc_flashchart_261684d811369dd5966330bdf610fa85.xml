@@ -1,0 +1,8 @@
+<chart showValues="1" caption="Gráfico de Pruebas Funcionales" xAxisName="Pruebas Funcionales" yAxisName="Cantidad de Ot's" paletteColors="cec86d,88ca8b,4a72b2,a458b1,cb4e6d,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="P005- Fax" value="17" link="j-scGridLink-cat_pruebas_funcionales.descripcion?#?@aspass@P005- Fax@aspass@" />
+ <set label="P006-REFACCIONES (KIT)" value="17" link="j-scGridLink-cat_pruebas_funcionales.descripcion?#?@aspass@P006-REFACCIONES (KIT)@aspass@" />
+ <set label="P004 - Duplex" value="17" link="j-scGridLink-cat_pruebas_funcionales.descripcion?#?@aspass@P004 - Duplex@aspass@" />
+ <set label="P003 - ADF" value="17" link="j-scGridLink-cat_pruebas_funcionales.descripcion?#?@aspass@P003 - ADF@aspass@" />
+ <set label="P002 - Comunicacion" value="17" link="j-scGridLink-cat_pruebas_funcionales.descripcion?#?@aspass@P002 - Comunicacion@aspass@" />
+ <set label="P001 - Copiado " value="17" link="j-scGridLink-cat_pruebas_funcionales.descripcion?#?@aspass@P001 - Copiado @aspass@" />
+</chart>

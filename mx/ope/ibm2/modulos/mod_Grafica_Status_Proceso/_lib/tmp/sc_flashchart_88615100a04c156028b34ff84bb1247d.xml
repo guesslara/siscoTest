@@ -1,0 +1,9 @@
+<chart showValues="1" caption="Status de proceso de OT's" xAxisName="Status Proceso" yAxisName="Registros" paletteColors="cec86d,a0d384,4997a6,735cb4,bb60b2,ca4552,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="SCRAP" value="1" link="j-scGridLink-status_proceso?#?@aspass@SCRAP@aspass@" />
+ <set label="WIP" value="1" link="j-scGridLink-status_proceso?#?@aspass@WIP@aspass@" />
+ <set label="REP" value="1" link="j-scGridLink-status_proceso?#?@aspass@REP@aspass@" />
+ <set label="OKF" value="1" link="j-scGridLink-status_proceso?#?@aspass@OKF@aspass@" />
+ <set label="DIAG" value="1" link="j-scGridLink-status_proceso?#?@aspass@DIAG@aspass@" />
+ <set label="NOREP" value="1" link="j-scGridLink-status_proceso?#?@aspass@NOREP@aspass@" />
+ <set label="ALM" value="1" link="j-scGridLink-status_proceso?#?@aspass@ALM@aspass@" />
+</chart>

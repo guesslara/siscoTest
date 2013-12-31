@@ -1,0 +1,4 @@
+<chart showValues="1" caption="Status de proceso de OT's" xAxisName="Status Proceso" yAxisName="Registros" paletteColors="cec86d,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="ALM" value="12" link="j-scGridLink-status_proceso?#?@aspass@ALM@aspass@" />
+ <set label="REC" value="2" link="j-scGridLink-status_proceso?#?@aspass@REC@aspass@" />
+</chart>

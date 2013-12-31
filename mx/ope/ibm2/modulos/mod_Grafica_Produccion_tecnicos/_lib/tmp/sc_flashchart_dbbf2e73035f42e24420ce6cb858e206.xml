@@ -1,0 +1,4 @@
+<chart showValues="1" caption="OT's por Técnico" xAxisName="Técnicos" yAxisName="Cantidad" paletteColors="" labelDisplay="Rotate" placeValuesInside="1" rotateValues="1" palette="1" decimals="0">
+ <set label="" value="1" link="j-scGridLink-repara?#?@aspass@@aspass@" />
+ <set label="FranciscoNieto" value="5" link="j-scGridLink-repara?#?@aspass@14@aspass@" />
+</chart>

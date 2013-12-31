@@ -1,0 +1,7 @@
+<chart showValues="1" caption="Grafico de Refacciones" xAxisName="Refacciones" yAxisName="Cantidad de Ot's" paletteColors="cec86d,63bb96,735cb4,cc5c96,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="RODILLO DE CARGA" value="9" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@RODILLO DE CARGA@aspass@" />
+ <set label="Capacitor" value="5" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@Capacitor@aspass@" />
+ <set label="FUSOR" value="4" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@FUSOR@aspass@" />
+ <set label="RODILLO DE MONTAJE" value="3" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@RODILLO DE MONTAJE@aspass@" />
+ <set label="kit mantenimiento" value="2" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@kit mantenimiento@aspass@" />
+</chart>

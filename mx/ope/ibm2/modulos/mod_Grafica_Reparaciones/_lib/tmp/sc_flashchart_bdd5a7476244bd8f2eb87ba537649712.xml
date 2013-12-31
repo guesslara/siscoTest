@@ -1,0 +1,6 @@
+<chart showValues="1" caption="Gráfica de reparaciones efectuadas" xAxisName="Tipo de Reparación" yAxisName="Cantidad de Ot's" paletteColors="cec86d,4997a6,bb60b2,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="MANTENIMIENTO PREVENTIVO" value="4" link="j-scGridLink-cat_reparaciones.descripcion?#?@aspass@MANTENIMIENTO PREVENTIVO@aspass@" />
+ <set label="MANTENIMIENTO CORRECTIVO" value="3" link="j-scGridLink-cat_reparaciones.descripcion?#?@aspass@MANTENIMIENTO CORRECTIVO@aspass@" />
+ <set label="MIX AND MACTH" value="3" link="j-scGridLink-cat_reparaciones.descripcion?#?@aspass@MIX AND MACTH@aspass@" />
+ <set label="Prueba" value="2" link="j-scGridLink-cat_reparaciones.descripcion?#?@aspass@Prueba@aspass@" />
+</chart>
