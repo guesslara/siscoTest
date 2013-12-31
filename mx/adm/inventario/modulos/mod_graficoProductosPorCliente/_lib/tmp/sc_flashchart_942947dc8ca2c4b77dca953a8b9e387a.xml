@@ -1,0 +1,5 @@
+<chart showValues="1" caption="Productos por Cliente" xAxisName="Cliente" yAxisName="Cantidad" paletteColors="" labelDisplay="Rotate" placeValuesInside="1" rotateValues="1" palette="1" decimals="0">
+ <set label="HP" value="2" link="j-scGridLink-id_clientes?#?@aspass@2@aspass@" />
+ <set label="IBM" value="156" link="j-scGridLink-id_clientes?#?@aspass@5@aspass@" />
+ <set label="Lexmark" value="1592" link="j-scGridLink-id_clientes?#?@aspass@1@aspass@" />
+</chart>
