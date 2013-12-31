@@ -75,6 +75,12 @@ if(!$_POST) { ?>
     </td>
   </tr>
   <tr>
+    <td class="etiqueta">No Parte</td>
+    <td colspan="3">
+      <input id="noParte" size="40" name="noParte" />
+    *</td>
+  </tr>
+  <tr>
     <td class="etiqueta">Descripci&oacute;n</td>
     <td colspan="3">
       <input id=descripgral size=40 name=descripgral />
@@ -150,6 +156,28 @@ if(!$_POST) { ?>
     <td width="150">&nbsp;</td>
   </tr>
   <tr>
+    <td class="etiqueta">Cliente</td>
+    <td width="150">
+<?
+	$sql_cc="select id_cliente,r_social from cat_clientes where activo=1";
+	$res_cc=mysql_query($sql_cc,$link);
+?>
+	<select name="cliente" id="cliente">
+		<option value="">Seleccionar...</option>
+<?
+	while($row_cc=mysql_fetch_array($res_cc)){
+?>
+		<option value="<?=strtoupper($row_cc["id_cliente"]);?>"><?=$row_cc["r_social"];?></option>
+<?
+	}
+?>	
+	</select>	
+      <!--<input size=15 name=marca value="LEXMARK" />-->
+        </td>
+    <td width="150">&nbsp;</td>
+    <td width="150">&nbsp;</td>
+  </tr>
+  <tr>
     <td height="39" colspan="2" class="cn" valign="bottom">Unidades de: </td>
     <td colspan="2" class="cn" valign="bottom" id="stock0">Stock:</td>
   </tr>
@@ -211,9 +239,11 @@ if(!$_POST) { ?>
 	$control_alm=$_POST['control_alm']; 		$kit_array=$_POST['kit_array'];
 	$linea=$_POST['linea']; 					$observa=$_POST['observa'];
 	$ubicacion=$_POST['ubicacion'];				$unidad=$_POST['unidad']; 			
-	$marca=$_POST['marca'];		 			
+	$marca=$_POST['marca'];
+	$cliente=$_POST['cliente'];
+	$noParte=$_POST['noParte'];
 	
-	if ($id_prod==''||$descripgral==''||$especificacion==''||$control_alm==''||$linea==''||$marca==''||$uni_entrada==''||$uni_salida==''||$unidad=='') 
+	if ($id_prod==''||$descripgral==''||$especificacion==''||$control_alm==''||$linea==''||$marca==''||$uni_entrada==''||$uni_salida==''||$unidad==''||$noParte=='') 
 	{	echo '<br><div align=center>Faltan datos. Por favor no omita campos obligatorios.<div>';	} else {
 		// ----------------- INVESTIGAR NOMBRE DE LOS CAMPOS DE LOS ALMACENES ------------------------
 		$almacenes=array(); $campos_almacenes=''; $valores_almacenes='';	
@@ -231,9 +261,9 @@ if(!$_POST) { ?>
 			}
 		}
 		$ssql="INSERT INTO catprod 
-(id,id_prod,tipo,kit,descripgral, especificacion,linea,marca,control_alm,ubicacion,uni_entrada,uni_salida,stock_min,stock_max,observa,existencias,unidad,cpromedio $campos_almacenes) 
+(id,id_prod,tipo,kit,descripgral, especificacion,linea,marca,control_alm,ubicacion,uni_entrada,uni_salida,stock_min,stock_max,observa,existencias,id_clientes,noParte,unidad,cpromedio $campos_almacenes) 
 VALUES 
-(NULL,'$id_prod','$tipo','$kit_array','$descripgral','$especificacion','$linea','$marca','$control_alm','$ubicacion','$uni_entrada','$uni_salida','$stock_min','$stock_max','$observa','','$unidad','' $valores_almacenes)";	
+(NULL,'$id_prod','$tipo','$kit_array','$descripgral','$especificacion','$linea','$marca','$control_alm','$ubicacion','$uni_entrada','$uni_salida','$stock_min','$stock_max','$observa','','".$cliente."','".$noParte."','$unidad','' $valores_almacenes)";	
 		echo "<br>SQL: <br>$ssql ";
 		//exit;
 		if (mysql_query($ssql,$link))
@@ -248,13 +278,13 @@ VALUES
 				$linea2=$row_up["linea"];
 				$id_up0=$row_up["id_prod"];
 			}
-			$update="UPDATE catprod SET id_prod='".$linea2.$especificacion.$consec."' WHERE id='$u_id' AND id_prod='$id_up0' ";
+			$update="UPDATE catprod SET id_prod='".$marca.$consec."' WHERE id='$u_id' AND id_prod='$id_up0' ";
 			if (!mysql_query($update,$link))
 			{	
 				echo "<br><div align='center'>Error SQL: El producto se inserto, pero el consecutivo no se genero.</div>";
 				exit();
 			}	
-			echo "<script languaje='javascript'> alert('Producto agregado al Almacen (".$linea2.$especificacion.$consec.").'); window.location.href='".$se."';</script>";
+			echo "<script languaje='javascript'> alert('Producto agregado al Almacen (".$marca.$consec.").'); window.location.href='".$se."';</script>";
 		} else {
 			echo '<br><div align=center>Error SQL: El producto no se registro.</div>';
 		}	

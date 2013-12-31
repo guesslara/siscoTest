@@ -1,7 +1,7 @@
 <?php
    include_once('grafico_reparaciones_session.php');
    @session_start() ;
-   $_SESSION['scriptcase']['grafico_reparaciones']['glo_nm_perfil']          = "conexionLexmark";
+   $_SESSION['scriptcase']['grafico_reparaciones']['glo_nm_perfil']          = "conexionIBM";
    $_SESSION['scriptcase']['grafico_reparaciones']['glo_nm_path_prod']       = "";
    $_SESSION['scriptcase']['grafico_reparaciones']['glo_nm_path_conf']       = "";
    $_SESSION['scriptcase']['grafico_reparaciones']['glo_nm_path_imagens']    = "";

@@ -27,6 +27,10 @@
             break;
         }
     }
+    if (!isset($tradutor[$language]))
+    {
+		exit;
+    }
 
 ?>
 <html<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>

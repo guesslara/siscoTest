@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Digita qui il tuo messaggio.";
   $this->Nm_lang['lang_user_logged'] = "%s utente è già connesso. Continuare? <br/> L''utente attivo sarà disconnesso.";
   $this->Nm_lang['lang_errm_tz'] = "La funzione di caricamento richiede l'estensione del fuso orario abilitato nel PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Controlla come impostarlo.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Elenco dei fusi orari supportati.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Non Contiene";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Valore angolo";
   $this->Nm_lang['lang_chrt_anlt'] = "Analitico";
   $this->Nm_lang['lang_chrt_bars'] = "A barre/verticale";

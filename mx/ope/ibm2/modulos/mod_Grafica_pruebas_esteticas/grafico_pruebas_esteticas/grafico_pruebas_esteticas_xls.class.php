@@ -84,6 +84,30 @@ class grafico_pruebas_esteticas_xls
       }
       if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']))
       { 
+          $this->evaluacion_pruebas_id = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_id, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_id = substr($this->evaluacion_pruebas_id, 0, $tmp_pos);
+          }
+          $this->evaluacion_pruebas_fecha = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_fecha']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_fecha, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_fecha = substr($this->evaluacion_pruebas_fecha, 0, $tmp_pos);
+          }
+          $this->evaluacion_pruebas_id_ot = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id_ot']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_id_ot, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_id_ot = substr($this->evaluacion_pruebas_id_ot, 0, $tmp_pos);
+          }
+          $this->evaluacion_pruebas_tipo_prueba = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_tipo_prueba']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_tipo_prueba, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_tipo_prueba = substr($this->evaluacion_pruebas_tipo_prueba, 0, $tmp_pos);
+          }
       } 
       $this->nm_field_dinamico = array();
       $this->nm_order_dinamico = array();
@@ -99,27 +123,27 @@ class grafico_pruebas_esteticas_xls
       }
       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
       { 
-          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, str_replace (convert(char(10),ot.f_recibo,102), '.', '-') + ' ' + convert(char(8),ot.f_recibo,20) as ot_f_recibo, str_replace (convert(char(10),ot.fecha_fin,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin,20) as ot_fecha_fin, str_replace (convert(char(10),ot.fecha_fin_rep,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin_rep,20) as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, str_replace (convert(char(10),ot.shipdate,102), '.', '-') + ' ' + convert(char(8),ot.shipdate,20) as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, str_replace (convert(char(10),ot.f_recibo,102), '.', '-') + ' ' + convert(char(8),ot.f_recibo,20) as ot_f_recibo, str_replace (convert(char(10),ot.fecha_fin,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin,20) as ot_fecha_fin, str_replace (convert(char(10),ot.fecha_fin_rep,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin_rep,20) as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, str_replace (convert(char(10),ot.shipdate,102), '.', '-') + ' ' + convert(char(8),ot.shipdate,20) as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
       } 
       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
       { 
-          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
       } 
       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
       { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, convert(char(23),ot.f_recibo,121) as ot_f_recibo, convert(char(23),ot.fecha_fin,121) as ot_fecha_fin, convert(char(23),ot.fecha_fin_rep,121) as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, convert(char(23),ot.shipdate,121) as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, convert(char(23),ot.f_recibo,121) as ot_f_recibo, convert(char(23),ot.fecha_fin,121) as ot_fecha_fin, convert(char(23),ot.fecha_fin_rep,121) as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, convert(char(23),ot.shipdate,121) as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
       } 
       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
       { 
-          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
       } 
       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
       { 
-          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, EXTEND(ot.f_recibo, YEAR TO DAY) as ot_f_recibo, EXTEND(ot.fecha_fin, YEAR TO FRACTION) as ot_fecha_fin, EXTEND(ot.fecha_fin_rep, YEAR TO DAY) as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, EXTEND(ot.shipdate, YEAR TO DAY) as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, EXTEND(ot.f_recibo, YEAR TO DAY) as ot_f_recibo, EXTEND(ot.fecha_fin, YEAR TO FRACTION) as ot_fecha_fin, EXTEND(ot.fecha_fin_rep, YEAR TO DAY) as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, EXTEND(ot.shipdate, YEAR TO DAY) as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
       } 
       else 
       { 
-          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+          $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
       } 
       $nmgp_select .= " " . $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq'];
       if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_resumo']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_resumo'])) 
@@ -152,7 +176,7 @@ class grafico_pruebas_esteticas_xls
               {
                   $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
               }
-              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
@@ -167,18 +191,18 @@ class grafico_pruebas_esteticas_xls
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
-          $SC_Label = (isset($this->New_label['ot_idp'])) ? $this->New_label['ot_idp'] : "Id de Producto"; 
+          $SC_Label = (isset($this->New_label['ot_idp'])) ? $this->New_label['ot_idp'] : "Idp"; 
           if ($Cada_col == "ot_idp" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
              if (!NM_is_utf8($SC_Label))
               {
                   $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
               }
-              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
-          $SC_Label = (isset($this->New_label['ot_nserie'])) ? $this->New_label['ot_nserie'] : "No.Serie"; 
+          $SC_Label = (isset($this->New_label['ot_nserie'])) ? $this->New_label['ot_nserie'] : "Nserie"; 
           if ($Cada_col == "ot_nserie" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
              if (!NM_is_utf8($SC_Label))
@@ -189,18 +213,7 @@ class grafico_pruebas_esteticas_xls
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
-          $SC_Label = (isset($this->New_label['ot_u_recibe'])) ? $this->New_label['ot_u_recibe'] : "Recibe"; 
-          if ($Cada_col == "ot_u_recibe" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
-          {
-             if (!NM_is_utf8($SC_Label))
-              {
-                  $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
-              }
-              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-              $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
-              $this->xls_col++;
-          }
-          $SC_Label = (isset($this->New_label['ot_f_recibo'])) ? $this->New_label['ot_f_recibo'] : " Fecha de Recibo"; 
+          $SC_Label = (isset($this->New_label['ot_f_recibo'])) ? $this->New_label['ot_f_recibo'] : "F Recibo"; 
           if ($Cada_col == "ot_f_recibo" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
              if (!NM_is_utf8($SC_Label))
@@ -222,7 +235,7 @@ class grafico_pruebas_esteticas_xls
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
-          $SC_Label = (isset($this->New_label['ot_fecha_fin_rep'])) ? $this->New_label['ot_fecha_fin_rep'] : "Fecha Final Reparación"; 
+          $SC_Label = (isset($this->New_label['ot_fecha_fin_rep'])) ? $this->New_label['ot_fecha_fin_rep'] : "Fecha Fin Rep"; 
           if ($Cada_col == "ot_fecha_fin_rep" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
              if (!NM_is_utf8($SC_Label))
@@ -230,6 +243,39 @@ class grafico_pruebas_esteticas_xls
                   $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
               }
               $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+              $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
+              $this->xls_col++;
+          }
+          $SC_Label = (isset($this->New_label['usuarios_dp_nombre'])) ? $this->New_label['usuarios_dp_nombre'] : "Repara"; 
+          if ($Cada_col == "usuarios_dp_nombre" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
+          {
+             if (!NM_is_utf8($SC_Label))
+              {
+                  $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
+              }
+              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+              $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
+              $this->xls_col++;
+          }
+          $SC_Label = (isset($this->New_label['usuarios_dp_apaterno'])) ? $this->New_label['usuarios_dp_apaterno'] : "Tecnico"; 
+          if ($Cada_col == "usuarios_dp_apaterno" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
+          {
+             if (!NM_is_utf8($SC_Label))
+              {
+                  $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
+              }
+              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+              $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
+              $this->xls_col++;
+          }
+          $SC_Label = (isset($this->New_label['ot_num_no_ok'])) ? $this->New_label['ot_num_no_ok'] : "Num No Ok"; 
+          if ($Cada_col == "ot_num_no_ok" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
+          {
+             if (!NM_is_utf8($SC_Label))
+              {
+                  $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
+              }
+              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
@@ -266,25 +312,14 @@ class grafico_pruebas_esteticas_xls
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
-          $SC_Label = (isset($this->New_label['tipoalmacen_almacen'])) ? $this->New_label['tipoalmacen_almacen'] : "Almacen"; 
-          if ($Cada_col == "tipoalmacen_almacen" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
+          $SC_Label = (isset($this->New_label['tipoalmacen_id_almacen'])) ? $this->New_label['tipoalmacen_id_almacen'] : "Id Almacen"; 
+          if ($Cada_col == "tipoalmacen_id_almacen" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
           {
              if (!NM_is_utf8($SC_Label))
               {
                   $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
               }
-              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-              $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
-              $this->xls_col++;
-          }
-          $SC_Label = (isset($this->New_label['cat_pruebas_esteticas_descripcion'])) ? $this->New_label['cat_pruebas_esteticas_descripcion'] : "Prueba Estetica"; 
-          if ($Cada_col == "cat_pruebas_esteticas_descripcion" && (!isset($this->NM_cmp_hidden[$Cada_col]) || $this->NM_cmp_hidden[$Cada_col] != "off"))
-          {
-             if (!NM_is_utf8($SC_Label))
-              {
-                  $SC_Label = mb_convert_encoding($SC_Label, "UTF-8", $_SESSION['scriptcase']['charset']);
-              }
-              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+              $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
               $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $SC_Label);
               $this->xls_col++;
           }
@@ -299,16 +334,19 @@ class grafico_pruebas_esteticas_xls
          $this->ot_idp = $rs->fields[2] ;  
          $this->ot_idp = (string)$this->ot_idp;
          $this->ot_nserie = $rs->fields[3] ;  
-         $this->ot_u_recibe = $rs->fields[4] ;  
-         $this->ot_u_recibe = (string)$this->ot_u_recibe;
-         $this->ot_f_recibo = $rs->fields[5] ;  
-         $this->ot_fecha_fin = $rs->fields[6] ;  
-         $this->ot_fecha_fin_rep = $rs->fields[7] ;  
-         $this->ot_status_proceso = $rs->fields[8] ;  
-         $this->ot_status_cliente = $rs->fields[9] ;  
-         $this->ot_shipdate = $rs->fields[10] ;  
-         $this->tipoalmacen_almacen = $rs->fields[11] ;  
-         $this->cat_pruebas_esteticas_descripcion = $rs->fields[12] ;  
+         $this->ot_f_recibo = $rs->fields[4] ;  
+         $this->ot_fecha_fin = $rs->fields[5] ;  
+         $this->ot_fecha_fin_rep = $rs->fields[6] ;  
+         $this->usuarios_dp_nombre = $rs->fields[7] ;  
+         $this->usuarios_dp_apaterno = $rs->fields[8] ;  
+         $this->ot_num_no_ok = $rs->fields[9] ;  
+         $this->ot_num_no_ok = (string)$this->ot_num_no_ok;
+         $this->ot_status_proceso = $rs->fields[10] ;  
+         $this->ot_status_cliente = $rs->fields[11] ;  
+         $this->ot_shipdate = $rs->fields[12] ;  
+         $this->tipoalmacen_id_almacen = $rs->fields[13] ;  
+         $this->tipoalmacen_id_almacen = (string)$this->tipoalmacen_id_almacen;
+         $this->cat_pruebas_esteticas_descripcion = $rs->fields[14] ;  
          $this->sc_proc_grid = true; 
          foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'] as $Cada_col)
          { 
@@ -331,7 +369,11 @@ class grafico_pruebas_esteticas_xls
          {
              $this->ot_id = mb_convert_encoding($this->ot_id, "UTF-8", $_SESSION['scriptcase']['charset']);
          }
-         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+         if (is_numeric($this->ot_id))
+         {
+             $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getNumberFormat()->setFormatCode('#,##0');
+         }
          $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_id);
          $this->xls_col++;
    }
@@ -353,7 +395,11 @@ class grafico_pruebas_esteticas_xls
          {
              $this->ot_idp = mb_convert_encoding($this->ot_idp, "UTF-8", $_SESSION['scriptcase']['charset']);
          }
-         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+         if (is_numeric($this->ot_idp))
+         {
+             $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getNumberFormat()->setFormatCode('#,##0');
+         }
          $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_idp);
          $this->xls_col++;
    }
@@ -368,20 +414,16 @@ class grafico_pruebas_esteticas_xls
          $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_nserie);
          $this->xls_col++;
    }
-   //----- ot_u_recibe
-   function NM_export_ot_u_recibe()
-   {
-         if (!NM_is_utf8($this->ot_u_recibe))
-         {
-             $this->ot_u_recibe = mb_convert_encoding($this->ot_u_recibe, "UTF-8", $_SESSION['scriptcase']['charset']);
-         }
-         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_u_recibe);
-         $this->xls_col++;
-   }
    //----- ot_f_recibo
    function NM_export_ot_f_recibo()
    {
+         $conteudo_x =  $this->ot_f_recibo;
+         nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+         if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+         { 
+             $this->nm_data->SetaData($this->ot_f_recibo, "YYYY-MM-DD");
+             $this->ot_f_recibo = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+         } 
          if (!NM_is_utf8($this->ot_f_recibo))
          {
              $this->ot_f_recibo = mb_convert_encoding($this->ot_f_recibo, "UTF-8", $_SESSION['scriptcase']['charset']);
@@ -393,6 +435,16 @@ class grafico_pruebas_esteticas_xls
    //----- ot_fecha_fin
    function NM_export_ot_fecha_fin()
    {
+         if (substr($this->ot_fecha_fin, 10, 1) == "-") 
+         { 
+             $this->ot_fecha_fin = substr($this->ot_fecha_fin, 0, 10) . " " . substr($this->ot_fecha_fin, 11);
+         } 
+         if (substr($this->ot_fecha_fin, 13, 1) == ".") 
+         { 
+            $this->ot_fecha_fin = substr($this->ot_fecha_fin, 0, 13) . ":" . substr($this->ot_fecha_fin, 14, 2) . ":" . substr($this->ot_fecha_fin, 17);
+         } 
+         $this->nm_data->SetaData($this->ot_fecha_fin, "YYYY-MM-DD HH:II:SS");
+         $this->ot_fecha_fin = $this->nm_data->FormataSaida($this->Nm_date_format("DH", "ddmmaaaa;hhiiss"));
          if (!NM_is_utf8($this->ot_fecha_fin))
          {
              $this->ot_fecha_fin = mb_convert_encoding($this->ot_fecha_fin, "UTF-8", $_SESSION['scriptcase']['charset']);
@@ -404,12 +456,56 @@ class grafico_pruebas_esteticas_xls
    //----- ot_fecha_fin_rep
    function NM_export_ot_fecha_fin_rep()
    {
+         $conteudo_x =  $this->ot_fecha_fin_rep;
+         nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+         if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+         { 
+             $this->nm_data->SetaData($this->ot_fecha_fin_rep, "YYYY-MM-DD");
+             $this->ot_fecha_fin_rep = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+         } 
          if (!NM_is_utf8($this->ot_fecha_fin_rep))
          {
              $this->ot_fecha_fin_rep = mb_convert_encoding($this->ot_fecha_fin_rep, "UTF-8", $_SESSION['scriptcase']['charset']);
          }
          $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
          $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_fecha_fin_rep);
+         $this->xls_col++;
+   }
+   //----- usuarios_dp_nombre
+   function NM_export_usuarios_dp_nombre()
+   {
+         if (!NM_is_utf8($this->usuarios_dp_nombre))
+         {
+             $this->usuarios_dp_nombre = mb_convert_encoding($this->usuarios_dp_nombre, "UTF-8", $_SESSION['scriptcase']['charset']);
+         }
+         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->usuarios_dp_nombre);
+         $this->xls_col++;
+   }
+   //----- usuarios_dp_apaterno
+   function NM_export_usuarios_dp_apaterno()
+   {
+         if (!NM_is_utf8($this->usuarios_dp_apaterno))
+         {
+             $this->usuarios_dp_apaterno = mb_convert_encoding($this->usuarios_dp_apaterno, "UTF-8", $_SESSION['scriptcase']['charset']);
+         }
+         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->usuarios_dp_apaterno);
+         $this->xls_col++;
+   }
+   //----- ot_num_no_ok
+   function NM_export_ot_num_no_ok()
+   {
+         if (!NM_is_utf8($this->ot_num_no_ok))
+         {
+             $this->ot_num_no_ok = mb_convert_encoding($this->ot_num_no_ok, "UTF-8", $_SESSION['scriptcase']['charset']);
+         }
+         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+         if (is_numeric($this->ot_num_no_ok))
+         {
+             $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getNumberFormat()->setFormatCode('#,##0');
+         }
+         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_num_no_ok);
          $this->xls_col++;
    }
    //----- ot_status_proceso
@@ -437,6 +533,13 @@ class grafico_pruebas_esteticas_xls
    //----- ot_shipdate
    function NM_export_ot_shipdate()
    {
+         $conteudo_x =  $this->ot_shipdate;
+         nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+         if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+         { 
+             $this->nm_data->SetaData($this->ot_shipdate, "YYYY-MM-DD");
+             $this->ot_shipdate = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+         } 
          if (!NM_is_utf8($this->ot_shipdate))
          {
              $this->ot_shipdate = mb_convert_encoding($this->ot_shipdate, "UTF-8", $_SESSION['scriptcase']['charset']);
@@ -445,26 +548,19 @@ class grafico_pruebas_esteticas_xls
          $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->ot_shipdate);
          $this->xls_col++;
    }
-   //----- tipoalmacen_almacen
-   function NM_export_tipoalmacen_almacen()
+   //----- tipoalmacen_id_almacen
+   function NM_export_tipoalmacen_id_almacen()
    {
-         if (!NM_is_utf8($this->tipoalmacen_almacen))
+         if (!NM_is_utf8($this->tipoalmacen_id_almacen))
          {
-             $this->tipoalmacen_almacen = mb_convert_encoding($this->tipoalmacen_almacen, "UTF-8", $_SESSION['scriptcase']['charset']);
+             $this->tipoalmacen_id_almacen = mb_convert_encoding($this->tipoalmacen_id_almacen, "UTF-8", $_SESSION['scriptcase']['charset']);
          }
-         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->tipoalmacen_almacen);
-         $this->xls_col++;
-   }
-   //----- cat_pruebas_esteticas_descripcion
-   function NM_export_cat_pruebas_esteticas_descripcion()
-   {
-         if (!NM_is_utf8($this->cat_pruebas_esteticas_descripcion))
+         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+         if (is_numeric($this->tipoalmacen_id_almacen))
          {
-             $this->cat_pruebas_esteticas_descripcion = mb_convert_encoding($this->cat_pruebas_esteticas_descripcion, "UTF-8", $_SESSION['scriptcase']['charset']);
+             $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getNumberFormat()->setFormatCode('#,##0');
          }
-         $this->xls_dados->getActiveSheet()->getStyle($this->calc_cell($this->xls_col) . $this->xls_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->cat_pruebas_esteticas_descripcion);
+         $this->xls_dados->getActiveSheet()->setCellValue($this->calc_cell($this->xls_col) . $this->xls_row, $this->tipoalmacen_id_almacen);
          $this->xls_col++;
    }
 
@@ -527,7 +623,7 @@ class grafico_pruebas_esteticas_xls
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <HEAD>
- <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> - ot :: Excel</TITLE>
+ <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> -  :: Excel</TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
  <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
  <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>

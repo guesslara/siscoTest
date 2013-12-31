@@ -21,9 +21,9 @@
             $$nmgp_var = $nmgp_val;
        }
    }
-   if (isset($_SESSION['session_sec_aplicacao']["Lexmark_____grafico_pruebas_esteticas"]))
+   if (isset($_SESSION['session_sec_aplicacao']["graficas_IBM_____grafico_pruebas_esteticas"]))
    {
-      unset($_SESSION['session_sec_aplicacao']["Lexmark_____grafico_pruebas_esteticas"]);
+      unset($_SESSION['session_sec_aplicacao']["graficas_IBM_____grafico_pruebas_esteticas"]);
    }
 
    if (isset($_SESSION['session_sec_aplicacao']) && empty($_SESSION['session_sec_aplicacao']))

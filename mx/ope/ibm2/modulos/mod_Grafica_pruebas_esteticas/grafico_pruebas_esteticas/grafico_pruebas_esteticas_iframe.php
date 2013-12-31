@@ -55,7 +55,7 @@ include_once('../_lib/buttons/' . str_replace('.css', '.php', $STR_btn));
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <head>
- <title><?php echo $Nm_lang['lang_othr_grid_titl'] ?> - ot :: PDF</title>
+ <title><?php echo $Nm_lang['lang_othr_grid_titl'] ?> -  :: PDF</title>
  <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $STR_schema; ?>_export.css" /> 
  <link rel="stylesheet" type="text/css" href="../_lib/buttons/<?php echo $STR_btn; ?>" /> 

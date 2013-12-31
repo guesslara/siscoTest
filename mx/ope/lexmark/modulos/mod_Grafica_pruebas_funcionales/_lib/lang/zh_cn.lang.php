@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "请在此处键入您的消息。";
   $this->Nm_lang['lang_user_logged'] = "已登录用户%s。要继续吗？ <br/>这将退出登录活跃用户。";
   $this->Nm_lang['lang_errm_tz'] = "上传功能需要在支持PHP的时区扩展。 <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >检查它的设置方式。</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >支持的时区列表。</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "不包含";
   $this->Nm_lang['lang_chrt_angl_vals'] = "数值显示角度";
   $this->Nm_lang['lang_chrt_anlt'] = "分析";
   $this->Nm_lang['lang_chrt_bars'] = "条(柱)形图";

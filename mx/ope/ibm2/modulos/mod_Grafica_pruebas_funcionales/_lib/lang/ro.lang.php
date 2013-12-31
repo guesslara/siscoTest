@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Vă rugăm, tastați aici mesajul .";
   $this->Nm_lang['lang_user_logged'] = "%s utilizatorul este deja logat. Continuați? <br/> Acest lucru se va deconecta de utilizator activ.";
   $this->Nm_lang['lang_errm_tz'] = "Caracteristica Upload necesită extinderea zonei activat în PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Verifica modul în care-l instituie.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Lista zonelor orare susținute.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Nu Conține";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Valoare unghi";
   $this->Nm_lang['lang_chrt_anlt'] = "Analitic";
   $this->Nm_lang['lang_chrt_bars'] = "Bară/vertical";

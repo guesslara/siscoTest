@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Prosím , zadajte svoju správu tu .";
   $this->Nm_lang['lang_user_logged'] = "Užívateľ %s je už prihlásený. Pokračovať? <br/> Tým sa odhlásiť aktívneho užívateľa.";
   $this->Nm_lang['lang_errm_tz'] = "Funkcie Nahrať vyžaduje rozšírenie časové pásmo povolené v PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Pozrite sa, ako ho nastaviť.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Zoznam podporovaných Časové pásma.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Nie Obsahuje";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Smer hodnoty";
   $this->Nm_lang['lang_chrt_anlt'] = "Analytický";
   $this->Nm_lang['lang_chrt_bars'] = "Lišta (vertikálna)";

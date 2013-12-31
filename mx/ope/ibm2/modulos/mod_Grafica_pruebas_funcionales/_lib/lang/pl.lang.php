@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Wpisz tutaj swoją wiadomość.";
   $this->Nm_lang['lang_user_logged'] = "%s Użytkownik jest już zalogowany. Kontynuować? <br/>Nastąpi wylogowanie aktywnego użytkownika.";
   $this->Nm_lang['lang_errm_tz'] = "Prześlij funkcja wymaga rozszerzenia czasową włączona w PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Sprawdź, jak to ustawić.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Lista obsługiwanych stref czasowych.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Nie zawiera";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Kąt wartości";
   $this->Nm_lang['lang_chrt_anlt'] = "Analityczny";
   $this->Nm_lang['lang_chrt_bars'] = "Słupek/pionowo";

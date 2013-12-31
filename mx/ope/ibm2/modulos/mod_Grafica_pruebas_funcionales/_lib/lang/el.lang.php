@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Παρακαλούμε, εισάγετε εδώ το μήνυμά σας .";
   $this->Nm_lang['lang_user_logged'] = "%s χρήστης είναι ήδη συνδεδεμένος. Συνέχεια; <br/> Αυτό θα καταγράψει την ενεργό χρήστη.";
   $this->Nm_lang['lang_errm_tz'] = "Η Ανεβάστε το χαρακτηριστικό απαιτεί την επέκταση Χρονική ζώνη ενεργοποιημένη την PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Ελέγξτε πώς θα συσταθεί.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Λίστα υποστηριζόμενων Ώρες μετάδοσης.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Δεν Περιέχει";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Τιμή γωνία";
   $this->Nm_lang['lang_chrt_anlt'] = "Αναλυτικό";
   $this->Nm_lang['lang_chrt_bars'] = "Μπάρες/Κάθετα";

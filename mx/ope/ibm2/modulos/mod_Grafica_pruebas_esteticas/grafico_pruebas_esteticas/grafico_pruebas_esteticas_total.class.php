@@ -16,6 +16,30 @@ class grafico_pruebas_esteticas_total
       $this->nm_data = new nm_data("es");
       if (isset($_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['campos_busca']) && !empty($_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['campos_busca']))
       { 
+          $this->evaluacion_pruebas_id = $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_id, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_id = substr($this->evaluacion_pruebas_id, 0, $tmp_pos);
+          }
+          $this->evaluacion_pruebas_fecha = $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_fecha']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_fecha, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_fecha = substr($this->evaluacion_pruebas_fecha, 0, $tmp_pos);
+          }
+          $this->evaluacion_pruebas_id_ot = $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id_ot']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_id_ot, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_id_ot = substr($this->evaluacion_pruebas_id_ot, 0, $tmp_pos);
+          }
+          $this->evaluacion_pruebas_tipo_prueba = $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_tipo_prueba']; 
+          $tmp_pos = strpos($this->evaluacion_pruebas_tipo_prueba, "##@@");
+          if ($tmp_pos !== false)
+          {
+              $this->evaluacion_pruebas_tipo_prueba = substr($this->evaluacion_pruebas_tipo_prueba, 0, $tmp_pos);
+          }
       } 
    }
 
@@ -50,7 +74,7 @@ class grafico_pruebas_esteticas_total
    } 
 
    //-----  cat_pruebas_esteticas_descripcion
-   function quebra_cat_pruebas_esteticas_descripcion_tecnico($cat_pruebas_esteticas_descripcion, $arg_sum_cat_pruebas_esteticas_descripcion) 
+   function quebra_cat_pruebas_esteticas_descripcion_esteticas($cat_pruebas_esteticas_descripcion, $arg_sum_cat_pruebas_esteticas_descripcion) 
    {
       global $tot_cat_pruebas_esteticas_descripcion ;  
       $tot_cat_pruebas_esteticas_descripcion = array() ;  
@@ -58,11 +82,35 @@ class grafico_pruebas_esteticas_total
    }
 
    //----- 
-   function resumo_tecnico($destino_resumo, &$array_total_cat_pruebas_esteticas_descripcion)
+   function resumo_esteticas($destino_resumo, &$array_total_cat_pruebas_esteticas_descripcion)
    {
       global $nada, $nm_lang;
    if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']))
    { 
+       $this->evaluacion_pruebas_id = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_id, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_id = substr($this->evaluacion_pruebas_id, 0, $tmp_pos);
+       }
+       $this->evaluacion_pruebas_fecha = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_fecha']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_fecha, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_fecha = substr($this->evaluacion_pruebas_fecha, 0, $tmp_pos);
+       }
+       $this->evaluacion_pruebas_id_ot = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id_ot']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_id_ot, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_id_ot = substr($this->evaluacion_pruebas_id_ot, 0, $tmp_pos);
+       }
+       $this->evaluacion_pruebas_tipo_prueba = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_tipo_prueba']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_tipo_prueba, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_tipo_prueba = substr($this->evaluacion_pruebas_tipo_prueba, 0, $tmp_pos);
+       }
    } 
    $this->sc_where_orig   = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];
    $this->sc_where_atual  = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq'];
@@ -125,7 +173,7 @@ class grafico_pruebas_esteticas_total
       }
    }
    //----- 
-   function graficotecnico(&$array_label, &$array_label_orig, &$array_datay, $array_total_cat_pruebas_esteticas_descripcion)
+   function graficoesteticas(&$array_label, &$array_label_orig, &$array_datay, $array_total_cat_pruebas_esteticas_descripcion)
    {
       $array_label         = array();
       $array_label_orig    = array();

@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "ఇక్కడ మీ సందేశాన్ని టైప్ చేయండి .";
   $this->Nm_lang['lang_user_logged'] = "వినియోగదారు %s ఇప్పటికే లాగిన్ అయ్యి వున్నడు . కొనసాగించు? <br/> ఈ సక్రియ వినియోగదారు లాగ్ అవుట్ చేస్తుంది.";
   $this->Nm_lang['lang_errm_tz'] = "అప్లోడ్ ఫీచర్ PHP లో ఎనేబుల్ సమయ మండలి పొడిగింపు అవసరం. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >ఇది ఏర్పాటు ఎలా తనిఖీ.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >మద్దతు లను జాబితా.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "కలిగిఉన్నది";
   $this->Nm_lang['lang_chrt_angl_vals'] = "విలువ యొక్క  కోణం";
   $this->Nm_lang['lang_chrt_anlt'] = "విశ్లేషణాత్మకమైనది";
   $this->Nm_lang['lang_chrt_bars'] = "బార్ /నిటారైనది";

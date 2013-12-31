@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Пожалуйста , введите ваше сообщение здесь .";
   $this->Nm_lang['lang_user_logged'] = "Пользователь %s уже зарегистрирован. Продолжить? <br/> Это позволит выйти из активного пользователя.";
   $this->Nm_lang['lang_errm_tz'] = "Функция загрузки требуется расширение часовой пояс включен в PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Проверьте, как его настроить.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Список поддерживаемых часовых поясов.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Не содержит";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Угол значения";
   $this->Nm_lang['lang_chrt_anlt'] = "Аналитический";
   $this->Nm_lang['lang_chrt_bars'] = "Черта/Вертикальный";

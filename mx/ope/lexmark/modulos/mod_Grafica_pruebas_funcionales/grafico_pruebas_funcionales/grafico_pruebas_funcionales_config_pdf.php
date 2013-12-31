@@ -38,6 +38,10 @@
              break;
          }
     }
+    if (!isset($tradutor[$language]))
+    {
+		exit;
+    }
     $tp_papel = array();
     if (!isset($_SESSION['scriptcase']['sc_tp_pdf']) || $_SESSION['scriptcase']['sc_tp_pdf'] == "pd4ml")
     {

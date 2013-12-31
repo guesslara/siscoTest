@@ -76,17 +76,6 @@ function Ord_cmp_init()
        $tab_def_campos['ot_nserie'] = "ot.nserie";
        $tab_converte["ot.nserie"]   = "ot_nserie";
    }
-   $tab_ger_campos['ot_u_recibe'] = "on";
-   if ($use_alias == "S")
-   {
-       $tab_def_campos['ot_u_recibe'] = "ot_u_recibe";
-       $tab_converte["ot_u_recibe"]   = "ot_u_recibe";
-   }
-   else
-   {
-       $tab_def_campos['ot_u_recibe'] = "ot.u_recibe";
-       $tab_converte["ot.u_recibe"]   = "ot_u_recibe";
-   }
    $tab_ger_campos['ot_f_recibo'] = "on";
    if ($use_alias == "S")
    {
@@ -119,6 +108,39 @@ function Ord_cmp_init()
    {
        $tab_def_campos['ot_fecha_fin_rep'] = "ot.fecha_fin_rep";
        $tab_converte["ot.fecha_fin_rep"]   = "ot_fecha_fin_rep";
+   }
+   $tab_ger_campos['usuarios_dp_nombre'] = "on";
+   if ($use_alias == "S")
+   {
+       $tab_def_campos['usuarios_dp_nombre'] = "usuarios_dp_nombre";
+       $tab_converte["usuarios_dp_nombre"]   = "usuarios_dp_nombre";
+   }
+   else
+   {
+       $tab_def_campos['usuarios_dp_nombre'] = "usuarios.dp_nombre";
+       $tab_converte["usuarios.dp_nombre"]   = "usuarios_dp_nombre";
+   }
+   $tab_ger_campos['usuarios_dp_apaterno'] = "on";
+   if ($use_alias == "S")
+   {
+       $tab_def_campos['usuarios_dp_apaterno'] = "usuarios_dp_apaterno";
+       $tab_converte["usuarios_dp_apaterno"]   = "usuarios_dp_apaterno";
+   }
+   else
+   {
+       $tab_def_campos['usuarios_dp_apaterno'] = "usuarios.dp_apaterno";
+       $tab_converte["usuarios.dp_apaterno"]   = "usuarios_dp_apaterno";
+   }
+   $tab_ger_campos['ot_num_no_ok'] = "on";
+   if ($use_alias == "S")
+   {
+       $tab_def_campos['ot_num_no_ok'] = "ot_num_no_ok";
+       $tab_converte["ot_num_no_ok"]   = "ot_num_no_ok";
+   }
+   else
+   {
+       $tab_def_campos['ot_num_no_ok'] = "ot.num_no_ok";
+       $tab_converte["ot.num_no_ok"]   = "ot_num_no_ok";
    }
    $tab_ger_campos['ot_status_proceso'] = "on";
    if ($use_alias == "S")
@@ -153,27 +175,16 @@ function Ord_cmp_init()
        $tab_def_campos['ot_shipdate'] = "ot.shipdate";
        $tab_converte["ot.shipdate"]   = "ot_shipdate";
    }
-   $tab_ger_campos['tipoalmacen_almacen'] = "on";
+   $tab_ger_campos['tipoalmacen_id_almacen'] = "on";
    if ($use_alias == "S")
    {
-       $tab_def_campos['tipoalmacen_almacen'] = "tipoalmacen_almacen";
-       $tab_converte["tipoalmacen_almacen"]   = "tipoalmacen_almacen";
+       $tab_def_campos['tipoalmacen_id_almacen'] = "tipoalmacen_id_almacen";
+       $tab_converte["tipoalmacen_id_almacen"]   = "tipoalmacen_id_almacen";
    }
    else
    {
-       $tab_def_campos['tipoalmacen_almacen'] = "tipoalmacen.almacen";
-       $tab_converte["tipoalmacen.almacen"]   = "tipoalmacen_almacen";
-   }
-   $tab_ger_campos['cat_pruebas_esteticas_descripcion'] = "on";
-   if ($use_alias == "S")
-   {
-       $tab_def_campos['cat_pruebas_esteticas_descripcion'] = "cmp_maior_30_1";
-       $tab_converte["cmp_maior_30_1"]   = "cat_pruebas_esteticas_descripcion";
-   }
-   else
-   {
-       $tab_def_campos['cat_pruebas_esteticas_descripcion'] = "cat_pruebas_esteticas.descripcion";
-       $tab_converte["cat_pruebas_esteticas.descripcion"]   = "cat_pruebas_esteticas_descripcion";
+       $tab_def_campos['tipoalmacen_id_almacen'] = "tipoalmacen.id_almacen";
+       $tab_converte["tipoalmacen.id_almacen"]   = "tipoalmacen_id_almacen";
    }
    if (isset($_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['field_display']) && !empty($_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['field_display']))
    {
@@ -274,7 +285,7 @@ function Sel_processa_form()
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <HEAD>
- <TITLE><?php echo $this->Nm_lang['lang_othr_grid_titl'] ?> - ot</TITLE>
+ <TITLE><?php echo $this->Nm_lang['lang_othr_grid_titl'] ?> - </TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
  <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
  <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>

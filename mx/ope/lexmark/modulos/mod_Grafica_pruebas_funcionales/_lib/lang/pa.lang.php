@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "ਇੱਥੇ ਆਪਣਾ ਸਨੇਹਾ ਲਿਖਣ ਦੀ ਕਿਰਪਾ ਕਰੋ";
   $this->Nm_lang['lang_user_logged'] = "ਯੂਜਰ %s ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਲੋਗਿਨ ਹੈ। ਜਾਰੀ ਰੱਖੋ? <br/> ਇਹ ਐਕਟਿਵ ਯੂਜਰ ਨੂੰ ਲੋਗਆਉਟ ਕਰ ਦੇਵੇਗਾ।";
   $this->Nm_lang['lang_errm_tz'] = "The Upload feature requires the Timezone extension enabled in the PHP.<br/><a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Check how set it up.</a><br/><a href=http://www.php.net/manual/en/timezones.php target=_blank >List of supported Timezones.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Not Contains";
   $this->Nm_lang['lang_chrt_angl_vals'] = "ਮੁੱਲ ਦਾ ਨਜ਼ਰੀਆ";
   $this->Nm_lang['lang_chrt_anlt'] = "ਵਿਸ਼ਲੇਸ਼ਨਾਤਮਕ";
   $this->Nm_lang['lang_chrt_bars'] = "ਬਾਰ /ਖੜੇ ਦਾਅ";

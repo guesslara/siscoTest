@@ -446,7 +446,7 @@ class grafico_pruebas_funcionales_grid
    if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_orig']) || $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['prim_cons'] || !empty($nmgp_parms))  
    { 
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['prim_cons'] = false;  
-       $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_orig'] = "";  
+       $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_orig'] = " where evaluacion_pruebas.tipo_prueba='FUNCIONAL'";  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_pesq']        = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_orig'];  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_pesq_ant']    = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['where_orig'];  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_funcionales']['cond_pesq']         = ""; 

@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "এখানে আপনার বার্তা টাইপ করুন।";
   $this->Nm_lang['lang_user_logged'] = "ব্যবহারকারী %s ইতিমধ্যে  লগ ইন করা । চালিয়ে যেতে চান? <br/> এটি সক্রিয় ব্যবহারকারী লগ আউট করবে।";
   $this->Nm_lang['lang_errm_tz'] = "আপলোড বৈশিষ্ট্য পিএইচপি সক্রিয় টাইমজোন এক্সটেনশন প্রয়োজন. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >এটি সেট আপ কিভাবে চেক করুন.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >সমর্থিত সময়ের অঞ্চলগুলোকে তালিকা.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "রয়েছে নেই";
   $this->Nm_lang['lang_chrt_angl_vals'] = "মূল্য কোন";
   $this->Nm_lang['lang_chrt_anlt'] = "বিশ্লেষণাত্মক";
   $this->Nm_lang['lang_chrt_bars'] = "বার/উলম্ব";

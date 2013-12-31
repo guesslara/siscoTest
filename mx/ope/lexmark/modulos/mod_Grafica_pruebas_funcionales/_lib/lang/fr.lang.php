@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "S'il vous plaît, entrez votre message ici.";
   $this->Nm_lang['lang_user_logged'] = "Utilisateur %s est déjà connecté. Continuer? <br/> Cela déconnecter l'utilisateur actif.";
   $this->Nm_lang['lang_errm_tz'] = "La fonction Upload nécessite l'extension du fuseau horaire activé dans le PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Vérifiez comment le configurer.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Liste des Fuseaux Horaires en charge.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Ne contient pas";
   $this->Nm_lang['lang_chrt_angl_vals'] = "L'angle de la valeur";
   $this->Nm_lang['lang_chrt_anlt'] = "Analytique";
   $this->Nm_lang['lang_chrt_bars'] = "Barre/Verticale";

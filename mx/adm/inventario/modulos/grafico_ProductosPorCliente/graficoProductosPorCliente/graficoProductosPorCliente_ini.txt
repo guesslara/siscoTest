@@ -1,6 +1,0 @@
-index.php
-Lexmark
-graficoProductosPorCliente
-NAO
-cons
-graficoProductosPorCliente

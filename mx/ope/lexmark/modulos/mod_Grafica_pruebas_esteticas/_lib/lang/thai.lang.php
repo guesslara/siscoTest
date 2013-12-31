@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "กรุณา พิมพ์ ข้อความของคุณ ที่นี่";
   $this->Nm_lang['lang_user_logged'] = "%s ผู้ใช้จะถูกบันทึกไว้แล้ว ต่อหรือไม่? <br/> นี้จะออกจากระบบของผู้ใช้ที่ใช้งานอยู่";
   $this->Nm_lang['lang_errm_tz'] = "คุณลักษณะที่อัพโหลดต้องมีการขยายโซนเปิดการใช้งานใน PHP <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >ตรวจสอบว่าตั้งขึ้น</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >รายชื่อของเขตเวลาได้รับการสนับสนุน</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "ไม่ได้มี";
   $this->Nm_lang['lang_chrt_angl_vals'] = "ค่ามุม";
   $this->Nm_lang['lang_chrt_anlt'] = "การวิเคราะห์";
   $this->Nm_lang['lang_chrt_bars'] = "แท่ง/แนวดิ่ง";

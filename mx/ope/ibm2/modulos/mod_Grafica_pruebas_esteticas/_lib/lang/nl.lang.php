@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Alsjeblieft , typ hier uw bericht .";
   $this->Nm_lang['lang_user_logged'] = "Gebruiker %s is al aangemeld. Doorgaan? <br/> Dit zal uitloggen de actieve gebruiker.";
   $this->Nm_lang['lang_errm_tz'] = "De functie uploaden vereist de Tijdzone extensie ingeschakeld in het PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Controleer hoe het op te zetten.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Lijst met ondersteunde tijdzones.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Bevat niet";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Grootte van de hoek";
   $this->Nm_lang['lang_chrt_anlt'] = "Analytisch";
   $this->Nm_lang['lang_chrt_bars'] = "Balk/Vertikaal";

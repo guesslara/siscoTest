@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "여기에 메시지를 입력 하십시오 .";
   $this->Nm_lang['lang_user_logged'] = "사용자 %s는 이미 기록됩니다. 계속 하시겠습니까? <br/> 이 활성 사용자가 로그 아웃됩니다.";
   $this->Nm_lang['lang_errm_tz'] = "업로드 기능은 PHP에서 사용 가능 시간대의 확장이 필요합니다. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >그것을 설정하는 방법을 확인합니다.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >지원하는 시간대 목록입니다.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "포함되지 않음";
   $this->Nm_lang['lang_chrt_angl_vals'] = "가격도";
   $this->Nm_lang['lang_chrt_anlt'] = "해설적";
   $this->Nm_lang['lang_chrt_bars'] = "줄/세로";

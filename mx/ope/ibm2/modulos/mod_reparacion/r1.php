@@ -175,6 +175,7 @@
 			error:function() { $("#reingreso").show().html('<center>Error: El servidor no responde. <br>Por favor intente mas tarde. </center>'); }
 		});	
 	}
+
 </script>
 </head>
 
@@ -192,6 +193,7 @@
 
 
 <div id="all">
+	<!--<a href="Hdd_1/index.php">captura</a>-->
 	<!--<div id="reingreso">&nbsp;</div>//-->	
     <!--<div id="menu_superior">//-->
 	</div>

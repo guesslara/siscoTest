@@ -446,7 +446,7 @@ class grafico_pruebas_esteticas_grid
    if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig']) || $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['prim_cons'] || !empty($nmgp_parms))  
    { 
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['prim_cons'] = false;  
-       $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = "";  
+       $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = " where evaluacion_pruebas.tipo_prueba='COSMETICA'";  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq']        = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq_ant']    = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['cond_pesq']         = ""; 

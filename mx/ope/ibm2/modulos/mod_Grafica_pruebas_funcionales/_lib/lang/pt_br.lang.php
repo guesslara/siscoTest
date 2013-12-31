@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Por favor, escreva aqui a sua mensagem.";
   $this->Nm_lang['lang_user_logged'] = "%s usuário já está conectado. Continuar? <br/> Isso vai sair o usuário ativo.";
   $this->Nm_lang['lang_errm_tz'] = "A função de Upload requer que a extensão Timezones esteja habilitada no PHP. <br/> <a href= https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/68/0/configurar-datetimezone-em-phpini target=_blank >Veja como configurá-la.</a> <br/> <a href=http://www.php.net/manual/pt_BR/timezones.php target=_blank >Lista de Timezones suportados.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Não Contém";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Angulo dos valores";
   $this->Nm_lang['lang_chrt_anlt'] = "Analítico";
   $this->Nm_lang['lang_chrt_bars'] = "Barra/Vertical";
@@ -562,7 +563,7 @@
   $this->Nm_lang['lang_srch_last_mnth'] = "Último mês";
   $this->Nm_lang['lang_srch_less'] = "menor que";
   $this->Nm_lang['lang_srch_less_equl'] = "menor ou igual a";
-  $this->Nm_lang['lang_srch_like'] = "que contenha";
+  $this->Nm_lang['lang_srch_like'] = "Contém";
   $this->Nm_lang['lang_srch_lst7'] = "Últimos 7 dias";
   $this->Nm_lang['lang_srch_lstw'] = "Semana Passada (seg-dom)";
   $this->Nm_lang['lang_srch_lstw_bsnd'] = "Última semana (seg-sex)";

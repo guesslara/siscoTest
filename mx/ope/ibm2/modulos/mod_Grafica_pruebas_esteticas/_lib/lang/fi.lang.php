@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "* Kirjoita tähän viestisi .";
   $this->Nm_lang['lang_user_logged'] = "Käyttäjä %s on jo kirjautunut. Jatka? <br/> Tämä kirjautua ulos aktiivinen käyttäjä.";
   $this->Nm_lang['lang_errm_tz'] = "Tallennettu ominaisuus edellyttää Aikavyöhyke laajennus käytössä PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Katso miten asettaa se.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Luettelo tuetuista Timezones.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Ei Sisältää";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Arvon kulma";
   $this->Nm_lang['lang_chrt_anlt'] = "Analyyttinen";
   $this->Nm_lang['lang_chrt_bars'] = "Bar/Pylväs";

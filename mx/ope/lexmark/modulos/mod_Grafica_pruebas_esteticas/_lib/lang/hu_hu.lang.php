@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Kérjük , írja ide az üzenetet.";
   $this->Nm_lang['lang_user_logged'] = "Felhasználó %s már bejelentkezett. Folytatás? <br/> Ez kijelentkezni az aktív felhasználó.";
   $this->Nm_lang['lang_errm_tz'] = "A feltöltés funkció megköveteli az időzóna kiterjesztést engedélyezve a PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Ellenőrizze, hogy állítsa fel.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >A támogatott Timezones.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Nem tartalmaz";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Értékek szöge";
   $this->Nm_lang['lang_chrt_anlt'] = "Analitikus";
   $this->Nm_lang['lang_chrt_bars'] = "Oszlop/Függőleges";

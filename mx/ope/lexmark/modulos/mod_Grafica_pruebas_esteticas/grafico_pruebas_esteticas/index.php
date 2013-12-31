@@ -139,8 +139,8 @@ class grafico_pruebas_esteticas_ini
       $this->nm_dt_criacao   = "20131204"; 
       $this->nm_hr_criacao   = "101156"; 
       $this->nm_autor_alt    = "jvillalobos"; 
-      $this->nm_dt_ult_alt   = ""; 
-      $this->nm_hr_ult_alt   = ""; 
+      $this->nm_dt_ult_alt   = "20131223"; 
+      $this->nm_hr_ult_alt   = "163249"; 
       $temp_bug_list         = explode(" ", microtime()); 
       list($NM_usec, $NM_sec) = $temp_bug_list; 
       $this->nm_timestamp    = (float) $NM_sec; 
@@ -469,7 +469,7 @@ class grafico_pruebas_esteticas_ini
       $this->nm_ttf_chi  = array("zh_cn", "zh_hk", "ko");
       $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['seq_dir'] = 0; 
       $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['sub_dir'] = array(); 
-      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_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";
+      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_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";
       ob_start();
       $this->prep_conect();
       $this->conectDB();
@@ -1400,7 +1400,7 @@ class grafico_pruebas_esteticas_apl
       if (substr($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opcao'], 0, 7) != "grafico" && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig']) || !empty($nmgp_parms) || !empty($GLOBALS["nmgp_parms"])))  
       { 
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['prim_cons'] = true;  
-         $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = "";  
+         $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = " where evaluacion_pruebas.tipo_prueba='COSMETICA'";  
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq']       = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq_ant']   = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['cond_pesq'] = ""; 
@@ -1927,14 +1927,18 @@ else
          }
       }
       $Nm_datas[] = "evaluacion_pruebas_fecha";$Nm_datas[] = "ot_f_recibo";$Nm_datas[] = "ot_fecha_inicio";$Nm_datas[] = "ot_fecha_fin";$Nm_datas[] = "ot_fecha_fin_rep";$Nm_datas[] = "ot_shipdate";
-      if (in_array($campo_join, $Nm_datas) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
-      {
-         $nm_aspas = "#";
-      }
-         if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP"))
+          if (in_array($campo_join, $Nm_datas) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+             $nm_aspas = "#";
+          }
+         if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP" || strtoupper($condicao) == "NP"))
          {
              $nome     = "CAST ($nome AS TEXT)";
              $nm_aspas = "'";
+         }
+         if (in_array($campo_join, $Nm_datas) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+         {
+             $nome     = "to_char ($nome, 'YYYY-MM-DD')";
          }
          if (substr($tp_campo, 0, 4) == "DATE" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
          {
@@ -1987,17 +1991,50 @@ else
                    if ($this->NM_data_qp['ano'] != "____")
                    {
                        $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
-                       $NM_cmd     .= "year($nome) = " . $this->NM_data_qp['ano'];
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('year' from $nome) = " . $this->NM_data_qp['ano'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(year from $nome) = " . $this->NM_data_qp['ano'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "year($nome) = " . $this->NM_data_qp['ano'];
+                       }
                    }
                    if ($this->NM_data_qp['mes'] != "__")
                    {
                        $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
-                       $NM_cmd     .= "month($nome) = " . $this->NM_data_qp['mes'];
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('month' from $nome) = " . $this->NM_data_qp['mes'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(month from $nome) = " . $this->NM_data_qp['mes'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "month($nome) = " . $this->NM_data_qp['mes'];
+                       }
                    }
                    if ($this->NM_data_qp['dia'] != "__")
                    {
                        $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
-                       $NM_cmd     .= "day($nome) = " . $this->NM_data_qp['dia'];
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('day' from $nome) = " . $this->NM_data_qp['dia'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(day from $nome) = " . $this->NM_data_qp['dia'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "day($nome) = " . $this->NM_data_qp['dia'];
+                       }
                    }
                    if (!empty($NM_cmd))
                    {
@@ -2008,6 +2045,69 @@ else
                else
                {
                    $comando        .= $nm_ini_lower . $nome . $nm_fim_lower ." like '%" . $campo . "%'";
+               }
+            break;
+            case "NP":     // 
+               if (substr($tp_campo, 0, 4) == "DATE")
+               {
+                   $NM_cmd     = "";
+                   if ($this->NM_data_qp['ano'] != "____")
+                   {
+                       $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('year' from $nome) <> " . $this->NM_data_qp['ano'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(year from $nome) <> " . $this->NM_data_qp['ano'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "year($nome) <> " . $this->NM_data_qp['ano'];
+                       }
+                   }
+                   if ($this->NM_data_qp['mes'] != "__")
+                   {
+                       $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('month' from $nome) <> " . $this->NM_data_qp['mes'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(month from $nome) <> " . $this->NM_data_qp['mes'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "month($nome) <> " . $this->NM_data_qp['mes'];
+                       }
+                   }
+                   if ($this->NM_data_qp['dia'] != "__")
+                   {
+                       $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('day' from $nome) <> " . $this->NM_data_qp['dia'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(day from $nome) <> " . $this->NM_data_qp['dia'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "day($nome) <> " . $this->NM_data_qp['dia'];
+                       }
+                   }
+                   if (!empty($NM_cmd))
+                   {
+                       $NM_cmd     = " (" . $NM_cmd . ")";
+                       $comando        .= $NM_cmd;
+                   }
+               }
+               else
+               {
+                   $comando        .= $nm_ini_lower . $nome . $nm_fim_lower ." not like '%" . $campo . "%'";
                }
             break;
             case "DF":     // 

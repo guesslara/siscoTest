@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "براےمہربانی پیغام یہاں لکھیں";
   $this->Nm_lang['lang_user_logged'] = "صارف %s پہلے سے ہی لاگ ان ہے. اگر آپ ایسا کریں گے تو موجودہ صارف لوگ اوٹ ہو جائے گا.";
   $this->Nm_lang['lang_errm_tz'] = "اپ لوڈ کریں نمایاں کریں پی ایچ پی کی فعال ٹائم زون کی توسیع کی ضرورت ہے. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >اس سیٹ اپ کس طرح کی جانچ پڑتال کریں.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >کی حمایت کی ٹائم زون کی فہرست.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "پر مشتمل نہیں";
   $this->Nm_lang['lang_chrt_angl_vals'] = "مقدار کا زاویہ";
   $this->Nm_lang['lang_chrt_anlt'] = "تجزیاتی";
   $this->Nm_lang['lang_chrt_bars'] = "Bar/سیدھا کھڑا";

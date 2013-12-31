@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = ", Burada mesaj yazın lütfen .";
   $this->Nm_lang['lang_user_logged'] = "Kullanıcı %s zaten kaydedilir. Devam edilsin mi? <br/> Bu etkin kullanıcı oturumu kapatır.";
   $this->Nm_lang['lang_errm_tz'] = "Yükleme özelliği PHP etkin Dilimi uzantısı gerektirir. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Kurmak nasıl kontrol edin.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Desteklenen Dilimlerinin Listesi.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "İçeriyor Değil";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Değerin Açısı";
   $this->Nm_lang['lang_chrt_anlt'] = "Analitik";
   $this->Nm_lang['lang_chrt_bars'] = "Çubuk/Dikey";

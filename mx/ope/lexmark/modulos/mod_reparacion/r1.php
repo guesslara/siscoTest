@@ -180,13 +180,14 @@
 
 <body>
 
-<div id="div_productos"><input type="button" value="Inicio" onclick="'<a href="../ope/lexmark/modulos/mod_Grafica_Fallas_tecnicas/index.php">'"/> </div>
-<input type="button" value="Inicio" onclick="'<a href="../ope/lexmark/modulos/Hdd_1/index.php">'"/>
+<div id="div_productos">&nbsp;</div>
+
 <!--href="../ope/lexmark/modulos/mod_Grafica_Fallas_tecnicas/index.php">-->
 <!--<div id="div_nuevo">
 	<div class="div_nuevoA" id="div_nuevoA">&nbsp;Nuevo Diagn&oacute;stico.</div>
 	<div class="div_nuevoC" id="div_nuevoC">&nbsp;</div>
 	<div class="div_nuevoD" id="div_nuevoD">
+	<input type="button" value="Inicio" onclick="'<a href="../ope/lexmark/modulos/mod_Grafica_Fallas_tecnicas/index.php">'"/> 
 		<br /><input type="button" value="Guardar" class="boton1" onclick="guardar()" />
 		<br /><input type="button" value="Cancelar" onclick="cancelar()" class="boton1" />
 	</div>
@@ -194,6 +195,7 @@
 
 
 <div id="all">
+	<input type="button" value="HDD" onclick="'<a href="../ope/lexmark/modulos/mod_reparacion/Hdd_1/index.php"></a>'"/> 
 	<!--<div id="reingreso">&nbsp;</div>//-->	
     <!--<div id="menu_superior">//-->
 	</div>

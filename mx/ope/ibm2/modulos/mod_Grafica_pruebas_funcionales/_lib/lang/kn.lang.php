@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "ದಯವಿಟ್ಟು, ಇಲ್ಲಿ ನಿಮ್ಮ ಸಂದೇಶ ಟೈಪ್ ಮಾಡಿ.";
   $this->Nm_lang['lang_user_logged'] = "ಬಳಕೆದಾರ %s ಈಗಾಗಲೇ ಪ್ರವೇಶಿಸಿದ್ದಾರೆ. ಮುಂದುವರಿಯುವುದೇ? <br/> ಇದು ಸಕ್ರಿಯ ಬಳಕೆದಾರನನ್ನು ಲಾಗ್ ಔಟ್ ಮಾಡುತ್ತದೆ.";
   $this->Nm_lang['lang_errm_tz'] = "ಅಪ್ಲೋಡ್ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಪಿಎಚ್ಪಿ ನಲ್ಲಿ ಕುಕೀ ಸಮಯವಲಯ ವಿಸ್ತರಣೆ ಅಗತ್ಯವಿದೆ. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >ಅದನ್ನು ಸ್ಥಾಪಿಸಲು ಹೇಗೆ ಪರಿಶೀಲಿಸಿ.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >ಬೆಂಬಲ ಕಾಲವಲಯಗಳ ಪಟ್ಟಿ.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "ಒಳಗೊಂಡಿದೆ ಅಲ್ಲ";
   $this->Nm_lang['lang_chrt_angl_vals'] = "ಮೌಲ್ಯದ ಕೋನ";
   $this->Nm_lang['lang_chrt_anlt'] = "ವಿಶ್ಲೇಷಣಾತ್ಮಕ";
   $this->Nm_lang['lang_chrt_bars'] = "ಪಟ್ಟಿ/ನೆಟ್ಟಗೆ";

@@ -1,7 +1,7 @@
 <?php
    include_once('grafico_fallas_tecnicas_session.php');
    @session_start() ;
-   $_SESSION['scriptcase']['grafico_fallas_tecnicas']['glo_nm_perfil']          = "conexionLexmark";
+   $_SESSION['scriptcase']['grafico_fallas_tecnicas']['glo_nm_perfil']          = "conexionIBM";
    $_SESSION['scriptcase']['grafico_fallas_tecnicas']['glo_nm_path_prod']       = "";
    $_SESSION['scriptcase']['grafico_fallas_tecnicas']['glo_nm_path_conf']       = "";
    $_SESSION['scriptcase']['grafico_fallas_tecnicas']['glo_nm_path_imagens']    = "";

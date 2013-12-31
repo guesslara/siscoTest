@@ -179,14 +179,15 @@
 			  <div id="div_rep5b" style="width:280px; height:218px; margin-top:3px; margin-left:3px; float:left; background-color:#FFFFFF; border:#EFEFEF 1px solid;" onmouseover='this.style.background="#D8D8D8"' onmouseout='this.style.background="white"'>
 			   
 				<div style="margin:5px;">
-					<b>Nuevo Status:</b><br>
-					<select name="nvo_status" id="nvo_status" style="width:250px;">
+					<b>Nuevo Status:&nbsp;&nbsp; Captura de:</b><br>
+					<select name="nvo_status" id="nvo_status" style="width:120px;">
 						<option value="">...</option>
 						<option value="WIP"> WIP</option>
 						<option value="REP"> REP</option>
 						<option value="NOREP"> NOREP</option>
 						<option value="SCRAP"> SCRAP</option>						
-					</select>
+					</select>&nbsp; &nbsp; &nbsp;
+					<input type=button onClick="location.href='Hdd_1/index.php'" value='Disco Duro'>
 					<br><br><b>Observaciones:</b><br>
 					<textarea id="txt_obs_rep" rows="7" style="width:250px;"></textarea>
 					<!--<div style="text-align:center;"><input type="button" value="Guardar" onClick="guardar_reparacion()" style="width:100px; margin-top:3px;"></div>-->

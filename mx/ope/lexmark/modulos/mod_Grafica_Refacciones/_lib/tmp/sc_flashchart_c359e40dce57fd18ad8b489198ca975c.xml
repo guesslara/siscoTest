@@ -1,0 +1,11 @@
+<chart showValues="1" caption="Grafico de Refacciones" xAxisName="Refacciones" yAxisName="Cantidad de Ot's" paletteColors="cec86d,b6d87d,63bb96,4a80ae,735cb4,ad5bb2,cc5c96,bf3f3f,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="TRANFERENCIA" value="10" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@TRANFERENCIA@aspass@" />
+ <set label="kit mantenimiento" value="9" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@kit mantenimiento@aspass@" />
+ <set label="RODILLO DE MONTAJE" value="9" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@RODILLO DE MONTAJE@aspass@" />
+ <set label="ADDF LEXMARK" value="7" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@ADDF LEXMARK@aspass@" />
+ <set label="FUSOR" value="5" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@FUSOR@aspass@" />
+ <set label="JUEGO DE GUIA" value="4" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@JUEGO DE GUIA@aspass@" />
+ <set label="RODILLO DE CARGA" value="4" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@RODILLO DE CARGA@aspass@" />
+ <set label="ENSAMBLE" value="4" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@ENSAMBLE@aspass@" />
+ <set label="Capacitor" value="2" link="j-scGridLink-cat_refacciones.descripcion?#?@aspass@Capacitor@aspass@" />
+</chart>

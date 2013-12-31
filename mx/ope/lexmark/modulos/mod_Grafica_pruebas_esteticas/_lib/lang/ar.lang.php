@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "من فضلك ، اكتب رسالتك هنا .";
   $this->Nm_lang['lang_user_logged'] = "المستخدم %sسجل دخوله بالفعل. ومتابعة? هذا سيؤدي لتسجيل خروج المستخدم النشط.";
   $this->Nm_lang['lang_errm_tz'] = "يتطلب ميزة تحميل التمديد تمكين المنطقة الزمنية في PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >التحقق من كيفية إعداده.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >قائمة الزمنية المعتمدة.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "لا يحتوي على";
   $this->Nm_lang['lang_chrt_angl_vals'] = "زاوية القيمة";
   $this->Nm_lang['lang_chrt_anlt'] = "تحليلي";
   $this->Nm_lang['lang_chrt_bars'] = "عمود/عمودي";

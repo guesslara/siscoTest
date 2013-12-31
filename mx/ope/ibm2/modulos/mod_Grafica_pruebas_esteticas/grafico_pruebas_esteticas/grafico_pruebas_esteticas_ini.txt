@@ -1,5 +1,5 @@
 index.php
-Lexmark
+graficas_IBM
 grafico_pruebas_esteticas
 NAO
 cons

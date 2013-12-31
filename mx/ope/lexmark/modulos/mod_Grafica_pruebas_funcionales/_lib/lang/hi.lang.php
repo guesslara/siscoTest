@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "कृपया, अपना संदेश यहाँ टाइप करें.";
   $this->Nm_lang['lang_user_logged'] = "उपयोगकर्ता %s पहले से ही लॉग ऑन है. जारी रखें? <br/> यह सक्रिय उपयोगकर्ता को लॉग आउट कर देगा.";
   $this->Nm_lang['lang_errm_tz'] = "अपलोड सुविधा PHP में सक्षम समय क्षेत्र विस्तार की आवश्यकता है. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >यह कैसे स्थापित की जाँच करें.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >समर्थित timezones की सूची.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "शामिल नहीं";
   $this->Nm_lang['lang_chrt_angl_vals'] = "मूल्य कोण";
   $this->Nm_lang['lang_chrt_anlt'] = "विश्लेषणात्मक";
   $this->Nm_lang['lang_chrt_bars'] = "बार/सीधा";

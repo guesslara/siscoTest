@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Tolong , ketik pesan Anda di sini .";
   $this->Nm_lang['lang_user_logged'] = "Pengguna %s sudah login. Lanjutkan? <br/> Ini akan log out pengguna aktif.";
   $this->Nm_lang['lang_errm_tz'] = "Upload Fitur membutuhkan ekstensi Timezone diaktifkan pada PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Periksa bagaimana mengaturnya.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Daftar zona waktu yang didukung.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Tidak Berisi";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Sudut Nilai";
   $this->Nm_lang['lang_chrt_anlt'] = "Analitis";
   $this->Nm_lang['lang_chrt_bars'] = "Batang/Vertikal";

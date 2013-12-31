@@ -128,7 +128,7 @@
 			
 			?>
 			<script type="text/javascript">
-			alert("La Falla Tecnica se guardo correctamente.");
+			alert("La refaccion se guardo correctamente.");
 			</script><?php
 		} else {
 			echo "<div align=center>Error SQL. La consulta a la Base de Datos no se ejecuto.</div>";

@@ -57,14 +57,16 @@ class grafico_pruebas_esteticas_grid
    var $ot_ot;
    var $ot_idp;
    var $ot_nserie;
-   var $ot_u_recibe;
    var $ot_f_recibo;
    var $ot_fecha_fin;
    var $ot_fecha_fin_rep;
+   var $usuarios_dp_nombre;
+   var $usuarios_dp_apaterno;
+   var $ot_num_no_ok;
    var $ot_status_proceso;
    var $ot_status_cliente;
    var $ot_shipdate;
-   var $tipoalmacen_almacen;
+   var $tipoalmacen_id_almacen;
    var $cat_pruebas_esteticas_descripcion;
 //--- 
  function monta_grid($linhas = 0)
@@ -285,6 +287,30 @@ class grafico_pruebas_esteticas_grid
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq'] = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq_ant'];  
    if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']))
    { 
+       $this->evaluacion_pruebas_id = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_id, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_id = substr($this->evaluacion_pruebas_id, 0, $tmp_pos);
+       }
+       $this->evaluacion_pruebas_fecha = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_fecha']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_fecha, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_fecha = substr($this->evaluacion_pruebas_fecha, 0, $tmp_pos);
+       }
+       $this->evaluacion_pruebas_id_ot = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_id_ot']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_id_ot, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_id_ot = substr($this->evaluacion_pruebas_id_ot, 0, $tmp_pos);
+       }
+       $this->evaluacion_pruebas_tipo_prueba = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['campos_busca']['evaluacion_pruebas_tipo_prueba']; 
+       $tmp_pos = strpos($this->evaluacion_pruebas_tipo_prueba, "##@@");
+       if ($tmp_pos !== false)
+       {
+           $this->evaluacion_pruebas_tipo_prueba = substr($this->evaluacion_pruebas_tipo_prueba, 0, $tmp_pos);
+       }
    } 
    $this->nm_field_dinamico = array();
    $this->nm_order_dinamico = array();
@@ -368,14 +394,14 @@ class grafico_pruebas_esteticas_grid
        } 
    }   
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['qt_reg_grid'] = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['qt_lin_grid']; 
-   if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico") 
+   if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas") 
    {
        if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['ordem_select']))  
        { 
            $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['ordem_select'] = array(); 
        } 
    }
-   if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico") 
+   if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas") 
    {
        if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['ordem_quebra']))  
        { 
@@ -446,7 +472,7 @@ class grafico_pruebas_esteticas_grid
    if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig']) || $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['prim_cons'] || !empty($nmgp_parms))  
    { 
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['prim_cons'] = false;  
-       $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = "";  
+       $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = " where evaluacion_pruebas.tipo_prueba='COSMETICA'";  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq']        = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq_ant']    = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['cond_pesq']         = ""; 
@@ -606,27 +632,27 @@ class grafico_pruebas_esteticas_grid
 //----- 
    if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
    { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, str_replace (convert(char(10),ot.f_recibo,102), '.', '-') + ' ' + convert(char(8),ot.f_recibo,20) as ot_f_recibo, str_replace (convert(char(10),ot.fecha_fin,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin,20) as ot_fecha_fin, str_replace (convert(char(10),ot.fecha_fin_rep,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin_rep,20) as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, str_replace (convert(char(10),ot.shipdate,102), '.', '-') + ' ' + convert(char(8),ot.shipdate,20) as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, str_replace (convert(char(10),ot.f_recibo,102), '.', '-') + ' ' + convert(char(8),ot.f_recibo,20) as ot_f_recibo, str_replace (convert(char(10),ot.fecha_fin,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin,20) as ot_fecha_fin, str_replace (convert(char(10),ot.fecha_fin_rep,102), '.', '-') + ' ' + convert(char(8),ot.fecha_fin_rep,20) as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, str_replace (convert(char(10),ot.shipdate,102), '.', '-') + ' ' + convert(char(8),ot.shipdate,20) as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
    } 
    elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
    { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
    } 
    elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
    { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, convert(char(23),ot.f_recibo,121) as ot_f_recibo, convert(char(23),ot.fecha_fin,121) as ot_fecha_fin, convert(char(23),ot.fecha_fin_rep,121) as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, convert(char(23),ot.shipdate,121) as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, convert(char(23),ot.f_recibo,121) as ot_f_recibo, convert(char(23),ot.fecha_fin,121) as ot_fecha_fin, convert(char(23),ot.fecha_fin_rep,121) as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, convert(char(23),ot.shipdate,121) as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
    } 
    elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
    { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
    } 
    elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
    { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, EXTEND(ot.f_recibo, YEAR TO DAY) as ot_f_recibo, EXTEND(ot.fecha_fin, YEAR TO FRACTION) as ot_fecha_fin, EXTEND(ot.fecha_fin_rep, YEAR TO DAY) as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, EXTEND(ot.shipdate, YEAR TO DAY) as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, EXTEND(ot.f_recibo, YEAR TO DAY) as ot_f_recibo, EXTEND(ot.fecha_fin, YEAR TO FRACTION) as ot_fecha_fin, EXTEND(ot.fecha_fin_rep, YEAR TO DAY) as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, EXTEND(ot.shipdate, YEAR TO DAY) as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
    } 
    else 
    { 
-       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.u_recibe as ot_u_recibe, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.almacen as tipoalmacen_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
+       $nmgp_select = "SELECT ot.id as ot_id, ot.ot as ot_ot, ot.idp as ot_idp, ot.nserie as ot_nserie, ot.f_recibo as ot_f_recibo, ot.fecha_fin as ot_fecha_fin, ot.fecha_fin_rep as ot_fecha_fin_rep, usuarios.dp_nombre as usuarios_dp_nombre, usuarios.dp_apaterno as usuarios_dp_apaterno, ot.num_no_ok as ot_num_no_ok, ot.status_proceso as ot_status_proceso, ot.status_cliente as ot_status_cliente, ot.shipdate as ot_shipdate, tipoalmacen.id_almacen as tipoalmacen_id_almacen, cat_pruebas_esteticas.descripcion as cmp_maior_30_1 from " . $this->Ini->nm_tabela; 
    } 
    $nmgp_select .= " " . $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq']; 
    if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_resumo']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_resumo'])) 
@@ -711,25 +737,28 @@ class grafico_pruebas_esteticas_grid
        $this->ot_idp = $this->rs_grid->fields[2] ;  
        $this->ot_idp = (string)$this->ot_idp;
        $this->ot_nserie = $this->rs_grid->fields[3] ;  
-       $this->ot_u_recibe = $this->rs_grid->fields[4] ;  
-       $this->ot_u_recibe = (string)$this->ot_u_recibe;
-       $this->ot_f_recibo = $this->rs_grid->fields[5] ;  
-       $this->ot_fecha_fin = $this->rs_grid->fields[6] ;  
-       $this->ot_fecha_fin_rep = $this->rs_grid->fields[7] ;  
-       $this->ot_status_proceso = $this->rs_grid->fields[8] ;  
-       $this->ot_status_cliente = $this->rs_grid->fields[9] ;  
-       $this->ot_shipdate = $this->rs_grid->fields[10] ;  
-       $this->tipoalmacen_almacen = $this->rs_grid->fields[11] ;  
-       $this->cat_pruebas_esteticas_descripcion = $this->rs_grid->fields[12] ;  
+       $this->ot_f_recibo = $this->rs_grid->fields[4] ;  
+       $this->ot_fecha_fin = $this->rs_grid->fields[5] ;  
+       $this->ot_fecha_fin_rep = $this->rs_grid->fields[6] ;  
+       $this->usuarios_dp_nombre = $this->rs_grid->fields[7] ;  
+       $this->usuarios_dp_apaterno = $this->rs_grid->fields[8] ;  
+       $this->ot_num_no_ok = $this->rs_grid->fields[9] ;  
+       $this->ot_num_no_ok = (string)$this->ot_num_no_ok;
+       $this->ot_status_proceso = $this->rs_grid->fields[10] ;  
+       $this->ot_status_cliente = $this->rs_grid->fields[11] ;  
+       $this->ot_shipdate = $this->rs_grid->fields[12] ;  
+       $this->tipoalmacen_id_almacen = $this->rs_grid->fields[13] ;  
+       $this->tipoalmacen_id_almacen = (string)$this->tipoalmacen_id_almacen;
+       $this->cat_pruebas_esteticas_descripcion = $this->rs_grid->fields[14] ;  
        if (!isset($this->cat_pruebas_esteticas_descripcion)) { $this->cat_pruebas_esteticas_descripcion = ""; }
        $this->arg_sum_cat_pruebas_esteticas_descripcion = " = " . $this->Db->qstr($this->cat_pruebas_esteticas_descripcion);
        $this->SC_seq_register = $this->nmgp_reg_start ; 
        $this->SC_seq_page = 0; 
        $this->SC_sep_quebra = false;
-       if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico") 
+       if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas") 
        {
            $this->cat_pruebas_esteticas_descripcion_Old = $this->cat_pruebas_esteticas_descripcion ; 
-           $this->quebra_cat_pruebas_esteticas_descripcion_tecnico($this->cat_pruebas_esteticas_descripcion) ; 
+           $this->quebra_cat_pruebas_esteticas_descripcion_esteticas($this->cat_pruebas_esteticas_descripcion) ; 
        }
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['final'] = $this->nmgp_reg_start ; 
        if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['inicio'] != 0 && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opcao'] != "pdf") 
@@ -741,15 +770,17 @@ class grafico_pruebas_esteticas_grid
            $this->ot_ot = $this->rs_grid->fields[1] ;  
            $this->ot_idp = $this->rs_grid->fields[2] ;  
            $this->ot_nserie = $this->rs_grid->fields[3] ;  
-           $this->ot_u_recibe = $this->rs_grid->fields[4] ;  
-           $this->ot_f_recibo = $this->rs_grid->fields[5] ;  
-           $this->ot_fecha_fin = $this->rs_grid->fields[6] ;  
-           $this->ot_fecha_fin_rep = $this->rs_grid->fields[7] ;  
-           $this->ot_status_proceso = $this->rs_grid->fields[8] ;  
-           $this->ot_status_cliente = $this->rs_grid->fields[9] ;  
-           $this->ot_shipdate = $this->rs_grid->fields[10] ;  
-           $this->tipoalmacen_almacen = $this->rs_grid->fields[11] ;  
-           $this->cat_pruebas_esteticas_descripcion = $this->rs_grid->fields[12] ;  
+           $this->ot_f_recibo = $this->rs_grid->fields[4] ;  
+           $this->ot_fecha_fin = $this->rs_grid->fields[5] ;  
+           $this->ot_fecha_fin_rep = $this->rs_grid->fields[6] ;  
+           $this->usuarios_dp_nombre = $this->rs_grid->fields[7] ;  
+           $this->usuarios_dp_apaterno = $this->rs_grid->fields[8] ;  
+           $this->ot_num_no_ok = $this->rs_grid->fields[9] ;  
+           $this->ot_status_proceso = $this->rs_grid->fields[10] ;  
+           $this->ot_status_cliente = $this->rs_grid->fields[11] ;  
+           $this->ot_shipdate = $this->rs_grid->fields[12] ;  
+           $this->tipoalmacen_id_almacen = $this->rs_grid->fields[13] ;  
+           $this->cat_pruebas_esteticas_descripcion = $this->rs_grid->fields[14] ;  
            if (!isset($this->cat_pruebas_esteticas_descripcion)) { $this->cat_pruebas_esteticas_descripcion = ""; }
        } 
    } 
@@ -767,7 +798,7 @@ class grafico_pruebas_esteticas_grid
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <HEAD>
- <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> - ot :: PDF</TITLE>
+ <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> -  :: PDF</TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
  <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?>" GMT">
@@ -820,7 +851,7 @@ $nm_saida->saida("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN
 $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd\">\r\n");
        $nm_saida->saida("  <HTML" . $_SESSION['scriptcase']['reg_conf']['html_dir'] . ">\r\n");
        $nm_saida->saida("  <HEAD>\r\n");
-       $nm_saida->saida("   <TITLE>" . $this->Ini->Nm_lang['lang_othr_grid_titl'] . " - ot</TITLE>\r\n");
+       $nm_saida->saida("   <TITLE>" . $this->Ini->Nm_lang['lang_othr_grid_titl'] . " - </TITLE>\r\n");
        $nm_saida->saida("   <META http-equiv=\"Content-Type\" content=\"text/html; charset=" . $_SESSION['scriptcase']['charset_html'] . "\" />\r\n");
        if (!$_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['doc_word'])
        {
@@ -1081,7 +1112,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
        $nm_saida->saida("  " . $this->Ini->Ajax_result_set . "\r\n");
        if (!$_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['embutida'] && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opcao'] == "pdf" && !$this->Print_All)
        { 
-           if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico")
+           if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas")
            {
                if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['pdf_res'])
                {
@@ -1089,7 +1120,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
                } 
                else
                {
-                   $nm_saida->saida("          <div style=\"height:1px;overflow:hidden\"><H1 style=\"font-size:0;padding:1px\">Prueba Estetica</H1></div>\r\n");
+                   $nm_saida->saida("          <div style=\"height:1px;overflow:hidden\"><H1 style=\"font-size:0;padding:1px\">Descripcion</H1></div>\r\n");
                } 
            }
        } 
@@ -1279,7 +1310,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    $nm_saida->saida(" <div style=\"height:37px; border-width:0px 0px 1px 0px;  border-style: dashed; border-color:#ddd; display: block\">\r\n");
    $nm_saida->saida(" 	<table style=\"width:100%; border-collapse:collapse; padding:0;\">\r\n");
    $nm_saida->saida("    	<tr>\r\n");
-   $nm_saida->saida("        	<td id=\"lin1_col1\" class=\"" . $this->css_scGridHeaderFont . "\"><span>" . $this->Ini->Nm_lang['lang_othr_grid_titl'] . " - ot</span></td>\r\n");
+   $nm_saida->saida("        	<td id=\"lin1_col1\" class=\"" . $this->css_scGridHeaderFont . "\"><span>" . $this->Ini->Nm_lang['lang_othr_grid_titl'] . " - </span></td>\r\n");
    $nm_saida->saida("            <td id=\"lin1_col2\" class=\"" . $this->css_scGridHeaderFont . "\"><span>" . $nm_data_fixa . "</span></td>\r\n");
    $nm_saida->saida("        </tr>\r\n");
    $nm_saida->saida("    </table>		 \r\n");
@@ -1321,9 +1352,9 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
           } 
       } 
    $nm_saida->saida("    <TR id=\"tit_grafico_pruebas_esteticas#?#" . $nm_seq_titulos . "\" align=\"center\" class=\"" . $this->css_scGridLabel . "\">\r\n");
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridBlockBg . "\" style=\"width: " . $this->width_tabula_quebra . ";\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >&nbsp;</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridBlockBg . "\" style=\"width: " . $this->width_tabula_quebra . ";\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:right;vertical-align:middle;font-weight:bold;\" >&nbsp;</TD>\r\n");
    if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opc_psq']) { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >&nbsp;</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:right;vertical-align:middle;font-weight:bold;\" >&nbsp;</TD>\r\n");
    } 
    foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'] as $Cada_label)
    { 
@@ -1385,7 +1416,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    global $nm_saida;
    $SC_Label = (isset($this->New_label['ot_id'])) ? $this->New_label['ot_id'] : "Id"; 
    if (!isset($this->NM_cmp_hidden['ot_id']) || $this->NM_cmp_hidden['ot_id'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:right;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
  function NM_label_ot_ot()
@@ -1399,33 +1430,25 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
  function NM_label_ot_idp()
  {
    global $nm_saida;
-   $SC_Label = (isset($this->New_label['ot_idp'])) ? $this->New_label['ot_idp'] : "Id de Producto"; 
+   $SC_Label = (isset($this->New_label['ot_idp'])) ? $this->New_label['ot_idp'] : "Idp"; 
    if (!isset($this->NM_cmp_hidden['ot_idp']) || $this->NM_cmp_hidden['ot_idp'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:right;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
  function NM_label_ot_nserie()
  {
    global $nm_saida;
-   $SC_Label = (isset($this->New_label['ot_nserie'])) ? $this->New_label['ot_nserie'] : "No.Serie"; 
+   $SC_Label = (isset($this->New_label['ot_nserie'])) ? $this->New_label['ot_nserie'] : "Nserie"; 
    if (!isset($this->NM_cmp_hidden['ot_nserie']) || $this->NM_cmp_hidden['ot_nserie'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
-   } 
- }
- function NM_label_ot_u_recibe()
- {
-   global $nm_saida;
-   $SC_Label = (isset($this->New_label['ot_u_recibe'])) ? $this->New_label['ot_u_recibe'] : "Recibe"; 
-   if (!isset($this->NM_cmp_hidden['ot_u_recibe']) || $this->NM_cmp_hidden['ot_u_recibe'] != "off") { 
    $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
  function NM_label_ot_f_recibo()
  {
    global $nm_saida;
-   $SC_Label = (isset($this->New_label['ot_f_recibo'])) ? $this->New_label['ot_f_recibo'] : " Fecha de Recibo"; 
+   $SC_Label = (isset($this->New_label['ot_f_recibo'])) ? $this->New_label['ot_f_recibo'] : "F Recibo"; 
    if (!isset($this->NM_cmp_hidden['ot_f_recibo']) || $this->NM_cmp_hidden['ot_f_recibo'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:center;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
  function NM_label_ot_fecha_fin()
@@ -1433,15 +1456,39 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    global $nm_saida;
    $SC_Label = (isset($this->New_label['ot_fecha_fin'])) ? $this->New_label['ot_fecha_fin'] : "Fecha Fin"; 
    if (!isset($this->NM_cmp_hidden['ot_fecha_fin']) || $this->NM_cmp_hidden['ot_fecha_fin'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:center;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
  function NM_label_ot_fecha_fin_rep()
  {
    global $nm_saida;
-   $SC_Label = (isset($this->New_label['ot_fecha_fin_rep'])) ? $this->New_label['ot_fecha_fin_rep'] : "Fecha Final Reparación"; 
+   $SC_Label = (isset($this->New_label['ot_fecha_fin_rep'])) ? $this->New_label['ot_fecha_fin_rep'] : "Fecha Fin Rep"; 
    if (!isset($this->NM_cmp_hidden['ot_fecha_fin_rep']) || $this->NM_cmp_hidden['ot_fecha_fin_rep'] != "off") { 
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:center;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   } 
+ }
+ function NM_label_usuarios_dp_nombre()
+ {
+   global $nm_saida;
+   $SC_Label = (isset($this->New_label['usuarios_dp_nombre'])) ? $this->New_label['usuarios_dp_nombre'] : "Repara"; 
+   if (!isset($this->NM_cmp_hidden['usuarios_dp_nombre']) || $this->NM_cmp_hidden['usuarios_dp_nombre'] != "off") { 
    $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   } 
+ }
+ function NM_label_usuarios_dp_apaterno()
+ {
+   global $nm_saida;
+   $SC_Label = (isset($this->New_label['usuarios_dp_apaterno'])) ? $this->New_label['usuarios_dp_apaterno'] : "Tecnico"; 
+   if (!isset($this->NM_cmp_hidden['usuarios_dp_apaterno']) || $this->NM_cmp_hidden['usuarios_dp_apaterno'] != "off") { 
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   } 
+ }
+ function NM_label_ot_num_no_ok()
+ {
+   global $nm_saida;
+   $SC_Label = (isset($this->New_label['ot_num_no_ok'])) ? $this->New_label['ot_num_no_ok'] : "Num No Ok"; 
+   if (!isset($this->NM_cmp_hidden['ot_num_no_ok']) || $this->NM_cmp_hidden['ot_num_no_ok'] != "off") { 
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:right;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
  function NM_label_ot_status_proceso()
@@ -1465,23 +1512,15 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    global $nm_saida;
    $SC_Label = (isset($this->New_label['ot_shipdate'])) ? $this->New_label['ot_shipdate'] : "Shipdate"; 
    if (!isset($this->NM_cmp_hidden['ot_shipdate']) || $this->NM_cmp_hidden['ot_shipdate'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:center;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
- function NM_label_tipoalmacen_almacen()
+ function NM_label_tipoalmacen_id_almacen()
  {
    global $nm_saida;
-   $SC_Label = (isset($this->New_label['tipoalmacen_almacen'])) ? $this->New_label['tipoalmacen_almacen'] : "Almacen"; 
-   if (!isset($this->NM_cmp_hidden['tipoalmacen_almacen']) || $this->NM_cmp_hidden['tipoalmacen_almacen'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
-   } 
- }
- function NM_label_cat_pruebas_esteticas_descripcion()
- {
-   global $nm_saida;
-   $SC_Label = (isset($this->New_label['cat_pruebas_esteticas_descripcion'])) ? $this->New_label['cat_pruebas_esteticas_descripcion'] : "Prueba Estetica"; 
-   if (!isset($this->NM_cmp_hidden['cat_pruebas_esteticas_descripcion']) || $this->NM_cmp_hidden['cat_pruebas_esteticas_descripcion'] != "off") { 
-   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:left;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
+   $SC_Label = (isset($this->New_label['tipoalmacen_id_almacen'])) ? $this->New_label['tipoalmacen_id_almacen'] : "Id Almacen"; 
+   if (!isset($this->NM_cmp_hidden['tipoalmacen_id_almacen']) || $this->NM_cmp_hidden['tipoalmacen_id_almacen'] != "off") { 
+   $nm_saida->saida("     <TD class=\"" . $this->css_scGridLabelFont . "\"  style=\"" . $this->css_scGridLabelNowrap . "text-align:right;vertical-align:middle;font-weight:bold;\" >" . nl2br($SC_Label) . "</TD>\r\n");
    } 
  }
 // 
@@ -1517,28 +1556,30 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_id'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['ot_ot'])) ? $this->New_label['ot_ot'] : "Ot"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_ot'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['ot_idp'])) ? $this->New_label['ot_idp'] : "Id de Producto"; 
+   $SC_Label = (isset($this->New_label['ot_idp'])) ? $this->New_label['ot_idp'] : "Idp"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_idp'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['ot_nserie'])) ? $this->New_label['ot_nserie'] : "No.Serie"; 
+   $SC_Label = (isset($this->New_label['ot_nserie'])) ? $this->New_label['ot_nserie'] : "Nserie"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_nserie'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['ot_u_recibe'])) ? $this->New_label['ot_u_recibe'] : "Recibe"; 
-   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_u_recibe'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['ot_f_recibo'])) ? $this->New_label['ot_f_recibo'] : " Fecha de Recibo"; 
+   $SC_Label = (isset($this->New_label['ot_f_recibo'])) ? $this->New_label['ot_f_recibo'] : "F Recibo"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_f_recibo'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['ot_fecha_fin'])) ? $this->New_label['ot_fecha_fin'] : "Fecha Fin"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_fecha_fin'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['ot_fecha_fin_rep'])) ? $this->New_label['ot_fecha_fin_rep'] : "Fecha Final Reparación"; 
+   $SC_Label = (isset($this->New_label['ot_fecha_fin_rep'])) ? $this->New_label['ot_fecha_fin_rep'] : "Fecha Fin Rep"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_fecha_fin_rep'] = $SC_Label; 
+   $SC_Label = (isset($this->New_label['usuarios_dp_nombre'])) ? $this->New_label['usuarios_dp_nombre'] : "Repara"; 
+   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['usuarios_dp_nombre'] = $SC_Label; 
+   $SC_Label = (isset($this->New_label['usuarios_dp_apaterno'])) ? $this->New_label['usuarios_dp_apaterno'] : "Tecnico"; 
+   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['usuarios_dp_apaterno'] = $SC_Label; 
+   $SC_Label = (isset($this->New_label['ot_num_no_ok'])) ? $this->New_label['ot_num_no_ok'] : "Num No Ok"; 
+   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_num_no_ok'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['ot_status_proceso'])) ? $this->New_label['ot_status_proceso'] : "Status Proceso"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_status_proceso'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['ot_status_cliente'])) ? $this->New_label['ot_status_cliente'] : "Status Cliente"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_status_cliente'] = $SC_Label; 
    $SC_Label = (isset($this->New_label['ot_shipdate'])) ? $this->New_label['ot_shipdate'] : "Shipdate"; 
    $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['ot_shipdate'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['tipoalmacen_almacen'])) ? $this->New_label['tipoalmacen_almacen'] : "Almacen"; 
-   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['tipoalmacen_almacen'] = $SC_Label; 
-   $SC_Label = (isset($this->New_label['cat_pruebas_esteticas_descripcion'])) ? $this->New_label['cat_pruebas_esteticas_descripcion'] : "Prueba Estetica"; 
-   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['cat_pruebas_esteticas_descripcion'] = $SC_Label; 
+   $SC_Label = (isset($this->New_label['tipoalmacen_id_almacen'])) ? $this->New_label['tipoalmacen_id_almacen'] : "Id Almacen"; 
+   $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['labels']['tipoalmacen_id_almacen'] = $SC_Label; 
    if (!$this->grid_emb_form && isset($_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['lig_edit']) && $_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['lig_edit'] != '')
    {
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['mostra_edit'] = $_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['lig_edit'];
@@ -1628,11 +1669,11 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    { 
        $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['final'] = 0;
    } 
-   if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['final'] == 0 && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico") 
+   if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['final'] == 0 && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas") 
    { 
        if (isset($this->cat_pruebas_esteticas_descripcion))
        {
-           $this->quebra_cat_pruebas_esteticas_descripcion_tecnico_top(); 
+           $this->quebra_cat_pruebas_esteticas_descripcion_esteticas_top(); 
        }
    } 
    $this->nmgp_prim_pag_pdf = false;
@@ -1669,16 +1710,19 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
           $this->ot_idp = $this->rs_grid->fields[2] ;  
           $this->ot_idp = (string)$this->ot_idp;
           $this->ot_nserie = $this->rs_grid->fields[3] ;  
-          $this->ot_u_recibe = $this->rs_grid->fields[4] ;  
-          $this->ot_u_recibe = (string)$this->ot_u_recibe;
-          $this->ot_f_recibo = $this->rs_grid->fields[5] ;  
-          $this->ot_fecha_fin = $this->rs_grid->fields[6] ;  
-          $this->ot_fecha_fin_rep = $this->rs_grid->fields[7] ;  
-          $this->ot_status_proceso = $this->rs_grid->fields[8] ;  
-          $this->ot_status_cliente = $this->rs_grid->fields[9] ;  
-          $this->ot_shipdate = $this->rs_grid->fields[10] ;  
-          $this->tipoalmacen_almacen = $this->rs_grid->fields[11] ;  
-          $this->cat_pruebas_esteticas_descripcion = $this->rs_grid->fields[12] ;  
+          $this->ot_f_recibo = $this->rs_grid->fields[4] ;  
+          $this->ot_fecha_fin = $this->rs_grid->fields[5] ;  
+          $this->ot_fecha_fin_rep = $this->rs_grid->fields[6] ;  
+          $this->usuarios_dp_nombre = $this->rs_grid->fields[7] ;  
+          $this->usuarios_dp_apaterno = $this->rs_grid->fields[8] ;  
+          $this->ot_num_no_ok = $this->rs_grid->fields[9] ;  
+          $this->ot_num_no_ok = (string)$this->ot_num_no_ok;
+          $this->ot_status_proceso = $this->rs_grid->fields[10] ;  
+          $this->ot_status_cliente = $this->rs_grid->fields[11] ;  
+          $this->ot_shipdate = $this->rs_grid->fields[12] ;  
+          $this->tipoalmacen_id_almacen = $this->rs_grid->fields[13] ;  
+          $this->tipoalmacen_id_almacen = (string)$this->tipoalmacen_id_almacen;
+          $this->cat_pruebas_esteticas_descripcion = $this->rs_grid->fields[14] ;  
           if (!isset($this->cat_pruebas_esteticas_descripcion)) { $this->cat_pruebas_esteticas_descripcion = ""; }
           if (!$_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['embutida'] && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opcao'] == "pdf")
           {
@@ -1694,17 +1738,17 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $ini_grid = false;
           }
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['rows_emb']++;
-          if ($this->cat_pruebas_esteticas_descripcion !== $this->cat_pruebas_esteticas_descripcion_Old && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico") 
+          if ($this->cat_pruebas_esteticas_descripcion !== $this->cat_pruebas_esteticas_descripcion_Old && $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas") 
           {  
               if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opcao'] == "pdf" && !$this->Print_All)
               {
                   $this->nm_quebra_pagina("pagina"); 
               }
               $this->cat_pruebas_esteticas_descripcion_Old = $this->cat_pruebas_esteticas_descripcion ; 
-              $this->quebra_cat_pruebas_esteticas_descripcion_tecnico($this->cat_pruebas_esteticas_descripcion) ; 
+              $this->quebra_cat_pruebas_esteticas_descripcion_esteticas($this->cat_pruebas_esteticas_descripcion) ; 
               if (isset($this->cat_pruebas_esteticas_descripcion_Old))
               {
-                 $this->quebra_cat_pruebas_esteticas_descripcion_tecnico_top() ; 
+                 $this->quebra_cat_pruebas_esteticas_descripcion_esteticas_top() ; 
               }
           } 
           $this->sc_proc_grid = true;
@@ -1735,6 +1779,36 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
           {
               $temp = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['dado_psq_ret'];
               eval("\$teste = \$this->$temp;");
+              if ($temp == "ot_f_recibo")
+              {
+                  $conteudo_x = $teste;
+                  nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+                  if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+                  { 
+                      $this->nm_data->SetaData($teste, "YYYY-MM-DD");
+                      $teste = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+                  } 
+              }
+              if ($temp == "ot_fecha_fin_rep")
+              {
+                  $conteudo_x = $teste;
+                  nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+                  if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+                  { 
+                      $this->nm_data->SetaData($teste, "YYYY-MM-DD");
+                      $teste = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+                  } 
+              }
+              if ($temp == "ot_shipdate")
+              {
+                  $conteudo_x = $teste;
+                  nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+                  if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+                  { 
+                      $this->nm_data->SetaData($teste, "YYYY-MM-DD");
+                      $teste = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+                  } 
+              }
               if ($temp == "evaluacion_pruebas_fecha")
               {
                   $conteudo_x = $teste;
@@ -1834,7 +1908,11 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_id_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+          else    
+          { 
+              nmgp_Form_Num_Val($conteudo, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "S", "2", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"right\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_id_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_ot()
@@ -1847,7 +1925,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_ot_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_ot_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_idp()
@@ -1860,7 +1938,11 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_idp_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+          else    
+          { 
+              nmgp_Form_Num_Val($conteudo, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "S", "2", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"right\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_idp_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_nserie()
@@ -1873,20 +1955,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_nserie_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
-      }
- }
- function NM_grid_ot_u_recibe()
- {
-      global $nm_saida;
-      if (!isset($this->NM_cmp_hidden['ot_u_recibe']) || $this->NM_cmp_hidden['ot_u_recibe'] != "off") { 
-          $conteudo = $this->ot_u_recibe; 
-          if ($conteudo === "") 
-          { 
-              $conteudo = "&nbsp;" ;  
-              $graf = "" ;  
-          } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_u_recibe_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_nserie_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_f_recibo()
@@ -1899,7 +1968,17 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_f_recibo_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+          else    
+          { 
+               $conteudo_x =  $conteudo;
+               nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+               if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+               { 
+                   $this->nm_data->SetaData($conteudo, "YYYY-MM-DD");
+                   $conteudo = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+               } 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"center\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_f_recibo_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_fecha_fin()
@@ -1912,7 +1991,25 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_fecha_fin_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+          else    
+          { 
+               if (substr($conteudo, 10, 1) == "-") 
+               { 
+                  $conteudo = substr($conteudo, 0, 10) . " " . substr($conteudo, 11);
+               } 
+               if (substr($conteudo, 13, 1) == ".") 
+               { 
+                  $conteudo = substr($conteudo, 0, 13) . ":" . substr($conteudo, 14, 2) . ":" . substr($conteudo, 17);
+               } 
+               $conteudo_x =  $conteudo;
+               nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD HH:II:SS");
+               if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+               { 
+                   $this->nm_data->SetaData($conteudo, "YYYY-MM-DD HH:II:SS");
+                   $conteudo = $this->nm_data->FormataSaida($this->Nm_date_format("DH", "ddmmaaaa;hhiiss"));
+               } 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"center\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_fecha_fin_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_fecha_fin_rep()
@@ -1925,7 +2022,60 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_fecha_fin_rep_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+          else    
+          { 
+               $conteudo_x =  $conteudo;
+               nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+               if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+               { 
+                   $this->nm_data->SetaData($conteudo, "YYYY-MM-DD");
+                   $conteudo = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+               } 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"center\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_fecha_fin_rep_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+      }
+ }
+ function NM_grid_usuarios_dp_nombre()
+ {
+      global $nm_saida;
+      if (!isset($this->NM_cmp_hidden['usuarios_dp_nombre']) || $this->NM_cmp_hidden['usuarios_dp_nombre'] != "off") { 
+          $conteudo = $this->usuarios_dp_nombre; 
+          if ($conteudo === "") 
+          { 
+              $conteudo = "&nbsp;" ;  
+              $graf = "" ;  
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_usuarios_dp_nombre_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+      }
+ }
+ function NM_grid_usuarios_dp_apaterno()
+ {
+      global $nm_saida;
+      if (!isset($this->NM_cmp_hidden['usuarios_dp_apaterno']) || $this->NM_cmp_hidden['usuarios_dp_apaterno'] != "off") { 
+          $conteudo = $this->usuarios_dp_apaterno; 
+          if ($conteudo === "") 
+          { 
+              $conteudo = "&nbsp;" ;  
+              $graf = "" ;  
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_usuarios_dp_apaterno_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+      }
+ }
+ function NM_grid_ot_num_no_ok()
+ {
+      global $nm_saida;
+      if (!isset($this->NM_cmp_hidden['ot_num_no_ok']) || $this->NM_cmp_hidden['ot_num_no_ok'] != "off") { 
+          $conteudo = $this->ot_num_no_ok; 
+          if ($conteudo === "") 
+          { 
+              $conteudo = "&nbsp;" ;  
+              $graf = "" ;  
+          } 
+          else    
+          { 
+              nmgp_Form_Num_Val($conteudo, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "S", "2", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"right\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_num_no_ok_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_status_proceso()
@@ -1938,7 +2088,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_status_proceso_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_status_proceso_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_status_cliente()
@@ -1951,7 +2101,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_status_cliente_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_status_cliente_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
  function NM_grid_ot_shipdate()
@@ -1964,33 +2114,34 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_shipdate_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+          else    
+          { 
+               $conteudo_x =  $conteudo;
+               nm_conv_limpa_dado($conteudo_x, "YYYY-MM-DD");
+               if (is_numeric($conteudo_x) && $conteudo_x > 0) 
+               { 
+                   $this->nm_data->SetaData($conteudo, "YYYY-MM-DD");
+                   $conteudo = $this->nm_data->FormataSaida($this->Nm_date_format("DT", "ddmmaaaa"));
+               } 
+          } 
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"center\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_ot_shipdate_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
- function NM_grid_tipoalmacen_almacen()
+ function NM_grid_tipoalmacen_id_almacen()
  {
       global $nm_saida;
-      if (!isset($this->NM_cmp_hidden['tipoalmacen_almacen']) || $this->NM_cmp_hidden['tipoalmacen_almacen'] != "off") { 
-          $conteudo = $this->tipoalmacen_almacen; 
+      if (!isset($this->NM_cmp_hidden['tipoalmacen_id_almacen']) || $this->NM_cmp_hidden['tipoalmacen_id_almacen'] != "off") { 
+          $conteudo = $this->tipoalmacen_id_almacen; 
           if ($conteudo === "") 
           { 
               $conteudo = "&nbsp;" ;  
               $graf = "" ;  
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_tipoalmacen_almacen_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
-      }
- }
- function NM_grid_cat_pruebas_esteticas_descripcion()
- {
-      global $nm_saida;
-      if (!isset($this->NM_cmp_hidden['cat_pruebas_esteticas_descripcion']) || $this->NM_cmp_hidden['cat_pruebas_esteticas_descripcion'] != "off") { 
-          $conteudo = $this->cat_pruebas_esteticas_descripcion; 
-          if ($conteudo === "") 
+          else    
           { 
-              $conteudo = "&nbsp;" ;  
-              $graf = "" ;  
+              nmgp_Form_Num_Val($conteudo, $_SESSION['scriptcase']['reg_conf']['grup_num'], $_SESSION['scriptcase']['reg_conf']['dec_num'], "0", "S", "2", "", "N:" . $_SESSION['scriptcase']['reg_conf']['neg_num'] , $_SESSION['scriptcase']['reg_conf']['simb_neg'], $_SESSION['scriptcase']['reg_conf']['num_group_digit']) ; 
           } 
-   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"   align=\"left\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_cat_pruebas_esteticas_descripcion_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
+   $nm_saida->saida("     <TD rowspan=\"" . $this->Rows_span . "\" class=\"" . $this->css_line_fonf . "\"  NOWRAP align=\"right\" valign=\"top\"   HEIGHT=\"0px\"><span id=\"id_sc_field_tipoalmacen_id_almacen_" . $this->SC_seq_page . "\">" . $conteudo . "</span></TD>\r\n");
       }
  }
 
@@ -2069,7 +2220,7 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
 
  function NM_calc_span()
  {
-   $this->NM_colspan  = 14;
+   $this->NM_colspan  = 15;
    if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opc_psq'])
    {
        $this->NM_colspan++;
@@ -2123,12 +2274,12 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
         }
     }
  }
- function quebra_cat_pruebas_esteticas_descripcion_tecnico($cat_pruebas_esteticas_descripcion) 
+ function quebra_cat_pruebas_esteticas_descripcion_esteticas($cat_pruebas_esteticas_descripcion) 
  {
    global
           $tot_cat_pruebas_esteticas_descripcion;
    $this->sc_proc_quebra_cat_pruebas_esteticas_descripcion = true; 
-   $this->Tot->quebra_cat_pruebas_esteticas_descripcion_tecnico($cat_pruebas_esteticas_descripcion, $this->arg_sum_cat_pruebas_esteticas_descripcion);
+   $this->Tot->quebra_cat_pruebas_esteticas_descripcion_esteticas($cat_pruebas_esteticas_descripcion, $this->arg_sum_cat_pruebas_esteticas_descripcion);
    $conteudo = $tot_cat_pruebas_esteticas_descripcion[0] ;  
    $this->count_cat_pruebas_esteticas_descripcion = $tot_cat_pruebas_esteticas_descripcion[1];
    $this->campos_quebra_cat_pruebas_esteticas_descripcion = array(); 
@@ -2140,11 +2291,11 @@ $nm_saida->saida("            \"http://www.w3.org/TR/1999/REC-html401-19991224/l
    }
    else
    {
-       $this->campos_quebra_cat_pruebas_esteticas_descripcion[0]['lab'] = "Prueba Estetica"; 
+       $this->campos_quebra_cat_pruebas_esteticas_descripcion[0]['lab'] = "Descripcion"; 
    }
    $this->sc_proc_quebra_cat_pruebas_esteticas_descripcion = false; 
  } 
- function quebra_cat_pruebas_esteticas_descripcion_tecnico_top() 
+ function quebra_cat_pruebas_esteticas_descripcion_esteticas_top() 
  { global
           $cat_pruebas_esteticas_descripcion_ant_desc, 
           $nm_saida, $tot_cat_pruebas_esteticas_descripcion; 

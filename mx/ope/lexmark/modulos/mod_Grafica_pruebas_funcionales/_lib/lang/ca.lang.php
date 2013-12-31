@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Si us plau , escrigui aquí el seu missatge .";
   $this->Nm_lang['lang_user_logged'] = "%s usuari ja està connectat. Continuar? <br/> Això tancarà la sessió de l'usuari actiu.";
   $this->Nm_lang['lang_errm_tz'] = "La funció de càrrega requereix l'extensió Zona horària habilitada al PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Comproveu com configurar-lo.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Llista de zones horàries admeses.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "No Conté";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Angle de Valors";
   $this->Nm_lang['lang_chrt_anlt'] = "Analític";
   $this->Nm_lang['lang_chrt_bars'] = "Barra/Vertical";

@@ -1,0 +1,9 @@
+<chart showValues="1" caption="Gráfica de Pruebas estéticas" xAxisName="Pruebas Estéticas" yAxisName="Cantidad de Ot's" paletteColors="cec86d,a0d384,4997a6,735cb4,bb60b2,ca4552,6f4242" labelDisplay="Rotate" placeValuesInside="1" palette="4" legendPosition="RIGHT" decimals="0">
+ <set label="PE002 - Limpieza Externa" value="26" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE002 - Limpieza Externa@aspass@" />
+ <set label="PE005-REFACCIONES" value="14" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE005-REFACCIONES@aspass@" />
+ <set label="PE004 - Limpieza Duplex" value="14" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE004 - Limpieza Duplex@aspass@" />
+ <set label="PE003 - Limpieza ADF" value="13" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE003 - Limpieza ADF@aspass@" />
+ <set label="PE001 - Limpieza Interna" value="8" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE001 - Limpieza Interna@aspass@" />
+ <set label="PE005" value="3" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE005@aspass@" />
+ <set label="PE006" value="2" link="j-scGridLink-cat_pruebas_esteticas.descripcion?#?@aspass@PE006@aspass@" />
+</chart>

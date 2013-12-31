@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Prosimo, vnesite vaše sporočilo tukaj .";
   $this->Nm_lang['lang_user_logged'] = "Uporabnik %s že prijavljeni. Nadaljevati? <br/> To bo odjavite aktivno uporabnika.";
   $this->Nm_lang['lang_errm_tz'] = "Funkcija Pošiljanje zahteva razširitev zoni omogočen v PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Preverite, kako ga je ustanovil.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Seznam podprtih časovne pasove.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Ne vsebuje";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Nagib vrednosti";
   $this->Nm_lang['lang_chrt_anlt'] = "Analitično";
   $this->Nm_lang['lang_chrt_bars'] = "Stolpično/Vertikalno";

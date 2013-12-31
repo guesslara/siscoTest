@@ -1,7 +1,7 @@
 <?php
    include_once('grafico_pruebas_esteticas_session.php');
    @session_start() ;
-   $_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_perfil']          = "conexionLexmark";
+   $_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_perfil']          = "conexionIBM";
    $_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_path_prod']       = "";
    $_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_path_conf']       = "";
    $_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_path_imagens']    = "";
@@ -131,16 +131,16 @@ class grafico_pruebas_esteticas_ini
       $this->nm_cod_apl      = "grafico_pruebas_esteticas"; 
       $this->nm_nome_apl     = ""; 
       $this->nm_seguranca    = ""; 
-      $this->nm_grupo        = "Lexmark"; 
+      $this->nm_grupo        = "graficas_IBM"; 
       $this->nm_grupo_versao = "1"; 
       $this->nm_autor        = "jvillalobos"; 
       $this->nm_versao_sc    = "v7"; 
       $this->nm_tp_lic_sc    = "ep_bronze"; 
-      $this->nm_dt_criacao   = "20131204"; 
-      $this->nm_hr_criacao   = "101156"; 
+      $this->nm_dt_criacao   = "20131223"; 
+      $this->nm_hr_criacao   = "174052"; 
       $this->nm_autor_alt    = "jvillalobos"; 
-      $this->nm_dt_ult_alt   = ""; 
-      $this->nm_hr_ult_alt   = ""; 
+      $this->nm_dt_ult_alt   = "20131224"; 
+      $this->nm_hr_ult_alt   = "082458"; 
       $temp_bug_list         = explode(" ", microtime()); 
       list($NM_usec, $NM_sec) = $temp_bug_list; 
       $this->nm_timestamp    = (float) $NM_sec; 
@@ -469,7 +469,7 @@ class grafico_pruebas_esteticas_ini
       $this->nm_ttf_chi  = array("zh_cn", "zh_hk", "ko");
       $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['seq_dir'] = 0; 
       $_SESSION['sc_session'][$this->sc_page]['grafico_pruebas_esteticas']['sub_dir'] = array(); 
-      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_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";
+      $_SESSION['scriptcase']['nm_bases_security']  = "enc_nm_enc_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";
       ob_start();
       $this->prep_conect();
       $this->conectDB();
@@ -499,7 +499,7 @@ class grafico_pruebas_esteticas_ini
       ob_end_clean();
       if (empty($this->nm_tabela))
       {
-          $this->nm_tabela = "evaluacion_pruebas INNER JOIN ot ON evaluacion_pruebas.id_ot = ot.id INNER JOIN cat_pruebas_esteticas ON evaluacion_pruebas.id_prueba = cat_pruebas_esteticas.id INNER JOIN cat_pruebas_funcionales ON evaluacion_pruebas.id_prueba = cat_pruebas_funcionales.id INNER JOIN tipoalmacen ON tipoalmacen.id_almacen = ot.id_almacen_destino"; 
+          $this->nm_tabela = "evaluacion_pruebas INNER JOIN ot ON evaluacion_pruebas.id_ot = ot.id INNER JOIN usuarios ON usuarios.id_usuario= ot.repara INNER JOIN cat_pruebas_esteticas ON evaluacion_pruebas.id_prueba = cat_pruebas_esteticas.id INNER JOIN cat_pruebas_funcionales ON evaluacion_pruebas.id_prueba = cat_pruebas_funcionales.id INNER JOIN tipoalmacen ON tipoalmacen.id_almacen = ot.id_almacen_destino"; 
       }
    }
    function prep_conect()
@@ -529,7 +529,7 @@ class grafico_pruebas_esteticas_ini
       $nm_crit_perfil        = false;
       if (isset($_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_conexao']))
       {
-          db_conect_devel($con_devel, $this->root . $this->path_prod, 'Lexmark', 2); 
+          db_conect_devel($con_devel, $this->root . $this->path_prod, 'graficas_IBM', 2); 
           if (empty($_SESSION['scriptcase']['glo_tpbanco']) && empty($_SESSION['scriptcase']['glo_banco']))
           {
               $nm_crit_perfil = true;
@@ -753,7 +753,7 @@ class grafico_pruebas_esteticas_ini
       $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
       if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']) && isset($_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_conexao']) && !empty($_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_conexao']))
       { 
-          $this->Db = db_conect_devel($_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_conexao'], $this->root . $this->path_prod, 'Lexmark'); 
+          $this->Db = db_conect_devel($_SESSION['scriptcase']['grafico_pruebas_esteticas']['glo_nm_conexao'], $this->root . $this->path_prod, 'graficas_IBM'); 
       } 
       else 
       { 
@@ -820,7 +820,7 @@ class grafico_pruebas_esteticas_ini
    } // sc_Include
    function sc_Sql_Protect($var, $tp, $conex="")
    {
-       if (empty($conex) || $conex == "conexionLexmark")
+       if (empty($conex) || $conex == "conexionIBM")
        {
            $TP_banco = $_SESSION['scriptcase']['glo_tpbanco'];
        }
@@ -949,7 +949,7 @@ class grafico_pruebas_esteticas_apl
       $this->Lookup->Db   = $this->Db;
       $this->Lookup->Ini  = $this->Ini;
       $this->Lookup->Erro = $this->Erro;
-      $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_All_Groupby'] = array('tecnico' => 'all');
+      $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_All_Groupby'] = array('esteticas' => 'all');
       if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Groupby_hide'])) 
       { 
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['SC_Groupby_hide'] = array();
@@ -1020,12 +1020,12 @@ class grafico_pruebas_esteticas_apl
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_alt']         = 600;
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_opc_atual']   = '1';
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_mod_allowed'] = array(1, 2);
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_order']       = 'desc';
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_order']       = '';
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_font']        = '';
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_subtitle_val'] = 'right';
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['chartpallet']       = '4';
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_subtitle_val'] = 'below';
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['chartpallet']       = '1';
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_exibe_val']    = '1';
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['paletteColors']     = 'cec86d,b2da7f,48b19e,4b62b7,9a55b1,cc65b3,ca3f3f,6f4242';
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['paletteColors']     = '';
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_barra_orien'] = 'Vertical';
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_barra_forma'] = 'Bar';
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['graf_barra_dimen'] = '3d';
@@ -1118,15 +1118,16 @@ class grafico_pruebas_esteticas_apl
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_ot";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_idp";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_nserie";
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_u_recibe";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_f_recibo";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_fecha_fin";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_fecha_fin_rep";
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "usuarios_dp_nombre";
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "usuarios_dp_apaterno";
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_num_no_ok";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_status_proceso";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_status_cliente";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "ot_shipdate";
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "tipoalmacen_almacen";
-          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "cat_pruebas_esteticas_descripcion";
+          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'][] = "tipoalmacen_id_almacen";
           $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order_orig'] = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['field_order'];
       } 
       if (isset($_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['exit']) && $_SESSION['scriptcase']['sc_apl_conf']['grafico_pruebas_esteticas']['exit'] != '')
@@ -1400,7 +1401,7 @@ class grafico_pruebas_esteticas_apl
       if (substr($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['opcao'], 0, 7) != "grafico" && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig']) || !empty($nmgp_parms) || !empty($GLOBALS["nmgp_parms"])))  
       { 
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['prim_cons'] = true;  
-         $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = "";  
+         $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'] = " where evaluacion_pruebas.tipo_prueba='COSMETICA'";  
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq']       = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_pesq_ant']   = $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['where_orig'];  
          $_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['cond_pesq'] = ""; 
@@ -1736,7 +1737,7 @@ if ($_SESSION['sc_session'][$script_case_init]['grafico_pruebas_esteticas']['pdf
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <HEAD>
- <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> - ot :: PDF</TITLE>
+ <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> -  :: PDF</TITLE>
  <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
  <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?>" GMT">
  <META http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
@@ -1850,7 +1851,15 @@ else
       }
       if ($field == "SC_all_Cmp") 
       {
-          $this->SC_monta_condicao($comando, "ot.u_recibe", $arg_search, $data_search);
+          $this->SC_monta_condicao($comando, "usuarios.dp_nombre", $arg_search, $data_search);
+      }
+      if ($field == "SC_all_Cmp") 
+      {
+          $this->SC_monta_condicao($comando, "usuarios.dp_apaterno", $arg_search, $data_search);
+      }
+      if ($field == "SC_all_Cmp") 
+      {
+          $this->SC_monta_condicao($comando, "ot.num_no_ok", $arg_search, $data_search);
       }
       if ($field == "SC_all_Cmp") 
       {
@@ -1862,7 +1871,7 @@ else
       }
       if ($field == "SC_all_Cmp") 
       {
-          $this->SC_monta_condicao($comando, "tipoalmacen.almacen", $arg_search, $data_search);
+          $this->SC_monta_condicao($comando, "tipoalmacen.id_almacen", $arg_search, $data_search);
       }
       if ($field == "SC_all_Cmp") 
       {
@@ -1893,7 +1902,7 @@ else
       $campo_join = strtolower(str_replace(".", "_", $nome));
       $nm_ini_lower = "";
       $nm_fim_lower = "";
-      $nm_numeric[] = "evaluacion_pruebas_id";$nm_numeric[] = "evaluacion_pruebas_id_ot";$nm_numeric[] = "evaluacion_pruebas_id_prueba";$nm_numeric[] = "cat_pruebas_esteticas_id";$nm_numeric[] = "cat_pruebas_funcionales_id";$nm_numeric[] = "ot_id";$nm_numeric[] = "ot_idp";$nm_numeric[] = "ot_u_recibe";$nm_numeric[] = "ot_garantia";$nm_numeric[] = "ot_num_no_ok";$nm_numeric[] = "ot_id_almacen_destino";$nm_numeric[] = "tipoalmacen_id_almacen";
+      $nm_numeric[] = "evaluacion_pruebas_id";$nm_numeric[] = "evaluacion_pruebas_id_ot";$nm_numeric[] = "evaluacion_pruebas_id_prueba";$nm_numeric[] = "cat_pruebas_esteticas_id";$nm_numeric[] = "cat_pruebas_funcionales_id";$nm_numeric[] = "ot_id";$nm_numeric[] = "ot_idp";$nm_numeric[] = "ot_u_recibe";$nm_numeric[] = "ot_garantia";$nm_numeric[] = "ot_num_no_ok";$nm_numeric[] = "ot_id_almacen_destino";$nm_numeric[] = "usuarios_id_usuario";$nm_numeric[] = "tipoalmacen_id_almacen";
       if (in_array($campo_join, $nm_numeric))
       {
          if ($_SESSION['sc_session'][$this->Ini->sc_page]['grafico_pruebas_esteticas']['decimal_db'] == ".")
@@ -1927,14 +1936,18 @@ else
          }
       }
       $Nm_datas[] = "evaluacion_pruebas_fecha";$Nm_datas[] = "ot_f_recibo";$Nm_datas[] = "ot_fecha_inicio";$Nm_datas[] = "ot_fecha_fin";$Nm_datas[] = "ot_fecha_fin_rep";$Nm_datas[] = "ot_shipdate";
-      if (in_array($campo_join, $Nm_datas) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
-      {
-         $nm_aspas = "#";
-      }
-         if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP"))
+          if (in_array($campo_join, $Nm_datas) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+             $nm_aspas = "#";
+          }
+         if (in_array($campo_join, $nm_numeric) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) && (strtoupper($condicao) == "II" || strtoupper($condicao) == "QP" || strtoupper($condicao) == "NP"))
          {
              $nome     = "CAST ($nome AS TEXT)";
              $nm_aspas = "'";
+         }
+         if (in_array($campo_join, $Nm_datas) && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+         {
+             $nome     = "to_char ($nome, 'YYYY-MM-DD')";
          }
          if (substr($tp_campo, 0, 4) == "DATE" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
          {
@@ -1987,17 +2000,50 @@ else
                    if ($this->NM_data_qp['ano'] != "____")
                    {
                        $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
-                       $NM_cmd     .= "year($nome) = " . $this->NM_data_qp['ano'];
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('year' from $nome) = " . $this->NM_data_qp['ano'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(year from $nome) = " . $this->NM_data_qp['ano'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "year($nome) = " . $this->NM_data_qp['ano'];
+                       }
                    }
                    if ($this->NM_data_qp['mes'] != "__")
                    {
                        $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
-                       $NM_cmd     .= "month($nome) = " . $this->NM_data_qp['mes'];
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('month' from $nome) = " . $this->NM_data_qp['mes'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(month from $nome) = " . $this->NM_data_qp['mes'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "month($nome) = " . $this->NM_data_qp['mes'];
+                       }
                    }
                    if ($this->NM_data_qp['dia'] != "__")
                    {
                        $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
-                       $NM_cmd     .= "day($nome) = " . $this->NM_data_qp['dia'];
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('day' from $nome) = " . $this->NM_data_qp['dia'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(day from $nome) = " . $this->NM_data_qp['dia'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "day($nome) = " . $this->NM_data_qp['dia'];
+                       }
                    }
                    if (!empty($NM_cmd))
                    {
@@ -2008,6 +2054,69 @@ else
                else
                {
                    $comando        .= $nm_ini_lower . $nome . $nm_fim_lower ." like '%" . $campo . "%'";
+               }
+            break;
+            case "NP":     // 
+               if (substr($tp_campo, 0, 4) == "DATE")
+               {
+                   $NM_cmd     = "";
+                   if ($this->NM_data_qp['ano'] != "____")
+                   {
+                       $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('year' from $nome) <> " . $this->NM_data_qp['ano'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(year from $nome) <> " . $this->NM_data_qp['ano'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "year($nome) <> " . $this->NM_data_qp['ano'];
+                       }
+                   }
+                   if ($this->NM_data_qp['mes'] != "__")
+                   {
+                       $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('month' from $nome) <> " . $this->NM_data_qp['mes'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(month from $nome) <> " . $this->NM_data_qp['mes'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "month($nome) <> " . $this->NM_data_qp['mes'];
+                       }
+                   }
+                   if ($this->NM_data_qp['dia'] != "__")
+                   {
+                       $NM_cmd     .= (empty($NM_cmd)) ? "" : " and ";
+                       if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+                       {
+                           $NM_cmd     .= "extract('day' from $nome) <> " . $this->NM_data_qp['dia'];
+                       }
+                       elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+                       {
+                           $NM_cmd     .= "extract(day from $nome) <> " . $this->NM_data_qp['dia'];
+                       }
+                       else
+                       {
+                           $NM_cmd     .= "day($nome) <> " . $this->NM_data_qp['dia'];
+                       }
+                   }
+                   if (!empty($NM_cmd))
+                   {
+                       $NM_cmd     = " (" . $NM_cmd . ")";
+                       $comando        .= $NM_cmd;
+                   }
+               }
+               else
+               {
+                   $comando        .= $nm_ini_lower . $nome . $nm_fim_lower ." not like '%" . $campo . "%'";
                }
             break;
             case "DF":     // 
@@ -2042,7 +2151,7 @@ else
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <HEAD>
- <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> - ot :: Doc</TITLE>
+ <TITLE><?php echo $this->Ini->Nm_lang['lang_othr_grid_titl'] ?> -  :: Doc</TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
  <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
  <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>
@@ -2101,7 +2210,7 @@ else
    {
        include_once("../_lib/lib/php/nm_ctrl_app_name.php");
    }
-   SC_dir_app_ini('Lexmark');
+   SC_dir_app_ini('graficas_IBM');
    $_SESSION['scriptcase']['grafico_pruebas_esteticas']['contr_erro'] = 'off';
    $sc_conv_var = array();
    if (!empty($_POST))
@@ -2386,23 +2495,26 @@ else
                 $cadapar[0] = str_replace("ot_ot", "ot.ot", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_idp", "ot.idp", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_nserie", "ot.nserie", $cadapar[0]);
-                $cadapar[0] = str_replace("ot_u_recibe", "ot.u_recibe", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_f_recibo", "ot.f_recibo", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_fecha_fin", "ot.fecha_fin", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_fecha_fin_rep", "ot.fecha_fin_rep", $cadapar[0]);
+                $cadapar[0] = str_replace("usuarios_dp_nombre", "usuarios.dp_nombre", $cadapar[0]);
+                $cadapar[0] = str_replace("usuarios_dp_apaterno", "usuarios.dp_apaterno", $cadapar[0]);
+                $cadapar[0] = str_replace("ot_num_no_ok", "ot.num_no_ok", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_status_proceso", "ot.status_proceso", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_status_cliente", "ot.status_cliente", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_shipdate", "ot.shipdate", $cadapar[0]);
-                $cadapar[0] = str_replace("tipoalmacen_almacen", "tipoalmacen.almacen", $cadapar[0]);
-                $cadapar[0] = str_replace("cat_pruebas_esteticas_descripcion", "cat_pruebas_esteticas.descripcion", $cadapar[0]);
+                $cadapar[0] = str_replace("tipoalmacen_id_almacen", "tipoalmacen.id_almacen", $cadapar[0]);
                 $cadapar[0] = str_replace("evaluacion_pruebas_id", "evaluacion_pruebas.id", $cadapar[0]);
                 $cadapar[0] = str_replace("evaluacion_pruebas_fecha", "evaluacion_pruebas.fecha", $cadapar[0]);
                 $cadapar[0] = str_replace("evaluacion_pruebas_id_ot", "evaluacion_pruebas.id_ot", $cadapar[0]);
                 $cadapar[0] = str_replace("evaluacion_pruebas_tipo_prueba", "evaluacion_pruebas.tipo_prueba", $cadapar[0]);
                 $cadapar[0] = str_replace("evaluacion_pruebas_id_prueba", "evaluacion_pruebas.id_prueba", $cadapar[0]);
                 $cadapar[0] = str_replace("cat_pruebas_esteticas_id", "cat_pruebas_esteticas.id", $cadapar[0]);
+                $cadapar[0] = str_replace("cat_pruebas_esteticas_descripcion", "cat_pruebas_esteticas.descripcion", $cadapar[0]);
                 $cadapar[0] = str_replace("cat_pruebas_funcionales_id", "cat_pruebas_funcionales.id", $cadapar[0]);
                 $cadapar[0] = str_replace("cat_pruebas_funcionales_descripcion", "cat_pruebas_funcionales.descripcion", $cadapar[0]);
+                $cadapar[0] = str_replace("ot_u_recibe", "ot.u_recibe", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_cod_refac", "ot.cod_refac", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_cod_diag", "ot.cod_diag", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_cod_rep", "ot.cod_rep", $cadapar[0]);
@@ -2410,12 +2522,13 @@ else
                 $cadapar[0] = str_replace("ot_garantia", "ot.garantia", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_fecha_inicio", "ot.fecha_inicio", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_repara", "ot.repara", $cadapar[0]);
-                $cadapar[0] = str_replace("ot_num_no_ok", "ot.num_no_ok", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_id_almacen_destino", "ot.id_almacen_destino", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_shiptracking", "ot.shiptracking", $cadapar[0]);
                 $cadapar[0] = str_replace("ot_obs", "ot.obs", $cadapar[0]);
-                $cadapar[0] = str_replace("tipoalmacen_id_almacen", "tipoalmacen.id_almacen", $cadapar[0]);
-                if ($_SESSION['sc_session'][$script_case_init]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "tecnico")
+                $cadapar[0] = str_replace("usuarios_id_usuario", "usuarios.id_usuario", $cadapar[0]);
+                $cadapar[0] = str_replace("usuarios_dp_amaterno", "usuarios.dp_amaterno", $cadapar[0]);
+                $cadapar[0] = str_replace("tipoalmacen_almacen", "tipoalmacen.almacen", $cadapar[0]);
+                if ($_SESSION['sc_session'][$script_case_init]['grafico_pruebas_esteticas']['SC_Ind_Groupby'] == "esteticas")
                 { 
                     $Temp_parms .= (empty($Temp_parms)) ? "" : " and ";
                     $Temp_parms .= $cadapar[0] . " = " . str_replace("@aspass@", $delimit, $cadapar[1]) ;

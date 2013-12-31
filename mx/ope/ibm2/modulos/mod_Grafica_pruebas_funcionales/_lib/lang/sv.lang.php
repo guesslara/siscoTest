@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Snälla , skriv här ditt budskap .";
   $this->Nm_lang['lang_user_logged'] = "Användare %s har redan anmälts. Fortsätta? <br/> Detta kommer att logga ut den aktiva användaren.";
   $this->Nm_lang['lang_errm_tz'] = "Det Ladda funktionen kräver den tidszon förlängningen aktiverat i PHP. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Kontrollera hur sätter upp den.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Lista över tidszoner som stöds.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Inte Innehåller";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Värdets vinkel";
   $this->Nm_lang['lang_chrt_anlt'] = "Analytiskt";
   $this->Nm_lang['lang_chrt_bars'] = "Stapel/lodrätt";

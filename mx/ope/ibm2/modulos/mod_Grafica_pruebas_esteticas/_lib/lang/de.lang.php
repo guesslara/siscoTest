@@ -367,6 +367,7 @@
   $this->Nm_lang['lang_type_message'] = "Bitte tragen Sie hier Ihre Nachricht eingeben.";
   $this->Nm_lang['lang_user_logged'] = "Benutzer %s ist bereits angemeldet. Weiter? <br/> Dies wird sich auf die aktive Benutzer.";
   $this->Nm_lang['lang_errm_tz'] = "Die Upload-Funktion erfordert die Zeitzone-Erweiterung in der PHP aktiviert. <br/> <a href=https://suporte.scriptcase.com.br/index.php?/Knowledgebase/Article/View/69/0/configuring-datetimezone-in-phpini target=_blank >Prüfen Sie, wie stellen Sie es.</a> <br/> <a href=http://www.php.net/manual/en/timezones.php target=_blank >Liste der unterstützten Zeitzonen.</a>";
+  $this->Nm_lang['lang_srch_not_like'] = "Nicht Enthält";
   $this->Nm_lang['lang_chrt_angl_vals'] = "Gradzahl des Winkels";
   $this->Nm_lang['lang_chrt_anlt'] = "Analytisch";
   $this->Nm_lang['lang_chrt_bars'] = "Balken/Vertikal";

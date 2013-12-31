@@ -41,15 +41,16 @@ function Sel_cmp_init()
    $tab_ger_campos['ot_ot'] = "on";
    $tab_ger_campos['ot_idp'] = "on";
    $tab_ger_campos['ot_nserie'] = "on";
-   $tab_ger_campos['ot_u_recibe'] = "on";
    $tab_ger_campos['ot_f_recibo'] = "on";
    $tab_ger_campos['ot_fecha_fin'] = "on";
    $tab_ger_campos['ot_fecha_fin_rep'] = "on";
+   $tab_ger_campos['usuarios_dp_nombre'] = "on";
+   $tab_ger_campos['usuarios_dp_apaterno'] = "on";
+   $tab_ger_campos['ot_num_no_ok'] = "on";
    $tab_ger_campos['ot_status_proceso'] = "on";
    $tab_ger_campos['ot_status_cliente'] = "on";
    $tab_ger_campos['ot_shipdate'] = "on";
-   $tab_ger_campos['tipoalmacen_almacen'] = "on";
-   $tab_ger_campos['cat_pruebas_esteticas_descripcion'] = "on";
+   $tab_ger_campos['tipoalmacen_id_almacen'] = "on";
    
    if (isset($_POST['fsel_ok']) && $_POST['fsel_ok'] == "default")
    {
@@ -192,7 +193,7 @@ function Sel_processa_form()
             "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
 <HEAD>
- <TITLE><?php echo $this->Nm_lang['lang_othr_grid_titl'] ?> - ot</TITLE>
+ <TITLE><?php echo $this->Nm_lang['lang_othr_grid_titl'] ?> - </TITLE>
  <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
  <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
  <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>
